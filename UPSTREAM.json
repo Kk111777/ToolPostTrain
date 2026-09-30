@@ -1,0 +1,9 @@
+{
+  "source": "https://github.com/NVlabs/GDPO",
+  "fork": "https://github.com/Kk111777/ToolPostTrain",
+  "commit": "4ad86b4fbfc5db594f3a2750ff9c39fdc8ee6115",
+  "local_branch": "setup/local-baseline",
+  "python": "3.12.14",
+  "platform": "macOS arm64",
+  "checked_on": "2026-09-20"
+}
