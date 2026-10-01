@@ -12,3 +12,34 @@ artifacts/
 models/
 checkpoints/
 .DS_Store
+
+# Python/runtime artifacts
+.venv*/
+hf_cache/
+__pycache__/
+*.py[cod]
+
+# Training outputs and live logs
+runs/
+outputs/
+wandb/
+logs/
+*.log
+
+# Model weights and optimizer/trainer state
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.ckpt
+
+# Raw/local datasets
+*.parquet
+verl-GDPO/dataset/rlla_4k/
+
+# Local backup variants
+*.pre_hydra_fix
+
+# Credentials and private configuration
+credentials*
+*_token*

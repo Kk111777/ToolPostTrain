@@ -1,0 +1,3085 @@
+{
+  "source_parquet": "/root/autodl-tmp/ProjectB/repo/verl-GDPO/dataset/rlla_4k/train.parquet",
+  "temporary_capacity_parquet": "/root/autodl-tmp/ProjectB/env-modern/capacity_smoke_512.parquet",
+  "selection_seed": 42,
+  "selection_rule": "filter full train with exact chat-template tokenization first; deterministic choice of 512 eligible rows with default_rng(42), sorted by original row position",
+  "max_prompt_length": 2048,
+  "target_prompts": 512,
+  "selected_count": 512,
+  "selected_source_rows": [
+    {
+      "row_position": 20,
+      "source_id": 20,
+      "prompt_tokens": 546,
+      "eligible": true
+    },
+    {
+      "row_position": 25,
+      "source_id": 25,
+      "prompt_tokens": 1793,
+      "eligible": true
+    },
+    {
+      "row_position": 36,
+      "source_id": 36,
+      "prompt_tokens": 472,
+      "eligible": true
+    },
+    {
+      "row_position": 53,
+      "source_id": 53,
+      "prompt_tokens": 627,
+      "eligible": true
+    },
+    {
+      "row_position": 69,
+      "source_id": 69,
+      "prompt_tokens": 949,
+      "eligible": true
+    },
+    {
+      "row_position": 71,
+      "source_id": 71,
+      "prompt_tokens": 598,
+      "eligible": true
+    },
+    {
+      "row_position": 80,
+      "source_id": 80,
+      "prompt_tokens": 684,
+      "eligible": true
+    },
+    {
+      "row_position": 81,
+      "source_id": 81,
+      "prompt_tokens": 918,
+      "eligible": true
+    },
+    {
+      "row_position": 84,
+      "source_id": 84,
+      "prompt_tokens": 685,
+      "eligible": true
+    },
+    {
+      "row_position": 96,
+      "source_id": 96,
+      "prompt_tokens": 722,
+      "eligible": true
+    },
+    {
+      "row_position": 109,
+      "source_id": 109,
+      "prompt_tokens": 522,
+      "eligible": true
+    },
+    {
+      "row_position": 121,
+      "source_id": 121,
+      "prompt_tokens": 529,
+      "eligible": true
+    },
+    {
+      "row_position": 123,
+      "source_id": 123,
+      "prompt_tokens": 698,
+      "eligible": true
+    },
+    {
+      "row_position": 131,
+      "source_id": 131,
+      "prompt_tokens": 552,
+      "eligible": true
+    },
+    {
+      "row_position": 140,
+      "source_id": 140,
+      "prompt_tokens": 627,
+      "eligible": true
+    },
+    {
+      "row_position": 151,
+      "source_id": 151,
+      "prompt_tokens": 684,
+      "eligible": true
+    },
+    {
+      "row_position": 152,
+      "source_id": 152,
+      "prompt_tokens": 1102,
+      "eligible": true
+    },
+    {
+      "row_position": 169,
+      "source_id": 169,
+      "prompt_tokens": 875,
+      "eligible": true
+    },
+    {
+      "row_position": 170,
+      "source_id": 170,
+      "prompt_tokens": 591,
+      "eligible": true
+    },
+    {
+      "row_position": 208,
+      "source_id": 208,
+      "prompt_tokens": 756,
+      "eligible": true
+    },
+    {
+      "row_position": 220,
+      "source_id": 220,
+      "prompt_tokens": 508,
+      "eligible": true
+    },
+    {
+      "row_position": 235,
+      "source_id": 235,
+      "prompt_tokens": 718,
+      "eligible": true
+    },
+    {
+      "row_position": 240,
+      "source_id": 240,
+      "prompt_tokens": 768,
+      "eligible": true
+    },
+    {
+      "row_position": 257,
+      "source_id": 257,
+      "prompt_tokens": 526,
+      "eligible": true
+    },
+    {
+      "row_position": 265,
+      "source_id": 265,
+      "prompt_tokens": 1292,
+      "eligible": true
+    },
+    {
+      "row_position": 281,
+      "source_id": 281,
+      "prompt_tokens": 739,
+      "eligible": true
+    },
+    {
+      "row_position": 288,
+      "source_id": 288,
+      "prompt_tokens": 709,
+      "eligible": true
+    },
+    {
+      "row_position": 294,
+      "source_id": 294,
+      "prompt_tokens": 623,
+      "eligible": true
+    },
+    {
+      "row_position": 305,
+      "source_id": 305,
+      "prompt_tokens": 597,
+      "eligible": true
+    },
+    {
+      "row_position": 306,
+      "source_id": 306,
+      "prompt_tokens": 560,
+      "eligible": true
+    },
+    {
+      "row_position": 309,
+      "source_id": 309,
+      "prompt_tokens": 477,
+      "eligible": true
+    },
+    {
+      "row_position": 312,
+      "source_id": 312,
+      "prompt_tokens": 539,
+      "eligible": true
+    },
+    {
+      "row_position": 317,
+      "source_id": 317,
+      "prompt_tokens": 636,
+      "eligible": true
+    },
+    {
+      "row_position": 318,
+      "source_id": 318,
+      "prompt_tokens": 932,
+      "eligible": true
+    },
+    {
+      "row_position": 321,
+      "source_id": 321,
+      "prompt_tokens": 451,
+      "eligible": true
+    },
+    {
+      "row_position": 323,
+      "source_id": 323,
+      "prompt_tokens": 980,
+      "eligible": true
+    },
+    {
+      "row_position": 325,
+      "source_id": 325,
+      "prompt_tokens": 682,
+      "eligible": true
+    },
+    {
+      "row_position": 340,
+      "source_id": 340,
+      "prompt_tokens": 749,
+      "eligible": true
+    },
+    {
+      "row_position": 343,
+      "source_id": 343,
+      "prompt_tokens": 591,
+      "eligible": true
+    },
+    {
+      "row_position": 346,
+      "source_id": 346,
+      "prompt_tokens": 545,
+      "eligible": true
+    },
+    {
+      "row_position": 350,
+      "source_id": 350,
+      "prompt_tokens": 757,
+      "eligible": true
+    },
+    {
+      "row_position": 359,
+      "source_id": 359,
+      "prompt_tokens": 1069,
+      "eligible": true
+    },
+    {
+      "row_position": 381,
+      "source_id": 381,
+      "prompt_tokens": 964,
+      "eligible": true
+    },
+    {
+      "row_position": 403,
+      "source_id": 403,
+      "prompt_tokens": 582,
+      "eligible": true
+    },
+    {
+      "row_position": 405,
+      "source_id": 405,
+      "prompt_tokens": 477,
+      "eligible": true
+    },
+    {
+      "row_position": 411,
+      "source_id": 411,
+      "prompt_tokens": 1218,
+      "eligible": true
+    },
+    {
+      "row_position": 426,
+      "source_id": 426,
+      "prompt_tokens": 517,
+      "eligible": true
+    },
+    {
+      "row_position": 427,
+      "source_id": 427,
+      "prompt_tokens": 617,
+      "eligible": true
+    },
+    {
+      "row_position": 439,
+      "source_id": 439,
+      "prompt_tokens": 665,
+      "eligible": true
+    },
+    {
+      "row_position": 440,
+      "source_id": 440,
+      "prompt_tokens": 958,
+      "eligible": true
+    },
+    {
+      "row_position": 444,
+      "source_id": 444,
+      "prompt_tokens": 701,
+      "eligible": true
+    },
+    {
+      "row_position": 446,
+      "source_id": 446,
+      "prompt_tokens": 686,
+      "eligible": true
+    },
+    {
+      "row_position": 451,
+      "source_id": 451,
+      "prompt_tokens": 1164,
+      "eligible": true
+    },
+    {
+      "row_position": 453,
+      "source_id": 453,
+      "prompt_tokens": 491,
+      "eligible": true
+    },
+    {
+      "row_position": 464,
+      "source_id": 464,
+      "prompt_tokens": 1353,
+      "eligible": true
+    },
+    {
+      "row_position": 466,
+      "source_id": 466,
+      "prompt_tokens": 797,
+      "eligible": true
+    },
+    {
+      "row_position": 467,
+      "source_id": 467,
+      "prompt_tokens": 796,
+      "eligible": true
+    },
+    {
+      "row_position": 477,
+      "source_id": 477,
+      "prompt_tokens": 545,
+      "eligible": true
+    },
+    {
+      "row_position": 491,
+      "source_id": 491,
+      "prompt_tokens": 761,
+      "eligible": true
+    },
+    {
+      "row_position": 494,
+      "source_id": 494,
+      "prompt_tokens": 483,
+      "eligible": true
+    },
+    {
+      "row_position": 505,
+      "source_id": 505,
+      "prompt_tokens": 642,
+      "eligible": true
+    },
+    {
+      "row_position": 510,
+      "source_id": 510,
+      "prompt_tokens": 1683,
+      "eligible": true
+    },
+    {
+      "row_position": 514,
+      "source_id": 514,
+      "prompt_tokens": 820,
+      "eligible": true
+    },
+    {
+      "row_position": 523,
+      "source_id": 523,
+      "prompt_tokens": 782,
+      "eligible": true
+    },
+    {
+      "row_position": 530,
+      "source_id": 530,
+      "prompt_tokens": 916,
+      "eligible": true
+    },
+    {
+      "row_position": 531,
+      "source_id": 531,
+      "prompt_tokens": 573,
+      "eligible": true
+    },
+    {
+      "row_position": 536,
+      "source_id": 536,
+      "prompt_tokens": 937,
+      "eligible": true
+    },
+    {
+      "row_position": 545,
+      "source_id": 545,
+      "prompt_tokens": 684,
+      "eligible": true
+    },
+    {
+      "row_position": 548,
+      "source_id": 548,
+      "prompt_tokens": 828,
+      "eligible": true
+    },
+    {
+      "row_position": 551,
+      "source_id": 551,
+      "prompt_tokens": 739,
+      "eligible": true
+    },
+    {
+      "row_position": 560,
+      "source_id": 560,
+      "prompt_tokens": 717,
+      "eligible": true
+    },
+    {
+      "row_position": 563,
+      "source_id": 563,
+      "prompt_tokens": 642,
+      "eligible": true
+    },
+    {
+      "row_position": 572,
+      "source_id": 572,
+      "prompt_tokens": 1419,
+      "eligible": true
+    },
+    {
+      "row_position": 573,
+      "source_id": 573,
+      "prompt_tokens": 930,
+      "eligible": true
+    },
+    {
+      "row_position": 576,
+      "source_id": 576,
+      "prompt_tokens": 562,
+      "eligible": true
+    },
+    {
+      "row_position": 581,
+      "source_id": 581,
+      "prompt_tokens": 636,
+      "eligible": true
+    },
+    {
+      "row_position": 585,
+      "source_id": 585,
+      "prompt_tokens": 636,
+      "eligible": true
+    },
+    {
+      "row_position": 597,
+      "source_id": 597,
+      "prompt_tokens": 1320,
+      "eligible": true
+    },
+    {
+      "row_position": 599,
+      "source_id": 599,
+      "prompt_tokens": 439,
+      "eligible": true
+    },
+    {
+      "row_position": 600,
+      "source_id": 600,
+      "prompt_tokens": 480,
+      "eligible": true
+    },
+    {
+      "row_position": 621,
+      "source_id": 621,
+      "prompt_tokens": 548,
+      "eligible": true
+    },
+    {
+      "row_position": 628,
+      "source_id": 628,
+      "prompt_tokens": 532,
+      "eligible": true
+    },
+    {
+      "row_position": 645,
+      "source_id": 645,
+      "prompt_tokens": 512,
+      "eligible": true
+    },
+    {
+      "row_position": 659,
+      "source_id": 659,
+      "prompt_tokens": 824,
+      "eligible": true
+    },
+    {
+      "row_position": 661,
+      "source_id": 661,
+      "prompt_tokens": 814,
+      "eligible": true
+    },
+    {
+      "row_position": 668,
+      "source_id": 668,
+      "prompt_tokens": 669,
+      "eligible": true
+    },
+    {
+      "row_position": 675,
+      "source_id": 675,
+      "prompt_tokens": 539,
+      "eligible": true
+    },
+    {
+      "row_position": 681,
+      "source_id": 681,
+      "prompt_tokens": 902,
+      "eligible": true
+    },
+    {
+      "row_position": 683,
+      "source_id": 683,
+      "prompt_tokens": 434,
+      "eligible": true
+    },
+    {
+      "row_position": 690,
+      "source_id": 690,
+      "prompt_tokens": 721,
+      "eligible": true
+    },
+    {
+      "row_position": 691,
+      "source_id": 691,
+      "prompt_tokens": 430,
+      "eligible": true
+    },
+    {
+      "row_position": 703,
+      "source_id": 703,
+      "prompt_tokens": 594,
+      "eligible": true
+    },
+    {
+      "row_position": 706,
+      "source_id": 706,
+      "prompt_tokens": 642,
+      "eligible": true
+    },
+    {
+      "row_position": 737,
+      "source_id": 737,
+      "prompt_tokens": 440,
+      "eligible": true
+    },
+    {
+      "row_position": 749,
+      "source_id": 749,
+      "prompt_tokens": 895,
+      "eligible": true
+    },
+    {
+      "row_position": 761,
+      "source_id": 761,
+      "prompt_tokens": 964,
+      "eligible": true
+    },
+    {
+      "row_position": 763,
+      "source_id": 763,
+      "prompt_tokens": 467,
+      "eligible": true
+    },
+    {
+      "row_position": 768,
+      "source_id": 768,
+      "prompt_tokens": 695,
+      "eligible": true
+    },
+    {
+      "row_position": 783,
+      "source_id": 783,
+      "prompt_tokens": 480,
+      "eligible": true
+    },
+    {
+      "row_position": 792,
+      "source_id": 792,
+      "prompt_tokens": 493,
+      "eligible": true
+    },
+    {
+      "row_position": 833,
+      "source_id": 833,
+      "prompt_tokens": 584,
+      "eligible": true
+    },
+    {
+      "row_position": 841,
+      "source_id": 841,
+      "prompt_tokens": 1031,
+      "eligible": true
+    },
+    {
+      "row_position": 844,
+      "source_id": 844,
+      "prompt_tokens": 681,
+      "eligible": true
+    },
+    {
+      "row_position": 860,
+      "source_id": 860,
+      "prompt_tokens": 631,
+      "eligible": true
+    },
+    {
+      "row_position": 861,
+      "source_id": 861,
+      "prompt_tokens": 714,
+      "eligible": true
+    },
+    {
+      "row_position": 867,
+      "source_id": 867,
+      "prompt_tokens": 1014,
+      "eligible": true
+    },
+    {
+      "row_position": 878,
+      "source_id": 878,
+      "prompt_tokens": 756,
+      "eligible": true
+    },
+    {
+      "row_position": 884,
+      "source_id": 884,
+      "prompt_tokens": 813,
+      "eligible": true
+    },
+    {
+      "row_position": 907,
+      "source_id": 907,
+      "prompt_tokens": 431,
+      "eligible": true
+    },
+    {
+      "row_position": 909,
+      "source_id": 909,
+      "prompt_tokens": 966,
+      "eligible": true
+    },
+    {
+      "row_position": 915,
+      "source_id": 915,
+      "prompt_tokens": 771,
+      "eligible": true
+    },
+    {
+      "row_position": 928,
+      "source_id": 928,
+      "prompt_tokens": 789,
+      "eligible": true
+    },
+    {
+      "row_position": 946,
+      "source_id": 946,
+      "prompt_tokens": 629,
+      "eligible": true
+    },
+    {
+      "row_position": 954,
+      "source_id": 954,
+      "prompt_tokens": 600,
+      "eligible": true
+    },
+    {
+      "row_position": 961,
+      "source_id": 961,
+      "prompt_tokens": 536,
+      "eligible": true
+    },
+    {
+      "row_position": 962,
+      "source_id": 962,
+      "prompt_tokens": 722,
+      "eligible": true
+    },
+    {
+      "row_position": 971,
+      "source_id": 971,
+      "prompt_tokens": 450,
+      "eligible": true
+    },
+    {
+      "row_position": 975,
+      "source_id": 975,
+      "prompt_tokens": 740,
+      "eligible": true
+    },
+    {
+      "row_position": 982,
+      "source_id": 982,
+      "prompt_tokens": 457,
+      "eligible": true
+    },
+    {
+      "row_position": 987,
+      "source_id": 987,
+      "prompt_tokens": 705,
+      "eligible": true
+    },
+    {
+      "row_position": 988,
+      "source_id": 988,
+      "prompt_tokens": 784,
+      "eligible": true
+    },
+    {
+      "row_position": 995,
+      "source_id": 995,
+      "prompt_tokens": 909,
+      "eligible": true
+    },
+    {
+      "row_position": 1003,
+      "source_id": 1003,
+      "prompt_tokens": 675,
+      "eligible": true
+    },
+    {
+      "row_position": 1011,
+      "source_id": 1011,
+      "prompt_tokens": 655,
+      "eligible": true
+    },
+    {
+      "row_position": 1019,
+      "source_id": 1019,
+      "prompt_tokens": 577,
+      "eligible": true
+    },
+    {
+      "row_position": 1047,
+      "source_id": 1047,
+      "prompt_tokens": 969,
+      "eligible": true
+    },
+    {
+      "row_position": 1048,
+      "source_id": 1048,
+      "prompt_tokens": 588,
+      "eligible": true
+    },
+    {
+      "row_position": 1054,
+      "source_id": 1054,
+      "prompt_tokens": 645,
+      "eligible": true
+    },
+    {
+      "row_position": 1056,
+      "source_id": 1056,
+      "prompt_tokens": 541,
+      "eligible": true
+    },
+    {
+      "row_position": 1068,
+      "source_id": 1068,
+      "prompt_tokens": 977,
+      "eligible": true
+    },
+    {
+      "row_position": 1069,
+      "source_id": 1069,
+      "prompt_tokens": 926,
+      "eligible": true
+    },
+    {
+      "row_position": 1074,
+      "source_id": 1074,
+      "prompt_tokens": 545,
+      "eligible": true
+    },
+    {
+      "row_position": 1078,
+      "source_id": 1078,
+      "prompt_tokens": 501,
+      "eligible": true
+    },
+    {
+      "row_position": 1085,
+      "source_id": 1085,
+      "prompt_tokens": 911,
+      "eligible": true
+    },
+    {
+      "row_position": 1086,
+      "source_id": 1086,
+      "prompt_tokens": 472,
+      "eligible": true
+    },
+    {
+      "row_position": 1092,
+      "source_id": 1092,
+      "prompt_tokens": 555,
+      "eligible": true
+    },
+    {
+      "row_position": 1093,
+      "source_id": 1093,
+      "prompt_tokens": 440,
+      "eligible": true
+    },
+    {
+      "row_position": 1103,
+      "source_id": 1103,
+      "prompt_tokens": 676,
+      "eligible": true
+    },
+    {
+      "row_position": 1107,
+      "source_id": 1107,
+      "prompt_tokens": 1061,
+      "eligible": true
+    },
+    {
+      "row_position": 1114,
+      "source_id": 1114,
+      "prompt_tokens": 683,
+      "eligible": true
+    },
+    {
+      "row_position": 1122,
+      "source_id": 1122,
+      "prompt_tokens": 499,
+      "eligible": true
+    },
+    {
+      "row_position": 1124,
+      "source_id": 1124,
+      "prompt_tokens": 1294,
+      "eligible": true
+    },
+    {
+      "row_position": 1126,
+      "source_id": 1126,
+      "prompt_tokens": 674,
+      "eligible": true
+    },
+    {
+      "row_position": 1127,
+      "source_id": 1127,
+      "prompt_tokens": 875,
+      "eligible": true
+    },
+    {
+      "row_position": 1133,
+      "source_id": 1133,
+      "prompt_tokens": 886,
+      "eligible": true
+    },
+    {
+      "row_position": 1137,
+      "source_id": 1137,
+      "prompt_tokens": 1115,
+      "eligible": true
+    },
+    {
+      "row_position": 1150,
+      "source_id": 1150,
+      "prompt_tokens": 611,
+      "eligible": true
+    },
+    {
+      "row_position": 1152,
+      "source_id": 1152,
+      "prompt_tokens": 573,
+      "eligible": true
+    },
+    {
+      "row_position": 1160,
+      "source_id": 1160,
+      "prompt_tokens": 680,
+      "eligible": true
+    },
+    {
+      "row_position": 1161,
+      "source_id": 1161,
+      "prompt_tokens": 779,
+      "eligible": true
+    },
+    {
+      "row_position": 1175,
+      "source_id": 1175,
+      "prompt_tokens": 606,
+      "eligible": true
+    },
+    {
+      "row_position": 1184,
+      "source_id": 1184,
+      "prompt_tokens": 635,
+      "eligible": true
+    },
+    {
+      "row_position": 1190,
+      "source_id": 1190,
+      "prompt_tokens": 1832,
+      "eligible": true
+    },
+    {
+      "row_position": 1195,
+      "source_id": 1195,
+      "prompt_tokens": 514,
+      "eligible": true
+    },
+    {
+      "row_position": 1198,
+      "source_id": 1198,
+      "prompt_tokens": 549,
+      "eligible": true
+    },
+    {
+      "row_position": 1210,
+      "source_id": 1210,
+      "prompt_tokens": 828,
+      "eligible": true
+    },
+    {
+      "row_position": 1212,
+      "source_id": 1212,
+      "prompt_tokens": 690,
+      "eligible": true
+    },
+    {
+      "row_position": 1224,
+      "source_id": 1224,
+      "prompt_tokens": 790,
+      "eligible": true
+    },
+    {
+      "row_position": 1225,
+      "source_id": 1225,
+      "prompt_tokens": 533,
+      "eligible": true
+    },
+    {
+      "row_position": 1226,
+      "source_id": 1226,
+      "prompt_tokens": 661,
+      "eligible": true
+    },
+    {
+      "row_position": 1230,
+      "source_id": 1230,
+      "prompt_tokens": 430,
+      "eligible": true
+    },
+    {
+      "row_position": 1234,
+      "source_id": 1234,
+      "prompt_tokens": 994,
+      "eligible": true
+    },
+    {
+      "row_position": 1237,
+      "source_id": 1237,
+      "prompt_tokens": 808,
+      "eligible": true
+    },
+    {
+      "row_position": 1261,
+      "source_id": 1261,
+      "prompt_tokens": 644,
+      "eligible": true
+    },
+    {
+      "row_position": 1270,
+      "source_id": 1270,
+      "prompt_tokens": 726,
+      "eligible": true
+    },
+    {
+      "row_position": 1273,
+      "source_id": 1273,
+      "prompt_tokens": 540,
+      "eligible": true
+    },
+    {
+      "row_position": 1274,
+      "source_id": 1274,
+      "prompt_tokens": 581,
+      "eligible": true
+    },
+    {
+      "row_position": 1277,
+      "source_id": 1277,
+      "prompt_tokens": 897,
+      "eligible": true
+    },
+    {
+      "row_position": 1289,
+      "source_id": 1289,
+      "prompt_tokens": 650,
+      "eligible": true
+    },
+    {
+      "row_position": 1304,
+      "source_id": 1304,
+      "prompt_tokens": 958,
+      "eligible": true
+    },
+    {
+      "row_position": 1305,
+      "source_id": 1305,
+      "prompt_tokens": 487,
+      "eligible": true
+    },
+    {
+      "row_position": 1323,
+      "source_id": 1323,
+      "prompt_tokens": 559,
+      "eligible": true
+    },
+    {
+      "row_position": 1350,
+      "source_id": 1350,
+      "prompt_tokens": 831,
+      "eligible": true
+    },
+    {
+      "row_position": 1358,
+      "source_id": 1358,
+      "prompt_tokens": 938,
+      "eligible": true
+    },
+    {
+      "row_position": 1371,
+      "source_id": 1371,
+      "prompt_tokens": 480,
+      "eligible": true
+    },
+    {
+      "row_position": 1383,
+      "source_id": 1383,
+      "prompt_tokens": 435,
+      "eligible": true
+    },
+    {
+      "row_position": 1389,
+      "source_id": 1389,
+      "prompt_tokens": 630,
+      "eligible": true
+    },
+    {
+      "row_position": 1397,
+      "source_id": 1397,
+      "prompt_tokens": 524,
+      "eligible": true
+    },
+    {
+      "row_position": 1415,
+      "source_id": 1415,
+      "prompt_tokens": 504,
+      "eligible": true
+    },
+    {
+      "row_position": 1428,
+      "source_id": 1428,
+      "prompt_tokens": 1112,
+      "eligible": true
+    },
+    {
+      "row_position": 1440,
+      "source_id": 1440,
+      "prompt_tokens": 805,
+      "eligible": true
+    },
+    {
+      "row_position": 1452,
+      "source_id": 1452,
+      "prompt_tokens": 974,
+      "eligible": true
+    },
+    {
+      "row_position": 1464,
+      "source_id": 1464,
+      "prompt_tokens": 526,
+      "eligible": true
+    },
+    {
+      "row_position": 1465,
+      "source_id": 1465,
+      "prompt_tokens": 580,
+      "eligible": true
+    },
+    {
+      "row_position": 1480,
+      "source_id": 1480,
+      "prompt_tokens": 569,
+      "eligible": true
+    },
+    {
+      "row_position": 1496,
+      "source_id": 1496,
+      "prompt_tokens": 1080,
+      "eligible": true
+    },
+    {
+      "row_position": 1500,
+      "source_id": 1500,
+      "prompt_tokens": 703,
+      "eligible": true
+    },
+    {
+      "row_position": 1523,
+      "source_id": 1523,
+      "prompt_tokens": 440,
+      "eligible": true
+    },
+    {
+      "row_position": 1526,
+      "source_id": 1526,
+      "prompt_tokens": 476,
+      "eligible": true
+    },
+    {
+      "row_position": 1528,
+      "source_id": 1528,
+      "prompt_tokens": 993,
+      "eligible": true
+    },
+    {
+      "row_position": 1529,
+      "source_id": 1529,
+      "prompt_tokens": 797,
+      "eligible": true
+    },
+    {
+      "row_position": 1534,
+      "source_id": 1534,
+      "prompt_tokens": 1100,
+      "eligible": true
+    },
+    {
+      "row_position": 1543,
+      "source_id": 1543,
+      "prompt_tokens": 747,
+      "eligible": true
+    },
+    {
+      "row_position": 1544,
+      "source_id": 1544,
+      "prompt_tokens": 1207,
+      "eligible": true
+    },
+    {
+      "row_position": 1547,
+      "source_id": 1547,
+      "prompt_tokens": 605,
+      "eligible": true
+    },
+    {
+      "row_position": 1551,
+      "source_id": 1551,
+      "prompt_tokens": 1832,
+      "eligible": true
+    },
+    {
+      "row_position": 1552,
+      "source_id": 1552,
+      "prompt_tokens": 485,
+      "eligible": true
+    },
+    {
+      "row_position": 1553,
+      "source_id": 1553,
+      "prompt_tokens": 439,
+      "eligible": true
+    },
+    {
+      "row_position": 1555,
+      "source_id": 1555,
+      "prompt_tokens": 832,
+      "eligible": true
+    },
+    {
+      "row_position": 1579,
+      "source_id": 1579,
+      "prompt_tokens": 1184,
+      "eligible": true
+    },
+    {
+      "row_position": 1602,
+      "source_id": 1602,
+      "prompt_tokens": 1942,
+      "eligible": true
+    },
+    {
+      "row_position": 1607,
+      "source_id": 1607,
+      "prompt_tokens": 747,
+      "eligible": true
+    },
+    {
+      "row_position": 1614,
+      "source_id": 1614,
+      "prompt_tokens": 899,
+      "eligible": true
+    },
+    {
+      "row_position": 1618,
+      "source_id": 1618,
+      "prompt_tokens": 659,
+      "eligible": true
+    },
+    {
+      "row_position": 1619,
+      "source_id": 1619,
+      "prompt_tokens": 718,
+      "eligible": true
+    },
+    {
+      "row_position": 1624,
+      "source_id": 1624,
+      "prompt_tokens": 612,
+      "eligible": true
+    },
+    {
+      "row_position": 1626,
+      "source_id": 1626,
+      "prompt_tokens": 685,
+      "eligible": true
+    },
+    {
+      "row_position": 1630,
+      "source_id": 1630,
+      "prompt_tokens": 586,
+      "eligible": true
+    },
+    {
+      "row_position": 1631,
+      "source_id": 1631,
+      "prompt_tokens": 746,
+      "eligible": true
+    },
+    {
+      "row_position": 1632,
+      "source_id": 1632,
+      "prompt_tokens": 878,
+      "eligible": true
+    },
+    {
+      "row_position": 1636,
+      "source_id": 1636,
+      "prompt_tokens": 431,
+      "eligible": true
+    },
+    {
+      "row_position": 1640,
+      "source_id": 1640,
+      "prompt_tokens": 523,
+      "eligible": true
+    },
+    {
+      "row_position": 1646,
+      "source_id": 1646,
+      "prompt_tokens": 500,
+      "eligible": true
+    },
+    {
+      "row_position": 1655,
+      "source_id": 1655,
+      "prompt_tokens": 1294,
+      "eligible": true
+    },
+    {
+      "row_position": 1657,
+      "source_id": 1657,
+      "prompt_tokens": 1917,
+      "eligible": true
+    },
+    {
+      "row_position": 1658,
+      "source_id": 1658,
+      "prompt_tokens": 575,
+      "eligible": true
+    },
+    {
+      "row_position": 1660,
+      "source_id": 1660,
+      "prompt_tokens": 1486,
+      "eligible": true
+    },
+    {
+      "row_position": 1661,
+      "source_id": 1661,
+      "prompt_tokens": 857,
+      "eligible": true
+    },
+    {
+      "row_position": 1666,
+      "source_id": 1666,
+      "prompt_tokens": 834,
+      "eligible": true
+    },
+    {
+      "row_position": 1668,
+      "source_id": 1668,
+      "prompt_tokens": 825,
+      "eligible": true
+    },
+    {
+      "row_position": 1670,
+      "source_id": 1670,
+      "prompt_tokens": 499,
+      "eligible": true
+    },
+    {
+      "row_position": 1680,
+      "source_id": 1680,
+      "prompt_tokens": 1020,
+      "eligible": true
+    },
+    {
+      "row_position": 1688,
+      "source_id": 1688,
+      "prompt_tokens": 676,
+      "eligible": true
+    },
+    {
+      "row_position": 1718,
+      "source_id": 1718,
+      "prompt_tokens": 456,
+      "eligible": true
+    },
+    {
+      "row_position": 1724,
+      "source_id": 1724,
+      "prompt_tokens": 884,
+      "eligible": true
+    },
+    {
+      "row_position": 1725,
+      "source_id": 1725,
+      "prompt_tokens": 757,
+      "eligible": true
+    },
+    {
+      "row_position": 1726,
+      "source_id": 1726,
+      "prompt_tokens": 538,
+      "eligible": true
+    },
+    {
+      "row_position": 1753,
+      "source_id": 1753,
+      "prompt_tokens": 522,
+      "eligible": true
+    },
+    {
+      "row_position": 1760,
+      "source_id": 1760,
+      "prompt_tokens": 655,
+      "eligible": true
+    },
+    {
+      "row_position": 1775,
+      "source_id": 1775,
+      "prompt_tokens": 679,
+      "eligible": true
+    },
+    {
+      "row_position": 1779,
+      "source_id": 1779,
+      "prompt_tokens": 760,
+      "eligible": true
+    },
+    {
+      "row_position": 1783,
+      "source_id": 1783,
+      "prompt_tokens": 785,
+      "eligible": true
+    },
+    {
+      "row_position": 1788,
+      "source_id": 1788,
+      "prompt_tokens": 593,
+      "eligible": true
+    },
+    {
+      "row_position": 1790,
+      "source_id": 1790,
+      "prompt_tokens": 694,
+      "eligible": true
+    },
+    {
+      "row_position": 1797,
+      "source_id": 1797,
+      "prompt_tokens": 469,
+      "eligible": true
+    },
+    {
+      "row_position": 1798,
+      "source_id": 1798,
+      "prompt_tokens": 507,
+      "eligible": true
+    },
+    {
+      "row_position": 1800,
+      "source_id": 1800,
+      "prompt_tokens": 728,
+      "eligible": true
+    },
+    {
+      "row_position": 1802,
+      "source_id": 1802,
+      "prompt_tokens": 978,
+      "eligible": true
+    },
+    {
+      "row_position": 1803,
+      "source_id": 1803,
+      "prompt_tokens": 554,
+      "eligible": true
+    },
+    {
+      "row_position": 1805,
+      "source_id": 1805,
+      "prompt_tokens": 723,
+      "eligible": true
+    },
+    {
+      "row_position": 1810,
+      "source_id": 1810,
+      "prompt_tokens": 1395,
+      "eligible": true
+    },
+    {
+      "row_position": 1814,
+      "source_id": 1814,
+      "prompt_tokens": 551,
+      "eligible": true
+    },
+    {
+      "row_position": 1817,
+      "source_id": 1817,
+      "prompt_tokens": 622,
+      "eligible": true
+    },
+    {
+      "row_position": 1876,
+      "source_id": 1876,
+      "prompt_tokens": 743,
+      "eligible": true
+    },
+    {
+      "row_position": 1884,
+      "source_id": 1884,
+      "prompt_tokens": 497,
+      "eligible": true
+    },
+    {
+      "row_position": 1895,
+      "source_id": 1895,
+      "prompt_tokens": 584,
+      "eligible": true
+    },
+    {
+      "row_position": 1906,
+      "source_id": 1906,
+      "prompt_tokens": 685,
+      "eligible": true
+    },
+    {
+      "row_position": 1910,
+      "source_id": 1910,
+      "prompt_tokens": 835,
+      "eligible": true
+    },
+    {
+      "row_position": 1912,
+      "source_id": 1912,
+      "prompt_tokens": 936,
+      "eligible": true
+    },
+    {
+      "row_position": 1929,
+      "source_id": 1929,
+      "prompt_tokens": 720,
+      "eligible": true
+    },
+    {
+      "row_position": 1930,
+      "source_id": 1930,
+      "prompt_tokens": 471,
+      "eligible": true
+    },
+    {
+      "row_position": 1934,
+      "source_id": 1934,
+      "prompt_tokens": 601,
+      "eligible": true
+    },
+    {
+      "row_position": 1940,
+      "source_id": 1940,
+      "prompt_tokens": 701,
+      "eligible": true
+    },
+    {
+      "row_position": 1957,
+      "source_id": 1957,
+      "prompt_tokens": 871,
+      "eligible": true
+    },
+    {
+      "row_position": 1960,
+      "source_id": 1960,
+      "prompt_tokens": 653,
+      "eligible": true
+    },
+    {
+      "row_position": 1961,
+      "source_id": 1961,
+      "prompt_tokens": 478,
+      "eligible": true
+    },
+    {
+      "row_position": 1969,
+      "source_id": 1969,
+      "prompt_tokens": 1448,
+      "eligible": true
+    },
+    {
+      "row_position": 1982,
+      "source_id": 1982,
+      "prompt_tokens": 791,
+      "eligible": true
+    },
+    {
+      "row_position": 1987,
+      "source_id": 1987,
+      "prompt_tokens": 683,
+      "eligible": true
+    },
+    {
+      "row_position": 1990,
+      "source_id": 1990,
+      "prompt_tokens": 723,
+      "eligible": true
+    },
+    {
+      "row_position": 1998,
+      "source_id": 1998,
+      "prompt_tokens": 578,
+      "eligible": true
+    },
+    {
+      "row_position": 2002,
+      "source_id": 2002,
+      "prompt_tokens": 514,
+      "eligible": true
+    },
+    {
+      "row_position": 2005,
+      "source_id": 2005,
+      "prompt_tokens": 772,
+      "eligible": true
+    },
+    {
+      "row_position": 2006,
+      "source_id": 2006,
+      "prompt_tokens": 685,
+      "eligible": true
+    },
+    {
+      "row_position": 2011,
+      "source_id": 2011,
+      "prompt_tokens": 568,
+      "eligible": true
+    },
+    {
+      "row_position": 2017,
+      "source_id": 2017,
+      "prompt_tokens": 888,
+      "eligible": true
+    },
+    {
+      "row_position": 2019,
+      "source_id": 2019,
+      "prompt_tokens": 763,
+      "eligible": true
+    },
+    {
+      "row_position": 2033,
+      "source_id": 2033,
+      "prompt_tokens": 599,
+      "eligible": true
+    },
+    {
+      "row_position": 2046,
+      "source_id": 2046,
+      "prompt_tokens": 508,
+      "eligible": true
+    },
+    {
+      "row_position": 2060,
+      "source_id": 2060,
+      "prompt_tokens": 707,
+      "eligible": true
+    },
+    {
+      "row_position": 2069,
+      "source_id": 2069,
+      "prompt_tokens": 486,
+      "eligible": true
+    },
+    {
+      "row_position": 2075,
+      "source_id": 2075,
+      "prompt_tokens": 926,
+      "eligible": true
+    },
+    {
+      "row_position": 2080,
+      "source_id": 2080,
+      "prompt_tokens": 579,
+      "eligible": true
+    },
+    {
+      "row_position": 2107,
+      "source_id": 2107,
+      "prompt_tokens": 935,
+      "eligible": true
+    },
+    {
+      "row_position": 2114,
+      "source_id": 2114,
+      "prompt_tokens": 703,
+      "eligible": true
+    },
+    {
+      "row_position": 2132,
+      "source_id": 2132,
+      "prompt_tokens": 1024,
+      "eligible": true
+    },
+    {
+      "row_position": 2135,
+      "source_id": 2135,
+      "prompt_tokens": 983,
+      "eligible": true
+    },
+    {
+      "row_position": 2137,
+      "source_id": 2137,
+      "prompt_tokens": 549,
+      "eligible": true
+    },
+    {
+      "row_position": 2146,
+      "source_id": 2146,
+      "prompt_tokens": 442,
+      "eligible": true
+    },
+    {
+      "row_position": 2156,
+      "source_id": 2156,
+      "prompt_tokens": 758,
+      "eligible": true
+    },
+    {
+      "row_position": 2175,
+      "source_id": 2175,
+      "prompt_tokens": 777,
+      "eligible": true
+    },
+    {
+      "row_position": 2178,
+      "source_id": 2178,
+      "prompt_tokens": 482,
+      "eligible": true
+    },
+    {
+      "row_position": 2183,
+      "source_id": 2183,
+      "prompt_tokens": 1405,
+      "eligible": true
+    },
+    {
+      "row_position": 2187,
+      "source_id": 2187,
+      "prompt_tokens": 1549,
+      "eligible": true
+    },
+    {
+      "row_position": 2200,
+      "source_id": 2200,
+      "prompt_tokens": 427,
+      "eligible": true
+    },
+    {
+      "row_position": 2211,
+      "source_id": 2211,
+      "prompt_tokens": 626,
+      "eligible": true
+    },
+    {
+      "row_position": 2229,
+      "source_id": 2229,
+      "prompt_tokens": 1675,
+      "eligible": true
+    },
+    {
+      "row_position": 2234,
+      "source_id": 2234,
+      "prompt_tokens": 930,
+      "eligible": true
+    },
+    {
+      "row_position": 2235,
+      "source_id": 2235,
+      "prompt_tokens": 1082,
+      "eligible": true
+    },
+    {
+      "row_position": 2247,
+      "source_id": 2247,
+      "prompt_tokens": 991,
+      "eligible": true
+    },
+    {
+      "row_position": 2254,
+      "source_id": 2254,
+      "prompt_tokens": 1338,
+      "eligible": true
+    },
+    {
+      "row_position": 2272,
+      "source_id": 2272,
+      "prompt_tokens": 692,
+      "eligible": true
+    },
+    {
+      "row_position": 2282,
+      "source_id": 2282,
+      "prompt_tokens": 457,
+      "eligible": true
+    },
+    {
+      "row_position": 2291,
+      "source_id": 2291,
+      "prompt_tokens": 567,
+      "eligible": true
+    },
+    {
+      "row_position": 2296,
+      "source_id": 2296,
+      "prompt_tokens": 693,
+      "eligible": true
+    },
+    {
+      "row_position": 2299,
+      "source_id": 2299,
+      "prompt_tokens": 459,
+      "eligible": true
+    },
+    {
+      "row_position": 2309,
+      "source_id": 2309,
+      "prompt_tokens": 906,
+      "eligible": true
+    },
+    {
+      "row_position": 2313,
+      "source_id": 2313,
+      "prompt_tokens": 577,
+      "eligible": true
+    },
+    {
+      "row_position": 2335,
+      "source_id": 2335,
+      "prompt_tokens": 813,
+      "eligible": true
+    },
+    {
+      "row_position": 2338,
+      "source_id": 2338,
+      "prompt_tokens": 964,
+      "eligible": true
+    },
+    {
+      "row_position": 2339,
+      "source_id": 2339,
+      "prompt_tokens": 428,
+      "eligible": true
+    },
+    {
+      "row_position": 2345,
+      "source_id": 2345,
+      "prompt_tokens": 1028,
+      "eligible": true
+    },
+    {
+      "row_position": 2356,
+      "source_id": 2356,
+      "prompt_tokens": 498,
+      "eligible": true
+    },
+    {
+      "row_position": 2361,
+      "source_id": 2361,
+      "prompt_tokens": 753,
+      "eligible": true
+    },
+    {
+      "row_position": 2365,
+      "source_id": 2365,
+      "prompt_tokens": 1185,
+      "eligible": true
+    },
+    {
+      "row_position": 2370,
+      "source_id": 2370,
+      "prompt_tokens": 528,
+      "eligible": true
+    },
+    {
+      "row_position": 2373,
+      "source_id": 2373,
+      "prompt_tokens": 1343,
+      "eligible": true
+    },
+    {
+      "row_position": 2375,
+      "source_id": 2375,
+      "prompt_tokens": 630,
+      "eligible": true
+    },
+    {
+      "row_position": 2382,
+      "source_id": 2382,
+      "prompt_tokens": 1173,
+      "eligible": true
+    },
+    {
+      "row_position": 2383,
+      "source_id": 2383,
+      "prompt_tokens": 464,
+      "eligible": true
+    },
+    {
+      "row_position": 2392,
+      "source_id": 2392,
+      "prompt_tokens": 739,
+      "eligible": true
+    },
+    {
+      "row_position": 2394,
+      "source_id": 2394,
+      "prompt_tokens": 550,
+      "eligible": true
+    },
+    {
+      "row_position": 2419,
+      "source_id": 2419,
+      "prompt_tokens": 684,
+      "eligible": true
+    },
+    {
+      "row_position": 2420,
+      "source_id": 2420,
+      "prompt_tokens": 517,
+      "eligible": true
+    },
+    {
+      "row_position": 2422,
+      "source_id": 2422,
+      "prompt_tokens": 457,
+      "eligible": true
+    },
+    {
+      "row_position": 2448,
+      "source_id": 2448,
+      "prompt_tokens": 773,
+      "eligible": true
+    },
+    {
+      "row_position": 2453,
+      "source_id": 2453,
+      "prompt_tokens": 1023,
+      "eligible": true
+    },
+    {
+      "row_position": 2457,
+      "source_id": 2457,
+      "prompt_tokens": 449,
+      "eligible": true
+    },
+    {
+      "row_position": 2458,
+      "source_id": 2458,
+      "prompt_tokens": 957,
+      "eligible": true
+    },
+    {
+      "row_position": 2462,
+      "source_id": 2462,
+      "prompt_tokens": 423,
+      "eligible": true
+    },
+    {
+      "row_position": 2465,
+      "source_id": 2465,
+      "prompt_tokens": 654,
+      "eligible": true
+    },
+    {
+      "row_position": 2479,
+      "source_id": 2479,
+      "prompt_tokens": 546,
+      "eligible": true
+    },
+    {
+      "row_position": 2482,
+      "source_id": 2482,
+      "prompt_tokens": 477,
+      "eligible": true
+    },
+    {
+      "row_position": 2485,
+      "source_id": 2485,
+      "prompt_tokens": 827,
+      "eligible": true
+    },
+    {
+      "row_position": 2498,
+      "source_id": 2498,
+      "prompt_tokens": 441,
+      "eligible": true
+    },
+    {
+      "row_position": 2502,
+      "source_id": 2502,
+      "prompt_tokens": 446,
+      "eligible": true
+    },
+    {
+      "row_position": 2503,
+      "source_id": 2503,
+      "prompt_tokens": 666,
+      "eligible": true
+    },
+    {
+      "row_position": 2518,
+      "source_id": 2518,
+      "prompt_tokens": 565,
+      "eligible": true
+    },
+    {
+      "row_position": 2529,
+      "source_id": 2529,
+      "prompt_tokens": 566,
+      "eligible": true
+    },
+    {
+      "row_position": 2551,
+      "source_id": 2551,
+      "prompt_tokens": 1114,
+      "eligible": true
+    },
+    {
+      "row_position": 2557,
+      "source_id": 2557,
+      "prompt_tokens": 1360,
+      "eligible": true
+    },
+    {
+      "row_position": 2572,
+      "source_id": 2572,
+      "prompt_tokens": 545,
+      "eligible": true
+    },
+    {
+      "row_position": 2578,
+      "source_id": 2578,
+      "prompt_tokens": 550,
+      "eligible": true
+    },
+    {
+      "row_position": 2581,
+      "source_id": 2581,
+      "prompt_tokens": 1014,
+      "eligible": true
+    },
+    {
+      "row_position": 2585,
+      "source_id": 2585,
+      "prompt_tokens": 561,
+      "eligible": true
+    },
+    {
+      "row_position": 2588,
+      "source_id": 2588,
+      "prompt_tokens": 808,
+      "eligible": true
+    },
+    {
+      "row_position": 2593,
+      "source_id": 2593,
+      "prompt_tokens": 595,
+      "eligible": true
+    },
+    {
+      "row_position": 2596,
+      "source_id": 2596,
+      "prompt_tokens": 1173,
+      "eligible": true
+    },
+    {
+      "row_position": 2605,
+      "source_id": 2605,
+      "prompt_tokens": 849,
+      "eligible": true
+    },
+    {
+      "row_position": 2615,
+      "source_id": 2615,
+      "prompt_tokens": 823,
+      "eligible": true
+    },
+    {
+      "row_position": 2622,
+      "source_id": 2622,
+      "prompt_tokens": 458,
+      "eligible": true
+    },
+    {
+      "row_position": 2623,
+      "source_id": 2623,
+      "prompt_tokens": 1226,
+      "eligible": true
+    },
+    {
+      "row_position": 2629,
+      "source_id": 2629,
+      "prompt_tokens": 1456,
+      "eligible": true
+    },
+    {
+      "row_position": 2639,
+      "source_id": 2639,
+      "prompt_tokens": 1013,
+      "eligible": true
+    },
+    {
+      "row_position": 2660,
+      "source_id": 2660,
+      "prompt_tokens": 1015,
+      "eligible": true
+    },
+    {
+      "row_position": 2670,
+      "source_id": 2670,
+      "prompt_tokens": 774,
+      "eligible": true
+    },
+    {
+      "row_position": 2683,
+      "source_id": 2683,
+      "prompt_tokens": 759,
+      "eligible": true
+    },
+    {
+      "row_position": 2685,
+      "source_id": 2685,
+      "prompt_tokens": 1202,
+      "eligible": true
+    },
+    {
+      "row_position": 2691,
+      "source_id": 2691,
+      "prompt_tokens": 560,
+      "eligible": true
+    },
+    {
+      "row_position": 2705,
+      "source_id": 2705,
+      "prompt_tokens": 719,
+      "eligible": true
+    },
+    {
+      "row_position": 2709,
+      "source_id": 2709,
+      "prompt_tokens": 521,
+      "eligible": true
+    },
+    {
+      "row_position": 2721,
+      "source_id": 2721,
+      "prompt_tokens": 650,
+      "eligible": true
+    },
+    {
+      "row_position": 2739,
+      "source_id": 2739,
+      "prompt_tokens": 540,
+      "eligible": true
+    },
+    {
+      "row_position": 2743,
+      "source_id": 2743,
+      "prompt_tokens": 976,
+      "eligible": true
+    },
+    {
+      "row_position": 2747,
+      "source_id": 2747,
+      "prompt_tokens": 512,
+      "eligible": true
+    },
+    {
+      "row_position": 2748,
+      "source_id": 2748,
+      "prompt_tokens": 1146,
+      "eligible": true
+    },
+    {
+      "row_position": 2763,
+      "source_id": 2763,
+      "prompt_tokens": 787,
+      "eligible": true
+    },
+    {
+      "row_position": 2765,
+      "source_id": 2765,
+      "prompt_tokens": 425,
+      "eligible": true
+    },
+    {
+      "row_position": 2768,
+      "source_id": 2768,
+      "prompt_tokens": 459,
+      "eligible": true
+    },
+    {
+      "row_position": 2769,
+      "source_id": 2769,
+      "prompt_tokens": 644,
+      "eligible": true
+    },
+    {
+      "row_position": 2789,
+      "source_id": 2789,
+      "prompt_tokens": 721,
+      "eligible": true
+    },
+    {
+      "row_position": 2797,
+      "source_id": 2797,
+      "prompt_tokens": 722,
+      "eligible": true
+    },
+    {
+      "row_position": 2799,
+      "source_id": 2799,
+      "prompt_tokens": 1411,
+      "eligible": true
+    },
+    {
+      "row_position": 2816,
+      "source_id": 2816,
+      "prompt_tokens": 641,
+      "eligible": true
+    },
+    {
+      "row_position": 2817,
+      "source_id": 2817,
+      "prompt_tokens": 539,
+      "eligible": true
+    },
+    {
+      "row_position": 2821,
+      "source_id": 2821,
+      "prompt_tokens": 471,
+      "eligible": true
+    },
+    {
+      "row_position": 2825,
+      "source_id": 2825,
+      "prompt_tokens": 1171,
+      "eligible": true
+    },
+    {
+      "row_position": 2826,
+      "source_id": 2826,
+      "prompt_tokens": 734,
+      "eligible": true
+    },
+    {
+      "row_position": 2828,
+      "source_id": 2828,
+      "prompt_tokens": 718,
+      "eligible": true
+    },
+    {
+      "row_position": 2837,
+      "source_id": 2837,
+      "prompt_tokens": 1004,
+      "eligible": true
+    },
+    {
+      "row_position": 2838,
+      "source_id": 2838,
+      "prompt_tokens": 900,
+      "eligible": true
+    },
+    {
+      "row_position": 2851,
+      "source_id": 2851,
+      "prompt_tokens": 458,
+      "eligible": true
+    },
+    {
+      "row_position": 2857,
+      "source_id": 2857,
+      "prompt_tokens": 1048,
+      "eligible": true
+    },
+    {
+      "row_position": 2864,
+      "source_id": 2864,
+      "prompt_tokens": 950,
+      "eligible": true
+    },
+    {
+      "row_position": 2865,
+      "source_id": 2865,
+      "prompt_tokens": 820,
+      "eligible": true
+    },
+    {
+      "row_position": 2876,
+      "source_id": 2876,
+      "prompt_tokens": 682,
+      "eligible": true
+    },
+    {
+      "row_position": 2877,
+      "source_id": 2877,
+      "prompt_tokens": 1289,
+      "eligible": true
+    },
+    {
+      "row_position": 2885,
+      "source_id": 2885,
+      "prompt_tokens": 887,
+      "eligible": true
+    },
+    {
+      "row_position": 2899,
+      "source_id": 2899,
+      "prompt_tokens": 660,
+      "eligible": true
+    },
+    {
+      "row_position": 2906,
+      "source_id": 2906,
+      "prompt_tokens": 450,
+      "eligible": true
+    },
+    {
+      "row_position": 2908,
+      "source_id": 2908,
+      "prompt_tokens": 681,
+      "eligible": true
+    },
+    {
+      "row_position": 2910,
+      "source_id": 2910,
+      "prompt_tokens": 556,
+      "eligible": true
+    },
+    {
+      "row_position": 2911,
+      "source_id": 2911,
+      "prompt_tokens": 766,
+      "eligible": true
+    },
+    {
+      "row_position": 2916,
+      "source_id": 2916,
+      "prompt_tokens": 981,
+      "eligible": true
+    },
+    {
+      "row_position": 2921,
+      "source_id": 2921,
+      "prompt_tokens": 648,
+      "eligible": true
+    },
+    {
+      "row_position": 2922,
+      "source_id": 2922,
+      "prompt_tokens": 730,
+      "eligible": true
+    },
+    {
+      "row_position": 2925,
+      "source_id": 2925,
+      "prompt_tokens": 746,
+      "eligible": true
+    },
+    {
+      "row_position": 2929,
+      "source_id": 2929,
+      "prompt_tokens": 702,
+      "eligible": true
+    },
+    {
+      "row_position": 2935,
+      "source_id": 2935,
+      "prompt_tokens": 1032,
+      "eligible": true
+    },
+    {
+      "row_position": 2939,
+      "source_id": 2939,
+      "prompt_tokens": 928,
+      "eligible": true
+    },
+    {
+      "row_position": 2945,
+      "source_id": 2945,
+      "prompt_tokens": 1143,
+      "eligible": true
+    },
+    {
+      "row_position": 2955,
+      "source_id": 2955,
+      "prompt_tokens": 846,
+      "eligible": true
+    },
+    {
+      "row_position": 2962,
+      "source_id": 2962,
+      "prompt_tokens": 615,
+      "eligible": true
+    },
+    {
+      "row_position": 2982,
+      "source_id": 2982,
+      "prompt_tokens": 911,
+      "eligible": true
+    },
+    {
+      "row_position": 2986,
+      "source_id": 2986,
+      "prompt_tokens": 890,
+      "eligible": true
+    },
+    {
+      "row_position": 3019,
+      "source_id": 3019,
+      "prompt_tokens": 867,
+      "eligible": true
+    },
+    {
+      "row_position": 3025,
+      "source_id": 3025,
+      "prompt_tokens": 654,
+      "eligible": true
+    },
+    {
+      "row_position": 3031,
+      "source_id": 3031,
+      "prompt_tokens": 1188,
+      "eligible": true
+    },
+    {
+      "row_position": 3044,
+      "source_id": 3044,
+      "prompt_tokens": 644,
+      "eligible": true
+    },
+    {
+      "row_position": 3048,
+      "source_id": 3048,
+      "prompt_tokens": 1248,
+      "eligible": true
+    },
+    {
+      "row_position": 3055,
+      "source_id": 3055,
+      "prompt_tokens": 757,
+      "eligible": true
+    },
+    {
+      "row_position": 3064,
+      "source_id": 3064,
+      "prompt_tokens": 427,
+      "eligible": true
+    },
+    {
+      "row_position": 3084,
+      "source_id": 3084,
+      "prompt_tokens": 682,
+      "eligible": true
+    },
+    {
+      "row_position": 3101,
+      "source_id": 3101,
+      "prompt_tokens": 966,
+      "eligible": true
+    },
+    {
+      "row_position": 3104,
+      "source_id": 3104,
+      "prompt_tokens": 564,
+      "eligible": true
+    },
+    {
+      "row_position": 3116,
+      "source_id": 3116,
+      "prompt_tokens": 521,
+      "eligible": true
+    },
+    {
+      "row_position": 3120,
+      "source_id": 3120,
+      "prompt_tokens": 480,
+      "eligible": true
+    },
+    {
+      "row_position": 3143,
+      "source_id": 3143,
+      "prompt_tokens": 853,
+      "eligible": true
+    },
+    {
+      "row_position": 3144,
+      "source_id": 3144,
+      "prompt_tokens": 511,
+      "eligible": true
+    },
+    {
+      "row_position": 3147,
+      "source_id": 3147,
+      "prompt_tokens": 451,
+      "eligible": true
+    },
+    {
+      "row_position": 3154,
+      "source_id": 3154,
+      "prompt_tokens": 513,
+      "eligible": true
+    },
+    {
+      "row_position": 3171,
+      "source_id": 3171,
+      "prompt_tokens": 1222,
+      "eligible": true
+    },
+    {
+      "row_position": 3178,
+      "source_id": 3178,
+      "prompt_tokens": 709,
+      "eligible": true
+    },
+    {
+      "row_position": 3187,
+      "source_id": 3187,
+      "prompt_tokens": 1082,
+      "eligible": true
+    },
+    {
+      "row_position": 3198,
+      "source_id": 3198,
+      "prompt_tokens": 836,
+      "eligible": true
+    },
+    {
+      "row_position": 3226,
+      "source_id": 3226,
+      "prompt_tokens": 1177,
+      "eligible": true
+    },
+    {
+      "row_position": 3229,
+      "source_id": 3229,
+      "prompt_tokens": 621,
+      "eligible": true
+    },
+    {
+      "row_position": 3251,
+      "source_id": 3251,
+      "prompt_tokens": 573,
+      "eligible": true
+    },
+    {
+      "row_position": 3266,
+      "source_id": 3266,
+      "prompt_tokens": 1914,
+      "eligible": true
+    },
+    {
+      "row_position": 3273,
+      "source_id": 3273,
+      "prompt_tokens": 699,
+      "eligible": true
+    },
+    {
+      "row_position": 3278,
+      "source_id": 3278,
+      "prompt_tokens": 698,
+      "eligible": true
+    },
+    {
+      "row_position": 3290,
+      "source_id": 3290,
+      "prompt_tokens": 1084,
+      "eligible": true
+    },
+    {
+      "row_position": 3314,
+      "source_id": 3314,
+      "prompt_tokens": 444,
+      "eligible": true
+    },
+    {
+      "row_position": 3325,
+      "source_id": 3325,
+      "prompt_tokens": 1039,
+      "eligible": true
+    },
+    {
+      "row_position": 3326,
+      "source_id": 3326,
+      "prompt_tokens": 724,
+      "eligible": true
+    },
+    {
+      "row_position": 3334,
+      "source_id": 3334,
+      "prompt_tokens": 785,
+      "eligible": true
+    },
+    {
+      "row_position": 3350,
+      "source_id": 3350,
+      "prompt_tokens": 893,
+      "eligible": true
+    },
+    {
+      "row_position": 3352,
+      "source_id": 3352,
+      "prompt_tokens": 849,
+      "eligible": true
+    },
+    {
+      "row_position": 3356,
+      "source_id": 3356,
+      "prompt_tokens": 660,
+      "eligible": true
+    },
+    {
+      "row_position": 3357,
+      "source_id": 3357,
+      "prompt_tokens": 669,
+      "eligible": true
+    },
+    {
+      "row_position": 3364,
+      "source_id": 3364,
+      "prompt_tokens": 595,
+      "eligible": true
+    },
+    {
+      "row_position": 3369,
+      "source_id": 3369,
+      "prompt_tokens": 584,
+      "eligible": true
+    },
+    {
+      "row_position": 3383,
+      "source_id": 3383,
+      "prompt_tokens": 612,
+      "eligible": true
+    },
+    {
+      "row_position": 3385,
+      "source_id": 3385,
+      "prompt_tokens": 921,
+      "eligible": true
+    },
+    {
+      "row_position": 3393,
+      "source_id": 3393,
+      "prompt_tokens": 1090,
+      "eligible": true
+    },
+    {
+      "row_position": 3395,
+      "source_id": 3395,
+      "prompt_tokens": 641,
+      "eligible": true
+    },
+    {
+      "row_position": 3397,
+      "source_id": 3397,
+      "prompt_tokens": 586,
+      "eligible": true
+    },
+    {
+      "row_position": 3417,
+      "source_id": 3417,
+      "prompt_tokens": 781,
+      "eligible": true
+    },
+    {
+      "row_position": 3454,
+      "source_id": 3454,
+      "prompt_tokens": 457,
+      "eligible": true
+    },
+    {
+      "row_position": 3455,
+      "source_id": 3455,
+      "prompt_tokens": 543,
+      "eligible": true
+    },
+    {
+      "row_position": 3462,
+      "source_id": 3462,
+      "prompt_tokens": 840,
+      "eligible": true
+    },
+    {
+      "row_position": 3468,
+      "source_id": 3468,
+      "prompt_tokens": 805,
+      "eligible": true
+    },
+    {
+      "row_position": 3485,
+      "source_id": 3485,
+      "prompt_tokens": 858,
+      "eligible": true
+    },
+    {
+      "row_position": 3496,
+      "source_id": 3496,
+      "prompt_tokens": 438,
+      "eligible": true
+    },
+    {
+      "row_position": 3502,
+      "source_id": 3502,
+      "prompt_tokens": 1828,
+      "eligible": true
+    },
+    {
+      "row_position": 3513,
+      "source_id": 3513,
+      "prompt_tokens": 903,
+      "eligible": true
+    },
+    {
+      "row_position": 3525,
+      "source_id": 3525,
+      "prompt_tokens": 840,
+      "eligible": true
+    },
+    {
+      "row_position": 3528,
+      "source_id": 3528,
+      "prompt_tokens": 1496,
+      "eligible": true
+    },
+    {
+      "row_position": 3540,
+      "source_id": 3540,
+      "prompt_tokens": 432,
+      "eligible": true
+    },
+    {
+      "row_position": 3549,
+      "source_id": 3549,
+      "prompt_tokens": 896,
+      "eligible": true
+    },
+    {
+      "row_position": 3550,
+      "source_id": 3550,
+      "prompt_tokens": 922,
+      "eligible": true
+    },
+    {
+      "row_position": 3553,
+      "source_id": 3553,
+      "prompt_tokens": 658,
+      "eligible": true
+    },
+    {
+      "row_position": 3561,
+      "source_id": 3561,
+      "prompt_tokens": 511,
+      "eligible": true
+    },
+    {
+      "row_position": 3565,
+      "source_id": 3565,
+      "prompt_tokens": 817,
+      "eligible": true
+    },
+    {
+      "row_position": 3566,
+      "source_id": 3566,
+      "prompt_tokens": 435,
+      "eligible": true
+    },
+    {
+      "row_position": 3569,
+      "source_id": 3569,
+      "prompt_tokens": 762,
+      "eligible": true
+    },
+    {
+      "row_position": 3570,
+      "source_id": 3570,
+      "prompt_tokens": 766,
+      "eligible": true
+    },
+    {
+      "row_position": 3577,
+      "source_id": 3577,
+      "prompt_tokens": 548,
+      "eligible": true
+    },
+    {
+      "row_position": 3590,
+      "source_id": 3590,
+      "prompt_tokens": 463,
+      "eligible": true
+    },
+    {
+      "row_position": 3591,
+      "source_id": 3591,
+      "prompt_tokens": 538,
+      "eligible": true
+    },
+    {
+      "row_position": 3605,
+      "source_id": 3605,
+      "prompt_tokens": 1176,
+      "eligible": true
+    },
+    {
+      "row_position": 3607,
+      "source_id": 3607,
+      "prompt_tokens": 778,
+      "eligible": true
+    },
+    {
+      "row_position": 3612,
+      "source_id": 3612,
+      "prompt_tokens": 1318,
+      "eligible": true
+    },
+    {
+      "row_position": 3614,
+      "source_id": 3614,
+      "prompt_tokens": 784,
+      "eligible": true
+    },
+    {
+      "row_position": 3617,
+      "source_id": 3617,
+      "prompt_tokens": 435,
+      "eligible": true
+    },
+    {
+      "row_position": 3619,
+      "source_id": 3619,
+      "prompt_tokens": 703,
+      "eligible": true
+    },
+    {
+      "row_position": 3633,
+      "source_id": 3633,
+      "prompt_tokens": 454,
+      "eligible": true
+    },
+    {
+      "row_position": 3637,
+      "source_id": 3637,
+      "prompt_tokens": 1137,
+      "eligible": true
+    },
+    {
+      "row_position": 3638,
+      "source_id": 3638,
+      "prompt_tokens": 604,
+      "eligible": true
+    },
+    {
+      "row_position": 3639,
+      "source_id": 3639,
+      "prompt_tokens": 1065,
+      "eligible": true
+    },
+    {
+      "row_position": 3646,
+      "source_id": 3646,
+      "prompt_tokens": 1222,
+      "eligible": true
+    },
+    {
+      "row_position": 3663,
+      "source_id": 3663,
+      "prompt_tokens": 752,
+      "eligible": true
+    },
+    {
+      "row_position": 3664,
+      "source_id": 3664,
+      "prompt_tokens": 1254,
+      "eligible": true
+    },
+    {
+      "row_position": 3667,
+      "source_id": 3667,
+      "prompt_tokens": 465,
+      "eligible": true
+    },
+    {
+      "row_position": 3683,
+      "source_id": 3683,
+      "prompt_tokens": 1101,
+      "eligible": true
+    },
+    {
+      "row_position": 3698,
+      "source_id": 3698,
+      "prompt_tokens": 512,
+      "eligible": true
+    },
+    {
+      "row_position": 3703,
+      "source_id": 3703,
+      "prompt_tokens": 706,
+      "eligible": true
+    },
+    {
+      "row_position": 3704,
+      "source_id": 3704,
+      "prompt_tokens": 680,
+      "eligible": true
+    },
+    {
+      "row_position": 3706,
+      "source_id": 3706,
+      "prompt_tokens": 831,
+      "eligible": true
+    },
+    {
+      "row_position": 3715,
+      "source_id": 3715,
+      "prompt_tokens": 491,
+      "eligible": true
+    },
+    {
+      "row_position": 3716,
+      "source_id": 3716,
+      "prompt_tokens": 712,
+      "eligible": true
+    },
+    {
+      "row_position": 3717,
+      "source_id": 3717,
+      "prompt_tokens": 513,
+      "eligible": true
+    },
+    {
+      "row_position": 3720,
+      "source_id": 3720,
+      "prompt_tokens": 714,
+      "eligible": true
+    },
+    {
+      "row_position": 3726,
+      "source_id": 3726,
+      "prompt_tokens": 449,
+      "eligible": true
+    },
+    {
+      "row_position": 3733,
+      "source_id": 3733,
+      "prompt_tokens": 505,
+      "eligible": true
+    },
+    {
+      "row_position": 3741,
+      "source_id": 3741,
+      "prompt_tokens": 1249,
+      "eligible": true
+    },
+    {
+      "row_position": 3744,
+      "source_id": 3744,
+      "prompt_tokens": 530,
+      "eligible": true
+    },
+    {
+      "row_position": 3757,
+      "source_id": 3757,
+      "prompt_tokens": 449,
+      "eligible": true
+    },
+    {
+      "row_position": 3764,
+      "source_id": 3764,
+      "prompt_tokens": 481,
+      "eligible": true
+    },
+    {
+      "row_position": 3768,
+      "source_id": 3768,
+      "prompt_tokens": 585,
+      "eligible": true
+    },
+    {
+      "row_position": 3775,
+      "source_id": 3775,
+      "prompt_tokens": 1290,
+      "eligible": true
+    },
+    {
+      "row_position": 3779,
+      "source_id": 3779,
+      "prompt_tokens": 970,
+      "eligible": true
+    },
+    {
+      "row_position": 3800,
+      "source_id": 3800,
+      "prompt_tokens": 551,
+      "eligible": true
+    },
+    {
+      "row_position": 3813,
+      "source_id": 3813,
+      "prompt_tokens": 787,
+      "eligible": true
+    },
+    {
+      "row_position": 3824,
+      "source_id": 3824,
+      "prompt_tokens": 489,
+      "eligible": true
+    },
+    {
+      "row_position": 3834,
+      "source_id": 3834,
+      "prompt_tokens": 922,
+      "eligible": true
+    },
+    {
+      "row_position": 3841,
+      "source_id": 3841,
+      "prompt_tokens": 1114,
+      "eligible": true
+    },
+    {
+      "row_position": 3852,
+      "source_id": 3852,
+      "prompt_tokens": 1223,
+      "eligible": true
+    },
+    {
+      "row_position": 3853,
+      "source_id": 3853,
+      "prompt_tokens": 448,
+      "eligible": true
+    },
+    {
+      "row_position": 3859,
+      "source_id": 3859,
+      "prompt_tokens": 707,
+      "eligible": true
+    },
+    {
+      "row_position": 3861,
+      "source_id": 3861,
+      "prompt_tokens": 801,
+      "eligible": true
+    },
+    {
+      "row_position": 3868,
+      "source_id": 3868,
+      "prompt_tokens": 580,
+      "eligible": true
+    },
+    {
+      "row_position": 3872,
+      "source_id": 3872,
+      "prompt_tokens": 535,
+      "eligible": true
+    },
+    {
+      "row_position": 3874,
+      "source_id": 3874,
+      "prompt_tokens": 1049,
+      "eligible": true
+    },
+    {
+      "row_position": 3875,
+      "source_id": 3875,
+      "prompt_tokens": 492,
+      "eligible": true
+    },
+    {
+      "row_position": 3885,
+      "source_id": 3885,
+      "prompt_tokens": 666,
+      "eligible": true
+    },
+    {
+      "row_position": 3890,
+      "source_id": 3890,
+      "prompt_tokens": 625,
+      "eligible": true
+    },
+    {
+      "row_position": 3897,
+      "source_id": 3897,
+      "prompt_tokens": 646,
+      "eligible": true
+    },
+    {
+      "row_position": 3900,
+      "source_id": 3900,
+      "prompt_tokens": 495,
+      "eligible": true
+    },
+    {
+      "row_position": 3902,
+      "source_id": 3902,
+      "prompt_tokens": 713,
+      "eligible": true
+    },
+    {
+      "row_position": 3903,
+      "source_id": 3903,
+      "prompt_tokens": 499,
+      "eligible": true
+    },
+    {
+      "row_position": 3913,
+      "source_id": 3913,
+      "prompt_tokens": 445,
+      "eligible": true
+    }
+  ],
+  "temporary_batch_verified_count": 512,
+  "temporary_batch_verified_max_prompt_tokens": 1942
+}

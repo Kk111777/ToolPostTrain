@@ -1,0 +1,5305 @@
+{
+  "metadata": {
+    "data_path": "/root/autodl-tmp/ProjectB/repo/verl-GDPO/dataset/rlla_4k/train.parquet",
+    "model_path": "/root/autodl-tmp/ProjectB/hf_cache/models--Qwen--Qwen2.5-1.5B-Instruct/snapshots/989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+    "adapter_path": "/root/autodl-tmp/ProjectB/checkpoints/format_sft_v2_lora",
+    "prompt_count": 32,
+    "rollout_n": 4,
+    "selection_seed": 20261001,
+    "rollout_seed": 42,
+    "selected_source_rows": [
+      1310,
+      1753,
+      1964,
+      2892,
+      3164,
+      3477,
+      2134,
+      681,
+      3282,
+      823,
+      1031,
+      426,
+      3731,
+      753,
+      200,
+      1024,
+      2536,
+      2062,
+      1184,
+      1856,
+      1054,
+      3087,
+      1471,
+      1398,
+      2128,
+      1118,
+      1711,
+      134,
+      1280,
+      3000,
+      1367,
+      1441
+    ],
+    "rollout_backend": "vllm",
+    "tensor_parallel_size": 1,
+    "temperature": 1.0,
+    "top_p": 1.0,
+    "top_k": -1,
+    "max_prompt_length": 2048,
+    "max_response_length": 1024,
+    "max_model_len": 3072,
+    "gpu_memory_utilization": 0.3,
+    "enforce_eager": true,
+    "vllm_use_flashinfer_sampler": 0,
+    "optimizer_entered": false,
+    "adapter_merge_performed": false,
+    "package_changes": false,
+    "dataset_changes": false,
+    "reward_manager_changes": false
+  },
+  "exclusion": {
+    "sft_v1_source_row_count": 800,
+    "sft_v2_source_row_count": 800,
+    "sft_source_row_union_count": 993,
+    "fixed_validation_row_count": 16,
+    "constrained_diagnostic_row_count": 16,
+    "all_exclusion_union_count": 1009,
+    "selected_exclusion_overlap_count": 0,
+    "candidate_count_after_exclusions_and_prompt_limit": 2899,
+    "excluded_by_reason": {
+      "sft_v2": 193,
+      "sft_v1": 800,
+      "prompt_too_long": 12,
+      "fixed_validation": 16
+    },
+    "constrained_report_available": true
+  },
+  "adapter": {
+    "path": "/root/autodl-tmp/ProjectB/checkpoints/format_sft_v2_lora",
+    "request_name": "format_sft_v2_lora",
+    "request_id": 2,
+    "runtime_lora_enabled": true,
+    "request_submitted": true,
+    "generation_with_request_succeeded": true,
+    "load_status": "loaded_runtime",
+    "merge_performed": false
+  },
+  "summary": {
+    "trajectory_count": 128,
+    "prompt_count": 32,
+    "expected_kind_counts": {
+      "tool_only": 30,
+      "response_only": 2
+    },
+    "output_type_counts": {
+      "tool_call": 102,
+      "response": 17,
+      "invalid": 9
+    },
+    "overall_format_success_count": 104,
+    "overall_format_success_rate": 0.8125,
+    "overall_format_reward_nonzero_count": 104,
+    "overall_format_reward_nonzero_rate": 0.8125,
+    "tool_call_parse_success_count": 92,
+    "tool_call_parse_total": 120,
+    "tool_call_parse_rate": 0.7666666666666667,
+    "response_only_wrapper_success_count": 5,
+    "response_only_wrapper_total": 8,
+    "response_only_wrapper_rate": 0.625,
+    "accuracy_reward_nonzero_count": 117,
+    "accuracy_reward_nonzero_rate": 0.9140625,
+    "accuracy_reward_mean": 0.3533569230248918,
+    "accuracy_reward_std": 2.279398290269382,
+    "reward_mean": 1.1658569230248919,
+    "reward_std": 2.5426136477682397,
+    "reward_min": -3.0,
+    "reward_max": 4.0,
+    "all_rewards_finite": true,
+    "group_count": 32,
+    "format_reward_variation_group_count": 17,
+    "accuracy_reward_variation_group_count": 27,
+    "both_reward_dimensions_variation_group_count": 16,
+    "total_reward_variation_group_count": 28,
+    "total_reward_all_same_group_count": 4,
+    "generation_seconds": 88.98252676101401
+  },
+  "groups": [
+    {
+      "sample_id": 1310,
+      "source_row": 1310,
+      "expected_kind": "tool_only",
+      "rollout_count": 4,
+      "format_reward_values": [
+        1.0,
+        0.0,
+        1.0,
+        0.0
+      ],
+      "accuracy_reward_values": [
+        3.0,
+        -3.0,
+        3.0,
+        -3.0
+      ],
+      "total_reward_values": [
+        4.0,
+        -3.0,
+        4.0,
+        -3.0
+      ],
+      "format_reward_variance": 0.25,
+      "accuracy_reward_variance": 9.0,
+      "total_reward_variance": 12.25,
+      "format_reward_has_variation": true,
+      "accuracy_reward_has_variation": true,
+      "total_reward_has_variation": true,
+      "all_total_rewards_equal": false,
+      "format_valid_count": 2,
+      "tool_parse_success_count": 2,
+      "output_type_counts": {
+        "tool_call": 2,
+        "response": 2
+      }
+    },
+    {
+      "sample_id": 1753,
+      "source_row": 1753,
+      "expected_kind": "tool_only",
+      "rollout_count": 4,
+      "format_reward_values": [
+        1.0,
+        1.0,
+        0.0,
+        1.0
+      ],
+      "accuracy_reward_values": [
+        3.0,
+        3.0,
+        -3.0,
+        1.0
+      ],
+      "total_reward_values": [
+        4.0,
+        4.0,
+        -3.0,
+        2.0
+      ],
+      "format_reward_variance": 0.1875,
+      "accuracy_reward_variance": 6.0,
+      "total_reward_variance": 8.1875,
+      "format_reward_has_variation": true,
+      "accuracy_reward_has_variation": true,
+      "total_reward_has_variation": true,
+      "all_total_rewards_equal": false,
+      "format_valid_count": 3,
+      "tool_parse_success_count": 3,
+      "output_type_counts": {
+        "tool_call": 3,
+        "response": 1
+      }
+    },
+    {
+      "sample_id": 1964,
+      "source_row": 1964,
+      "expected_kind": "tool_only",
+      "rollout_count": 4,
+      "format_reward_values": [
+        1.0,
+        1.0,
+        0.0,
+        1.0
+      ],
+      "accuracy_reward_values": [
+        3.0,
+        3.0,
+        -3.0,
+        3.0
+      ],
+      "total_reward_values": [
+        4.0,
+        4.0,
+        -3.0,
+        4.0
+      ],
+      "format_reward_variance": 0.1875,
+      "accuracy_reward_variance": 6.75,
+      "total_reward_variance": 9.1875,
+      "format_reward_has_variation": true,
+      "accuracy_reward_has_variation": true,
+      "total_reward_has_variation": true,
+      "all_total_rewards_equal": false,
+      "format_valid_count": 3,
+      "tool_parse_success_count": 3,
+      "output_type_counts": {
+        "tool_call": 3,
+        "response": 1
+      }
+    },
+    {
+      "sample_id": 2892,
+      "source_row": 2892,
+      "expected_kind": "tool_only",
+      "rollout_count": 4,
+      "format_reward_values": [
+        1.0,
+        0.0,
+        1.0,
+        0.0
+      ],
+      "accuracy_reward_values": [
+        3.0,
+        -3.0,
+        3.0,
+        -3.0
+      ],
+      "total_reward_values": [
+        4.0,
+        -3.0,
+        4.0,
+        -3.0
+      ],
+      "format_reward_variance": 0.25,
+      "accuracy_reward_variance": 9.0,
+      "total_reward_variance": 12.25,
+      "format_reward_has_variation": true,
+      "accuracy_reward_has_variation": true,
+      "total_reward_has_variation": true,
+      "all_total_rewards_equal": false,
+      "format_valid_count": 2,
+      "tool_parse_success_count": 2,
+      "output_type_counts": {
+        "tool_call": 2,
+        "response": 1,
+        "invalid": 1
+      }
+    },
+    {
+      "sample_id": 3164,
+      "source_row": 3164,
+      "expected_kind": "tool_only",
+      "rollout_count": 4,
+      "format_reward_values": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "accuracy_reward_values": [
+        -3.0,
+        -0.6727272727272724,
+        -0.8181818181818183,
+        -3.0
+      ],
+      "total_reward_values": [
+        -2.0,
+        0.3272727272727276,
+        0.18181818181818166,
+        -2.0
+      ],
+      "format_reward_variance": 0.0,
+      "accuracy_reward_variance": 1.2733884297520661,
+      "total_reward_variance": 1.2733884297520661,
+      "format_reward_has_variation": false,
+      "accuracy_reward_has_variation": true,
+      "total_reward_has_variation": true,
+      "all_total_rewards_equal": false,
+      "format_valid_count": 4,
+      "tool_parse_success_count": 2,
+      "output_type_counts": {
+        "tool_call": 4
+      }
+    },
+    {
+      "sample_id": 3477,
+      "source_row": 3477,
+      "expected_kind": "tool_only",
+      "rollout_count": 4,
+      "format_reward_values": [
+        1.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "accuracy_reward_values": [
+        1.7999999999999998,
+        -3.0,
+        1.7999999999999998,
+        1.7999999999999998
+      ],
+      "total_reward_values": [
+        2.8,
+        -3.0,
+        2.8,
+        2.8
+      ],
+      "format_reward_variance": 0.1875,
+      "accuracy_reward_variance": 4.319999999999999,
+      "total_reward_variance": 6.307499999999998,
+      "format_reward_has_variation": true,
+      "accuracy_reward_has_variation": true,
+      "total_reward_has_variation": true,
+      "all_total_rewards_equal": false,
+      "format_valid_count": 3,
+      "tool_parse_success_count": 3,
+      "output_type_counts": {
+        "tool_call": 3,
+        "response": 1
+      }
+    },
+    {
+      "sample_id": 2134,
+      "source_row": 2134,
+      "expected_kind": "tool_only",
+      "rollout_count": 4,
+      "format_reward_values": [
+        1.0,
+        1.0,
+        0.0,
+        1.0
+      ],
+      "accuracy_reward_values": [
+        1.0,
+        1.0,
+        -3.0,
+        3.0
+      ],
+      "total_reward_values": [
+        2.0,
+        2.0,
+        -3.0,
+        4.0
+      ],
+      "format_reward_variance": 0.1875,
+      "accuracy_reward_variance": 4.75,
+      "total_reward_variance": 6.6875,
+      "format_reward_has_variation": true,
+      "accuracy_reward_has_variation": true,
+      "total_reward_has_variation": true,
+      "all_total_rewards_equal": false,
+      "format_valid_count": 3,
+      "tool_parse_success_count": 3,
+      "output_type_counts": {
+        "tool_call": 3,
+        "response": 1
+      }
+    },
+    {
+      "sample_id": 681,
+      "source_row": 681,
+      "expected_kind": "tool_only",
+      "rollout_count": 4,
+      "format_reward_values": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "accuracy_reward_values": [
+        -1.0,
+        3.0,
+        -0.1428571428571428,
+        -3.0
+      ],
+      "total_reward_values": [
+        0.0,
+        4.0,
+        0.8571428571428572,
+        -2.0
+      ],
+      "format_reward_variance": 0.0,
+      "accuracy_reward_variance": 4.673469387755102,
+      "total_reward_variance": 4.673469387755102,
+      "format_reward_has_variation": false,
+      "accuracy_reward_has_variation": true,
+      "total_reward_has_variation": true,
+      "all_total_rewards_equal": false,
+      "format_valid_count": 4,
+      "tool_parse_success_count": 3,
+      "output_type_counts": {
+        "tool_call": 4
+      }
+    },
+    {
+      "sample_id": 3282,
+      "source_row": 3282,
+      "expected_kind": "tool_only",
+      "rollout_count": 4,
+      "format_reward_values": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "accuracy_reward_values": [
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "total_reward_values": [
+        4.0,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "format_reward_variance": 0.0,
+      "accuracy_reward_variance": 0.0,
+      "total_reward_variance": 0.0,
+      "format_reward_has_variation": false,
+      "accuracy_reward_has_variation": false,
+      "total_reward_has_variation": false,
+      "all_total_rewards_equal": true,
+      "format_valid_count": 4,
+      "tool_parse_success_count": 4,
+      "output_type_counts": {
+        "tool_call": 4
+      }
+    },
+    {
+      "sample_id": 823,
+      "source_row": 823,
+      "expected_kind": "tool_only",
+      "rollout_count": 4,
+      "format_reward_values": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "accuracy_reward_values": [
+        2.0,
+        2.0,
+        2.0,
+        2.0
+      ],
+      "total_reward_values": [
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "format_reward_variance": 0.0,
+      "accuracy_reward_variance": 0.0,
+      "total_reward_variance": 0.0,
+      "format_reward_has_variation": false,
+      "accuracy_reward_has_variation": false,
+      "total_reward_has_variation": false,
+      "all_total_rewards_equal": true,
+      "format_valid_count": 4,
+      "tool_parse_success_count": 4,
+      "output_type_counts": {
+        "tool_call": 4
+      }
+    },
+    {
+      "sample_id": 1031,
+      "source_row": 1031,
+      "expected_kind": "tool_only",
+      "rollout_count": 4,
+      "format_reward_values": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "accuracy_reward_values": [
+        1.5,
+        0.0,
+        1.5,
+        1.5
+      ],
+      "total_reward_values": [
+        2.5,
+        1.0,
+        2.5,
+        2.5
+      ],
+      "format_reward_variance": 0.0,
+      "accuracy_reward_variance": 0.421875,
+      "total_reward_variance": 0.421875,
+      "format_reward_has_variation": false,
+      "accuracy_reward_has_variation": true,
+      "total_reward_has_variation": true,
+      "all_total_rewards_equal": false,
+      "format_valid_count": 4,
+      "tool_parse_success_count": 4,
+      "output_type_counts": {
+        "tool_call": 4
+      }
+    },
+    {
+      "sample_id": 426,
+      "source_row": 426,
+      "expected_kind": "tool_only",
+      "rollout_count": 4,
+      "format_reward_values": [
+        1.0,
+        1.0,
+        1.0,
+        0.0
+      ],
+      "accuracy_reward_values": [
+        3.0,
+        1.2857142857142856,
+        3.0,
+        -3.0
+      ],
+      "total_reward_values": [
+        4.0,
+        2.2857142857142856,
+        4.0,
+        -3.0
+      ],
+      "format_reward_variance": 0.1875,
+      "accuracy_reward_variance": 6.015306122448979,
+      "total_reward_variance": 8.238520408163264,
+      "format_reward_has_variation": true,
+      "accuracy_reward_has_variation": true,
+      "total_reward_has_variation": true,
+      "all_total_rewards_equal": false,
+      "format_valid_count": 3,
+      "tool_parse_success_count": 3,
+      "output_type_counts": {
+        "tool_call": 3,
+        "invalid": 1
+      }
+    },
+    {
+      "sample_id": 3731,
+      "source_row": 3731,
+      "expected_kind": "tool_only",
+      "rollout_count": 4,
+      "format_reward_values": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "accuracy_reward_values": [
+        1.666666666666667,
+        0.0,
+        0.16666666666666652,
+        2.333333333333333
+      ],
+      "total_reward_values": [
+        2.666666666666667,
+        1.0,
+        1.1666666666666665,
+        3.333333333333333
+      ],
+      "format_reward_variance": 0.0,
+      "accuracy_reward_variance": 0.9774305555555556,
+      "total_reward_variance": 0.9774305555555556,
+      "format_reward_has_variation": false,
+      "accuracy_reward_has_variation": true,
+      "total_reward_has_variation": true,
+      "all_total_rewards_equal": false,
+      "format_valid_count": 4,
+      "tool_parse_success_count": 4,
+      "output_type_counts": {
+        "tool_call": 4
+      }
+    },
+    {
+      "sample_id": 753,
+      "source_row": 753,
+      "expected_kind": "tool_only",
+      "rollout_count": 4,
+      "format_reward_values": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "accuracy_reward_values": [
+        2.5,
+        2.0,
+        1.0999999999999996,
+        0.08333333333333348
+      ],
+      "total_reward_values": [
+        3.5,
+        3.0,
+        2.0999999999999996,
+        1.0833333333333335
+      ],
+      "format_reward_variance": 0.0,
+      "accuracy_reward_variance": 0.8479687499999999,
+      "total_reward_variance": 0.8479687499999999,
+      "format_reward_has_variation": false,
+      "accuracy_reward_has_variation": true,
+      "total_reward_has_variation": true,
+      "all_total_rewards_equal": false,
+      "format_valid_count": 4,
+      "tool_parse_success_count": 4,
+      "output_type_counts": {
+        "tool_call": 4
+      }
+    },
+    {
+      "sample_id": 200,
+      "source_row": 200,
+      "expected_kind": "tool_only",
+      "rollout_count": 4,
+      "format_reward_values": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "accuracy_reward_values": [
+        -3.0,
+        -1.56,
+        -1.56,
+        -1.56
+      ],
+      "total_reward_values": [
+        -2.0,
+        -0.56,
+        -0.56,
+        -0.56
+      ],
+      "format_reward_variance": 0.0,
+      "accuracy_reward_variance": 0.3887999999999999,
+      "total_reward_variance": 0.3888,
+      "format_reward_has_variation": false,
+      "accuracy_reward_has_variation": true,
+      "total_reward_has_variation": true,
+      "all_total_rewards_equal": false,
+      "format_valid_count": 4,
+      "tool_parse_success_count": 3,
+      "output_type_counts": {
+        "tool_call": 4
+      }
+    },
+    {
+      "sample_id": 1024,
+      "source_row": 1024,
+      "expected_kind": "tool_only",
+      "rollout_count": 4,
+      "format_reward_values": [
+        1.0,
+        1.0,
+        0.0,
+        1.0
+      ],
+      "accuracy_reward_values": [
+        0.6000000000000001,
+        -1.8,
+        -3.0,
+        -1.6
+      ],
+      "total_reward_values": [
+        1.6,
+        -0.8,
+        -3.0,
+        -0.6000000000000001
+      ],
+      "format_reward_variance": 0.1875,
+      "accuracy_reward_variance": 1.6875000000000002,
+      "total_reward_variance": 2.65,
+      "format_reward_has_variation": true,
+      "accuracy_reward_has_variation": true,
+      "total_reward_has_variation": true,
+      "all_total_rewards_equal": false,
+      "format_valid_count": 3,
+      "tool_parse_success_count": 3,
+      "output_type_counts": {
+        "tool_call": 3,
+        "invalid": 1
+      }
+    },
+    {
+      "sample_id": 2536,
+      "source_row": 2536,
+      "expected_kind": "tool_only",
+      "rollout_count": 4,
+      "format_reward_values": [
+        1.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "accuracy_reward_values": [
+        1.0,
+        -3.0,
+        -3.0,
+        -2.0
+      ],
+      "total_reward_values": [
+        2.0,
+        -3.0,
+        -3.0,
+        -1.0
+      ],
+      "format_reward_variance": 0.25,
+      "accuracy_reward_variance": 2.6875,
+      "total_reward_variance": 4.1875,
+      "format_reward_has_variation": true,
+      "accuracy_reward_has_variation": true,
+      "total_reward_has_variation": true,
+      "all_total_rewards_equal": false,
+      "format_valid_count": 2,
+      "tool_parse_success_count": 2,
+      "output_type_counts": {
+        "tool_call": 2,
+        "invalid": 2
+      }
+    },
+    {
+      "sample_id": 2062,
+      "source_row": 2062,
+      "expected_kind": "tool_only",
+      "rollout_count": 4,
+      "format_reward_values": [
+        1.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "accuracy_reward_values": [
+        -1.5,
+        -3.0,
+        3.0,
+        0.0
+      ],
+      "total_reward_values": [
+        -0.5,
+        -3.0,
+        4.0,
+        1.0
+      ],
+      "format_reward_variance": 0.1875,
+      "accuracy_reward_variance": 4.921875,
+      "total_reward_variance": 6.421875,
+      "format_reward_has_variation": true,
+      "accuracy_reward_has_variation": true,
+      "total_reward_has_variation": true,
+      "all_total_rewards_equal": false,
+      "format_valid_count": 3,
+      "tool_parse_success_count": 3,
+      "output_type_counts": {
+        "tool_call": 3,
+        "response": 1
+      }
+    },
+    {
+      "sample_id": 1184,
+      "source_row": 1184,
+      "expected_kind": "tool_only",
+      "rollout_count": 4,
+      "format_reward_values": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "accuracy_reward_values": [
+        1.0,
+        1.666666666666667,
+        1.666666666666667,
+        1.666666666666667
+      ],
+      "total_reward_values": [
+        2.0,
+        2.666666666666667,
+        2.666666666666667,
+        2.666666666666667
+      ],
+      "format_reward_variance": 0.0,
+      "accuracy_reward_variance": 0.0833333333333334,
+      "total_reward_variance": 0.08333333333333343,
+      "format_reward_has_variation": false,
+      "accuracy_reward_has_variation": true,
+      "total_reward_has_variation": true,
+      "all_total_rewards_equal": false,
+      "format_valid_count": 4,
+      "tool_parse_success_count": 4,
+      "output_type_counts": {
+        "tool_call": 4
+      }
+    },
+    {
+      "sample_id": 1856,
+      "source_row": 1856,
+      "expected_kind": "response_only",
+      "rollout_count": 4,
+      "format_reward_values": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "accuracy_reward_values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "total_reward_values": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "format_reward_variance": 0.1875,
+      "accuracy_reward_variance": 0.0,
+      "total_reward_variance": 0.1875,
+      "format_reward_has_variation": true,
+      "accuracy_reward_has_variation": false,
+      "total_reward_has_variation": true,
+      "all_total_rewards_equal": false,
+      "format_valid_count": 1,
+      "tool_parse_success_count": 3,
+      "output_type_counts": {
+        "tool_call": 3,
+        "response": 1
+      }
+    },
+    {
+      "sample_id": 1054,
+      "source_row": 1054,
+      "expected_kind": "tool_only",
+      "rollout_count": 4,
+      "format_reward_values": [
+        1.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "accuracy_reward_values": [
+        3.0,
+        -3.0,
+        0.6000000000000001,
+        3.0
+      ],
+      "total_reward_values": [
+        4.0,
+        -3.0,
+        1.6,
+        4.0
+      ],
+      "format_reward_variance": 0.1875,
+      "accuracy_reward_variance": 6.029999999999999,
+      "total_reward_variance": 8.1675,
+      "format_reward_has_variation": true,
+      "accuracy_reward_has_variation": true,
+      "total_reward_has_variation": true,
+      "all_total_rewards_equal": false,
+      "format_valid_count": 3,
+      "tool_parse_success_count": 3,
+      "output_type_counts": {
+        "tool_call": 3,
+        "response": 1
+      }
+    },
+    {
+      "sample_id": 3087,
+      "source_row": 3087,
+      "expected_kind": "tool_only",
+      "rollout_count": 4,
+      "format_reward_values": [
+        1.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "accuracy_reward_values": [
+        3.0,
+        -3.0,
+        -3.0,
+        3.0
+      ],
+      "total_reward_values": [
+        4.0,
+        -3.0,
+        -3.0,
+        4.0
+      ],
+      "format_reward_variance": 0.25,
+      "accuracy_reward_variance": 9.0,
+      "total_reward_variance": 12.25,
+      "format_reward_has_variation": true,
+      "accuracy_reward_has_variation": true,
+      "total_reward_has_variation": true,
+      "all_total_rewards_equal": false,
+      "format_valid_count": 2,
+      "tool_parse_success_count": 2,
+      "output_type_counts": {
+        "tool_call": 2,
+        "invalid": 2
+      }
+    },
+    {
+      "sample_id": 1471,
+      "source_row": 1471,
+      "expected_kind": "tool_only",
+      "rollout_count": 4,
+      "format_reward_values": [
+        1.0,
+        1.0,
+        0.0,
+        1.0
+      ],
+      "accuracy_reward_values": [
+        -3.0,
+        -3.0,
+        -3.0,
+        -1.2
+      ],
+      "total_reward_values": [
+        -2.0,
+        -2.0,
+        -3.0,
+        -0.19999999999999996
+      ],
+      "format_reward_variance": 0.1875,
+      "accuracy_reward_variance": 0.6075,
+      "total_reward_variance": 1.02,
+      "format_reward_has_variation": true,
+      "accuracy_reward_has_variation": true,
+      "total_reward_has_variation": true,
+      "all_total_rewards_equal": false,
+      "format_valid_count": 3,
+      "tool_parse_success_count": 1,
+      "output_type_counts": {
+        "tool_call": 3,
+        "response": 1
+      }
+    },
+    {
+      "sample_id": 1398,
+      "source_row": 1398,
+      "expected_kind": "tool_only",
+      "rollout_count": 4,
+      "format_reward_values": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "accuracy_reward_values": [
+        3.0,
+        3.0,
+        -3.0,
+        3.0
+      ],
+      "total_reward_values": [
+        4.0,
+        4.0,
+        -2.0,
+        4.0
+      ],
+      "format_reward_variance": 0.0,
+      "accuracy_reward_variance": 6.75,
+      "total_reward_variance": 6.75,
+      "format_reward_has_variation": false,
+      "accuracy_reward_has_variation": true,
+      "total_reward_has_variation": true,
+      "all_total_rewards_equal": false,
+      "format_valid_count": 4,
+      "tool_parse_success_count": 4,
+      "output_type_counts": {
+        "tool_call": 4
+      }
+    },
+    {
+      "sample_id": 2128,
+      "source_row": 2128,
+      "expected_kind": "tool_only",
+      "rollout_count": 4,
+      "format_reward_values": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "accuracy_reward_values": [
+        0.4285714285714284,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "total_reward_values": [
+        1.4285714285714284,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "format_reward_variance": 0.0,
+      "accuracy_reward_variance": 1.2397959183673473,
+      "total_reward_variance": 1.2397959183673473,
+      "format_reward_has_variation": false,
+      "accuracy_reward_has_variation": true,
+      "total_reward_has_variation": true,
+      "all_total_rewards_equal": false,
+      "format_valid_count": 4,
+      "tool_parse_success_count": 4,
+      "output_type_counts": {
+        "tool_call": 4
+      }
+    },
+    {
+      "sample_id": 1118,
+      "source_row": 1118,
+      "expected_kind": "tool_only",
+      "rollout_count": 4,
+      "format_reward_values": [
+        1.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "accuracy_reward_values": [
+        3.0,
+        -3.0,
+        -3.0,
+        3.0
+      ],
+      "total_reward_values": [
+        4.0,
+        -3.0,
+        -2.0,
+        4.0
+      ],
+      "format_reward_variance": 0.1875,
+      "accuracy_reward_variance": 9.0,
+      "total_reward_variance": 10.6875,
+      "format_reward_has_variation": true,
+      "accuracy_reward_has_variation": true,
+      "total_reward_has_variation": true,
+      "all_total_rewards_equal": false,
+      "format_valid_count": 3,
+      "tool_parse_success_count": 3,
+      "output_type_counts": {
+        "tool_call": 3,
+        "invalid": 1
+      }
+    },
+    {
+      "sample_id": 1711,
+      "source_row": 1711,
+      "expected_kind": "tool_only",
+      "rollout_count": 4,
+      "format_reward_values": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "accuracy_reward_values": [
+        1.0,
+        0.5,
+        1.0,
+        1.0
+      ],
+      "total_reward_values": [
+        2.0,
+        1.5,
+        2.0,
+        2.0
+      ],
+      "format_reward_variance": 0.0,
+      "accuracy_reward_variance": 0.046875,
+      "total_reward_variance": 0.046875,
+      "format_reward_has_variation": false,
+      "accuracy_reward_has_variation": true,
+      "total_reward_has_variation": true,
+      "all_total_rewards_equal": false,
+      "format_valid_count": 4,
+      "tool_parse_success_count": 4,
+      "output_type_counts": {
+        "tool_call": 4
+      }
+    },
+    {
+      "sample_id": 134,
+      "source_row": 134,
+      "expected_kind": "tool_only",
+      "rollout_count": 4,
+      "format_reward_values": [
+        0.0,
+        1.0,
+        1.0,
+        0.0
+      ],
+      "accuracy_reward_values": [
+        -3.0,
+        -0.375,
+        -0.3125,
+        -3.0
+      ],
+      "total_reward_values": [
+        -3.0,
+        0.625,
+        0.6875,
+        -3.0
+      ],
+      "format_reward_variance": 0.25,
+      "accuracy_reward_variance": 1.764404296875,
+      "total_reward_variance": 3.342529296875,
+      "format_reward_has_variation": true,
+      "accuracy_reward_has_variation": true,
+      "total_reward_has_variation": true,
+      "all_total_rewards_equal": false,
+      "format_valid_count": 2,
+      "tool_parse_success_count": 2,
+      "output_type_counts": {
+        "response": 1,
+        "tool_call": 2,
+        "invalid": 1
+      }
+    },
+    {
+      "sample_id": 1280,
+      "source_row": 1280,
+      "expected_kind": "tool_only",
+      "rollout_count": 4,
+      "format_reward_values": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "accuracy_reward_values": [
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "total_reward_values": [
+        4.0,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "format_reward_variance": 0.0,
+      "accuracy_reward_variance": 0.0,
+      "total_reward_variance": 0.0,
+      "format_reward_has_variation": false,
+      "accuracy_reward_has_variation": false,
+      "total_reward_has_variation": false,
+      "all_total_rewards_equal": true,
+      "format_valid_count": 4,
+      "tool_parse_success_count": 4,
+      "output_type_counts": {
+        "tool_call": 4
+      }
+    },
+    {
+      "sample_id": 3000,
+      "source_row": 3000,
+      "expected_kind": "tool_only",
+      "rollout_count": 4,
+      "format_reward_values": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "accuracy_reward_values": [
+        1.0,
+        1.0,
+        -1.3333333333333333,
+        -3.0
+      ],
+      "total_reward_values": [
+        2.0,
+        2.0,
+        -0.33333333333333326,
+        -2.0
+      ],
+      "format_reward_variance": 0.0,
+      "accuracy_reward_variance": 2.854166666666667,
+      "total_reward_variance": 2.854166666666667,
+      "format_reward_has_variation": false,
+      "accuracy_reward_has_variation": true,
+      "total_reward_has_variation": true,
+      "all_total_rewards_equal": false,
+      "format_valid_count": 4,
+      "tool_parse_success_count": 3,
+      "output_type_counts": {
+        "tool_call": 4
+      }
+    },
+    {
+      "sample_id": 1367,
+      "source_row": 1367,
+      "expected_kind": "response_only",
+      "rollout_count": 4,
+      "format_reward_values": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "accuracy_reward_values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "total_reward_values": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "format_reward_variance": 0.0,
+      "accuracy_reward_variance": 0.0,
+      "total_reward_variance": 0.0,
+      "format_reward_has_variation": false,
+      "accuracy_reward_has_variation": false,
+      "total_reward_has_variation": false,
+      "all_total_rewards_equal": true,
+      "format_valid_count": 4,
+      "tool_parse_success_count": 0,
+      "output_type_counts": {
+        "response": 4
+      }
+    },
+    {
+      "sample_id": 1441,
+      "source_row": 1441,
+      "expected_kind": "tool_only",
+      "rollout_count": 4,
+      "format_reward_values": [
+        1.0,
+        1.0,
+        1.0,
+        0.0
+      ],
+      "accuracy_reward_values": [
+        1.5,
+        1.5,
+        1.5,
+        -3.0
+      ],
+      "total_reward_values": [
+        2.5,
+        2.5,
+        2.5,
+        -3.0
+      ],
+      "format_reward_variance": 0.1875,
+      "accuracy_reward_variance": 3.796875,
+      "total_reward_variance": 5.671875,
+      "format_reward_has_variation": true,
+      "accuracy_reward_has_variation": true,
+      "total_reward_has_variation": true,
+      "all_total_rewards_equal": false,
+      "format_valid_count": 3,
+      "tool_parse_success_count": 3,
+      "output_type_counts": {
+        "tool_call": 3,
+        "response": 1
+      }
+    }
+  ],
+  "records": [
+    {
+      "source_row": 1310,
+      "sample_id": 1310,
+      "rollout_index": 0,
+      "prompt_length": 542,
+      "response_length": 72,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"getplatformlist\", \"parameters\": {\"page\": 2}}\n{\"name\": \"totd_tracks_by_date\", \"parameters\": {\"month\": 3, \"year\": 2023}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 3.0,
+      "total_reward": 4.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "getplatformlist",
+            "parameters": {
+              "page": 2
+            }
+          },
+          {
+            "name": "totd_tracks_by_date",
+            "parameters": {
+              "month": 3,
+              "year": 2023
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1310,
+      "sample_id": 1310,
+      "rollout_index": 1,
+      "prompt_length": 542,
+      "response_length": 27,
+      "expected_kind": "tool_only",
+      "output_type": "response",
+      "response_text": "<think> I should directly respond to the user's need. </think>\n<response> AI's final response </response>",
+      "format_valid": false,
+      "format_reward": 0.0,
+      "accuracy_reward": -3.0,
+      "total_reward": -3.0,
+      "tool_call_parse_result": {
+        "success": false,
+        "calls": [],
+        "error": "tool_call tags missing"
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1310,
+      "sample_id": 1310,
+      "rollout_index": 2,
+      "prompt_length": 542,
+      "response_length": 72,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"getplatformlist\", \"parameters\": {\"page\": 2}}\n{\"name\": \"totd_tracks_by_date\", \"parameters\": {\"month\": 3, \"year\": 2023}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 3.0,
+      "total_reward": 4.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "getplatformlist",
+            "parameters": {
+              "page": 2
+            }
+          },
+          {
+            "name": "totd_tracks_by_date",
+            "parameters": {
+              "month": 3,
+              "year": 2023
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1310,
+      "sample_id": 1310,
+      "rollout_index": 3,
+      "prompt_length": 542,
+      "response_length": 33,
+      "expected_kind": "tool_only",
+      "output_type": "response",
+      "response_text": "<think> I should directly respond to the user's need. </think>\n<response> I should directly respond to the user's need. </response>",
+      "format_valid": false,
+      "format_reward": 0.0,
+      "accuracy_reward": -3.0,
+      "total_reward": -3.0,
+      "tool_call_parse_result": {
+        "success": false,
+        "calls": [],
+        "error": "tool_call tags missing"
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1753,
+      "sample_id": 1753,
+      "rollout_index": 0,
+      "prompt_length": 522,
+      "response_length": 48,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"getFashionBlogDetails\", \"parameters\": {\"blog_id\": \"152\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 3.0,
+      "total_reward": 4.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "getFashionBlogDetails",
+            "parameters": {
+              "blog_id": "152"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1753,
+      "sample_id": 1753,
+      "rollout_index": 1,
+      "prompt_length": 522,
+      "response_length": 48,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"getFashionBlogDetails\", \"parameters\": {\"blog_id\": \"152\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 3.0,
+      "total_reward": 4.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "getFashionBlogDetails",
+            "parameters": {
+              "blog_id": "152"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1753,
+      "sample_id": 1753,
+      "rollout_index": 2,
+      "prompt_length": 522,
+      "response_length": 63,
+      "expected_kind": "tool_only",
+      "output_type": "response",
+      "response_text": "<think> I should directly respond to the user's need. </think>\n<response> To provide the desired information for the fashion blog based on Blog ID, the appropriate function would be the 'getFashionBlogDetails' with a 'blog_id' parameter set to 152. </response>",
+      "format_valid": false,
+      "format_reward": 0.0,
+      "accuracy_reward": -3.0,
+      "total_reward": -3.0,
+      "tool_call_parse_result": {
+        "success": false,
+        "calls": [],
+        "error": "tool_call tags missing"
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1753,
+      "sample_id": 1753,
+      "rollout_index": 3,
+      "prompt_length": 522,
+      "response_length": 48,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"getFashionBlogDetails\", \"parameters\": {\"blog_id\": 152}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 1.0,
+      "total_reward": 2.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "getFashionBlogDetails",
+            "parameters": {
+              "blog_id": 152
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1964,
+      "sample_id": 1964,
+      "rollout_index": 0,
+      "prompt_length": 454,
+      "response_length": 85,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"Bl5GQLe5L\", \"parameters\": {\"Qt_O\": \"vegan_chili_111\"}}\n{\"name\": \"Bl5GQLe5L\", \"parameters\": {\"Qt_O\": \"vegan_quiche_222\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 3.0,
+      "total_reward": 4.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "Bl5GQLe5L",
+            "parameters": {
+              "Qt_O": "vegan_chili_111"
+            }
+          },
+          {
+            "name": "Bl5GQLe5L",
+            "parameters": {
+              "Qt_O": "vegan_quiche_222"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1964,
+      "sample_id": 1964,
+      "rollout_index": 1,
+      "prompt_length": 454,
+      "response_length": 85,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"Bl5GQLe5L\", \"parameters\": {\"Qt_O\": \"vegan_chili_111\"}}\n{\"name\": \"Bl5GQLe5L\", \"parameters\": {\"Qt_O\": \"vegan_quiche_222\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 3.0,
+      "total_reward": 4.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "Bl5GQLe5L",
+            "parameters": {
+              "Qt_O": "vegan_chili_111"
+            }
+          },
+          {
+            "name": "Bl5GQLe5L",
+            "parameters": {
+              "Qt_O": "vegan_quiche_222"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1964,
+      "sample_id": 1964,
+      "rollout_index": 2,
+      "prompt_length": 454,
+      "response_length": 61,
+      "expected_kind": "tool_only",
+      "output_type": "response",
+      "response_text": "<think> I should directly respond to the user's need. </think>\n<response> If you look carefully, you can see that there is a discrepancy between the steps provided in the context and the actual end result. Can you provide more information so that I can respond correctly? </response>",
+      "format_valid": false,
+      "format_reward": 0.0,
+      "accuracy_reward": -3.0,
+      "total_reward": -3.0,
+      "tool_call_parse_result": {
+        "success": false,
+        "calls": [],
+        "error": "tool_call tags missing"
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1964,
+      "sample_id": 1964,
+      "rollout_index": 3,
+      "prompt_length": 454,
+      "response_length": 85,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"Bl5GQLe5L\", \"parameters\": {\"Qt_O\": \"vegan_chili_111\"}}\n{\"name\": \"Bl5GQLe5L\", \"parameters\": {\"Qt_O\": \"vegan_quiche_222\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 3.0,
+      "total_reward": 4.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "Bl5GQLe5L",
+            "parameters": {
+              "Qt_O": "vegan_chili_111"
+            }
+          },
+          {
+            "name": "Bl5GQLe5L",
+            "parameters": {
+              "Qt_O": "vegan_quiche_222"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 2892,
+      "sample_id": 2892,
+      "rollout_index": 0,
+      "prompt_length": 453,
+      "response_length": 121,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"vZjZMqA\", \"parameters\": {\"1S.o\": \"happy\"}}\n{\"name\": \"vZjZMqA\", \"parameters\": {\"1S.o\": \"sad\"}}\n{\"name\": \"vZjZMqA\", \"parameters\": {\"1S.o\": \"angry\"}}\n{\"name\": \"vZjZMqA\", \"parameters\": {\"1S.o\": \"joyful\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 3.0,
+      "total_reward": 4.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "vZjZMqA",
+            "parameters": {
+              "1S.o": "happy"
+            }
+          },
+          {
+            "name": "vZjZMqA",
+            "parameters": {
+              "1S.o": "sad"
+            }
+          },
+          {
+            "name": "vZjZMqA",
+            "parameters": {
+              "1S.o": "angry"
+            }
+          },
+          {
+            "name": "vZjZMqA",
+            "parameters": {
+              "1S.o": "joyful"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 2892,
+      "sample_id": 2892,
+      "rollout_index": 1,
+      "prompt_length": 453,
+      "response_length": 33,
+      "expected_kind": "tool_only",
+      "output_type": "response",
+      "response_text": "<think> I should directly respond to the user's need. </think>\n<response> I should directly respond to the user's need. </response>",
+      "format_valid": false,
+      "format_reward": 0.0,
+      "accuracy_reward": -3.0,
+      "total_reward": -3.0,
+      "tool_call_parse_result": {
+        "success": false,
+        "calls": [],
+        "error": "tool_call tags missing"
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 2892,
+      "sample_id": 2892,
+      "rollout_index": 2,
+      "prompt_length": 453,
+      "response_length": 121,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"vZjZMqA\", \"parameters\": {\"1S.o\": \"happy\"}}\n{\"name\": \"vZjZMqA\", \"parameters\": {\"1S.o\": \"sad\"}}\n{\"name\": \"vZjZMqA\", \"parameters\": {\"1S.o\": \"angry\"}}\n{\"name\": \"vZjZMqA\", \"parameters\": {\"1S.o\": \"joyful\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 3.0,
+      "total_reward": 4.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "vZjZMqA",
+            "parameters": {
+              "1S.o": "happy"
+            }
+          },
+          {
+            "name": "vZjZMqA",
+            "parameters": {
+              "1S.o": "sad"
+            }
+          },
+          {
+            "name": "vZjZMqA",
+            "parameters": {
+              "1S.o": "angry"
+            }
+          },
+          {
+            "name": "vZjZMqA",
+            "parameters": {
+              "1S.o": "joyful"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 2892,
+      "sample_id": 2892,
+      "rollout_index": 3,
+      "prompt_length": 453,
+      "response_length": 24,
+      "expected_kind": "tool_only",
+      "output_type": "invalid",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n",
+      "format_valid": false,
+      "format_reward": 0.0,
+      "accuracy_reward": -3.0,
+      "total_reward": -3.0,
+      "tool_call_parse_result": {
+        "success": false,
+        "calls": [],
+        "error": "tool_call tags missing"
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 3164,
+      "sample_id": 3164,
+      "rollout_index": 0,
+      "prompt_length": 855,
+      "response_length": 165,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"zRqDSkvRo\", \"parameters\": {\"JvlYQh1.\": [10, 10, 10, 11, 11, 11, 12, 12, 12]}}\n{\"name\": \"uEHKF.QMx6yXDO\", \"parameters\": {\"WU5XC5\": \"YYYY-MM-DD\", \"BYaE.NdCf\": \"DD/MM/YYYY\"}}\n{\"name\": \"iDDGltAQEt\", \"parameters\": {\"4jlu\": 25, \"9U2GEeGv\": False}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": -3.0,
+      "total_reward": -2.0,
+      "tool_call_parse_result": {
+        "success": false,
+        "calls": [
+          {
+            "name": "zRqDSkvRo",
+            "parameters": {
+              "JvlYQh1.": [
+                10,
+                10,
+                10,
+                11,
+                11,
+                11,
+                12,
+                12,
+                12
+              ]
+            }
+          },
+          {
+            "name": "uEHKF.QMx6yXDO",
+            "parameters": {
+              "WU5XC5": "YYYY-MM-DD",
+              "BYaE.NdCf": "DD/MM/YYYY"
+            }
+          }
+        ],
+        "error": "JSON parse failed: JSONDecodeError: Expecting value: line 1 column 63 (char 62)"
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 3164,
+      "sample_id": 3164,
+      "rollout_index": 1,
+      "prompt_length": 855,
+      "response_length": 193,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"zRqDSkvRo\", \"parameters\": {\"JvlYQh1.\": \"[10, 10, 10, 11, 11, 11, 12, 12, 12]\"}}\n{\"name\": \"uEHKF.QMx6yXDO\", \"parameters\": {\"BYaE.NdCf\": \"yyyy/mm/dd\", \"WU5XC5\": \"yyyy-MM-dd\"}}\n{\"name\": \"iDDGltAQEt\", \"parameters\": {\"4jlu\": 25, \"9U2GEeGv\": false, \"4G81I\": false, \"fpjsUzKP4\": false, \"8WlEuo\": true}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": -0.6727272727272724,
+      "total_reward": 0.3272727272727276,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "zRqDSkvRo",
+            "parameters": {
+              "JvlYQh1.": "[10, 10, 10, 11, 11, 11, 12, 12, 12]"
+            }
+          },
+          {
+            "name": "uEHKF.QMx6yXDO",
+            "parameters": {
+              "BYaE.NdCf": "yyyy/mm/dd",
+              "WU5XC5": "yyyy-MM-dd"
+            }
+          },
+          {
+            "name": "iDDGltAQEt",
+            "parameters": {
+              "4jlu": 25,
+              "9U2GEeGv": false,
+              "4G81I": false,
+              "fpjsUzKP4": false,
+              "8WlEuo": true
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 3164,
+      "sample_id": 3164,
+      "rollout_index": 2,
+      "prompt_length": 855,
+      "response_length": 163,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"zRqDSkvRo\", \"parameters\": {\"JvlYQh1.\": [10, 10, 11, 11, 11, 12, 12, 12]}}\n{\"name\": \"iDDGltAQEt\", \"parameters\": {}}\n{\"name\": \"uEHKF.QMx6yXDO\", \"parameters\": {\"3IKupI4d\": \"01/01/2022\", \"BYaE.NdCf\": \"YYYY-MM-DD\", \"WU5XC5\": \"DD/MM/YYYY\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": -0.8181818181818183,
+      "total_reward": 0.18181818181818166,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "zRqDSkvRo",
+            "parameters": {
+              "JvlYQh1.": [
+                10,
+                10,
+                11,
+                11,
+                11,
+                12,
+                12,
+                12
+              ]
+            }
+          },
+          {
+            "name": "iDDGltAQEt",
+            "parameters": {}
+          },
+          {
+            "name": "uEHKF.QMx6yXDO",
+            "parameters": {
+              "3IKupI4d": "01/01/2022",
+              "BYaE.NdCf": "YYYY-MM-DD",
+              "WU5XC5": "DD/MM/YYYY"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 3164,
+      "sample_id": 3164,
+      "rollout_index": 3,
+      "prompt_length": 855,
+      "response_length": 214,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"zRqDSkvRo\", \"parameters\": {\"JvlYQh1.\": \"[10, 10, 10, 11, 11, 11, 12, 12, 12]\"}}\n{\"name\": \"uEHKF.QMx6yXDO\", \"parameters\": {\"3IKupI4d\": \"01/01/2022\", \"BYaE.NdCf\": \"DD/MM/YYYY\", \"WU5XC5\": \"YYYY-MM-DD\"}}\n{\"name\": \"iDDGltAQEt\", \"parameters\": {\"4jlu\": 25, \"9U2GEeGv\": False, \"fpjsUzKP4\": True, \"8WlEuo\": True, \"4G81I\": 0}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": -3.0,
+      "total_reward": -2.0,
+      "tool_call_parse_result": {
+        "success": false,
+        "calls": [
+          {
+            "name": "zRqDSkvRo",
+            "parameters": {
+              "JvlYQh1.": "[10, 10, 10, 11, 11, 11, 12, 12, 12]"
+            }
+          },
+          {
+            "name": "uEHKF.QMx6yXDO",
+            "parameters": {
+              "3IKupI4d": "01/01/2022",
+              "BYaE.NdCf": "DD/MM/YYYY",
+              "WU5XC5": "YYYY-MM-DD"
+            }
+          }
+        ],
+        "error": "JSON parse failed: JSONDecodeError: Expecting value: line 1 column 63 (char 62)"
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 3477,
+      "sample_id": 3477,
+      "rollout_index": 0,
+      "prompt_length": 538,
+      "response_length": 85,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"gb9diPNfrm\", \"parameters\": {\"aUWa1\": \"osm-bright\"}}\n{\"name\": \"c0J36V\", \"parameters\": {\"JoFcpK7x\": 456789123}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 1.7999999999999998,
+      "total_reward": 2.8,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "gb9diPNfrm",
+            "parameters": {
+              "aUWa1": "osm-bright"
+            }
+          },
+          {
+            "name": "c0J36V",
+            "parameters": {
+              "JoFcpK7x": 456789123
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 3477,
+      "sample_id": 3477,
+      "rollout_index": 1,
+      "prompt_length": 538,
+      "response_length": 27,
+      "expected_kind": "tool_only",
+      "output_type": "response",
+      "response_text": "<think> I should directly respond to the user's need. </think>\n<response> AI's final response </response>",
+      "format_valid": false,
+      "format_reward": 0.0,
+      "accuracy_reward": -3.0,
+      "total_reward": -3.0,
+      "tool_call_parse_result": {
+        "success": false,
+        "calls": [],
+        "error": "tool_call tags missing"
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 3477,
+      "sample_id": 3477,
+      "rollout_index": 2,
+      "prompt_length": 538,
+      "response_length": 85,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"gb9diPNfrm\", \"parameters\": {\"aUWa1\": \"osm-bright\"}}\n{\"name\": \"c0J36V\", \"parameters\": {\"JoFcpK7x\": 456789123}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 1.7999999999999998,
+      "total_reward": 2.8,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "gb9diPNfrm",
+            "parameters": {
+              "aUWa1": "osm-bright"
+            }
+          },
+          {
+            "name": "c0J36V",
+            "parameters": {
+              "JoFcpK7x": 456789123
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 3477,
+      "sample_id": 3477,
+      "rollout_index": 3,
+      "prompt_length": 538,
+      "response_length": 85,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"gb9diPNfrm\", \"parameters\": {\"aUWa1\": \"osm-bright\"}}\n{\"name\": \"c0J36V\", \"parameters\": {\"JoFcpK7x\": 456789123}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 1.7999999999999998,
+      "total_reward": 2.8,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "gb9diPNfrm",
+            "parameters": {
+              "aUWa1": "osm-bright"
+            }
+          },
+          {
+            "name": "c0J36V",
+            "parameters": {
+              "JoFcpK7x": 456789123
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 2134,
+      "sample_id": 2134,
+      "rollout_index": 0,
+      "prompt_length": 437,
+      "response_length": 48,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"getBlock\", \"parameters\": {\"block_number\": 123456}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 1.0,
+      "total_reward": 2.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "getBlock",
+            "parameters": {
+              "block_number": 123456
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 2134,
+      "sample_id": 2134,
+      "rollout_index": 1,
+      "prompt_length": 437,
+      "response_length": 48,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"getBlock\", \"parameters\": {\"block_number\": 123456}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 1.0,
+      "total_reward": 2.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "getBlock",
+            "parameters": {
+              "block_number": 123456
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 2134,
+      "sample_id": 2134,
+      "rollout_index": 2,
+      "prompt_length": 437,
+      "response_length": 62,
+      "expected_kind": "tool_only",
+      "output_type": "response",
+      "response_text": "<think> I should directly respond to the user's need. </think>\n<response> The block with number 123456 does not exist in the official blockchain network, as there are only up to 520 blocks prior to its existence in the network. </response>",
+      "format_valid": false,
+      "format_reward": 0.0,
+      "accuracy_reward": -3.0,
+      "total_reward": -3.0,
+      "tool_call_parse_result": {
+        "success": false,
+        "calls": [],
+        "error": "tool_call tags missing"
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 2134,
+      "sample_id": 2134,
+      "rollout_index": 3,
+      "prompt_length": 437,
+      "response_length": 48,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"getBlock\", \"parameters\": {\"block_number\": \"123456\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 3.0,
+      "total_reward": 4.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "getBlock",
+            "parameters": {
+              "block_number": "123456"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 681,
+      "sample_id": 681,
+      "rollout_index": 0,
+      "prompt_length": 902,
+      "response_length": 110,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"measure_distance\", \"parameters\": {\"lat1\": \"60\", \"lon1\": \"21\", \"lat2\": \"40.7128\", \"lon2\": \"-74.0060\", \"unit\": \"mi\"}}\n{\"name\": \"communes_par_code_commune\", \"parameters\": {\"code_com\": \"75056\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": -1.0,
+      "total_reward": 0.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "measure_distance",
+            "parameters": {
+              "lat1": "60",
+              "lon1": "21",
+              "lat2": "40.7128",
+              "lon2": "-74.0060",
+              "unit": "mi"
+            }
+          },
+          {
+            "name": "communes_par_code_commune",
+            "parameters": {
+              "code_com": "75056"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 681,
+      "sample_id": 681,
+      "rollout_index": 1,
+      "prompt_length": 902,
+      "response_length": 102,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"tz_lookup_by_location\", \"parameters\": {\"lat\": 40.7128, \"lng\": -74.006, \"timestamp\": 1609459200}}\n{\"name\": \"communes_par_code_commune\", \"parameters\": {\"code_com\": \"75056\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 3.0,
+      "total_reward": 4.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "tz_lookup_by_location",
+            "parameters": {
+              "lat": 40.7128,
+              "lng": -74.006,
+              "timestamp": 1609459200
+            }
+          },
+          {
+            "name": "communes_par_code_commune",
+            "parameters": {
+              "code_com": "75056"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 681,
+      "sample_id": 681,
+      "rollout_index": 2,
+      "prompt_length": 902,
+      "response_length": 166,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"measure_distance\", \"parameters\": {\"lon1\": \"36.6880794\", \"lon2\": \"39.2694784\", \"lat2\": \"-6.7785166\", \"lat1\": \"-3.3696827\", \"unit\": \"km\"}}\n{\"name\": \"tz_lookup_by_location\", \"parameters\": {\"lat\": \"40.7128\", \"lng\": \"-74.0060\"}}\n{\"name\": \"communes_par_code_commune\", \"parameters\": {\"code_com\": \"75056\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": -0.1428571428571428,
+      "total_reward": 0.8571428571428572,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "measure_distance",
+            "parameters": {
+              "lon1": "36.6880794",
+              "lon2": "39.2694784",
+              "lat2": "-6.7785166",
+              "lat1": "-3.3696827",
+              "unit": "km"
+            }
+          },
+          {
+            "name": "tz_lookup_by_location",
+            "parameters": {
+              "lat": "40.7128",
+              "lng": "-74.0060"
+            }
+          },
+          {
+            "name": "communes_par_code_commune",
+            "parameters": {
+              "code_com": "75056"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 681,
+      "sample_id": 681,
+      "rollout_index": 3,
+      "prompt_length": 902,
+      "response_length": 103,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"tz_lookup_by_location\",\n\"parameters\": {\"lat\": 40.7128, \"lng\": -74.0060, \"timestamp\": 1609459200}}\n{\"name\": \"communes_par_code_commune\",\n\"parameters\": {\"code_com\": \"75056\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": -3.0,
+      "total_reward": -2.0,
+      "tool_call_parse_result": {
+        "success": false,
+        "calls": [],
+        "error": "JSON parse failed: JSONDecodeError: Expecting property name enclosed in double quotes: line 1 column 34 (char 33)"
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 3282,
+      "sample_id": 3282,
+      "rollout_index": 0,
+      "prompt_length": 448,
+      "response_length": 56,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"get_restaurant_reviews\", \"parameters\": {\"restaurant_name\": \"Taste of Italy\", \"location\": \"downtown\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 3.0,
+      "total_reward": 4.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "get_restaurant_reviews",
+            "parameters": {
+              "restaurant_name": "Taste of Italy",
+              "location": "downtown"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 3282,
+      "sample_id": 3282,
+      "rollout_index": 1,
+      "prompt_length": 448,
+      "response_length": 56,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"get_restaurant_reviews\", \"parameters\": {\"restaurant_name\": \"Taste of Italy\", \"location\": \"downtown\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 3.0,
+      "total_reward": 4.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "get_restaurant_reviews",
+            "parameters": {
+              "restaurant_name": "Taste of Italy",
+              "location": "downtown"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 3282,
+      "sample_id": 3282,
+      "rollout_index": 2,
+      "prompt_length": 448,
+      "response_length": 56,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"get_restaurant_reviews\", \"parameters\": {\"restaurant_name\": \"Taste of Italy\", \"location\": \"downtown\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 3.0,
+      "total_reward": 4.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "get_restaurant_reviews",
+            "parameters": {
+              "restaurant_name": "Taste of Italy",
+              "location": "downtown"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 3282,
+      "sample_id": 3282,
+      "rollout_index": 3,
+      "prompt_length": 448,
+      "response_length": 56,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"get_restaurant_reviews\", \"parameters\": {\"restaurant_name\": \"Taste of Italy\", \"location\": \"downtown\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 3.0,
+      "total_reward": 4.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "get_restaurant_reviews",
+            "parameters": {
+              "restaurant_name": "Taste of Italy",
+              "location": "downtown"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 823,
+      "sample_id": 823,
+      "rollout_index": 0,
+      "prompt_length": 674,
+      "response_length": 83,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"getCourseContent\", \"parameters\": {\"course\": \"Data Science 101\"}}\n{\"name\": \"getCourseProgress\", \"parameters\": {\"student_id\": \"A12345\", \"course\": \"Data Science 101\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 2.0,
+      "total_reward": 3.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "getCourseContent",
+            "parameters": {
+              "course": "Data Science 101"
+            }
+          },
+          {
+            "name": "getCourseProgress",
+            "parameters": {
+              "student_id": "A12345",
+              "course": "Data Science 101"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 823,
+      "sample_id": 823,
+      "rollout_index": 1,
+      "prompt_length": 674,
+      "response_length": 83,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"getCourseContent\", \"parameters\": {\"course\": \"Data Science 101\"}}\n{\"name\": \"getCourseProgress\", \"parameters\": {\"student_id\": \"A12345\", \"course\": \"Data Science 101\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 2.0,
+      "total_reward": 3.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "getCourseContent",
+            "parameters": {
+              "course": "Data Science 101"
+            }
+          },
+          {
+            "name": "getCourseProgress",
+            "parameters": {
+              "student_id": "A12345",
+              "course": "Data Science 101"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 823,
+      "sample_id": 823,
+      "rollout_index": 2,
+      "prompt_length": 674,
+      "response_length": 83,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"getCourseContent\", \"parameters\": {\"course\": \"Data Science 101\"}}\n{\"name\": \"getCourseProgress\", \"parameters\": {\"student_id\": \"A12345\", \"course\": \"Data Science 101\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 2.0,
+      "total_reward": 3.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "getCourseContent",
+            "parameters": {
+              "course": "Data Science 101"
+            }
+          },
+          {
+            "name": "getCourseProgress",
+            "parameters": {
+              "student_id": "A12345",
+              "course": "Data Science 101"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 823,
+      "sample_id": 823,
+      "rollout_index": 3,
+      "prompt_length": 674,
+      "response_length": 83,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"getCourseContent\", \"parameters\": {\"course\": \"Data Science 101\"}}\n{\"name\": \"getCourseProgress\", \"parameters\": {\"student_id\": \"A12345\", \"course\": \"Data Science 101\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 2.0,
+      "total_reward": 3.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "getCourseContent",
+            "parameters": {
+              "course": "Data Science 101"
+            }
+          },
+          {
+            "name": "getCourseProgress",
+            "parameters": {
+              "student_id": "A12345",
+              "course": "Data Science 101"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1031,
+      "sample_id": 1031,
+      "rollout_index": 0,
+      "prompt_length": 645,
+      "response_length": 57,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"getBorderWaitTime\", \"parameters\": {\"border_crossing\": \"Peace Arch crossing\", \"direction\": \"entering US\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 1.5,
+      "total_reward": 2.5,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "getBorderWaitTime",
+            "parameters": {
+              "border_crossing": "Peace Arch crossing",
+              "direction": "entering US"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1031,
+      "sample_id": 1031,
+      "rollout_index": 1,
+      "prompt_length": 645,
+      "response_length": 56,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"getBorderWaitTime\", \"parameters\": {\"border_crossing\": \"Peace Arch crossing\", \"direction\": \"Entering US\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 0.0,
+      "total_reward": 1.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "getBorderWaitTime",
+            "parameters": {
+              "border_crossing": "Peace Arch crossing",
+              "direction": "Entering US"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1031,
+      "sample_id": 1031,
+      "rollout_index": 2,
+      "prompt_length": 645,
+      "response_length": 54,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"getBorderWaitTime\", \"parameters\": {\"border_crossing\": \"Peace Arch\", \"direction\": \"enter\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 1.5,
+      "total_reward": 2.5,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "getBorderWaitTime",
+            "parameters": {
+              "border_crossing": "Peace Arch",
+              "direction": "enter"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1031,
+      "sample_id": 1031,
+      "rollout_index": 3,
+      "prompt_length": 645,
+      "response_length": 57,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"getBorderWaitTime\", \"parameters\": {\"border_crossing\": \"Peace Arch crossing\", \"direction\": \"entering US\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 1.5,
+      "total_reward": 2.5,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "getBorderWaitTime",
+            "parameters": {
+              "border_crossing": "Peace Arch crossing",
+              "direction": "entering US"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 426,
+      "sample_id": 426,
+      "rollout_index": 0,
+      "prompt_length": 517,
+      "response_length": 79,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"produce_mixy_words_list\", \"parameters\": {\"amount\": 20, \"difficulty\": \"easy\"}}\n{\"name\": \"produce_mixy_words_list\", \"parameters\": {\"amount\": 20, \"difficulty\": \"hard\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 3.0,
+      "total_reward": 4.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "produce_mixy_words_list",
+            "parameters": {
+              "amount": 20,
+              "difficulty": "easy"
+            }
+          },
+          {
+            "name": "produce_mixy_words_list",
+            "parameters": {
+              "amount": 20,
+              "difficulty": "hard"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 426,
+      "sample_id": 426,
+      "rollout_index": 1,
+      "prompt_length": 517,
+      "response_length": 79,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"produce_mixy_words_list\", \"parameters\": {\"amount\": \"20\", \"difficulty\": \"easy\"}}\n{\"name\": \"produce_mixy_words_list\", \"parameters\": {\"amount\": \"20\", \"difficulty\": \"hard\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 1.2857142857142856,
+      "total_reward": 2.2857142857142856,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "produce_mixy_words_list",
+            "parameters": {
+              "amount": "20",
+              "difficulty": "easy"
+            }
+          },
+          {
+            "name": "produce_mixy_words_list",
+            "parameters": {
+              "amount": "20",
+              "difficulty": "hard"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 426,
+      "sample_id": 426,
+      "rollout_index": 2,
+      "prompt_length": 517,
+      "response_length": 79,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"produce_mixy_words_list\", \"parameters\": {\"amount\": 20, \"difficulty\": \"easy\"}}\n{\"name\": \"produce_mixy_words_list\", \"parameters\": {\"amount\": 20, \"difficulty\": \"hard\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 3.0,
+      "total_reward": 4.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "produce_mixy_words_list",
+            "parameters": {
+              "amount": 20,
+              "difficulty": "easy"
+            }
+          },
+          {
+            "name": "produce_mixy_words_list",
+            "parameters": {
+              "amount": 20,
+              "difficulty": "hard"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 426,
+      "sample_id": 426,
+      "rollout_index": 3,
+      "prompt_length": 517,
+      "response_length": 75,
+      "expected_kind": "tool_only",
+      "output_type": "invalid",
+      "response_text": "<think> I should directly respond to the user's need. </think>\n<response> {\n  \"Thought\": \"'**Remarkably, we don't need to build an API action with multiple calls to achieve this task. I will directly respond based on the user's need.'\",\n  \"Response\": \"Certainly, here are the lists available for you.\"\n}",
+      "format_valid": false,
+      "format_reward": 0.0,
+      "accuracy_reward": -3.0,
+      "total_reward": -3.0,
+      "tool_call_parse_result": {
+        "success": false,
+        "calls": [],
+        "error": "tool_call tags missing"
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 3731,
+      "sample_id": 3731,
+      "rollout_index": 0,
+      "prompt_length": 780,
+      "response_length": 111,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"get_movies_by_director\", \"parameters\": {\"movie_director\": \"David Fincher\"}}\n{\"name\": \"get_movies_by_cast_name\", \"parameters\": {\"cast_name\": \"Brad Pitt\"}}\n{\"name\": \"season_episodes\", \"parameters\": {\"ids\": \"80207845\"}}\n{\"name\": \"actors_random\", \"parameters\": {\"limit\": \"10\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 1.666666666666667,
+      "total_reward": 2.666666666666667,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "get_movies_by_director",
+            "parameters": {
+              "movie_director": "David Fincher"
+            }
+          },
+          {
+            "name": "get_movies_by_cast_name",
+            "parameters": {
+              "cast_name": "Brad Pitt"
+            }
+          },
+          {
+            "name": "season_episodes",
+            "parameters": {
+              "ids": "80207845"
+            }
+          },
+          {
+            "name": "actors_random",
+            "parameters": {
+              "limit": "10"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 3731,
+      "sample_id": 3731,
+      "rollout_index": 1,
+      "prompt_length": 780,
+      "response_length": 118,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"get_movies_by_director\", \"parameters\": {}}\n{\"name\": \"get_movies_by_cast_name\", \"parameters\": {\"cast_name\": \"Brad Pitt\"}}\n{\"name\": \"season_episodes\", \"parameters\": {\"ids\": \"80077209,80117715\", \"lang\": \"en\"}}\n{\"name\": \"actors_random\", \"parameters\": {\"limit\": \"10\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 0.0,
+      "total_reward": 1.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "get_movies_by_director",
+            "parameters": {}
+          },
+          {
+            "name": "get_movies_by_cast_name",
+            "parameters": {
+              "cast_name": "Brad Pitt"
+            }
+          },
+          {
+            "name": "season_episodes",
+            "parameters": {
+              "ids": "80077209,80117715",
+              "lang": "en"
+            }
+          },
+          {
+            "name": "actors_random",
+            "parameters": {
+              "limit": "10"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 3731,
+      "sample_id": 3731,
+      "rollout_index": 2,
+      "prompt_length": 780,
+      "response_length": 94,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"get_movies_by_director\", \"parameters\": {\"movie_director\": \"David Fincher\"}}\n{\"name\": \"get_movies_by_cast_name\", \"parameters\": {\"cast_name\": \"Brad Pitt\"}}\n{\"name\": \"season_episodes\", \"parameters\": {\"limit\": 10, \"offset\": 0}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 0.16666666666666652,
+      "total_reward": 1.1666666666666665,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "get_movies_by_director",
+            "parameters": {
+              "movie_director": "David Fincher"
+            }
+          },
+          {
+            "name": "get_movies_by_cast_name",
+            "parameters": {
+              "cast_name": "Brad Pitt"
+            }
+          },
+          {
+            "name": "season_episodes",
+            "parameters": {
+              "limit": 10,
+              "offset": 0
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 3731,
+      "sample_id": 3731,
+      "rollout_index": 3,
+      "prompt_length": 780,
+      "response_length": 106,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"get_movies_by_director\", \"parameters\": {\"movie_director\": \"David Fincher\"}}\n{\"name\": \"get_movies_by_cast_name\", \"parameters\": {\"cast_name\": \"Brad Pitt\"}}\n{\"name\": \"season_episodes\", \"parameters\": {\"ids\": \"148\"}}\n{\"name\": \"actors_random\", \"parameters\": {\"limit\": 10}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 2.333333333333333,
+      "total_reward": 3.333333333333333,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "get_movies_by_director",
+            "parameters": {
+              "movie_director": "David Fincher"
+            }
+          },
+          {
+            "name": "get_movies_by_cast_name",
+            "parameters": {
+              "cast_name": "Brad Pitt"
+            }
+          },
+          {
+            "name": "season_episodes",
+            "parameters": {
+              "ids": "148"
+            }
+          },
+          {
+            "name": "actors_random",
+            "parameters": {
+              "limit": 10
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 753,
+      "sample_id": 753,
+      "rollout_index": 0,
+      "prompt_length": 670,
+      "response_length": 101,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"local_weather_api\", \"parameters\": {\"q\": \"Berlin, Germany\", \"lang\": \"de\", \"num_of_days\": 4, \"aqi\": \"yes\"}}\n{\"name\": \"local_weather_api\", \"parameters\": {\"q\": \"Berlin, Germany\", \"num_of_days\": 4, \"aqi\": \"yes\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 2.5,
+      "total_reward": 3.5,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "local_weather_api",
+            "parameters": {
+              "q": "Berlin, Germany",
+              "lang": "de",
+              "num_of_days": 4,
+              "aqi": "yes"
+            }
+          },
+          {
+            "name": "local_weather_api",
+            "parameters": {
+              "q": "Berlin, Germany",
+              "num_of_days": 4,
+              "aqi": "yes"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 753,
+      "sample_id": 753,
+      "rollout_index": 1,
+      "prompt_length": 670,
+      "response_length": 65,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"local_weather_api\", \"parameters\": {\"q\": \"Berlin\", \"lang\": \"de\", \"num_of_days\": 4, \"aqi\": \"yes\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 2.0,
+      "total_reward": 3.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "local_weather_api",
+            "parameters": {
+              "q": "Berlin",
+              "lang": "de",
+              "num_of_days": 4,
+              "aqi": "yes"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 753,
+      "sample_id": 753,
+      "rollout_index": 2,
+      "prompt_length": 670,
+      "response_length": 106,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"local_weather_api\", \"parameters\": {\"q\": \"Berlin, Germany\", \"lang\": \"de\", \"num_of_days\": 4, \"format\": \"json\"}}\n{\"name\": \"local_weather_api\", \"parameters\": {\"q\": \"Berlin, Germany\", \"aqi\": \"yes\", \"num_of_days\": 4, \"format\": \"json\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 1.0999999999999996,
+      "total_reward": 2.0999999999999996,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "local_weather_api",
+            "parameters": {
+              "q": "Berlin, Germany",
+              "lang": "de",
+              "num_of_days": 4,
+              "format": "json"
+            }
+          },
+          {
+            "name": "local_weather_api",
+            "parameters": {
+              "q": "Berlin, Germany",
+              "aqi": "yes",
+              "num_of_days": 4,
+              "format": "json"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 753,
+      "sample_id": 753,
+      "rollout_index": 3,
+      "prompt_length": 670,
+      "response_length": 98,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"local_weather_api\", \"parameters\": {\"q\": \"Berlin\", \"lang\": \"de\"}}\n{\"name\": \"local_weather_api\", \"parameters\": {\"q\": \"Berlin\"}}\n{\"name\": \"local_weather_api\", \"parameters\": {\"q\": \"Berlin\", \"num_of_days\": 4, \"lang\": \"de\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 0.08333333333333348,
+      "total_reward": 1.0833333333333335,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "local_weather_api",
+            "parameters": {
+              "q": "Berlin",
+              "lang": "de"
+            }
+          },
+          {
+            "name": "local_weather_api",
+            "parameters": {
+              "q": "Berlin"
+            }
+          },
+          {
+            "name": "local_weather_api",
+            "parameters": {
+              "q": "Berlin",
+              "num_of_days": 4,
+              "lang": "de"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 200,
+      "sample_id": 200,
+      "rollout_index": 0,
+      "prompt_length": 604,
+      "response_length": 138,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"vueStateSync\", \"parameters\": {\"componentState\": \"{\\\"items\\\": [{\"id\": \"1\", \"name\": \"Apple\", \"quantity\": 3}, {\"id\": \"2\", \"name\": \"Banana\", \"quantity\": 1}]}\", \"globalState\": \"{\\\"items\\\": [{\"id\": \"1\", \"name\": \"Apple\", \"quantity\": 5}, {\"id\": \"3\", \"name\": \"Carrot\", \"quantity\": 2}]}\", \"syncKey\": \"cartItems\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": -3.0,
+      "total_reward": -2.0,
+      "tool_call_parse_result": {
+        "success": false,
+        "calls": [],
+        "error": "JSON parse failed: JSONDecodeError: Expecting ',' delimiter: line 1 column 75 (char 74)"
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 200,
+      "sample_id": 200,
+      "rollout_index": 1,
+      "prompt_length": 604,
+      "response_length": 136,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"vueStateSync\", \"parameters\": {\"componentState\": {\"items\": [{\"id\": \"1\", \"name\": \"Apple\", \"quantity\": 3}, {\"id\": \"2\", \"name\": \"Banana\", \"quantity\": 1}]}, \"globalState\": {\"items\": [{\"id\": \"1\", \"name\": \"Apple\", \"quantity\": 5}, {\"id\": \"3\", \"name\": \"Carrot\", \"quantity\": 2}]}, \"syncKey\": \"cartItems\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": -1.56,
+      "total_reward": -0.56,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "vueStateSync",
+            "parameters": {
+              "componentState": {
+                "items": [
+                  {
+                    "id": "1",
+                    "name": "Apple",
+                    "quantity": 3
+                  },
+                  {
+                    "id": "2",
+                    "name": "Banana",
+                    "quantity": 1
+                  }
+                ]
+              },
+              "globalState": {
+                "items": [
+                  {
+                    "id": "1",
+                    "name": "Apple",
+                    "quantity": 5
+                  },
+                  {
+                    "id": "3",
+                    "name": "Carrot",
+                    "quantity": 2
+                  }
+                ]
+              },
+              "syncKey": "cartItems"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 200,
+      "sample_id": 200,
+      "rollout_index": 2,
+      "prompt_length": 604,
+      "response_length": 136,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"vueStateSync\", \"parameters\": {\"componentState\": {\"items\": [{\"id\": \"1\", \"name\": \"Apple\", \"quantity\": 3}, {\"id\": \"2\", \"name\": \"Banana\", \"quantity\": 1}]}, \"globalState\": {\"items\": [{\"id\": \"1\", \"name\": \"Apple\", \"quantity\": 5}, {\"id\": \"3\", \"name\": \"Carrot\", \"quantity\": 2}]}, \"syncKey\": \"cartItems\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": -1.56,
+      "total_reward": -0.56,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "vueStateSync",
+            "parameters": {
+              "componentState": {
+                "items": [
+                  {
+                    "id": "1",
+                    "name": "Apple",
+                    "quantity": 3
+                  },
+                  {
+                    "id": "2",
+                    "name": "Banana",
+                    "quantity": 1
+                  }
+                ]
+              },
+              "globalState": {
+                "items": [
+                  {
+                    "id": "1",
+                    "name": "Apple",
+                    "quantity": 5
+                  },
+                  {
+                    "id": "3",
+                    "name": "Carrot",
+                    "quantity": 2
+                  }
+                ]
+              },
+              "syncKey": "cartItems"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 200,
+      "sample_id": 200,
+      "rollout_index": 3,
+      "prompt_length": 604,
+      "response_length": 148,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"vueStateSync\", \"parameters\": {\"componentState\": \"{\\\"items\\\": [\\\"{\\\"id\\\": \\\"1\\\", \\\"name\\\": \\\"Apple\\\", \\\"quantity\\\": 3}\\\", \\\"{\\\"id\\\": \\\"2\\\", \\\"name\\\": \\\"Banana\\\", \\\"quantity\\\": 1}\\\"])\", \"globalState\": \"{\\\"items\\\": [\\\"{\\\"id\\\": \\\"1\\\", \\\"name\\\": \\\"Apple\\\", \\\"quantity\\\": 5}\\\", \\\"{\\\"id\\\": \\\"3\\\", \\\"name\\\": \\\"Carrot\\\", \\\"quantity\\\": 2}\\\")\", \"syncKey\": \"cartItems\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": -1.56,
+      "total_reward": -0.56,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "vueStateSync",
+            "parameters": {
+              "componentState": "{\"items\": [\"{\"id\": \"1\", \"name\": \"Apple\", \"quantity\": 3}\", \"{\"id\": \"2\", \"name\": \"Banana\", \"quantity\": 1}\"])",
+              "globalState": "{\"items\": [\"{\"id\": \"1\", \"name\": \"Apple\", \"quantity\": 5}\", \"{\"id\": \"3\", \"name\": \"Carrot\", \"quantity\": 2}\")",
+              "syncKey": "cartItems"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1024,
+      "sample_id": 1024,
+      "rollout_index": 0,
+      "prompt_length": 754,
+      "response_length": 131,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"get_6_timeseries_endpoint\", \"parameters\": {\"start_date\": \"2017-01-01\", \"end_date\": \"2017-12-31\", \"base\": \"AUD\", \"symbols\": \"USD,NZD\"}}\n{\"name\": \"get_4_date_endpoint\", \"parameters\": {\"base\": \"AUD\", \"symbols\": \"JPY,GBP\", \"date\": \"2018-02-10\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 0.6000000000000001,
+      "total_reward": 1.6,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "get_6_timeseries_endpoint",
+            "parameters": {
+              "start_date": "2017-01-01",
+              "end_date": "2017-12-31",
+              "base": "AUD",
+              "symbols": "USD,NZD"
+            }
+          },
+          {
+            "name": "get_4_date_endpoint",
+            "parameters": {
+              "base": "AUD",
+              "symbols": "JPY,GBP",
+              "date": "2018-02-10"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1024,
+      "sample_id": 1024,
+      "rollout_index": 1,
+      "prompt_length": 754,
+      "response_length": 146,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"get_4_date_endpoint\", \"parameters\": {\"base\": \"AUD\", \"symbols\": \"USD,NZD\", \"date\": \"2017-01-01\", \"start_date\": \"2017-01-02\", \"end_date\": \"2017-12-31\"}}\n{\"name\": \"get_6_timeseries_endpoint\", \"parameters\": {\"base\": \"AUD\", \"symbols\": \"JPY,GBP\", \"date\": \"2018-02-10\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": -1.8,
+      "total_reward": -0.8,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "get_4_date_endpoint",
+            "parameters": {
+              "base": "AUD",
+              "symbols": "USD,NZD",
+              "date": "2017-01-01",
+              "start_date": "2017-01-02",
+              "end_date": "2017-12-31"
+            }
+          },
+          {
+            "name": "get_6_timeseries_endpoint",
+            "parameters": {
+              "base": "AUD",
+              "symbols": "JPY,GBP",
+              "date": "2018-02-10"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1024,
+      "sample_id": 1024,
+      "rollout_index": 2,
+      "prompt_length": 754,
+      "response_length": 116,
+      "expected_kind": "tool_only",
+      "output_type": "invalid",
+      "response_text": "<think> I should directly respond to the user's need. </think>\n<response> The user wants to get the historical exchange rates between specific dates and provide information about those rates through the appropriate function. Since my last response provided that function's outputs directly, I don't need to invoke any tool and shouldn't include a `JSON` object or a `<response>` response. `ACTION_REQUIRED` should not be used unless I must dynamically process the available records under a specific need not explicitly quoted here.\nPlease provide the appropriate need or query for clear instruction conformity.`<tool_call>",
+      "format_valid": false,
+      "format_reward": 0.0,
+      "accuracy_reward": -3.0,
+      "total_reward": -3.0,
+      "tool_call_parse_result": {
+        "success": false,
+        "calls": [],
+        "error": "tool_call tags missing"
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1024,
+      "sample_id": 1024,
+      "rollout_index": 3,
+      "prompt_length": 754,
+      "response_length": 124,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"get_4_date_endpoint\", \"parameters\": {\"base\": \"AUD\", \"symbols\": \"USD,NZD\", \"date\": \"2017-01-01,2017-12-31\"}}\n{\"name\": \"get_4_date_endpoint\", \"parameters\": {\"base\": \"AUD\", \"symbols\": \"JPY,GBP\", \"date\": \"2018-02-10\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": -1.6,
+      "total_reward": -0.6000000000000001,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "get_4_date_endpoint",
+            "parameters": {
+              "base": "AUD",
+              "symbols": "USD,NZD",
+              "date": "2017-01-01,2017-12-31"
+            }
+          },
+          {
+            "name": "get_4_date_endpoint",
+            "parameters": {
+              "base": "AUD",
+              "symbols": "JPY,GBP",
+              "date": "2018-02-10"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 2536,
+      "sample_id": 2536,
+      "rollout_index": 0,
+      "prompt_length": 853,
+      "response_length": 154,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"InfluencerContentCreation.scheduleSponsoredPost\", \"parameters\": {\"influencer\": \"John Doe\", \"content\": \"the new tech gadget\", \"time\": \"14:00:00\"}}\n{\"name\": \"InfluencerContentCreation.doSponsoredPost\", \"parameters\": {\"influencer\": \"John Doe\", \"content\": \"the new tech gadget\", \"postDetails\": [{\"title\": \"Introducing the Future of Tech\", \"description\": \"Get ready for the latest innovation in technology. Stay tuned!\", \"image\": \"http://example.com/image.jpg\"}]}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 1.0,
+      "total_reward": 2.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "InfluencerContentCreation.scheduleSponsoredPost",
+            "parameters": {
+              "influencer": "John Doe",
+              "content": "the new tech gadget",
+              "time": "14:00:00"
+            }
+          },
+          {
+            "name": "InfluencerContentCreation.doSponsoredPost",
+            "parameters": {
+              "influencer": "John Doe",
+              "content": "the new tech gadget",
+              "postDetails": [
+                {
+                  "title": "Introducing the Future of Tech",
+                  "description": "Get ready for the latest innovation in technology. Stay tuned!",
+                  "image": "http://example.com/image.jpg"
+                }
+              ]
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 2536,
+      "sample_id": 2536,
+      "rollout_index": 1,
+      "prompt_length": 853,
+      "response_length": 150,
+      "expected_kind": "tool_only",
+      "output_type": "invalid",
+      "response_text": "<think> I should directly respond to the user's need. </think>\n<response> Here's a function call you could use for scheduling a sponsored post. Notice the `post`, `time`, and `badgeUrl` parameters. The badgeUrl is optional. Please provide all these details for a productive response.\n{\n  \"name\": \"InfluencerContentCreation.scheduleSponsoredPost\",\n  \"parameters\": {\n    \"influencer\": \"John Doe\",\n    \"content\": \"The function which schedules the sponsored post is private but I can give information on the when, where and what to do. Check out the available documentation here onwards.\",\n    \"time\": \"14:00:00\"\n  }\n}",
+      "format_valid": false,
+      "format_reward": 0.0,
+      "accuracy_reward": -3.0,
+      "total_reward": -3.0,
+      "tool_call_parse_result": {
+        "success": false,
+        "calls": [],
+        "error": "tool_call tags missing"
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 2536,
+      "sample_id": 2536,
+      "rollout_index": 2,
+      "prompt_length": 853,
+      "response_length": 179,
+      "expected_kind": "tool_only",
+      "output_type": "invalid",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"InfluencerContentCreation.scheduleSponsoredPost\", \"parameters\": {\"influencer\": \"John Doe\", \"content\": \"https://www.example.com/video.mp4\", \"time\": \"14:00:00\"}}\n{\"name\": \"InfluencerContentCreation.doSponsoredPost\", \"parameters\": {\"influencer\": \"John Doe\", \"content\": \"https://www.example.com/video.mp4\", \"postDetails\": [{\"title\": \"Introducing the Future of Tech\", \"description\": \"Get ready for the latest innovation in technology. Stay tuned!\", \"image\": \"http://example.com/image.jpg\"}, {\"title\": \"\", \"description\": \"\", \"datetime\": \"\", \"type\": \"\"}]} }\n<tool_call>",
+      "format_valid": false,
+      "format_reward": 0.0,
+      "accuracy_reward": -3.0,
+      "total_reward": -3.0,
+      "tool_call_parse_result": {
+        "success": false,
+        "calls": [],
+        "error": "tool_call tags missing"
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 2536,
+      "sample_id": 2536,
+      "rollout_index": 3,
+      "prompt_length": 853,
+      "response_length": 98,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"InfluencerContentCreation.scheduleSponsoredPost\", \"parameters\": {\"influencer\": \"{\\\"name\\\": \\\"John Doe\\\"}\", \"content\": \"{\\\"name\\\": \\\"Introducing the Future of Tech\\\", \\\"description\\\": \\\"Stay tuned! \\\"}\", \"time\": \"{\\\"string\\\": \\\"14:00:00\\\"}\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": -2.0,
+      "total_reward": -1.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "InfluencerContentCreation.scheduleSponsoredPost",
+            "parameters": {
+              "influencer": "{\"name\": \"John Doe\"}",
+              "content": "{\"name\": \"Introducing the Future of Tech\", \"description\": \"Stay tuned! \"}",
+              "time": "{\"string\": \"14:00:00\"}"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 2062,
+      "sample_id": 2062,
+      "rollout_index": 0,
+      "prompt_length": 720,
+      "response_length": 59,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"retrieve_data\", \"parameters\": {\"rank\": \"top\"}}\n{\"name\": \"retrieve_data\", \"parameters\": {\"rank\": \"popular\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": -1.5,
+      "total_reward": -0.5,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "retrieve_data",
+            "parameters": {
+              "rank": "top"
+            }
+          },
+          {
+            "name": "retrieve_data",
+            "parameters": {
+              "rank": "popular"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 2062,
+      "sample_id": 2062,
+      "rollout_index": 1,
+      "prompt_length": 720,
+      "response_length": 41,
+      "expected_kind": "tool_only",
+      "output_type": "response",
+      "response_text": "<think> I should directly respond to the user's need. </think>\n<response> I should choose a suitable function based on the user's need and return the appropriate response. </response>",
+      "format_valid": false,
+      "format_reward": 0.0,
+      "accuracy_reward": -3.0,
+      "total_reward": -3.0,
+      "tool_call_parse_result": {
+        "success": false,
+        "calls": [],
+        "error": "tool_call tags missing"
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 2062,
+      "sample_id": 2062,
+      "rollout_index": 2,
+      "prompt_length": 720,
+      "response_length": 39,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"retrieve_data\", \"parameters\": {}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 3.0,
+      "total_reward": 4.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "retrieve_data",
+            "parameters": {}
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 2062,
+      "sample_id": 2062,
+      "rollout_index": 3,
+      "prompt_length": 720,
+      "response_length": 43,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"retrieve_data\", \"parameters\": {\"rank\": \"top\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 0.0,
+      "total_reward": 1.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "retrieve_data",
+            "parameters": {
+              "rank": "top"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1184,
+      "sample_id": 1184,
+      "rollout_index": 0,
+      "prompt_length": 635,
+      "response_length": 131,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"Get Featured Channels\", \"parameters\": {\"id\": \"12345\", \"token\": \"\"}}\n{\"name\": \"Get Featured Channels\", \"parameters\": {\"id\": \"23456\", \"token\": \"\"}}\n{\"name\": \"Get Featured Channels\", \"parameters\": {\"id\": \"11121\", \"token\": \"\"}}\n{\"name\": \"Get Featured Channels\", \"parameters\": {\"id\": \"14151\", \"token\": \"\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 1.0,
+      "total_reward": 2.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "Get Featured Channels",
+            "parameters": {
+              "id": "12345",
+              "token": ""
+            }
+          },
+          {
+            "name": "Get Featured Channels",
+            "parameters": {
+              "id": "23456",
+              "token": ""
+            }
+          },
+          {
+            "name": "Get Featured Channels",
+            "parameters": {
+              "id": "11121",
+              "token": ""
+            }
+          },
+          {
+            "name": "Get Featured Channels",
+            "parameters": {
+              "id": "14151",
+              "token": ""
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1184,
+      "sample_id": 1184,
+      "rollout_index": 1,
+      "prompt_length": 635,
+      "response_length": 131,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"Get Featured Channels\", \"parameters\": {\"id\": \"12345\", \"token\": \"\"}}\n{\"name\": \"Get Featured Channels\", \"parameters\": {\"id\": \"67890\", \"token\": \"\"}}\n{\"name\": \"Get Featured Channels\", \"parameters\": {\"id\": \"11121\", \"token\": \"\"}}\n{\"name\": \"Get Featured Channels\", \"parameters\": {\"id\": \"14151\", \"token\": \"\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 1.666666666666667,
+      "total_reward": 2.666666666666667,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "Get Featured Channels",
+            "parameters": {
+              "id": "12345",
+              "token": ""
+            }
+          },
+          {
+            "name": "Get Featured Channels",
+            "parameters": {
+              "id": "67890",
+              "token": ""
+            }
+          },
+          {
+            "name": "Get Featured Channels",
+            "parameters": {
+              "id": "11121",
+              "token": ""
+            }
+          },
+          {
+            "name": "Get Featured Channels",
+            "parameters": {
+              "id": "14151",
+              "token": ""
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1184,
+      "sample_id": 1184,
+      "rollout_index": 2,
+      "prompt_length": 635,
+      "response_length": 143,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"Get Featured Channels\", \"parameters\": {\"id\": \"12345\", \"token\": \"some_token\"}}\n{\"name\": \"Get Featured Channels\", \"parameters\": {\"id\": \"67890\", \"token\": \"some_other_token\"}}\n{\"name\": \"Get Featured Channels\", \"parameters\": {\"id\": \"11121\", \"token\": \"yet_another_token\"}}\n{\"name\": \"Get Featured Channels\", \"parameters\": {\"id\": \"14151\", \"token\": \"one_more_token\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 1.666666666666667,
+      "total_reward": 2.666666666666667,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "Get Featured Channels",
+            "parameters": {
+              "id": "12345",
+              "token": "some_token"
+            }
+          },
+          {
+            "name": "Get Featured Channels",
+            "parameters": {
+              "id": "67890",
+              "token": "some_other_token"
+            }
+          },
+          {
+            "name": "Get Featured Channels",
+            "parameters": {
+              "id": "11121",
+              "token": "yet_another_token"
+            }
+          },
+          {
+            "name": "Get Featured Channels",
+            "parameters": {
+              "id": "14151",
+              "token": "one_more_token"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1184,
+      "sample_id": 1184,
+      "rollout_index": 3,
+      "prompt_length": 635,
+      "response_length": 278,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"Get Featured Channels\", \"parameters\": {\"id\": \"12345\", \"token\": \"f1aefdf1df12df45edc00c900909c9ecc9\"}}\n{\"name\": \"Get Featured Channels\", \"parameters\": {\"id\": \"67890\", \"token\": \"703290x551287c7c7c7c444777c54c45c76f7c5676f9c56c7c7c54444c4r1\"}}\n{\"name\": \"Get Featured Channels\", \"parameters\": {\"id\": \"11121\", \"token\": \"320930p9723999999999999997\"}}\n{\"name\": \"Get Featured Channels\", \"parameters\": {\"id\": \"14151\", \"token\": \"776550a9199843e6c85c6b4bf5dfcc34bce6fce\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 1.666666666666667,
+      "total_reward": 2.666666666666667,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "Get Featured Channels",
+            "parameters": {
+              "id": "12345",
+              "token": "f1aefdf1df12df45edc00c900909c9ecc9"
+            }
+          },
+          {
+            "name": "Get Featured Channels",
+            "parameters": {
+              "id": "67890",
+              "token": "703290x551287c7c7c7c444777c54c45c76f7c5676f9c56c7c7c54444c4r1"
+            }
+          },
+          {
+            "name": "Get Featured Channels",
+            "parameters": {
+              "id": "11121",
+              "token": "320930p9723999999999999997"
+            }
+          },
+          {
+            "name": "Get Featured Channels",
+            "parameters": {
+              "id": "14151",
+              "token": "776550a9199843e6c85c6b4bf5dfcc34bce6fce"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1856,
+      "sample_id": 1856,
+      "rollout_index": 0,
+      "prompt_length": 442,
+      "response_length": 49,
+      "expected_kind": "response_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"StockDataFetcher.getHistoricalPrices\", \"parameters\": {\"symbol\": \"AAPL\"}}\n</tool_call>",
+      "format_valid": false,
+      "format_reward": 0.0,
+      "accuracy_reward": 0.0,
+      "total_reward": 0.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "StockDataFetcher.getHistoricalPrices",
+            "parameters": {
+              "symbol": "AAPL"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1856,
+      "sample_id": 1856,
+      "rollout_index": 1,
+      "prompt_length": 442,
+      "response_length": 86,
+      "expected_kind": "response_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"StockDataFetcher.getHistoricalPrices\", \"parameters\": {\"symbol\": \"AAPL\", \"dateRange\": {\"Sdate\": \"2000-01-01\", \"Edate\": \"2020-01-01\"}}}\n</tool_call>",
+      "format_valid": false,
+      "format_reward": 0.0,
+      "accuracy_reward": 0.0,
+      "total_reward": 0.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "StockDataFetcher.getHistoricalPrices",
+            "parameters": {
+              "symbol": "AAPL",
+              "dateRange": {
+                "Sdate": "2000-01-01",
+                "Edate": "2020-01-01"
+              }
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1856,
+      "sample_id": 1856,
+      "rollout_index": 2,
+      "prompt_length": 442,
+      "response_length": 49,
+      "expected_kind": "response_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"StockDataFetcher.getHistoricalPrices\", \"parameters\": {\"symbol\": \"AAPL\"}}\n</tool_call>",
+      "format_valid": false,
+      "format_reward": 0.0,
+      "accuracy_reward": 0.0,
+      "total_reward": 0.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "StockDataFetcher.getHistoricalPrices",
+            "parameters": {
+              "symbol": "AAPL"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1856,
+      "sample_id": 1856,
+      "rollout_index": 3,
+      "prompt_length": 442,
+      "response_length": 32,
+      "expected_kind": "response_only",
+      "output_type": "response",
+      "response_text": "<think> I should directly respond to the user's need. </think>\n<response> Available.API 호출을 사용해 주세요. </response>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 0.0,
+      "total_reward": 1.0,
+      "tool_call_parse_result": {
+        "success": false,
+        "calls": [],
+        "error": "tool_call tags missing"
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1054,
+      "sample_id": 1054,
+      "rollout_index": 0,
+      "prompt_length": 645,
+      "response_length": 91,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"E.g_4gbheoONp.h\", \"parameters\": {\"TiAP\": \"ijkl9876\"}}\n{\"name\": \"x2Z1o6I21M8ik50\", \"parameters\": {\".hocaGoSp\": \"/another/example/file.pdf\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 3.0,
+      "total_reward": 4.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "E.g_4gbheoONp.h",
+            "parameters": {
+              "TiAP": "ijkl9876"
+            }
+          },
+          {
+            "name": "x2Z1o6I21M8ik50",
+            "parameters": {
+              ".hocaGoSp": "/another/example/file.pdf"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1054,
+      "sample_id": 1054,
+      "rollout_index": 1,
+      "prompt_length": 645,
+      "response_length": 91,
+      "expected_kind": "tool_only",
+      "output_type": "response",
+      "response_text": "<think> I should directly respond to the user's need. </think>\n<response> You should either use the appropriate 'Name: E.g_4gbheoONp.h' tool with proper parameters or an appropriate 'x2Z1o6I21M8ik50' or 'w0VX6vjYVLAXW' tool with proper parameters to respond to the user's need. </response>",
+      "format_valid": false,
+      "format_reward": 0.0,
+      "accuracy_reward": -3.0,
+      "total_reward": -3.0,
+      "tool_call_parse_result": {
+        "success": false,
+        "calls": [],
+        "error": "tool_call tags missing"
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1054,
+      "sample_id": 1054,
+      "rollout_index": 2,
+      "prompt_length": 645,
+      "response_length": 80,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"E.g_4gbheoONp.h\", \"parameters\": {\"TiAP\": \"ijkl9876\"}}\n{\"name\": \"x2Z1o6I21M8ik50\", \"parameters\": {}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 0.6000000000000001,
+      "total_reward": 1.6,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "E.g_4gbheoONp.h",
+            "parameters": {
+              "TiAP": "ijkl9876"
+            }
+          },
+          {
+            "name": "x2Z1o6I21M8ik50",
+            "parameters": {}
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1054,
+      "sample_id": 1054,
+      "rollout_index": 3,
+      "prompt_length": 645,
+      "response_length": 91,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"E.g_4gbheoONp.h\", \"parameters\": {\"TiAP\": \"ijkl9876\"}}\n{\"name\": \"x2Z1o6I21M8ik50\", \"parameters\": {\".hocaGoSp\": \"/another/example/file.pdf\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 3.0,
+      "total_reward": 4.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "E.g_4gbheoONp.h",
+            "parameters": {
+              "TiAP": "ijkl9876"
+            }
+          },
+          {
+            "name": "x2Z1o6I21M8ik50",
+            "parameters": {
+              ".hocaGoSp": "/another/example/file.pdf"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 3087,
+      "sample_id": 3087,
+      "rollout_index": 0,
+      "prompt_length": 698,
+      "response_length": 41,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"WNBA Teams API\", \"parameters\": {}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 3.0,
+      "total_reward": 4.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "WNBA Teams API",
+            "parameters": {}
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 3087,
+      "sample_id": 3087,
+      "rollout_index": 1,
+      "prompt_length": 698,
+      "response_length": 82,
+      "expected_kind": "tool_only",
+      "output_type": "invalid",
+      "response_text": "<think> I should directly respond to the user's need. </think>\n<response> The WNBA Teams API responds with the names, abbreviations, and locations of all WNBA teams by querying the provided SimpleCNL Aurora API.\nparameters: {}\nundo-need-response: <response>\n```json\n{\n  \"name\": \"WNBA Teams API\",\n  \"parameters\": {}\n}\n```",
+      "format_valid": false,
+      "format_reward": 0.0,
+      "accuracy_reward": -3.0,
+      "total_reward": -3.0,
+      "tool_call_parse_result": {
+        "success": false,
+        "calls": [],
+        "error": "tool_call tags missing"
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 3087,
+      "sample_id": 3087,
+      "rollout_index": 2,
+      "prompt_length": 698,
+      "response_length": 41,
+      "expected_kind": "tool_only",
+      "output_type": "invalid",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n</tool_call>\n{\"name\": \"WNBA Teams API\", \"parameters\": {}}\n</tool_call>",
+      "format_valid": false,
+      "format_reward": 0.0,
+      "accuracy_reward": -3.0,
+      "total_reward": -3.0,
+      "tool_call_parse_result": {
+        "success": false,
+        "calls": [],
+        "error": "tool_call tags missing"
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 3087,
+      "sample_id": 3087,
+      "rollout_index": 3,
+      "prompt_length": 698,
+      "response_length": 41,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"WNBA Teams API\", \"parameters\": {}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 3.0,
+      "total_reward": 4.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "WNBA Teams API",
+            "parameters": {}
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1471,
+      "sample_id": 1471,
+      "rollout_index": 0,
+      "prompt_length": 571,
+      "response_length": 92,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"podcast.analytics\", \"parameters\": {\"platform\": \"Podbean\", \"date_range\": {\"start_date\": \"2022-12-01\", \"end_date\": \"2022-12-07\"}, \"metrics\": [\"engagement\", \"audience\"]}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": -3.0,
+      "total_reward": -2.0,
+      "tool_call_parse_result": {
+        "success": false,
+        "calls": [],
+        "error": "JSON parse failed: JSONDecodeError: Expecting ',' delimiter: line 1 column 177 (char 176)"
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1471,
+      "sample_id": 1471,
+      "rollout_index": 1,
+      "prompt_length": 571,
+      "response_length": 79,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"podcast.analytics\", \"parameters\": {\"platform\": \"Podbean\", \"date_range\": {\"begin\": \"2023-01-01\", \"end\": \"2023-01-07\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": -3.0,
+      "total_reward": -2.0,
+      "tool_call_parse_result": {
+        "success": false,
+        "calls": [],
+        "error": "JSON parse failed: JSONDecodeError: Expecting ',' delimiter: line 1 column 128 (char 127)"
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1471,
+      "sample_id": 1471,
+      "rollout_index": 2,
+      "prompt_length": 571,
+      "response_length": 40,
+      "expected_kind": "tool_only",
+      "output_type": "response",
+      "response_text": "<think> I should directly respond to the user's need. </think>\n<response> You should use the correct tool with proper parameters to respond to the user's need. </response>",
+      "format_valid": false,
+      "format_reward": 0.0,
+      "accuracy_reward": -3.0,
+      "total_reward": -3.0,
+      "tool_call_parse_result": {
+        "success": false,
+        "calls": [],
+        "error": "tool_call tags missing"
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1471,
+      "sample_id": 1471,
+      "rollout_index": 3,
+      "prompt_length": 571,
+      "response_length": 95,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"podcast.analytics\", \"parameters\": {\"platform\": \"podbean\", \"date_range\": {\"start_date\": \"2023-01-01\", \"end_date\": \"2023-01-08\"}, \"metrics\": [\"title\", \"duration\", \"audio_url\"]}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": -1.2,
+      "total_reward": -0.19999999999999996,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "podcast.analytics",
+            "parameters": {
+              "platform": "podbean",
+              "date_range": {
+                "start_date": "2023-01-01",
+                "end_date": "2023-01-08"
+              },
+              "metrics": [
+                "title",
+                "duration",
+                "audio_url"
+              ]
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1398,
+      "sample_id": 1398,
+      "rollout_index": 0,
+      "prompt_length": 838,
+      "response_length": 57,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"GetIpInfoLite\", \"parameters\": {\"ip\": \"192.168.1.100\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 3.0,
+      "total_reward": 4.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "GetIpInfoLite",
+            "parameters": {
+              "ip": "192.168.1.100"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1398,
+      "sample_id": 1398,
+      "rollout_index": 1,
+      "prompt_length": 838,
+      "response_length": 57,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"GetIpInfoLite\", \"parameters\": {\"ip\": \"192.168.1.100\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 3.0,
+      "total_reward": 4.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "GetIpInfoLite",
+            "parameters": {
+              "ip": "192.168.1.100"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1398,
+      "sample_id": 1398,
+      "rollout_index": 2,
+      "prompt_length": 838,
+      "response_length": 60,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"Find By UDPRN\", \"parameters\": {\"udprn\": \"192.168.1.100\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": -3.0,
+      "total_reward": -2.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "Find By UDPRN",
+            "parameters": {
+              "udprn": "192.168.1.100"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1398,
+      "sample_id": 1398,
+      "rollout_index": 3,
+      "prompt_length": 838,
+      "response_length": 57,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"GetIpInfoLite\", \"parameters\": {\"ip\": \"192.168.1.100\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 3.0,
+      "total_reward": 4.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "GetIpInfoLite",
+            "parameters": {
+              "ip": "192.168.1.100"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 2128,
+      "sample_id": 2128,
+      "rollout_index": 0,
+      "prompt_length": 513,
+      "response_length": 75,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"get_by_trakt_tv_id\", \"parameters\": {\"t\": \"112641\"}}\n{\"name\": \"get_by_trakt_tv_id\", \"parameters\": {\"t\": \"1029\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 0.4285714285714284,
+      "total_reward": 1.4285714285714284,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "get_by_trakt_tv_id",
+            "parameters": {
+              "t": "112641"
+            }
+          },
+          {
+            "name": "get_by_trakt_tv_id",
+            "parameters": {
+              "t": "1029"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 2128,
+      "sample_id": 2128,
+      "rollout_index": 1,
+      "prompt_length": 513,
+      "response_length": 87,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"get_by_trakt_tv_id\", \"parameters\": {\"t\": \"112641\", \"m\": \"movie\"}}\n{\"name\": \"get_by_trakt_tv_id\", \"parameters\": {\"t\": \"1029\", \"m\": \"show\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 3.0,
+      "total_reward": 4.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "get_by_trakt_tv_id",
+            "parameters": {
+              "t": "112641",
+              "m": "movie"
+            }
+          },
+          {
+            "name": "get_by_trakt_tv_id",
+            "parameters": {
+              "t": "1029",
+              "m": "show"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 2128,
+      "sample_id": 2128,
+      "rollout_index": 2,
+      "prompt_length": 513,
+      "response_length": 87,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"get_by_trakt_tv_id\", \"parameters\": {\"t\": \"112641\", \"m\": \"movie\"}}\n{\"name\": \"get_by_trakt_tv_id\", \"parameters\": {\"t\": \"1029\", \"m\": \"show\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 3.0,
+      "total_reward": 4.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "get_by_trakt_tv_id",
+            "parameters": {
+              "t": "112641",
+              "m": "movie"
+            }
+          },
+          {
+            "name": "get_by_trakt_tv_id",
+            "parameters": {
+              "t": "1029",
+              "m": "show"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 2128,
+      "sample_id": 2128,
+      "rollout_index": 3,
+      "prompt_length": 513,
+      "response_length": 87,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"get_by_trakt_tv_id\", \"parameters\": {\"t\": \"112641\", \"m\": \"movie\"}}\n{\"name\": \"get_by_trakt_tv_id\", \"parameters\": {\"t\": \"1029\", \"m\": \"show\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 3.0,
+      "total_reward": 4.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "get_by_trakt_tv_id",
+            "parameters": {
+              "t": "112641",
+              "m": "movie"
+            }
+          },
+          {
+            "name": "get_by_trakt_tv_id",
+            "parameters": {
+              "t": "1029",
+              "m": "show"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1118,
+      "sample_id": 1118,
+      "rollout_index": 0,
+      "prompt_length": 700,
+      "response_length": 150,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"NHlKijmSMxYu\", \"parameters\": {\"VbglkMxM5\": \"00:24:D7:6E:03:E8\"}}\n{\"name\": \"nvhNlwn\", \"parameters\": {\"AvtOBeWA5\": \"6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa013\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 3.0,
+      "total_reward": 4.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "NHlKijmSMxYu",
+            "parameters": {
+              "VbglkMxM5": "00:24:D7:6E:03:E8"
+            }
+          },
+          {
+            "name": "nvhNlwn",
+            "parameters": {
+              "AvtOBeWA5": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa013"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1118,
+      "sample_id": 1118,
+      "rollout_index": 1,
+      "prompt_length": 700,
+      "response_length": 24,
+      "expected_kind": "tool_only",
+      "output_type": "invalid",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n",
+      "format_valid": false,
+      "format_reward": 0.0,
+      "accuracy_reward": -3.0,
+      "total_reward": -3.0,
+      "tool_call_parse_result": {
+        "success": false,
+        "calls": [],
+        "error": "tool_call tags missing"
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1118,
+      "sample_id": 1118,
+      "rollout_index": 2,
+      "prompt_length": 700,
+      "response_length": 157,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"nh1ND9ixRUo2QZb34sly2\", \"parameters\": {\"VbglkMxM5\": \"00:24:D7:6E:03:E8\"}}\n{\"name\": \"nh1NNa\", \"parameters\": {\"AvtOBeWA5\": \"6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa013\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": -3.0,
+      "total_reward": -2.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "nh1ND9ixRUo2QZb34sly2",
+            "parameters": {
+              "VbglkMxM5": "00:24:D7:6E:03:E8"
+            }
+          },
+          {
+            "name": "nh1NNa",
+            "parameters": {
+              "AvtOBeWA5": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa013"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1118,
+      "sample_id": 1118,
+      "rollout_index": 3,
+      "prompt_length": 700,
+      "response_length": 150,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"NHlKijmSMxYu\", \"parameters\": {\"VbglkMxM5\": \"00:24:D7:6E:03:E8\"}}\n{\"name\": \"nvhNlwn\", \"parameters\": {\"AvtOBeWA5\": \"6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa013\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 3.0,
+      "total_reward": 4.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "NHlKijmSMxYu",
+            "parameters": {
+              "VbglkMxM5": "00:24:D7:6E:03:E8"
+            }
+          },
+          {
+            "name": "nvhNlwn",
+            "parameters": {
+              "AvtOBeWA5": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa013"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1711,
+      "sample_id": 1711,
+      "rollout_index": 0,
+      "prompt_length": 620,
+      "response_length": 107,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"music.theory.chord_progression_generator\", \"parameters\": {\"key\": \"G\", \"progression\": \"I-vi-IV-V\", \"time_signature\": \"4/4\", \"length\": 4}}\n{\"name\": \"music.theory.scale_finder\", \"parameters\": {\"notes\": \"G, B, D, F#\", \"include_modes\": false}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 1.0,
+      "total_reward": 2.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "music.theory.chord_progression_generator",
+            "parameters": {
+              "key": "G",
+              "progression": "I-vi-IV-V",
+              "time_signature": "4/4",
+              "length": 4
+            }
+          },
+          {
+            "name": "music.theory.scale_finder",
+            "parameters": {
+              "notes": "G, B, D, F#",
+              "include_modes": false
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1711,
+      "sample_id": 1711,
+      "rollout_index": 1,
+      "prompt_length": 620,
+      "response_length": 103,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"music.theory.chord_progression_generator\", \"parameters\": {\"key\": \"G\", \"progression\": \"ivviio\", \"length\":12, \"time_signature\": \"4/4\"}}\n{\"name\": \"music.theory.scale_finder\", \"parameters\": {\"notes\": [\"G\", \"B\", \"D\", \"F#\"]}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 0.5,
+      "total_reward": 1.5,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "music.theory.chord_progression_generator",
+            "parameters": {
+              "key": "G",
+              "progression": "ivviio",
+              "length": 12,
+              "time_signature": "4/4"
+            }
+          },
+          {
+            "name": "music.theory.scale_finder",
+            "parameters": {
+              "notes": [
+                "G",
+                "B",
+                "D",
+                "F#"
+              ]
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1711,
+      "sample_id": 1711,
+      "rollout_index": 2,
+      "prompt_length": 620,
+      "response_length": 104,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"music.theory.chord_progression_generator\", \"parameters\": {\"key\": \"G\", \"progression\": \"I-vi-IV-V\", \"length\": 4, \"time_signature\": \"\"}}\n{\"name\": \"music.theory.scale_finder\", \"parameters\": {\"notes\": \"G, B, D, F#\", \"include_modes\": true}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 1.0,
+      "total_reward": 2.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "music.theory.chord_progression_generator",
+            "parameters": {
+              "key": "G",
+              "progression": "I-vi-IV-V",
+              "length": 4,
+              "time_signature": ""
+            }
+          },
+          {
+            "name": "music.theory.scale_finder",
+            "parameters": {
+              "notes": "G, B, D, F#",
+              "include_modes": true
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1711,
+      "sample_id": 1711,
+      "rollout_index": 3,
+      "prompt_length": 620,
+      "response_length": 111,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"music.theory.scale_finder\", \"parameters\": {\"notes\": [\"G\", \"B\", \"D\", \"F#\"], \"include_modes\": false}}\n{\"name\": \"music.theory.chord_progression_generator\", \"parameters\": {\"key\": \"G\", \"progression\": \"I-vi-IV-V\", \"length\": 4, \"time_signature\": \"4/4\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 1.0,
+      "total_reward": 2.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "music.theory.scale_finder",
+            "parameters": {
+              "notes": [
+                "G",
+                "B",
+                "D",
+                "F#"
+              ],
+              "include_modes": false
+            }
+          },
+          {
+            "name": "music.theory.chord_progression_generator",
+            "parameters": {
+              "key": "G",
+              "progression": "I-vi-IV-V",
+              "length": 4,
+              "time_signature": "4/4"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 134,
+      "sample_id": 134,
+      "rollout_index": 0,
+      "prompt_length": 1473,
+      "response_length": 156,
+      "expected_kind": "tool_only",
+      "output_type": "response",
+      "response_text": "<think> I should directly respond to the user's need. </think>\n<response> If you want us to respond directly to the user's need, you need to clear your problem or ask a specific question about a hypothetical situation outside the history, since there's no dialogue history (`history`) provided, which may indicate ambiguity. Without explicit dialogue history, it's unclear how the response should address the problem or ask the correctly formulated question. So, I don't have enough information to respond directly and correctly. \nPlease provide a previous dialogue if you intend to start a new dialog or if you're looking for a specific piece of information about a hypothetical situation. Should you need problem-solving assistance with a specific circumstance, feel free to describe your problem here! </response>",
+      "format_valid": false,
+      "format_reward": 0.0,
+      "accuracy_reward": -3.0,
+      "total_reward": -3.0,
+      "tool_call_parse_result": {
+        "success": false,
+        "calls": [],
+        "error": "tool_call tags missing"
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 134,
+      "sample_id": 134,
+      "rollout_index": 1,
+      "prompt_length": 1473,
+      "response_length": 93,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"Amazon Search Results\", \"parameters\": {\"searchQuery\": \"classic vinyl records\"}}\n{\"name\": \"Target Store Location Search\", \"parameters\": {\"zip\": \"90210\", \"radius\": 30}}\n{\"name\": \"Search Products\", \"parameters\": {\"q\": \"tech gadgets\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": -0.375,
+      "total_reward": 0.625,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "Amazon Search Results",
+            "parameters": {
+              "searchQuery": "classic vinyl records"
+            }
+          },
+          {
+            "name": "Target Store Location Search",
+            "parameters": {
+              "zip": "90210",
+              "radius": 30
+            }
+          },
+          {
+            "name": "Search Products",
+            "parameters": {
+              "q": "tech gadgets"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 134,
+      "sample_id": 134,
+      "rollout_index": 2,
+      "prompt_length": 1473,
+      "response_length": 164,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"Get Amazon Search Results\", \"parameters\": {\"searchQuery\": \"classic vinyl records\", \"api_key\": \"YXJjNTI6ZGF0YXV0aDoxNy00YTAyMQ==\", \"ref\": \"id3\"}}\n{\"name\": \"Target Store Location Search\", \"parameters\": {\"zip\": \"90210\", \"radius\": \"30\"}}\n{\"name\": \"Search Products\", \"parameters\": {\"q\": \"latest tech gadgets\", \"node\": \"product\", \"currentPage\": \"1\", \"sortBy\": \"P&#95;PROD&#95;NAME:0\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": -0.3125,
+      "total_reward": 0.6875,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "Get Amazon Search Results",
+            "parameters": {
+              "searchQuery": "classic vinyl records",
+              "api_key": "YXJjNTI6ZGF0YXV0aDoxNy00YTAyMQ==",
+              "ref": "id3"
+            }
+          },
+          {
+            "name": "Target Store Location Search",
+            "parameters": {
+              "zip": "90210",
+              "radius": "30"
+            }
+          },
+          {
+            "name": "Search Products",
+            "parameters": {
+              "q": "latest tech gadgets",
+              "node": "product",
+              "currentPage": "1",
+              "sortBy": "P&#95;PROD&#95;NAME:0"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 134,
+      "sample_id": 134,
+      "rollout_index": 3,
+      "prompt_length": 1473,
+      "response_length": 109,
+      "expected_kind": "tool_only",
+      "output_type": "invalid",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n</tool_call>\n{\"name\": \"Get Amazon Search Results\", \"parameters\": {\"searchQuery\": \"classic vinyl records\", \"api_key\": \"\"}}\n{\"name\": \"Target Store Location Search\", \"parameters\": {\"zip\": 90210.0}}\n{\"name\": \"Search Products\", \"parameters\": {\"q\": \"fresh tech gadgets\", \"node\": \"消费品\", \"pageSize\": 10}}\n</tool_call>",
+      "format_valid": false,
+      "format_reward": 0.0,
+      "accuracy_reward": -3.0,
+      "total_reward": -3.0,
+      "tool_call_parse_result": {
+        "success": false,
+        "calls": [],
+        "error": "tool_call tags missing"
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1280,
+      "sample_id": 1280,
+      "rollout_index": 0,
+      "prompt_length": 748,
+      "response_length": 46,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"drug_info\", \"parameters\": {\"drug\": \"Ibuprofen\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 3.0,
+      "total_reward": 4.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "drug_info",
+            "parameters": {
+              "drug": "Ibuprofen"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1280,
+      "sample_id": 1280,
+      "rollout_index": 1,
+      "prompt_length": 748,
+      "response_length": 46,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"drug_info\", \"parameters\": {\"drug\": \"Ibuprofen\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 3.0,
+      "total_reward": 4.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "drug_info",
+            "parameters": {
+              "drug": "Ibuprofen"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1280,
+      "sample_id": 1280,
+      "rollout_index": 2,
+      "prompt_length": 748,
+      "response_length": 46,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"drug_info\", \"parameters\": {\"drug\": \"Ibuprofen\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 3.0,
+      "total_reward": 4.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "drug_info",
+            "parameters": {
+              "drug": "Ibuprofen"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1280,
+      "sample_id": 1280,
+      "rollout_index": 3,
+      "prompt_length": 748,
+      "response_length": 46,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"drug_info\", \"parameters\": {\"drug\": \"Ibuprofen\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 3.0,
+      "total_reward": 4.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "drug_info",
+            "parameters": {
+              "drug": "Ibuprofen"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 3000,
+      "sample_id": 3000,
+      "rollout_index": 0,
+      "prompt_length": 649,
+      "response_length": 176,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"TradeAnalysis.getMarketTrends\", \"parameters\": {\"tradeData\": \"[{'date': '2023-01-01', 'volume': 75500, 'price_range': '$21.50-$24.80'}, {'date': '2023-01-02', 'volume': 110000, 'price_range': '$22.00-$25.35'}, {'date': '2023-01-03', 'volume': 120450, 'price_range': '$22.15-$26.00'}]\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 1.0,
+      "total_reward": 2.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "TradeAnalysis.getMarketTrends",
+            "parameters": {
+              "tradeData": "[{'date': '2023-01-01', 'volume': 75500, 'price_range': '$21.50-$24.80'}, {'date': '2023-01-02', 'volume': 110000, 'price_range': '$22.00-$25.35'}, {'date': '2023-01-03', 'volume': 120450, 'price_range': '$22.15-$26.00'}]"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 3000,
+      "sample_id": 3000,
+      "rollout_index": 1,
+      "prompt_length": 649,
+      "response_length": 176,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"TradeAnalysis.getMarketTrends\", \"parameters\": {\"tradeData\": \"[{'date': '2023-01-01', 'volume': 75500, 'priceRange': '21.50-24.80'}, {'date': '2023-01-02', 'volume': 110000, 'priceRange': '22.00-25.35'}, {'date': '2023-01-03', 'volume': 120450, 'priceRange': '22.15-26.00'}]\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 1.0,
+      "total_reward": 2.0,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "TradeAnalysis.getMarketTrends",
+            "parameters": {
+              "tradeData": "[{'date': '2023-01-01', 'volume': 75500, 'priceRange': '21.50-24.80'}, {'date': '2023-01-02', 'volume': 110000, 'priceRange': '22.00-25.35'}, {'date': '2023-01-03', 'volume': 120450, 'priceRange': '22.15-26.00'}]"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 3000,
+      "sample_id": 3000,
+      "rollout_index": 2,
+      "prompt_length": 649,
+      "response_length": 255,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"TradeAnalysis.getMarketTrends\", \"parameters\": {\"tradeData\": [[75500, \"$21.50\", \"$24.80\"], [110000, \"$22.00\", \"$25.35\"], [120450, \"$22.15\", \"$26.00\"]], \"startDate\": \"2023-01-01\", \"endDate\": \"2023-01-03\"}}\n{\"name\": \"TradeAnalysis.getMarketTrends\", \"parameters\": {\"tradeData\": [[75500, \"$21.50\", \"$24.80\"], [110000, \"$22.00\", \"$25.35\"], [120450, \"$22.15\", \"$26.00\"]], \"startDate\": \"2023-01-04\", \"endDate\": \"2023-01-06\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": -1.3333333333333333,
+      "total_reward": -0.33333333333333326,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "TradeAnalysis.getMarketTrends",
+            "parameters": {
+              "tradeData": [
+                [
+                  75500,
+                  "$21.50",
+                  "$24.80"
+                ],
+                [
+                  110000,
+                  "$22.00",
+                  "$25.35"
+                ],
+                [
+                  120450,
+                  "$22.15",
+                  "$26.00"
+                ]
+              ],
+              "startDate": "2023-01-01",
+              "endDate": "2023-01-03"
+            }
+          },
+          {
+            "name": "TradeAnalysis.getMarketTrends",
+            "parameters": {
+              "tradeData": [
+                [
+                  75500,
+                  "$21.50",
+                  "$24.80"
+                ],
+                [
+                  110000,
+                  "$22.00",
+                  "$25.35"
+                ],
+                [
+                  120450,
+                  "$22.15",
+                  "$26.00"
+                ]
+              ],
+              "startDate": "2023-01-04",
+              "endDate": "2023-01-06"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 3000,
+      "sample_id": 3000,
+      "rollout_index": 3,
+      "prompt_length": 649,
+      "response_length": 142,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"TradeAnalysis.getMarketTrends\", \"parameters\": {\"tradeData\": [[75500 {\"priceRangeMin\": 21.50, \"priceRangeMax\": 24.80},], [110000 {\"priceRangeMin\": 22.00, \"priceRangeMax\": 25.35},], [120450 {\"priceRangeMin\": 22.15, \"priceRangeMax\": 26.00},],],}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": -3.0,
+      "total_reward": -2.0,
+      "tool_call_parse_result": {
+        "success": false,
+        "calls": [],
+        "error": "JSON parse failed: JSONDecodeError: Expecting ',' delimiter: line 1 column 79 (char 78)"
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1367,
+      "sample_id": 1367,
+      "rollout_index": 0,
+      "prompt_length": 1111,
+      "response_length": 42,
+      "expected_kind": "response_only",
+      "output_type": "response",
+      "response_text": "<think> I should provide a direct response to the user's need. </think>\n<response> The net income of Apple Inc. is $57. 41 billion. </response>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 0.0,
+      "total_reward": 1.0,
+      "tool_call_parse_result": {
+        "success": false,
+        "calls": [],
+        "error": "tool_call tags missing"
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1367,
+      "sample_id": 1367,
+      "rollout_index": 1,
+      "prompt_length": 1111,
+      "response_length": 60,
+      "expected_kind": "response_only",
+      "output_type": "response",
+      "response_text": "<think> I should directly respond to the user's need. </think>\n<response> The net income of Apple Inc. (symbol: 'AAPL') is 57,411,000,000 US dollars for the region US. </response>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 0.0,
+      "total_reward": 1.0,
+      "tool_call_parse_result": {
+        "success": false,
+        "calls": [],
+        "error": "tool_call tags missing"
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1367,
+      "sample_id": 1367,
+      "rollout_index": 2,
+      "prompt_length": 1111,
+      "response_length": 47,
+      "expected_kind": "response_only",
+      "output_type": "response",
+      "response_text": "<think> I should directly respond to the user's need. </think>\n<response> The net income of Apple Inc. is 5,741,100,000 USD. </response>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 0.0,
+      "total_reward": 1.0,
+      "tool_call_parse_result": {
+        "success": false,
+        "calls": [],
+        "error": "tool_call tags missing"
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1367,
+      "sample_id": 1367,
+      "rollout_index": 3,
+      "prompt_length": 1111,
+      "response_length": 50,
+      "expected_kind": "response_only",
+      "output_type": "response",
+      "response_text": "<think> I should directly respond to the user's need. </think>\n<response> The net income of Apple Inc is $57,411,000,000 in the US region. </response>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 0.0,
+      "total_reward": 1.0,
+      "tool_call_parse_result": {
+        "success": false,
+        "calls": [],
+        "error": "tool_call tags missing"
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1441,
+      "sample_id": 1441,
+      "rollout_index": 0,
+      "prompt_length": 923,
+      "response_length": 92,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"TKdj9CYTm.3sI\", \"parameters\": {\"dPWJl\": \"products\", \"LDAbFP\": \"[{'price': '>', 'cmp': '>', 'cmo': '<', 'ci_d': '100', 'qty': 1}]\"}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 1.5,
+      "total_reward": 2.5,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "TKdj9CYTm.3sI",
+            "parameters": {
+              "dPWJl": "products",
+              "LDAbFP": "[{'price': '>', 'cmp': '>', 'cmo': '<', 'ci_d': '100', 'qty': 1}]"
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1441,
+      "sample_id": 1441,
+      "rollout_index": 1,
+      "prompt_length": 923,
+      "response_length": 83,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"TKdj9CYTm.3sI\", \"parameters\": {\"dPWJl\": \"products\", \"LDAbFP\": [{\"price\": {\"$gt\": 100}, \"exists\": {\"$eq\": 1}}]}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 1.5,
+      "total_reward": 2.5,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "TKdj9CYTm.3sI",
+            "parameters": {
+              "dPWJl": "products",
+              "LDAbFP": [
+                {
+                  "price": {
+                    "$gt": 100
+                  },
+                  "exists": {
+                    "$eq": 1
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1441,
+      "sample_id": 1441,
+      "rollout_index": 2,
+      "prompt_length": 923,
+      "response_length": 77,
+      "expected_kind": "tool_only",
+      "output_type": "tool_call",
+      "response_text": "<think> I should use the appropriate tool with proper parameters to respond to the user's need. </think>\n<tool_call>\n{\"name\": \"TKdj9CYTm.3sI\", \"parameters\": {\"dPWJl\": \"products\", \"LDAbFP\": [{\"query\": \"price $100\", \"table\": \"products\"}]}}\n</tool_call>",
+      "format_valid": true,
+      "format_reward": 1.0,
+      "accuracy_reward": 1.5,
+      "total_reward": 2.5,
+      "tool_call_parse_result": {
+        "success": true,
+        "calls": [
+          {
+            "name": "TKdj9CYTm.3sI",
+            "parameters": {
+              "dPWJl": "products",
+              "LDAbFP": [
+                {
+                  "query": "price $100",
+                  "table": "products"
+                }
+              ]
+            }
+          }
+        ],
+        "error": null
+      },
+      "reward_manager_result_ok": true
+    },
+    {
+      "source_row": 1441,
+      "sample_id": 1441,
+      "rollout_index": 3,
+      "prompt_length": 923,
+      "response_length": 45,
+      "expected_kind": "tool_only",
+      "output_type": "response",
+      "response_text": "<think> I should directly respond to the user's need. </think>\n<response> Please provide the product's name (if any), the product's category, and the brand of the product. </response>",
+      "format_valid": false,
+      "format_reward": 0.0,
+      "accuracy_reward": -3.0,
+      "total_reward": -3.0,
+      "tool_call_parse_result": {
+        "success": false,
+        "calls": [],
+        "error": "tool_call tags missing"
+      },
+      "reward_manager_result_ok": true
+    }
+  ]
+}

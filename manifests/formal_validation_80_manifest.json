@@ -1,0 +1,763 @@
+{
+  "manifest_version": "formal_validation_80_v1",
+  "status": "frozen_before_stage1",
+  "source_parquet": "/root/autodl-tmp/ProjectB/repo/verl-GDPO/dataset/rlla_4k/train.parquet",
+  "source_split": "train_drop_last_tail",
+  "selection": {
+    "raw_train_count": 3920,
+    "filtered_overlong_count": 19,
+    "filtered_overlong_source_rows": [
+      46,
+      172,
+      266,
+      354,
+      512,
+      558,
+      997,
+      1095,
+      1176,
+      1456,
+      1459,
+      1524,
+      2162,
+      2217,
+      2264,
+      3179,
+      3520,
+      3753,
+      3840
+    ],
+    "eligible_train_count": 3901,
+    "actual_rl_train_prompt_count_per_epoch": 3584,
+    "drop_last_tail_count": 317,
+    "tail_eligible_positions": "eligible[3584:3901]",
+    "candidate_after_exclusions_count": 188,
+    "method": "deterministic numpy.default_rng(42) sample of 80 from clean drop_last tail; selected rows sorted by original source row",
+    "seed": 42,
+    "max_prompt_length": 2048,
+    "tokenizer_path": "/root/autodl-tmp/ProjectB/checkpoints/rl_init_sft_v2_merged",
+    "chat_template": "tokenizer.apply_chat_template(prompt, add_generation_prompt=True, tokenize=True)",
+    "prompt_token_min": 428,
+    "prompt_token_max": 1664,
+    "prompt_token_check": "PASS: all selected rows tokenized with the same merged-checkpoint chat template and are <=2048"
+  },
+  "selected_count": 80,
+  "selected_source_rows": [
+    3616,
+    3621,
+    3622,
+    3623,
+    3625,
+    3627,
+    3631,
+    3644,
+    3645,
+    3647,
+    3657,
+    3660,
+    3670,
+    3672,
+    3679,
+    3680,
+    3687,
+    3688,
+    3691,
+    3692,
+    3693,
+    3696,
+    3700,
+    3705,
+    3707,
+    3711,
+    3713,
+    3714,
+    3721,
+    3722,
+    3728,
+    3730,
+    3735,
+    3738,
+    3740,
+    3743,
+    3745,
+    3746,
+    3747,
+    3748,
+    3750,
+    3752,
+    3762,
+    3774,
+    3777,
+    3780,
+    3787,
+    3790,
+    3791,
+    3797,
+    3803,
+    3805,
+    3806,
+    3807,
+    3810,
+    3811,
+    3814,
+    3815,
+    3819,
+    3830,
+    3832,
+    3837,
+    3839,
+    3847,
+    3862,
+    3863,
+    3864,
+    3865,
+    3866,
+    3880,
+    3881,
+    3884,
+    3887,
+    3889,
+    3896,
+    3909,
+    3910,
+    3915,
+    3918,
+    3919
+  ],
+  "selected_rows": [
+    {
+      "row_position": 3616,
+      "source_id": 3616,
+      "prompt_tokens": 644,
+      "eligible": true,
+      "tail_position": 15
+    },
+    {
+      "row_position": 3621,
+      "source_id": 3621,
+      "prompt_tokens": 1086,
+      "eligible": true,
+      "tail_position": 20
+    },
+    {
+      "row_position": 3622,
+      "source_id": 3622,
+      "prompt_tokens": 545,
+      "eligible": true,
+      "tail_position": 21
+    },
+    {
+      "row_position": 3623,
+      "source_id": 3623,
+      "prompt_tokens": 593,
+      "eligible": true,
+      "tail_position": 22
+    },
+    {
+      "row_position": 3625,
+      "source_id": 3625,
+      "prompt_tokens": 544,
+      "eligible": true,
+      "tail_position": 24
+    },
+    {
+      "row_position": 3627,
+      "source_id": 3627,
+      "prompt_tokens": 635,
+      "eligible": true,
+      "tail_position": 26
+    },
+    {
+      "row_position": 3631,
+      "source_id": 3631,
+      "prompt_tokens": 664,
+      "eligible": true,
+      "tail_position": 30
+    },
+    {
+      "row_position": 3644,
+      "source_id": 3644,
+      "prompt_tokens": 625,
+      "eligible": true,
+      "tail_position": 43
+    },
+    {
+      "row_position": 3645,
+      "source_id": 3645,
+      "prompt_tokens": 710,
+      "eligible": true,
+      "tail_position": 44
+    },
+    {
+      "row_position": 3647,
+      "source_id": 3647,
+      "prompt_tokens": 515,
+      "eligible": true,
+      "tail_position": 46
+    },
+    {
+      "row_position": 3657,
+      "source_id": 3657,
+      "prompt_tokens": 541,
+      "eligible": true,
+      "tail_position": 56
+    },
+    {
+      "row_position": 3660,
+      "source_id": 3660,
+      "prompt_tokens": 568,
+      "eligible": true,
+      "tail_position": 59
+    },
+    {
+      "row_position": 3670,
+      "source_id": 3670,
+      "prompt_tokens": 690,
+      "eligible": true,
+      "tail_position": 69
+    },
+    {
+      "row_position": 3672,
+      "source_id": 3672,
+      "prompt_tokens": 683,
+      "eligible": true,
+      "tail_position": 71
+    },
+    {
+      "row_position": 3679,
+      "source_id": 3679,
+      "prompt_tokens": 1555,
+      "eligible": true,
+      "tail_position": 78
+    },
+    {
+      "row_position": 3680,
+      "source_id": 3680,
+      "prompt_tokens": 578,
+      "eligible": true,
+      "tail_position": 79
+    },
+    {
+      "row_position": 3687,
+      "source_id": 3687,
+      "prompt_tokens": 519,
+      "eligible": true,
+      "tail_position": 86
+    },
+    {
+      "row_position": 3688,
+      "source_id": 3688,
+      "prompt_tokens": 565,
+      "eligible": true,
+      "tail_position": 87
+    },
+    {
+      "row_position": 3691,
+      "source_id": 3691,
+      "prompt_tokens": 556,
+      "eligible": true,
+      "tail_position": 90
+    },
+    {
+      "row_position": 3692,
+      "source_id": 3692,
+      "prompt_tokens": 977,
+      "eligible": true,
+      "tail_position": 91
+    },
+    {
+      "row_position": 3693,
+      "source_id": 3693,
+      "prompt_tokens": 428,
+      "eligible": true,
+      "tail_position": 92
+    },
+    {
+      "row_position": 3696,
+      "source_id": 3696,
+      "prompt_tokens": 580,
+      "eligible": true,
+      "tail_position": 95
+    },
+    {
+      "row_position": 3700,
+      "source_id": 3700,
+      "prompt_tokens": 867,
+      "eligible": true,
+      "tail_position": 99
+    },
+    {
+      "row_position": 3705,
+      "source_id": 3705,
+      "prompt_tokens": 928,
+      "eligible": true,
+      "tail_position": 104
+    },
+    {
+      "row_position": 3707,
+      "source_id": 3707,
+      "prompt_tokens": 1244,
+      "eligible": true,
+      "tail_position": 106
+    },
+    {
+      "row_position": 3711,
+      "source_id": 3711,
+      "prompt_tokens": 984,
+      "eligible": true,
+      "tail_position": 110
+    },
+    {
+      "row_position": 3713,
+      "source_id": 3713,
+      "prompt_tokens": 681,
+      "eligible": true,
+      "tail_position": 112
+    },
+    {
+      "row_position": 3714,
+      "source_id": 3714,
+      "prompt_tokens": 515,
+      "eligible": true,
+      "tail_position": 113
+    },
+    {
+      "row_position": 3721,
+      "source_id": 3721,
+      "prompt_tokens": 758,
+      "eligible": true,
+      "tail_position": 120
+    },
+    {
+      "row_position": 3722,
+      "source_id": 3722,
+      "prompt_tokens": 1252,
+      "eligible": true,
+      "tail_position": 121
+    },
+    {
+      "row_position": 3728,
+      "source_id": 3728,
+      "prompt_tokens": 1664,
+      "eligible": true,
+      "tail_position": 127
+    },
+    {
+      "row_position": 3730,
+      "source_id": 3730,
+      "prompt_tokens": 687,
+      "eligible": true,
+      "tail_position": 129
+    },
+    {
+      "row_position": 3735,
+      "source_id": 3735,
+      "prompt_tokens": 585,
+      "eligible": true,
+      "tail_position": 134
+    },
+    {
+      "row_position": 3738,
+      "source_id": 3738,
+      "prompt_tokens": 475,
+      "eligible": true,
+      "tail_position": 137
+    },
+    {
+      "row_position": 3740,
+      "source_id": 3740,
+      "prompt_tokens": 673,
+      "eligible": true,
+      "tail_position": 139
+    },
+    {
+      "row_position": 3743,
+      "source_id": 3743,
+      "prompt_tokens": 621,
+      "eligible": true,
+      "tail_position": 142
+    },
+    {
+      "row_position": 3745,
+      "source_id": 3745,
+      "prompt_tokens": 883,
+      "eligible": true,
+      "tail_position": 144
+    },
+    {
+      "row_position": 3746,
+      "source_id": 3746,
+      "prompt_tokens": 730,
+      "eligible": true,
+      "tail_position": 145
+    },
+    {
+      "row_position": 3747,
+      "source_id": 3747,
+      "prompt_tokens": 1049,
+      "eligible": true,
+      "tail_position": 146
+    },
+    {
+      "row_position": 3748,
+      "source_id": 3748,
+      "prompt_tokens": 644,
+      "eligible": true,
+      "tail_position": 147
+    },
+    {
+      "row_position": 3750,
+      "source_id": 3750,
+      "prompt_tokens": 744,
+      "eligible": true,
+      "tail_position": 149
+    },
+    {
+      "row_position": 3752,
+      "source_id": 3752,
+      "prompt_tokens": 604,
+      "eligible": true,
+      "tail_position": 151
+    },
+    {
+      "row_position": 3762,
+      "source_id": 3762,
+      "prompt_tokens": 435,
+      "eligible": true,
+      "tail_position": 160
+    },
+    {
+      "row_position": 3774,
+      "source_id": 3774,
+      "prompt_tokens": 510,
+      "eligible": true,
+      "tail_position": 172
+    },
+    {
+      "row_position": 3777,
+      "source_id": 3777,
+      "prompt_tokens": 838,
+      "eligible": true,
+      "tail_position": 175
+    },
+    {
+      "row_position": 3780,
+      "source_id": 3780,
+      "prompt_tokens": 843,
+      "eligible": true,
+      "tail_position": 178
+    },
+    {
+      "row_position": 3787,
+      "source_id": 3787,
+      "prompt_tokens": 843,
+      "eligible": true,
+      "tail_position": 185
+    },
+    {
+      "row_position": 3790,
+      "source_id": 3790,
+      "prompt_tokens": 705,
+      "eligible": true,
+      "tail_position": 188
+    },
+    {
+      "row_position": 3791,
+      "source_id": 3791,
+      "prompt_tokens": 648,
+      "eligible": true,
+      "tail_position": 189
+    },
+    {
+      "row_position": 3797,
+      "source_id": 3797,
+      "prompt_tokens": 858,
+      "eligible": true,
+      "tail_position": 195
+    },
+    {
+      "row_position": 3803,
+      "source_id": 3803,
+      "prompt_tokens": 1302,
+      "eligible": true,
+      "tail_position": 201
+    },
+    {
+      "row_position": 3805,
+      "source_id": 3805,
+      "prompt_tokens": 596,
+      "eligible": true,
+      "tail_position": 203
+    },
+    {
+      "row_position": 3806,
+      "source_id": 3806,
+      "prompt_tokens": 874,
+      "eligible": true,
+      "tail_position": 204
+    },
+    {
+      "row_position": 3807,
+      "source_id": 3807,
+      "prompt_tokens": 447,
+      "eligible": true,
+      "tail_position": 205
+    },
+    {
+      "row_position": 3810,
+      "source_id": 3810,
+      "prompt_tokens": 907,
+      "eligible": true,
+      "tail_position": 208
+    },
+    {
+      "row_position": 3811,
+      "source_id": 3811,
+      "prompt_tokens": 711,
+      "eligible": true,
+      "tail_position": 209
+    },
+    {
+      "row_position": 3814,
+      "source_id": 3814,
+      "prompt_tokens": 677,
+      "eligible": true,
+      "tail_position": 212
+    },
+    {
+      "row_position": 3815,
+      "source_id": 3815,
+      "prompt_tokens": 711,
+      "eligible": true,
+      "tail_position": 213
+    },
+    {
+      "row_position": 3819,
+      "source_id": 3819,
+      "prompt_tokens": 1167,
+      "eligible": true,
+      "tail_position": 217
+    },
+    {
+      "row_position": 3830,
+      "source_id": 3830,
+      "prompt_tokens": 473,
+      "eligible": true,
+      "tail_position": 228
+    },
+    {
+      "row_position": 3832,
+      "source_id": 3832,
+      "prompt_tokens": 880,
+      "eligible": true,
+      "tail_position": 230
+    },
+    {
+      "row_position": 3837,
+      "source_id": 3837,
+      "prompt_tokens": 813,
+      "eligible": true,
+      "tail_position": 235
+    },
+    {
+      "row_position": 3839,
+      "source_id": 3839,
+      "prompt_tokens": 600,
+      "eligible": true,
+      "tail_position": 237
+    },
+    {
+      "row_position": 3847,
+      "source_id": 3847,
+      "prompt_tokens": 763,
+      "eligible": true,
+      "tail_position": 244
+    },
+    {
+      "row_position": 3862,
+      "source_id": 3862,
+      "prompt_tokens": 1270,
+      "eligible": true,
+      "tail_position": 259
+    },
+    {
+      "row_position": 3863,
+      "source_id": 3863,
+      "prompt_tokens": 432,
+      "eligible": true,
+      "tail_position": 260
+    },
+    {
+      "row_position": 3864,
+      "source_id": 3864,
+      "prompt_tokens": 727,
+      "eligible": true,
+      "tail_position": 261
+    },
+    {
+      "row_position": 3865,
+      "source_id": 3865,
+      "prompt_tokens": 1149,
+      "eligible": true,
+      "tail_position": 262
+    },
+    {
+      "row_position": 3866,
+      "source_id": 3866,
+      "prompt_tokens": 521,
+      "eligible": true,
+      "tail_position": 263
+    },
+    {
+      "row_position": 3880,
+      "source_id": 3880,
+      "prompt_tokens": 634,
+      "eligible": true,
+      "tail_position": 277
+    },
+    {
+      "row_position": 3881,
+      "source_id": 3881,
+      "prompt_tokens": 482,
+      "eligible": true,
+      "tail_position": 278
+    },
+    {
+      "row_position": 3884,
+      "source_id": 3884,
+      "prompt_tokens": 728,
+      "eligible": true,
+      "tail_position": 281
+    },
+    {
+      "row_position": 3887,
+      "source_id": 3887,
+      "prompt_tokens": 548,
+      "eligible": true,
+      "tail_position": 284
+    },
+    {
+      "row_position": 3889,
+      "source_id": 3889,
+      "prompt_tokens": 1122,
+      "eligible": true,
+      "tail_position": 286
+    },
+    {
+      "row_position": 3896,
+      "source_id": 3896,
+      "prompt_tokens": 1397,
+      "eligible": true,
+      "tail_position": 293
+    },
+    {
+      "row_position": 3909,
+      "source_id": 3909,
+      "prompt_tokens": 1135,
+      "eligible": true,
+      "tail_position": 306
+    },
+    {
+      "row_position": 3910,
+      "source_id": 3910,
+      "prompt_tokens": 1045,
+      "eligible": true,
+      "tail_position": 307
+    },
+    {
+      "row_position": 3915,
+      "source_id": 3915,
+      "prompt_tokens": 525,
+      "eligible": true,
+      "tail_position": 312
+    },
+    {
+      "row_position": 3918,
+      "source_id": 3918,
+      "prompt_tokens": 487,
+      "eligible": true,
+      "tail_position": 315
+    },
+    {
+      "row_position": 3919,
+      "source_id": 3919,
+      "prompt_tokens": 501,
+      "eligible": true,
+      "tail_position": 316
+    }
+  ],
+  "exclusion_sets": {
+    "sft_v1": {
+      "path": "/root/autodl-tmp/ProjectB/repo/dataset/format_sft_800.jsonl",
+      "count": 800,
+      "tail_overlap": 54
+    },
+    "sft_v2": {
+      "path": "/root/autodl-tmp/ProjectB/repo/dataset/format_sft_800_v2.jsonl",
+      "count": 800,
+      "tail_overlap": 60
+    },
+    "sft_source_union": {
+      "count": 993,
+      "tail_overlap": 87
+    },
+    "fixed_validation_16": {
+      "path": "/root/autodl-tmp/ProjectB/env-modern/reward_signal_report.json",
+      "count": 16,
+      "tail_overlap": 1
+    },
+    "constrained_generation": {
+      "path": "/root/autodl-tmp/ProjectB/env-modern/constrained_generation_report.json",
+      "count": 16,
+      "tail_overlap": 1
+    },
+    "fresh_holdout": {
+      "path": "/root/autodl-tmp/ProjectB/env-modern/fresh_holdout_reward_variation.json",
+      "count": 32,
+      "tail_overlap": 1
+    },
+    "shared_rollout": {
+      "path": "/root/autodl-tmp/ProjectB/env-modern/grpo_gdpo_shared_rollout_diagnostic.json",
+      "count": 8,
+      "tail_overlap": 0
+    },
+    "capacity_smoke": {
+      "path": "/root/autodl-tmp/ProjectB/env-modern/capacity_smoke_512_manifest.json",
+      "count": 512,
+      "tail_overlap": 52
+    },
+    "known_diagnostic_union": {
+      "count": 560,
+      "tail_overlap": 54
+    },
+    "all_exclusion_union": {
+      "count": 1425,
+      "tail_overlap": 129
+    }
+  },
+  "separation_checks": {
+    "validation_vs_actual_rl_train_intersection_count": 0,
+    "validation_vs_sft_source_union_intersection_count": 0,
+    "validation_vs_known_diagnostic_union_intersection_count": 0,
+    "validation_vs_tail_count": 80,
+    "actual_rl_train_source_sha256": "972f09807948b426f873d523b5dead2de92fe3d9b58ed7ca109bf34ffd0aea7b",
+    "selected_validation_source_sha256": "24692b6ddbf8573a600feb71142bd412e3250aeac6cca4525a5f6931ec3aa07e"
+  },
+  "algorithm_usage": {
+    "grpo_validation_manifest": "/root/autodl-tmp/ProjectB/env-modern/formal_validation_80_manifest.json",
+    "gdpo_validation_manifest": "/root/autodl-tmp/ProjectB/env-modern/formal_validation_80_manifest.json",
+    "same_manifest_required": true,
+    "optimizer_inclusion": false
+  },
+  "test_policy": {
+    "test_path": "/root/autodl-tmp/ProjectB/repo/dataset/rlla_4k/test.parquet",
+    "intermediate_eval_allowed": false,
+    "final_evaluation_only_after_budget_is_frozen": true,
+    "used_for_budget_selection": false,
+    "used_for_hyperparameter_selection": false,
+    "used_for_checkpoint_selection": false
+  },
+  "materialized_runtime_validation_path": "/root/autodl-tmp/ProjectB/env-modern/formal_validation_80.parquet",
+  "materialized_runtime_validation_rows": 80,
+  "materialization": "read-only derived parquet view of train.parquet selected by selected_source_rows; original train/test parquet untouched"
+}
