@@ -20,11 +20,27 @@ __pycache__/
 *.py[cod]
 
 # Training outputs and live logs
-runs/
 outputs/
 wandb/
 logs/
 *.log
+
+# Live run payloads. Curated reports/metrics may be copied out of runs/ and
+# committed deliberately; the runs/ root itself remains visible to Git.
+runs/*/checkpoints/
+runs/*/model_only/
+runs/*/logs/
+runs/*/.rollout_capture/
+runs/*/eval_generations/
+runs/*/diagnostics/
+runs/*/pre_hydra_failure/
+runs/*/effective_config*.yaml
+runs/*/command.txt
+runs/*/run_status.json
+runs/*/compact_rollouts.py
+runs/*/*.log
+runs/*/*.jsonl
+runs/*/*.parquet
 
 # Model weights and optimizer/trainer state
 *.safetensors
