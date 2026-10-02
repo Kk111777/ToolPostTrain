@@ -1,196 +1,99 @@
-# GDPO: Group reward-Decoupled Normalization Policy Optimization for Multi-reward RL Optimization [ICML2026]
-<h1 align="center"> 
-    <img src="./imgs/gdpo.png" alt="Alt text" style="width: 65%;">
-</h1>
+# ToolPostTrain：工具调用的 GRPO / GDPO 复现实验
 
-<p align="center">
-        🤗 <a href="https://huggingface.co/papers/2601.05242">Hugging Face Page</a>&nbsp&nbsp | &nbsp&nbsp 📄 <a href="https://arxiv.org/abs/2601.05242">Paper</a> | &nbsp&nbsp 📜 <a href="https://nvlabs.github.io/GDPO/">Page</a> &nbsp
-</p>
+在单张 NVIDIA RTX 6000D 上，完成工具调用奖励诊断、Format SFT、GRPO/GDPO 单步训练和 GRPO 35-step Stage 1，记录配置、验证集、训练指标与可恢复 checkpoint。
 
-<h1 align="center"> 
-    <img src="./imgs/gdpo_toy.png" alt="Alt text" style="width: 50%;">
-</h1>
-GDPO is a reinforcement learning optimization method designed for multi-reward training. While existing approaches commonly apply Group Relative Policy Optimization (GRPO) in multi-reward settings, we show that this leads to reward advantages collapse, reducing training signal resolution and causing unstable or failed convergence.
+**进度快照：2026-10-02 08:21（北京时间）。GRPO 35/35 已通过 completion gate；GDPO 4/35，运行中。** 尚未完成两算法同预算的最终比较。
 
-GDPO resolves this issue by decoupling reward normalization across individual rewards, preserving their relative differences and enabling more faithful preference optimization. Across tool calling, math reasoning, and code generation tasks, GDPO consistently surpasses GRPO in both training convergence and downstream evaluation performance.
+[实验进度与证据](reports/README.md) · [GRPO Stage 1 报告](reports/grpo/stage1_35/grpo_stage1_report.md) · [服务器文件审计](docs/github_audit_20261002.md) · [上游 GDPO 介绍](README.upstream.md)
 
-In this repo, we provide implementation of GDPO based on [VERL](https://github.com/volcengine/verl) at [verl-GDPO](./verl-GDPO), [TRL](https://github.com/huggingface/trl) at [trl-GDPO](./trl-GDPO/), and [Nemo-RL](https://github.com/NVIDIA-NeMo/RL) at [nemo_rl-GDPO](./nemo_rl-GDPO/). 
+## 我完成了什么
 
-We also include easy-to-use, slurm-free training scripts that enable the community to quickly validate GDPO’s effectiveness over GRPO on tool calling and math reasoning tasks. Each run can be completed in approximately 1 hour on a single node with 8×A100 GPUs, or around 2.5 hours on a single A100 GPU.
+| 阶段 | 实际完成内容 | 状态与证据 |
+|---|---|---|
+| 官方实现审计 | 区分奖励求和后归一化与逐奖励归一化，验证 reward / advantage 纯函数和边界情况 | [CPU 检查协议](docs/reproduction_protocol.md)；历史检查 5 passed |
+| Blackwell 环境 | 独立现代环境、SM120 GPU gate、vLLM 本地生成、真实 optimizer step | [环境与当前运行证据](reports/runtime_verification_20261002.md) |
+| 奖励与输出契约 | 审计工具 JSON、标签格式、prompt 与 reward parser，保留失败输出 | [奖励诊断](docs/diagnostics/reward_signal_report.md) · [prompt 契约](docs/diagnostics/prompt_contract_report.md) |
+| Format SFT v2 | 800 条格式样本、1 epoch、LoRA 50 optimizer steps；独立合并为共同 RL 初始化 | [SFT 报告](reports/sft/sft_v2_train_report.md) · [合并验证](reports/comparison/rl_init_merge_validation.md) |
+| 训练信号诊断 | 32 个 fresh prompts × 4 rollouts；检查格式与正确性奖励的组内变化 | [holdout 诊断](reports/sft/fresh_holdout_reward_variation.md)；17/32 组格式变化、27/32 组正确性变化 |
+| 两算法单步容量与吞吐 | 512 prompts × 4 rollouts，真实 rollout → reward → advantage → backward → optimizer step | [GRPO Config A](reports/grpo/grpo_throughput_config_a_report.md) · [GDPO Config A](reports/gdpo/gdpo_throughput_config_a_report.md) |
+| GRPO Stage 1 | 完成 35 steps、6 次 formal validation、step35 full/model-only checkpoint 和 completion gate | **PASS**；[完成报告](reports/grpo/stage1_35/grpo_stage1_report.md) · [gate 快照](reports/grpo/stage1_35/STAGE_COMPLETE_OK) |
+| GDPO Stage 1 | 从同一 RL_INIT_V1 独立 step0 启动；已记录 step0 validation 和 4 个训练 step | **RUNNING**；[时间戳与指标快照](reports/gdpo/stage1_35/metrics_at_snapshot.json) |
 
-## 💥 Open Source Integration 💥
-GDPO is now supported in the following RL-training libraries:
-- **[TRL](https://github.com/huggingface/trl)** 🔥🔥 [Example here](https://github.com/huggingface/trl/blob/28fc3f2c336bb7f734aab49c1ad073e152dccf61/docs/source/paper_index.md?plain=1#L520)!!
-- **[Ms-swift](https://github.com/modelscope/ms-swift)** 🔥🔥 [Example here](https://github.com/modelscope/ms-swift/blob/dc6ab899db82a87a5d4856851b342516d6dd0f42/swift/rlhf_trainers/args_mixin.py#L247)!!
-- **[Axolotl](https://github.com/axolotl-ai-cloud/axolotl)** 🔥🔥 [Example here](https://docs.axolotl.ai/docs/rlhf.html#gdpo)!!
-- **[NeMo RL](https://github.com/NVIDIA-NeMo/RL)** 🔥🔥 [Example here](https://github.com/NVIDIA-NeMo/RL/blob/main/examples/configs/gdpo_math_1B.yaml)!!
-- **[Verl](https://github.com/verl-project/verl)** 🔥🔥 [Example here](https://github.com/verl-project/verl/tree/main/examples/gdpo_trainer)!!
+我的工作集中在运行环境、奖励可观测性、数据隔离、实验冻结与证据整理。GRPO/GDPO 算法来自上游；本仓库保留原始源码与许可证。
 
-## 🚀 Run GDPO with verl to improve two-reward RL training for tool calling.
-<h1 align="center"> 
-    <img src="./imgs/tool_rl_gdpo.png">
-</h1>
+## 已完成的 GRPO 验证曲线
 
-Here we compare GDPO with GRPO on the tool calling task, specifically, the model trained to learn how to incorporate external tools into the reasoning trajectory to solve a user task following the output format of
-```
-**Output Format**
-<think> Your thoughts and reasoning </think>
-<tool_call>
-{json_string}
-...
-</tool_call>
-<response> AI's final response </response>
-```
-The training set consists of 4k samples. Each training instance contains a question and its corresponding ground-truth tool calls. The training involves two rewards:
+同一 `formal_validation_80`，greedy `n=1`；accuracy reward 是工具调用正确性奖励分数，并非准确率百分比。
 
-* Format Reward: A binary reward (0 or 1) checks whether the model output satisfies the required structure and contains all necessary fields in the correct order.
-* Correctness Reward: The correctness reward ∈ [−3, 3] evaluates the model-generated tool calls against the ground-truth calls using three metrics: tool name matching, parameter name matching, and parameter content matching.
+| step | total reward mean | format reward mean | accuracy reward mean |
+|---:|---:|---:|---:|
+| 0 | 2.400171 | 0.950000 | 1.450171 |
+| 7 | 2.717582 | 0.950000 | 1.767582 |
+| 14 | 2.799781 | 0.950000 | 1.849781 |
+| 21 | 2.785379 | 0.950000 | 1.835379 |
+| 28 | 2.831808 | 0.950000 | 1.881808 |
+| 35 | 2.799721 | 0.950000 | 1.849721 |
 
-We train Qwen2.5-1.5B-Instruct with GDPO and GRPO using verl for 100 steps. Check [verl-GDPO](./verl-GDPO) for detailed implementation of GDPO based on VERL and how to reprodcue the above result.
+step35 相比初始化的总奖励均值增加约 **0.400**，但低于 step28。这里只报告观测值，尚未据此确定延长预算，也不宣称 GDPO 优于 GRPO。[原生指标快照](reports/grpo/stage1_35/metrics_at_snapshot.json) 可核验表格；[checkpoint manifest](reports/grpo/stage1_35/checkpoint_manifest.json) 记录 full resume 与独立模型加载检查。
 
+## 冻结的 Stage 1 设计
 
-## 🚀 Run GDPO with TRL to improve three-reward RL training for math reasoning.
-<h1 align="center"> 
-    <img src="./imgs/gsm8k_gdpo.png">
-</h1>
-
-We compare GDPO and GRPO in their ability to incentivize the model’s reasoning capabilities (i.e., achieving the “aha” moment). Specifically, the model is trained to first produce detailed reasoning steps and then output the final answer in a prescribed format when solving user queries.
-```
-Output Format:
-<think>Your thoughts and reasoning</think>
-<answer>Final answer in integer format</answer>
-```
-Training is conducted on the GSM8K dataset, where each example consists of a math problem paired with its ground-truth answer. The RL training incorporates three reward signals:
-
-* Format Reward: A binary reward (0 or 1) indicating whether the model output follows the required structure and includes all necessary tags in the correct order.
-
-* Correctness Reward: A binary reward (0 or 1) that verifies whether the final answer enclosed within `<answer></answer>` matches the ground-truth solution.
-
-* Integer Reward: A binary reward (0 or 1) that checks whether the final answer inside `<answer></answer>` is an integer, encouraging integer-only outputs.
-
-We train Qwen2.5-1.5B-Instruct with GDPO and GRPO using trl for 1 epoch. Check [trl-GDPO](./trl-GDPO) for detailed implementation of GDPO based on TRL and how to reprodcue the above result.
-
-## ⚙️ GDPO is a straighforward drop-in replacement for GRPO
-
-### trl modification
-#### Original trl GRPO Implementation
-```python
-    # line 1254 in trl-GDPO/trl-0.18.0-gdpo/trl/trainer/grpo_trainer.py
-    # Gather the reward per function: this part is crucial, because the rewards are normalized per group and the
-    # completions may be distributed across processes
-    rewards_per_func = gather(rewards_per_func)
-    rewards = (rewards_per_func * self.reward_weights.to(device).unsqueeze(0)).nansum(dim=1)
-
-    # Compute grouped-wise rewards
-    mean_grouped_rewards = rewards.view(-1, self.num_generations).mean(dim=1)
-    std_grouped_rewards = rewards.view(-1, self.num_generations).std(dim=1)
-    is_std_zero = torch.isclose(std_grouped_rewards, torch.zeros_like(std_grouped_rewards))
-
-    # Normalize the rewards to compute the advantages
-    mean_grouped_rewards = mean_grouped_rewards.repeat_interleave(self.num_generations, dim=0)
-    std_grouped_rewards = std_grouped_rewards.repeat_interleave(self.num_generations, dim=0)
-    advantages = rewards - mean_grouped_rewards
-    if self.scale_rewards:
-        advantages = advantages / (std_grouped_rewards + 1e-4)
-```
-#### trl GDPO Implementation
-```python
-    # line 1222 in trl-GDPO/trl-0.18.0-gdpo/trl/trainer/grpo_trainer.py
-    # Gather the reward per function: this part is crucial, because the rewards are normalized per group and the
-    # completions may be distributed across processes
-    rewards_per_func = gather(rewards_per_func)
-    ## Make sure every reward contain no nan value
-    rewards_per_func_filter = torch.nan_to_num(rewards_per_func)
-
-    all_reward_advantage = []
-    ## Calculate the mean and std of each reward group-wise separately
-    for i in range(len(self.reward_weights)):
-        reward_i = rewards_per_func_filter[:,i]
-        each_reward_mean_grouped = reward_i.view(-1, self.num_generations).mean(dim=1)
-        each_reward_std_grouped = reward_i.view(-1, self.num_generations).std(dim=1)
-
-        each_reward_mean_grouped = each_reward_mean_grouped.repeat_interleave(self.num_generations, dim=0)
-        each_reward_std_grouped = each_reward_std_grouped.repeat_interleave(self.num_generations, dim=0)
-        each_reward_advantage = reward_i - each_reward_mean_grouped
-        each_reward_advantage = each_reward_advantage / (each_reward_std_grouped + 1e-4)
-        all_reward_advantage.append(each_reward_advantage)
-
-    combined_reward_advantage = torch.stack(all_reward_advantage, dim=1)
-    pre_bn_advantages = (combined_reward_advantage * self.reward_weights.to(device).unsqueeze(0)).nansum(dim=1)
-
-    ## compute batch-wise mean and std
-    bn_advantages_mean = pre_bn_advantages.mean()
-    bn_advantages_std = pre_bn_advantages.std()
-
-    advantages = (pre_bn_advantages - bn_advantages_mean) / (bn_advantages_std + 1e-4)
-
+```text
+Qwen2.5-1.5B-Instruct
+  → Format SFT v2 → 合并模型 RL_INIT_V1
+      ├─ GRPO：独立 step0 → 35 steps → PASS
+      └─ GDPO：独立 step0 → 35 steps → RUNNING
 ```
 
-### verl modification
-#### Original verl GRPO Implementation
-```python
-    ## line 148 in verl-GDPO/verl/trainer/ppo/ray_trainer.py
-    elif adv_estimator == 'grpo':
-        token_level_rewards = data.batch['token_level_rewards']
-        index = data.non_tensor_batch['uid']
-        responses = data.batch['responses']
-        response_length = responses.size(-1)
-        attention_mask = data.batch['attention_mask']
-        response_mask = attention_mask[:, -response_length:]
-        advantages, returns = core_algos.compute_grpo_outcome_advantage(token_level_rewards=token_level_rewards,
-                                                                        eos_mask=response_mask,
-                                                                        index=index)
-        data.batch['advantages'] = advantages
-        data.batch['returns'] = returns
-```
-#### verl GDPO Implementation
-```python
-    ## line 175 in verl-GDPO/verl/trainer/ppo/ray_trainer.py
-    token_level_scores_correctness = data.batch['token_level_scores_correctness']
-    token_level_scores_format = data.batch['token_level_scores_format']
-    
-    # shared variables 
-    index = data.non_tensor_batch['uid']
-    responses = data.batch['responses']
-    response_length = responses.size(-1)
-    attention_mask = data.batch['attention_mask']
-    response_mask = attention_mask[:, -response_length:]
+| 项目 | 固定值 |
+|---|---|
+| 模型与初始化 | Qwen2.5-1.5B-Instruct；两算法使用同一 SFT v2 merged checkpoint |
+| 数据 | ToolRL rlla_4k：raw 3920 → overlong filter 后 3901 |
+| 训练顺序 | shuffle=false、drop_last=true；每 epoch 实际使用前 3584 条，317 条尾部不进 optimizer |
+| Stage 1 预算 | batch 512，7 batches/epoch × 5 epochs = 35 steps |
+| rollout / PPO | rollout.n=4；minibatch 128；physical microbatch 1；dynamic token budget 6144 |
+| 序列 / 学习率 | prompt 2048 / response 1024；AdamW lr=1e-6 |
+| vLLM Config A | TP=1；memory utilization=0.40；max_num_seqs=8；max_num_batched_tokens=6144 |
+| 验证 | 固定 80 条尾部样本，排除 SFT 与已记录诊断来源；steps 0/7/14/21/28/35 |
+| test | Stage 1 中间验证不使用 test.parquet；最终 test 评估尚未完成 |
+| checkpoint | 两算法保留最终 step35 full resume 与 model-only；不自动继续 70/105 steps |
 
-    ## handle correctness first
-    correctness_normalized_score, _ = core_algos.compute_grpo_outcome_advantage(token_level_rewards=token_level_scores_correctness,
-                                                                    eos_mask=response_mask,
-                                                                    index=index)
+[冻结配置](configs/formal_experiment_config.yaml) · [validation 隔离审计](docs/diagnostics/formal_validation_split_audit.md) · [sampler 审计](docs/diagnostics/formal_sampler_determinism_audit.md) · [train_max_samples=-1 语义](docs/diagnostics/train_max_samples_semantics.md)
 
-    ## handle format now
-    format_normalized_score, _ = core_algos.compute_grpo_outcome_advantage(token_level_rewards=token_level_scores_format,
-                                                                    eos_mask=response_mask,
-                                                                    index=index) 
-    
-    new_advantage = correctness_normalized_score + format_normalized_score
+## 当前实验的边界
 
-    advantages = masked_whiten(new_advantage, response_mask) * response_mask
+- 当前是 **现代 veRL + SFT 初始化 + 单卡 35-step 的分阶段复现实验**。上游原始工具调用配置使用更旧的依赖、8 GPU 和 15 epochs；不能称为论文原配置的完整复现。
+- [KL 路径审计](reports/comparison/kl_path_audit.md)发现：当前 GRPO 使用 KL 调整后的总奖励，GDPO component path 使用原始分项奖励。该差异保留在实验中，尚未消融；不能将最终差异完全归因于归一化方式。
+- [SFT 合并检查](reports/comparison/rl_init_merge_validation.md)中，16 个固定 prompts 的格式/解析判断一致，但只有 15/16 的输出与奖励一致；未宣称逐位或完整语义等价。正式两算法共同使用合并后的模型。
+- 目前只有一组训练 seed；fresh holdout、shared rollout 和单步吞吐属于各自的诊断，不能替代同预算学习曲线与最终 test 评估。
+- 早期失败环境报告、0/105 的旧启动报告和“NOT STARTED”配置说明保留为历史记录；当前进度以本页的时间戳和 Stage 1 快照为准。
 
-    data.batch['advantages'] = advantages
-    data.batch['returns'] = advantages
+## 如何审阅与复现
 
+无需 GPU 即可阅读 `reports/`、`configs/`、`manifests/` 中的公开证据。原始模型权重、optimizer state、数据 parquet、环境和大日志保留在服务器，不上传 Git。
+
+Mac 上只运行纯函数检查：
+
+```bash
+bash setup-local.sh
+bash 运行本地验证.command
 ```
 
+真实训练在 Linux/NVIDIA 服务器运行，使用 veRL v0.9.1 commit `1876b06d0a3e4e71e06230be10af14492ca8a75b` 与独立 `.venv-modern`。[运行环境说明](reports/runtime_verification_20261002.md)记录依赖例外和早期失败。
 
-## 📝 Citation
-If you find GDPO useful, please star and cite it:
-```bibtex
-@misc{liu2026gdpogrouprewarddecouplednormalization,
-      title={GDPO: Group reward-Decoupled Normalization Policy Optimization for Multi-reward RL Optimization}, 
-      author={Shih-Yang Liu and Xin Dong and Ximing Lu and Shizhe Diao and Peter Belcak and Mingjie Liu and Min-Hung Chen and Hongxu Yin and Yu-Chiang Frank Wang and Kwang-Ting Cheng and Yejin Choi and Jan Kautz and Pavlo Molchanov},
-      year={2026},
-      eprint={2601.05242},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL},
-      url={https://arxiv.org/abs/2601.05242}, 
-}
+`train_grpo_stage1.sh` / `train_gdpo_stage1.sh` 是针对现有服务器路径冻结的 launcher，依赖已准备的 RL_INIT_V1、ToolRL parquet 和 formal validation；它们不是新机器的一键重建入口，且会拒绝复用已有正常运行目录。审阅期间无需执行这些训练脚本。
+
+```text
+scripts/                 GPU 检查、SFT 数据与训练、Stage 1 launchers
+configs/                 环境记录与冻结实验配置
+manifests/               数据来源与 validation row manifest
+reports/                 SFT、单步容量、吞吐、Stage 1 指标和报告
+docs/diagnostics/        输出契约、奖励、KL、数据与 checkpoint 检查
+docs/experiment_design/ SFT 与分阶段实验设计
+local_checks/            Mac CPU 数值验证
+verl-GDPO/               原始实现与现代 smoke driver
 ```
 
-## 📜 Licenses
-Copyright © 2026, NVIDIA Corporation. All rights reserved.
+## 来源与许可证
 
-This work is made available under the NVIDIA Source Code License-NC. Click [here](https://github.com/NVlabs/GDPO/blob/main/LICENSE) to view a copy of this license.
+基于 [NVlabs/GDPO](https://github.com/NVlabs/GDPO)，原始固定 commit 为 `4ad86b4fbfc5db594f3a2750ff9c39fdc8ee6115`；当前 GPU 实验使用另行固定的官方 veRL v0.9.1。上游项目说明、论文引用与图表保存在 [README.upstream.md](README.upstream.md)。原 NVIDIA Source Code License-NC 和第三方许可证见 [LICENSE](LICENSE) 与 [third_party_dependency.LICENSE](third_party_dependency.LICENSE)。
