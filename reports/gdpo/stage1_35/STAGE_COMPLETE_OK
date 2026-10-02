@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "stage": "GDPO Stage 1",
+  "global_step": 35,
+  "validation_path": "/root/autodl-tmp/ProjectB/env-modern/formal_validation_80.parquet",
+  "test_used_for_intermediate_validation": false,
+  "full_resume": "/root/autodl-tmp/ProjectB/runs/gdpo_stage1_35/checkpoints/global_step_35",
+  "model_only": "/root/autodl-tmp/ProjectB/runs/gdpo_stage1_35/model_only/step_35",
+  "trainer_exit_code": 0,
+  "note": "35-step Stage 1 complete; no automatic continuation to 70/105",
+  "recorded_at_utc": "2026-10-02T09:52:01.093544+00:00"
+}

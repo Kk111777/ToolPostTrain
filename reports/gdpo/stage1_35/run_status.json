@@ -1,0 +1,10 @@
+{
+  "updated_at_utc": "2026-10-02T09:36:33.582266+00:00",
+  "phase": "completed",
+  "exit_code": 0,
+  "tmux_session": "projectb_gdpo_stage1",
+  "initialization": "/root/autodl-tmp/ProjectB/checkpoints/rl_init_sft_v2_merged",
+  "trainer_experiment_name": "qwen2p5_1p5b_gdpo_one_step",
+  "validation_path": "/root/autodl-tmp/ProjectB/env-modern/formal_validation_80.parquet",
+  "test_used_for_intermediate_validation": false
+}

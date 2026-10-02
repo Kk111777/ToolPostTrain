@@ -1,0 +1,222 @@
+schema_version: 2
+status: staged_stage1_not_started
+project: ProjectB
+initialization:
+  name: RL_INIT_V1
+  path: /root/autodl-tmp/ProjectB/checkpoints/rl_init_sft_v2_merged
+source:
+  official_verl_tag: v0.9.1
+  official_verl_commit: 1876b06d0a3e4e71e06230be10af14492ca8a75b
+  project_head: c105a5e8e009339849d9a2247209ea1494a4043d
+data:
+  train_path: /root/autodl-tmp/ProjectB/repo/verl-GDPO/dataset/rlla_4k/train.parquet
+  validation_path: /root/autodl-tmp/ProjectB/env-modern/formal_validation_80.parquet
+  validation_manifest: /root/autodl-tmp/ProjectB/env-modern/formal_validation_80_manifest.json
+  validation_source: train_drop_last_tail
+  validation_count: 80
+  test_path: /root/autodl-tmp/ProjectB/repo/verl-GDPO/dataset/rlla_4k/test.parquet
+  raw_train_rows: 3920
+  filtered_overlong_rows: 19
+  eligible_train_rows: 3901
+  max_prompt_length: 2048
+  max_response_length: 1024
+  filter_overlong_prompts: true
+  truncation: error
+  shuffle: false
+  validation_shuffle: false
+  drop_last: true
+  batch_size_prompts: 512
+  complete_batches_per_epoch: 7
+budget:
+  current_stage: 1
+  stage1:
+    epochs: 5
+    steps_per_epoch: 7
+    total_steps: 35
+  stage2:
+    epochs: 10
+    steps_per_epoch: 7
+    total_steps: 70
+  stage3:
+    epochs: 15
+    steps_per_epoch: 7
+    total_steps: 105
+  maximum_full_reproduction_budget: 105
+  extension_rule: 35 -> 70 -> 105; GRPO and GDPO always use the same budget
+rollout:
+  backend: vllm
+  mode: async
+  n: 4
+  trajectories_per_step: 2048
+  tensor_parallel_size: 1
+  gpu_memory_utilization: 0.4
+  max_num_seqs: 8
+  max_num_batched_tokens: 6144
+  max_model_len: 3072
+  enforce_eager: true
+  free_cache_engine: true
+  sampler_environment: VLLM_USE_FLASHINFER_SAMPLER=0
+actor:
+  strategy: fsdp
+  ppo_mini_batch_prompts: 128
+  ppo_micro_batch_per_gpu: 1
+  dynamic_token_budget: 6144
+  gradient_checkpointing: true
+  offload: false
+reference:
+  parameter_offload: true
+optimizer:
+  name: AdamW
+  learning_rate: 1.0e-06
+  ppo_epochs: 1
+  actor_kl_loss: false
+algorithm_common:
+  reward_manager: gdpo
+  reward_function_path: /root/autodl-tmp/ProjectB/upstream/verl-v0.9.1/verl/utils/reward_score/rlla.py
+  reward_function_name: compute_score
+  use_kl_in_reward: true
+  kl_penalty: kl
+  kl_coefficient: 0.001
+  seed: 42
+algorithm_variants:
+  grpo:
+    advantage_estimator: grpo
+    gdpo_reward_keys: null
+    experiment_name: qwen2p5_1p5b_grpo_one_step
+  gdpo:
+    advantage_estimator: gdpo
+    gdpo_reward_keys:
+    - accuracy_reward
+    - format_reward
+    experiment_name: qwen2p5_1p5b_gdpo_one_step
+evaluation:
+  source: formal_validation_80_manifest.json
+  source_path: /root/autodl-tmp/ProjectB/env-modern/formal_validation_80.parquet
+  manifest_path: /root/autodl-tmp/ProjectB/env-modern/formal_validation_80_manifest.json
+  source_split: train_drop_last_tail
+  fixed_rows: 80
+  fixed_order: true
+  steps:
+  - 0
+  - 7
+  - 14
+  - 21
+  - 28
+  - 35
+  optimizer_step: false
+  test_freq: 7
+  val_before_train: true
+  val_kwargs:
+    n: 1
+    temperature: 0
+    do_sample: false
+    top_k: -1
+    top_p: 1.0
+  common_across_algorithms: true
+  metrics:
+  - accuracy_reward
+  - format_reward
+  - total_reward
+  - tool_call_parse_rate
+  - response_only_wrapper_rate
+  - generation_length
+  - native_validation_metrics
+  paired_budget_decision:
+    comparison: step28_vs_step35
+    pair_key: source_row
+    statistics:
+    - mean_paired_difference_total_reward
+    - mean_paired_difference_accuracy_reward
+    - improved_prompt_fraction
+    - percentile_bootstrap_95_ci
+    bootstrap_resamples: 10000
+    bootstrap_seed: 42
+    ci: percentile_95
+    continuation_rule: Small change with CI crossing zero is no clear benefit; continue
+      only for stable positive improvement without format/parse/KL regression.
+  test_policy:
+    path: /root/autodl-tmp/ProjectB/repo/verl-GDPO/dataset/rlla_4k/test.parquet
+    intermediate_eval: forbidden
+    budget_selection: forbidden
+    hyperparameter_selection: forbidden
+    checkpoint_selection: forbidden
+    final_evaluation: one evaluation per final GRPO/GDPO checkpoint after common budget
+      is frozen
+  kl_note: Validation does not natively compute actor/reference KL; retain training
+    actor/ppo_kl separately and do not label it held-out eval KL.
+checkpoint:
+  stage1_full_save_steps:
+  - 10
+  - 20
+  - 30
+  - 35
+  normal_full_resumable_retention: 1
+  transient_full_max_during_safe_rotation: 2
+  stage1_final_model_only_steps:
+  - 35
+  stage1_pending_resume_checkpoint: 35
+  if_stage1_stops: validate model-only step35, then delete full step35
+  if_stage1_continues: retain validated full step35 and resume to the common stage2
+    budget
+  future_model_only_steps:
+  - 70
+  - 105
+  measured_full_checkpoint_bytes: 19469701513
+  measured_full_checkpoint_gib: 18.132572540082037
+  measured_model_only_bytes: 3098893848
+  measured_model_only_gib: 2.8860697969794273
+timing:
+  config_a_seconds_per_step: 1117.1
+  pure_35_step_seconds_per_run: 39098.5
+  pure_35_step_hours_per_run: 10.86
+  estimated_eval_overhead_minutes_per_run: 10-25
+  estimated_checkpoint_export_overhead_minutes_per_run: 3-10
+  estimated_35_step_hours_per_run_with_overhead: 11.1-11.5
+  estimated_grpo_plus_gdpo_hours_with_overhead: 22.2-23.0
+hardware:
+  gpu: NVIDIA RTX 6000D
+  capability: '12.0'
+  driver: 595.91.07
+environment:
+  python: 3.12.14
+  torch: 2.11.0+cu130
+  cuda_runtime: '13.0'
+  vllm: 0.24.0
+  transformers: 5.9.0
+  ray: 2.55.1
+  verl: 0.9.1
+evidence:
+  gdpo_config_a_report: /root/autodl-tmp/ProjectB/env-modern/gdpo_throughput_config_a_report.md
+  checkpoint_resume_smoke: /root/autodl-tmp/ProjectB/env-modern/checkpoint_resume_smoke.md
+  sampler_audit: /root/autodl-tmp/ProjectB/env-modern/formal_sampler_determinism_audit.md
+  full_filter_audit: /root/autodl-tmp/ProjectB/env-modern/full_train_overlong_filter_audit.md
+  formal_validation_manifest: /root/autodl-tmp/ProjectB/env-modern/formal_validation_80_manifest.json
+  formal_validation_split_audit: /root/autodl-tmp/ProjectB/env-modern/formal_validation_split_audit.md
+runtime_effective:
+  launcher: /root/autodl-tmp/ProjectB/repo/scripts/train_gdpo_stage1.sh
+  run_dir: /root/autodl-tmp/ProjectB/runs/gdpo_stage1_35
+  initialization: /root/autodl-tmp/ProjectB/checkpoints/rl_init_sft_v2_merged
+  trainer_experiment_name: qwen2p5_1p5b_gdpo_one_step
+  algorithm: gdpo
+  optimizer_resume: disabled; start from RL_INIT_V1 step0
+  validation_runtime_path: /root/autodl-tmp/ProjectB/env-modern/formal_validation_80.parquet
+  validation_manifest: /root/autodl-tmp/ProjectB/env-modern/formal_validation_80_manifest.json
+  validation_steps:
+  - 0
+  - 7
+  - 14
+  - 21
+  - 28
+  - 35
+  validation_sampling:
+    n: 1
+    temperature: 0
+    do_sample: false
+    top_k: -1
+    top_p: 1.0
+  train_sequence: first 3584 eligible prompts per epoch; native DataLoader drop_last=True
+  checkpoint_policy: save_freq=10, max_actor_ckpt_to_keep=1, final step35 retained
+  model_only_export: /root/autodl-tmp/ProjectB/runs/gdpo_stage1_35/model_only/step_35
+  diagnostic_policy: native rollout capture is externally compacted to at most 64
+    rows at steps 1,20,35
+  test_policy: test.parquet is not used for intermediate validation

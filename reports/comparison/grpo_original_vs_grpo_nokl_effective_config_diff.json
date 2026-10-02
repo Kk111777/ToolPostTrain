@@ -1,0 +1,38 @@
+{
+  "status": "static_preparation_only",
+  "gpu_training_started": false,
+  "model_loaded": false,
+  "baseline": {
+    "run": "GRPO-original35",
+    "command": "/root/autodl-tmp/ProjectB/runs/grpo_stage1_35/command.txt",
+    "advantage_estimator": "grpo",
+    "use_kl_in_reward": true,
+    "kl_penalty": "kl",
+    "kl_coef": 0.001,
+    "actor_use_kl_loss": false,
+    "experiment_name": "qwen2p5_1p5b_grpo_one_step"
+  },
+  "proposed_nokl": {
+    "run": "GRPO-noKL35",
+    "initialization": "RL_INIT_V1",
+    "advantage_estimator": "grpo",
+    "use_kl_in_reward": false,
+    "kl_penalty": "kl",
+    "kl_coef": 0.001,
+    "actor_use_kl_loss": false,
+    "experiment_name": "qwen2p5_1p5b_grpo_one_step",
+    "validation": "/root/autodl-tmp/ProjectB/env-modern/formal_validation_80.parquet",
+    "budget_steps": 35
+  },
+  "only_planned_change": "algorithm.use_kl_in_reward: true -> false",
+  "source_audit": [
+    "verl/trainer/ppo/utils.py:78-79",
+    "verl/trainer/ppo/ray_trainer.py:364",
+    "verl/trainer/ppo/ray_trainer.py:1639",
+    "verl/workers/utils/losses.py:132"
+  ],
+  "unresolved_before_gpu": [
+    "Confirm that no reference-policy path is intended when both KL mechanisms are false.",
+    "Create and Hydra-resolve a dedicated noKL launcher after the user provides the final launch requirement."
+  ]
+}

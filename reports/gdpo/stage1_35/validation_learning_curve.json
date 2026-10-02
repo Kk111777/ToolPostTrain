@@ -1,0 +1,143 @@
+{
+  "algorithm": "GDPO",
+  "steps": [
+    {
+      "step": 0,
+      "n": 80,
+      "total_reward": {
+        "mean": 2.4001711309523808,
+        "std": 1.7203433739661977,
+        "finite": true
+      },
+      "format_reward": {
+        "mean": 0.95,
+        "std": 0.21794494717703367,
+        "finite": true
+      },
+      "accuracy_reward": {
+        "mean": 1.450171130952381,
+        "std": 1.6407511119161746,
+        "finite": true
+      },
+      "tool_parse_count": 73,
+      "tool_parse_rate": 0.9125,
+      "response_wrapper_count": 5,
+      "response_wrapper_rate": 0.0625
+    },
+    {
+      "step": 7,
+      "n": 80,
+      "total_reward": {
+        "mean": 2.611385416666667,
+        "std": 1.6308248689339437,
+        "finite": true
+      },
+      "format_reward": {
+        "mean": 0.9625,
+        "std": 0.1899835519196333,
+        "finite": true
+      },
+      "accuracy_reward": {
+        "mean": 1.6488854166666667,
+        "std": 1.5810849429690408,
+        "finite": true
+      },
+      "tool_parse_count": 74,
+      "tool_parse_rate": 0.925,
+      "response_wrapper_count": 4,
+      "response_wrapper_rate": 0.05
+    },
+    {
+      "step": 14,
+      "n": 80,
+      "total_reward": {
+        "mean": 2.7982604166666665,
+        "std": 1.4786131185525775,
+        "finite": true
+      },
+      "format_reward": {
+        "mean": 0.9625,
+        "std": 0.1899835519196333,
+        "finite": true
+      },
+      "accuracy_reward": {
+        "mean": 1.8357604166666666,
+        "std": 1.4186334879403415,
+        "finite": true
+      },
+      "tool_parse_count": 75,
+      "tool_parse_rate": 0.9375,
+      "response_wrapper_count": 4,
+      "response_wrapper_rate": 0.05
+    },
+    {
+      "step": 21,
+      "n": 80,
+      "total_reward": {
+        "mean": 2.768736607142857,
+        "std": 1.4797125187490396,
+        "finite": true
+      },
+      "format_reward": {
+        "mean": 0.9625,
+        "std": 0.1899835519196333,
+        "finite": true
+      },
+      "accuracy_reward": {
+        "mean": 1.806236607142857,
+        "std": 1.4205589190902688,
+        "finite": true
+      },
+      "tool_parse_count": 75,
+      "tool_parse_rate": 0.9375,
+      "response_wrapper_count": 4,
+      "response_wrapper_rate": 0.05
+    },
+    {
+      "step": 28,
+      "n": 80,
+      "total_reward": {
+        "mean": 2.781236607142857,
+        "std": 1.4858245094775007,
+        "finite": true
+      },
+      "format_reward": {
+        "mean": 0.9625,
+        "std": 0.1899835519196333,
+        "finite": true
+      },
+      "accuracy_reward": {
+        "mean": 1.818736607142857,
+        "std": 1.4265957652496875,
+        "finite": true
+      },
+      "tool_parse_count": 75,
+      "tool_parse_rate": 0.9375,
+      "response_wrapper_count": 4,
+      "response_wrapper_rate": 0.05
+    },
+    {
+      "step": 35,
+      "n": 80,
+      "total_reward": {
+        "mean": 2.8205223214285713,
+        "std": 1.4764661563931154,
+        "finite": true
+      },
+      "format_reward": {
+        "mean": 0.9625,
+        "std": 0.1899835519196333,
+        "finite": true
+      },
+      "accuracy_reward": {
+        "mean": 1.8580223214285714,
+        "std": 1.4158060908426395,
+        "finite": true
+      },
+      "tool_parse_count": 75,
+      "tool_parse_rate": 0.9375,
+      "response_wrapper_count": 4,
+      "response_wrapper_rate": 0.05
+    }
+  ]
+}

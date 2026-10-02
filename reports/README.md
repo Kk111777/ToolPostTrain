@@ -1,10 +1,12 @@
 # 实验进度与证据索引
 
-快照：2026-10-02 08:21（北京时间）。本目录保存已完成实验的报告，以及带时间戳的运行中快照。
+快照：2026-10-02（北京时间，Stage 1 收尾）。本目录保存已完成实验报告、机器可读指标和审计快照。
 
 | 问题 | 证据 |
 |---|---|
-| 现在运行到哪里？ | [首页](../README.md)；[GDPO 指标快照](gdpo/stage1_35/metrics_at_snapshot.json) |
+| 当前 Stage 1 状态是什么？ | [首页](../README.md)；GRPO 与 GDPO 均 35/35 PASS；[共同收尾报告](comparison/stage1_35x2_completion_report.md) |
+| GDPO 35 steps 完成了吗？ | [完成报告](gdpo/stage1_35/gdpo_stage1_report.md)、[gate](gdpo/stage1_35/STAGE_COMPLETE_OK)、[最终指标](gdpo/stage1_35/metrics_at_final.json) |
+| 两算法 35-step 如何比较？ | [比较报告](comparison/grpo_gdpo_stage1_35_comparison.md)、[机器可读比较](comparison/grpo_gdpo_stage1_35_comparison.json) |
 | GRPO 35 steps 完成了吗？ | [完成报告](grpo/stage1_35/grpo_stage1_report.md)、[gate](grpo/stage1_35/STAGE_COMPLETE_OK)、[run status](grpo/stage1_35/run_status.json) |
 | 验证曲线和训练数值是否可核验？ | [原生 GRPO 指标快照](grpo/stage1_35/metrics_at_snapshot.json)；含 step0 和 35 个训练记录 |
 | checkpoint 是否保留且可加载？ | [manifest](grpo/stage1_35/checkpoint_manifest.json)、[resume smoke](../docs/diagnostics/checkpoint_resume_smoke.md) |

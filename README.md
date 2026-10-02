@@ -1,10 +1,10 @@
 # ToolPostTrain：工具调用的 GRPO / GDPO 复现实验
 
-在单张 NVIDIA RTX 6000D 上，完成工具调用奖励诊断、Format SFT、GRPO/GDPO 单步训练和 GRPO 35-step Stage 1，记录配置、验证集、训练指标与可恢复 checkpoint。
+在单张 NVIDIA RTX 6000D 上，完成工具调用奖励诊断、Format SFT、GRPO/GDPO 单步训练和两算法 35-step Stage 1，记录配置、验证集、训练指标与可恢复 checkpoint。
 
-**进度快照：2026-10-02 08:21（北京时间）。GRPO 35/35 已通过 completion gate；GDPO 4/35，运行中。** 尚未完成两算法同预算的最终比较。
+**进度快照：2026-10-02（北京时间）。GRPO 与 GDPO Stage 1 均完成 35/35 并通过 completion gate；两算法最终汇总已归档。未启动 GRPO-noKL。**
 
-[实验进度与证据](reports/README.md) · [GRPO Stage 1 报告](reports/grpo/stage1_35/grpo_stage1_report.md) · [服务器文件审计](docs/github_audit_20261002.md) · [上游 GDPO 介绍](README.upstream.md)
+[实验进度与证据](reports/README.md) · [GRPO Stage 1 报告](reports/grpo/stage1_35/grpo_stage1_report.md) · [GRPO/GDPO 35-step 比较](reports/comparison/grpo_gdpo_stage1_35_comparison.md) · [Stage 1 收尾报告](reports/comparison/stage1_35x2_completion_report.md) · [服务器文件审计](docs/github_audit_20261002.md) · [上游 GDPO 介绍](README.upstream.md)
 
 ## 我完成了什么
 
@@ -17,7 +17,7 @@
 | 训练信号诊断 | 32 个 fresh prompts × 4 rollouts；检查格式与正确性奖励的组内变化 | [holdout 诊断](reports/sft/fresh_holdout_reward_variation.md)；17/32 组格式变化、27/32 组正确性变化 |
 | 两算法单步容量与吞吐 | 512 prompts × 4 rollouts，真实 rollout → reward → advantage → backward → optimizer step | [GRPO Config A](reports/grpo/grpo_throughput_config_a_report.md) · [GDPO Config A](reports/gdpo/gdpo_throughput_config_a_report.md) |
 | GRPO Stage 1 | 完成 35 steps、6 次 formal validation、step35 full/model-only checkpoint 和 completion gate | **PASS**；[完成报告](reports/grpo/stage1_35/grpo_stage1_report.md) · [gate 快照](reports/grpo/stage1_35/STAGE_COMPLETE_OK) |
-| GDPO Stage 1 | 从同一 RL_INIT_V1 独立 step0 启动；已记录 step0 validation 和 4 个训练 step | **RUNNING**；[时间戳与指标快照](reports/gdpo/stage1_35/metrics_at_snapshot.json) |
+| GDPO Stage 1 | 从同一 RL_INIT_V1 独立 step0 启动；完成 35 steps、6 次 formal validation、step35 full/model-only 和 completion gate | **PASS**；[完成报告](reports/gdpo/stage1_35/gdpo_stage1_report.md) · [gate](reports/gdpo/stage1_35/STAGE_COMPLETE_OK) · [GRPO/GDPO 比较](reports/comparison/grpo_gdpo_stage1_35_comparison.md) |
 
 我的工作集中在运行环境、奖励可观测性、数据隔离、实验冻结与证据整理。GRPO/GDPO 算法来自上游；本仓库保留原始源码与许可证。
 
@@ -42,7 +42,7 @@ step35 相比初始化的总奖励均值增加约 **0.400**，但低于 step28�
 Qwen2.5-1.5B-Instruct
   → Format SFT v2 → 合并模型 RL_INIT_V1
       ├─ GRPO：独立 step0 → 35 steps → PASS
-      └─ GDPO：独立 step0 → 35 steps → RUNNING
+      └─ GDPO：独立 step0 → 35 steps → PASS
 ```
 
 | 项目 | 固定值 |
@@ -55,7 +55,7 @@ Qwen2.5-1.5B-Instruct
 | 序列 / 学习率 | prompt 2048 / response 1024；AdamW lr=1e-6 |
 | vLLM Config A | TP=1；memory utilization=0.40；max_num_seqs=8；max_num_batched_tokens=6144 |
 | 验证 | 固定 80 条尾部样本，排除 SFT 与已记录诊断来源；steps 0/7/14/21/28/35 |
-| test | Stage 1 中间验证不使用 test.parquet；最终 test 评估尚未完成 |
+| test | Stage 1 中间验证不使用 test.parquet；当前 35-step 收尾未启动最终 test 评估 |
 | checkpoint | 两算法保留最终 step35 full resume 与 model-only；不自动继续 70/105 steps |
 
 [冻结配置](configs/formal_experiment_config.yaml) · [validation 隔离审计](docs/diagnostics/formal_validation_split_audit.md) · [sampler 审计](docs/diagnostics/formal_sampler_determinism_audit.md) · [train_max_samples=-1 语义](docs/diagnostics/train_max_samples_semantics.md)
