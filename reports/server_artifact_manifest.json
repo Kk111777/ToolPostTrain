@@ -1,0 +1,532 @@
+{
+  "captured_at_utc": "2026-10-02T00:21:50.921063+00:00",
+  "remote_repo_sha": "3fee1c54423d30fa21f8fc0fde4d216af7f2f524",
+  "upstream_sha": "1876b06d0a3e4e71e06230be10af14492ca8a75b",
+  "env_inventory": [
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/capacity_smoke_512_manifest.json",
+      "bytes": 60327,
+      "sha256": "34270b25fa7987d7e05342c37f9404e3484675312f0ed66708ee41023845e140",
+      "repository_copies": [
+        "manifests/capacity_smoke_512_manifest.json"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/checkpoint_resume_smoke.md",
+      "bytes": 1523,
+      "sha256": "56ba8c3c9638410254019529fb8ae89b53ba74b710535944aa120ad6c5ddadf9",
+      "repository_copies": [
+        "docs/diagnostics/checkpoint_resume_smoke.md"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/constrained_generation_report.json",
+      "bytes": 57887,
+      "sha256": "fb707c8fba71df3d8d70a0183c82de1ada8d07fda14414403942930ceb3e078c",
+      "repository_copies": [
+        "docs/diagnostics/constrained_generation_report.json"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/constrained_generation_report.md",
+      "bytes": 26991,
+      "sha256": "13505e1bf7c4292333aad641bbf73d4a83f05423d21c9ee9ea3d51df81909083",
+      "repository_copies": [
+        "docs/diagnostics/constrained_generation_report.md"
+      ],
+      "match_type": "trailing_whitespace_only",
+      "repository_sha256": "8bc345191cd64c7ebd8f57f473572df3ffc45e85f7bcb8505fbfcdcc2f485197"
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/environment.lock",
+      "bytes": 5285,
+      "sha256": "29160ba9b0a704e865d46254991bc64b0b4c4aa669ec8d77ddd543e51d1cf160",
+      "repository_copies": [
+        "configs/environment.lock"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/environment_report.md",
+      "bytes": 3052,
+      "sha256": "0e63cd2778078a90753d50f106615a9a72d38350edcc2a1aa8e3e15796b56569",
+      "repository_copies": [
+        "configs/environment_report.md"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/formal_experiment_config.md",
+      "bytes": 7801,
+      "sha256": "21ed7269a15923539b427d0a47187b6358ee1d8dc06ccc303ee4703538c097bd",
+      "repository_copies": [
+        "configs/formal_experiment_config.md"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/formal_experiment_config.yaml",
+      "bytes": 6005,
+      "sha256": "d80846740281bbf2a16f8697c5ae268ca2cb1bb66c66de2ce7af63657c84603d",
+      "repository_copies": [
+        "configs/formal_experiment_config.yaml"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/formal_sampler_determinism_audit.md",
+      "bytes": 1609,
+      "sha256": "f7b90ed2f64b6b0ae1d03fe6e9beb5ee82e9bf311d5f43f3ccf98799c92b31ea",
+      "repository_copies": [
+        "docs/diagnostics/formal_sampler_determinism_audit.md"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/formal_validation_80_manifest.json",
+      "bytes": 16618,
+      "sha256": "c3a6fac00877ed154c5541837a8e1bcbb21cddaef042d0f5b952b83df09df44e",
+      "repository_copies": [
+        "manifests/formal_validation_80_manifest.json"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/formal_validation_split_audit.md",
+      "bytes": 4636,
+      "sha256": "541427a6baa8def5ce9599e6e09b59472e170a173434ee9e80c710477e050482",
+      "repository_copies": [
+        "docs/diagnostics/formal_validation_split_audit.md"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/format_sft_plan.md",
+      "bytes": 7209,
+      "sha256": "e0d0fa329ba5f00ecb1389895da0f4a85b8d4a49a1196f8407ca89836caf0f48",
+      "repository_copies": [
+        "docs/experiment_design/format_sft_plan.md"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/format_sft_runbook.md",
+      "bytes": 5560,
+      "sha256": "0f31bb1d82c25527a045873ecff3549e0459c1a2c9c9734e29e3217c44707503",
+      "repository_copies": [
+        "docs/experiment_design/format_sft_runbook.md"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/format_sft_target_audit.md",
+      "bytes": 240122,
+      "sha256": "ba8c38ab8c40eae327d095264a019ac434e0023b286f6ece67ced84ad1cde7f3",
+      "repository_copies": [
+        "docs/diagnostics/format_sft_target_audit.md"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/format_sft_v2_data_report.md",
+      "bytes": 2760,
+      "sha256": "577c33f116ed1af58f5370c5c7652ae977517bb608713cdc46255a85d01dbb53",
+      "repository_copies": [
+        "reports/sft/format_sft_v2_data_report.md"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/fresh_holdout_reward_variation.json",
+      "bytes": 175541,
+      "sha256": "d99a6a23cb85d2ab43274598f3f5e14226c232bf178bfa6c2095e17bc55c5272",
+      "repository_copies": [
+        "reports/sft/fresh_holdout_reward_variation.json"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/fresh_holdout_reward_variation.md",
+      "bytes": 42087,
+      "sha256": "d841e2cf949dddaadaef08acb42d06af3840d01f8d8436967196bfdb139b53d1",
+      "repository_copies": [
+        "reports/sft/fresh_holdout_reward_variation.md"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/full_train_overlong_filter_audit.md",
+      "bytes": 1617,
+      "sha256": "57a893dec14bbe3b4f6470f0c4e6d648789422f91d9f817ea7e4b6d0410f24dd",
+      "repository_copies": [
+        "docs/diagnostics/full_train_overlong_filter_audit.md"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/gdpo_official_scale_capacity_report.md",
+      "bytes": 2641,
+      "sha256": "68d6022ecb9c293cc13997baabfcfe880eeec85b1b2c6d799032d64b3a64ea0a",
+      "repository_copies": [
+        "reports/gdpo/gdpo_official_scale_capacity_report.md"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/gdpo_one_step_report.md",
+      "bytes": 2595,
+      "sha256": "b941bc08b61389f7fe64a8bee7e347b062d158da9b3dd2570fb60d60aa1023e1",
+      "repository_copies": [
+        "reports/gdpo/gdpo_one_step_report.md"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/gdpo_stage1_dataset_dry_run.md",
+      "bytes": 1106,
+      "sha256": "22361e7cd707682f78256d96c8aabcee07c5cc690991dda97bbb412dab781b05",
+      "repository_copies": [
+        "docs/diagnostics/gdpo_stage1_dataset_dry_run.md"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/gdpo_throughput_config_a_report.md",
+      "bytes": 2945,
+      "sha256": "dabcc0a073a0cdcf12d9d425d9c39b57dd33f82e3ffe6c65b223b41adadcd64a",
+      "repository_copies": [
+        "reports/gdpo/gdpo_throughput_config_a_report.md"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/gpu_validation.sh",
+      "bytes": 4295,
+      "sha256": "a862cc652a9c9f1e94695a411d9c4a94be999cb2ac8588bbae9e327e7617e9af",
+      "repository_copies": [
+        "scripts/gpu_validation.sh"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/grpo_formal_run_report.md",
+      "bytes": 2164,
+      "sha256": "fbb51691c122e56dcd9b918c465d767837ac92215125a8eb217d2e1aacaf9821",
+      "repository_copies": [
+        "reports/grpo/historical_grpo_formal_run_report.md"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/grpo_gdpo_shared_rollout_diagnostic.json",
+      "bytes": 392427,
+      "sha256": "3e1ca067673ad5a967c58873a71ea1a46194f50027499d13672cea36f3d774a2",
+      "repository_copies": [
+        "reports/comparison/grpo_gdpo_shared_rollout_diagnostic.json"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/grpo_gdpo_shared_rollout_diagnostic.md",
+      "bytes": 4651,
+      "sha256": "dc8ff376385859658f452799f01679016a24ed5d5a8215983d5db8bf7bb3589a",
+      "repository_copies": [
+        "reports/comparison/grpo_gdpo_shared_rollout_diagnostic.md"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/grpo_official_scale_capacity_report.md",
+      "bytes": 2443,
+      "sha256": "4ef68ccd02385e2a2c7b52a51ed80e7d64ce97c8e6fe718eeb2f064fb73fb51e",
+      "repository_copies": [
+        "reports/grpo/grpo_official_scale_capacity_report.md"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/grpo_one_step_report.md",
+      "bytes": 2454,
+      "sha256": "ee3cbd27511aefafdcf98efae97b0ccb526c111482a845a1e358382d77229b59",
+      "repository_copies": [
+        "reports/grpo/grpo_one_step_report.md"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/grpo_throughput_config_a_report.md",
+      "bytes": 2962,
+      "sha256": "dbbd6c0ece50c8553f7090d1c971774f64481a649e6fede65b6c2f48650f5c92",
+      "repository_copies": [
+        "reports/grpo/grpo_throughput_config_a_report.md"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/grpo_throughput_config_b_report.md",
+      "bytes": 2709,
+      "sha256": "16e9e2fe43eec3e50e54f88827aded1380bababf053ef83d7990fc0d714d6d15",
+      "repository_copies": [
+        "reports/grpo/grpo_throughput_config_b_report.md"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/install_env.sh",
+      "bytes": 1731,
+      "sha256": "938bb13bef41c5ddbd35798cbe4f8aa6a8061b74d173a18eedc6d632149955ec",
+      "repository_copies": [
+        "scripts/install_env.sh"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/kl_path_audit.md",
+      "bytes": 2934,
+      "sha256": "3fed8f28be2d9bb2c58d306bc20a7395cac9a0ef59de19d3e4425f1ccd843a64",
+      "repository_copies": [
+        "reports/comparison/kl_path_audit.md"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/model_only_size_smoke_report.md",
+      "bytes": 403,
+      "sha256": "51cf9a2386baaca99864178866653b1e37aca48853b8827a3f3660ff69583527",
+      "repository_copies": [
+        "docs/diagnostics/model_only_size_smoke_report.md"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/prompt_contract_report.md",
+      "bytes": 44618,
+      "sha256": "fe9e1429aa630bbc504c540d9999caa5f4ae33beca7d6d874776a815e170be88",
+      "repository_copies": [
+        "docs/diagnostics/prompt_contract_report.md"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/resolved_versions.txt",
+      "bytes": 1523,
+      "sha256": "96fc2c966b38807e41cf7a7dec02be9f651e19c607dc57661f4355c20cfafd40",
+      "repository_copies": [
+        "configs/resolved_versions.txt"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/reward_signal_report.json",
+      "bytes": 37087,
+      "sha256": "35b2ab3c318940ebb34601af3bb42191444c5d53a6801dedf1b0a08e7041aa8b",
+      "repository_copies": [
+        "docs/diagnostics/reward_signal_report.json"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/reward_signal_report.md",
+      "bytes": 12502,
+      "sha256": "2fb3d192a80b6ad8cfcb838d7735de078152f67fa07b484659429cdf1b067459",
+      "repository_copies": [
+        "docs/diagnostics/reward_signal_report.md",
+        "reports/sft/sft_before_baseline_reward_report.md"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/reward_signal_validation.py",
+      "bytes": 24463,
+      "sha256": "46516ba20c55a53b06a8d66d0a6c6e6c89f91cf7887e4ea7d0d9959f5c3d0609",
+      "repository_copies": [
+        "scripts/reward_signal_validation.py"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/rl_init_merge_validation.md",
+      "bytes": 4464,
+      "sha256": "860af42370cc82e88ad13e97333d210b0bfcd7e9921939e91b0f6afc98f7f983",
+      "repository_copies": [
+        "reports/comparison/rl_init_merge_validation.md"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/rollout_format_debug.json",
+      "bytes": 92416,
+      "sha256": "856bd59ba0703bc2fe02637487689044dde6952ba195e3eaca83aa34127659c9",
+      "repository_copies": [
+        "docs/diagnostics/rollout_format_debug.json"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/sft_after_baseline_reward_report.json",
+      "bytes": 74768,
+      "sha256": "343c836f4e77d6029533c8417b7e1f4f930732cde2f9e033d9fbfc7d58becbf8",
+      "repository_copies": [
+        "reports/sft/sft_after_baseline_reward_report.json"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/sft_after_baseline_reward_report.md",
+      "bytes": 11292,
+      "sha256": "26696063de97abad7ff75ceb5b021a0e7e4d3c4485ce9fa9bce8918785480c46",
+      "repository_copies": [
+        "reports/sft/sft_after_baseline_reward_report.md"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/sft_before_baseline_reward_report.json",
+      "bytes": 37087,
+      "sha256": "6efcc205e2c4a887b592c3363688e1336c2841765104e66e847720e18e6416e6",
+      "repository_copies": [
+        "reports/sft/sft_before_baseline_reward_report.json"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/sft_before_baseline_reward_report.md",
+      "bytes": 12502,
+      "sha256": "2fb3d192a80b6ad8cfcb838d7735de078152f67fa07b484659429cdf1b067459",
+      "repository_copies": [
+        "docs/diagnostics/reward_signal_report.md",
+        "reports/sft/sft_before_baseline_reward_report.md"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/sft_data_analysis.md",
+      "bytes": 8719,
+      "sha256": "7a861c92654f9f985d74b2341d8b7ebb4829132677209ab46d1133b499653f38",
+      "repository_copies": [
+        "docs/experiment_design/sft_data_analysis.md"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/sft_train_report.md",
+      "bytes": 3331,
+      "sha256": "3cd43ff3ed2ac25213375424d3bd892bc60344894825996d2a083ec01c2de4ab",
+      "repository_copies": [
+        "reports/sft/sft_train_report.md"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/sft_v2_after_reward_report.json",
+      "bytes": 41030,
+      "sha256": "c98a19037998e2841b8a4ed7b4a2bc0d354d2754d62b0062d1041615f9860b24",
+      "repository_copies": [
+        "reports/sft/sft_v2_after_reward_report.json"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/sft_v2_after_reward_report.md",
+      "bytes": 11944,
+      "sha256": "c9c1f78d9302b43d291287616bd7afc2dc7b594e32185b21f35a4fcc6dacc27a",
+      "repository_copies": [
+        "reports/sft/sft_v2_after_reward_report.md"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/sft_v2_train_report.md",
+      "bytes": 2430,
+      "sha256": "10d61a69f8068faab28d21baea91a70b93f61dd4e6659e6c01d272a3c724200d",
+      "repository_copies": [
+        "reports/sft/sft_v2_train_report.md"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/sft_validation_plan.md",
+      "bytes": 5748,
+      "sha256": "4b5892a5b9c9f98401b836d3d4e11dec6be006626c93153235ad28eab169e62c",
+      "repository_copies": [
+        "docs/experiment_design/sft_validation_plan.md"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/staged_formal_experiment_plan.md",
+      "bytes": 5268,
+      "sha256": "8f5694f6aa99cd0b830d97dd3e380e6523fafda9520e3296887c8f32ba1ccad0",
+      "repository_copies": [
+        "docs/experiment_design/staged_formal_experiment_plan.md"
+      ]
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/train_max_samples_semantics.md",
+      "bytes": 1166,
+      "sha256": "7ab4ef1fe741ae642f0b6999d80cded36ca44be8ef5ae3132ee6e3c3c776a923",
+      "repository_copies": [
+        "docs/diagnostics/train_max_samples_semantics.md"
+      ]
+    }
+  ],
+  "grpo_validation_files": [
+    {
+      "source": "/root/autodl-tmp/ProjectB/runs/grpo_stage1_35/eval_generations/0.jsonl",
+      "bytes": 328892,
+      "rows": 80,
+      "sha256": "4154969fbb0986808e51469ec4662341c0f0054769770517ba5b89e41cce9414"
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/runs/grpo_stage1_35/eval_generations/14.jsonl",
+      "bytes": 328567,
+      "rows": 80,
+      "sha256": "abc29f924edf9b2f5fd36644999d9221255a0ab2ef43e7ad6991661cd8ddd6ae"
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/runs/grpo_stage1_35/eval_generations/21.jsonl",
+      "bytes": 328619,
+      "rows": 80,
+      "sha256": "d74af026c4406df8aa85348d4afca73806af912def928c62ac503b1eb311802d"
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/runs/grpo_stage1_35/eval_generations/28.jsonl",
+      "bytes": 328619,
+      "rows": 80,
+      "sha256": "2e12f1c7d3bbfbacee2fc39681f9a7ea30e14351aa98783971b1c03416f03e72"
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/runs/grpo_stage1_35/eval_generations/35.jsonl",
+      "bytes": 328459,
+      "rows": 80,
+      "sha256": "a742efd436865eb9e6a27e88967344e7723c6b0e24c3342af8d733b30033503d"
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/runs/grpo_stage1_35/eval_generations/7.jsonl",
+      "bytes": 328581,
+      "rows": 80,
+      "sha256": "a1da2b0d663c07c12e0842142a195a6bf6a76d0ba7eaedd558e775fb2f42c11a"
+    }
+  ],
+  "copied_artifacts": [
+    {
+      "source": "/root/autodl-tmp/ProjectB/runs/grpo_stage1_35/grpo_stage1_report.md",
+      "repository_path": "reports/grpo/stage1_35/grpo_stage1_report.md",
+      "sha256": "0e5cd73d505d781bb91a0a08caccf9f647bd1df97b131b44b09f44a836a589ca"
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/runs/grpo_stage1_35/checkpoint_manifest.json",
+      "repository_path": "reports/grpo/stage1_35/checkpoint_manifest.json",
+      "sha256": "1e1962cb2afc90780e958271f02429b2897c10bb1245f4cd02419da4a77952c5"
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/runs/grpo_stage1_35/run_status.json",
+      "repository_path": "reports/grpo/stage1_35/run_status.json",
+      "sha256": "95818d122122dc47d3c3eb5b94480cf1e6d7dbdfbd7a2cec10757eac770d3821"
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/runs/grpo_stage1_35/STAGE_COMPLETE_OK",
+      "repository_path": "reports/grpo/stage1_35/STAGE_COMPLETE_OK",
+      "sha256": "a8116b1d2b0552b17b72baa895bfaa8ee55955fa82c6ec75b71b92e3c4bbadc4"
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/runs/grpo_stage1_35/STAGE_FAILED.resolved",
+      "repository_path": "reports/grpo/stage1_35/STAGE_FAILED.resolved",
+      "sha256": "84eadcf6e9a970aa5a6c21eb1fbe390faed3a525a08b64866f49dd4e8c523da7"
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/runs/grpo_stage1_35/STAGE_FAILED.resolution.md",
+      "repository_path": "reports/grpo/stage1_35/STAGE_FAILED.resolution.md",
+      "sha256": "a446f6a1595426b7bf765ca3a051dd94cdc25b588e992e8409b967f2a5aed26d"
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/runs/grpo_stage1_35/diagnostics/manifest.json",
+      "repository_path": "reports/grpo/stage1_35/diagnostics_manifest.json",
+      "sha256": "97dc2eb1efefb3eae599a18cdc5993c59e1b4ad0a41e57d821167cec119197e1"
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/runs/grpo_stage1_35/effective_config_prelaunch.yaml",
+      "repository_path": "reports/grpo/stage1_35/effective_config_prelaunch.yaml",
+      "sha256": "db29658912ea730950ed3eec4c96d9f750ca4bd2f0fd6302117d845a0119e171"
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/runs/gdpo_stage1_35/effective_config_prelaunch_verified.yaml",
+      "repository_path": "reports/gdpo/stage1_35/effective_config_prelaunch_verified.yaml",
+      "sha256": "fb46feb9a818720738c711bfd92afcdc03bd964c2fb3625f8ae7490f007f0896"
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/runs/gdpo_stage1_35/config_a_stage1_diff.md",
+      "repository_path": "reports/gdpo/stage1_35/config_a_stage1_diff.md",
+      "sha256": "d1d712c5bec763dd85428b0afade130ab11231a05a7b24b7e6a9b668ceb47804"
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/gdpo_stage1_dataset_dry_run.md",
+      "repository_path": "docs/diagnostics/gdpo_stage1_dataset_dry_run.md",
+      "sha256": "22361e7cd707682f78256d96c8aabcee07c5cc690991dda97bbb412dab781b05"
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/env-modern/train_max_samples_semantics.md",
+      "repository_path": "docs/diagnostics/train_max_samples_semantics.md",
+      "sha256": "7ab4ef1fe741ae642f0b6999d80cded36ca44be8ef5ae3132ee6e3c3c776a923"
+    },
+    {
+      "source": "/root/autodl-tmp/ProjectB/runs/gdpo_stage1_35/run_status.json",
+      "repository_path": "reports/gdpo/stage1_35/run_status_at_snapshot.json",
+      "sha256": "31660f3cfd0e2c233151f06f4c1826e23cd3dd328cb7ab4eb94ecb5feafb2b9e"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+stage=GRPO_STAGE1_35
+status=PASS
+global_step=35
+validation_path=/root/autodl-tmp/ProjectB/env-modern/formal_validation_80.parquet
+test_used_for_intermediate_validation=false
+report=grpo_stage1_report.md
+full_resume_checkpoint_verified=true
+model_only_checkpoint_verified=true
+diagnostics_manifest_verified=true
+trainer_exit=0
+grpo_trainer_absent=true
+disk_free_bytes=51695681536
+gdpo_start_override=true
+note=GRPO gate resolved after missing report artifact was generated from persisted artifacts
+created_at_utc=2026-10-01T23:11:35.953855+00:00
