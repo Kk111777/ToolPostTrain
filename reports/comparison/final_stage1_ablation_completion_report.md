@@ -20,7 +20,7 @@ All three runs use the frozen 0/7/14/21/28/35 validation schedule. test.parquet 
 - Final report: /root/autodl-tmp/ProjectB/runs/grpo_nokl_stage1_35/grpo_nokl_stage1_report.md
 - Canonical metrics: /root/autodl-tmp/ProjectB/runs/grpo_nokl_stage1_35/metrics/stage1_metrics_canonical.json
 - Verified checkpoint manifest: /root/autodl-tmp/ProjectB/runs/grpo_nokl_stage1_35/checkpoint_manifest_verified.json
-- Old rolling checkpoint entries were cleaned only after step35 verification; step35 full and model-only were retained.
+- Old rolling checkpoint entries for all three runs were cleaned only after step35 verification; each step35 full and model-only artifact was retained. Cleanup evidence is recorded in the three checkpoint_cleanup_manifest.json files.
 - GPU memory at closeout: 0 MiB.
 
 ## Analysis outputs
@@ -49,4 +49,5 @@ The three-way interpretation retains the known KL-treatment/reward-dimension con
 - Commit message: projectb: add GRPO-noKL ablation and three-run comparison
 - Push status: PASS; origin/main was verified at ff01509d97e50c37a9ac8cc4a00e0c3d164b031b and the curated report/metrics/comparison files are present on the remote branch.
 - Checkpoint/model weights, optimizer state, large logs, caches, and secrets were not committed.
+- Curated cleanup manifests were added for the GRPO-original and GDPO-current runs after the final integrity check.
 - This report update is a closeout verification record; it does not change any training result.
