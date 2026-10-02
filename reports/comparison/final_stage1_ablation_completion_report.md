@@ -21,6 +21,7 @@ All three runs use the frozen 0/7/14/21/28/35 validation schedule. test.parquet 
 - Canonical metrics: /root/autodl-tmp/ProjectB/runs/grpo_nokl_stage1_35/metrics/stage1_metrics_canonical.json
 - Verified checkpoint manifest: /root/autodl-tmp/ProjectB/runs/grpo_nokl_stage1_35/checkpoint_manifest_verified.json
 - Old rolling checkpoint entries were cleaned only after step35 verification; step35 full and model-only were retained.
+- GPU memory at closeout: 0 MiB.
 
 ## Analysis outputs
 
@@ -36,13 +37,16 @@ The three-way interpretation retains the known KL-treatment/reward-dimension con
 
 ## Storage and next boundary
 
-- At closeout: /root/autodl-tmp is 200G total with about 88G free; GPU memory is 0 MiB.
+- At closeout: /root/autodl-tmp is 200G total with about 88G free (57% used).
+- ProjectB occupies about 113G; the shared checkpoints directory about 3.5G; each of the three stage run directories about 22G.
 - GRPO-original35 and GDPO-current35 assets remain retained.
 - The three step35 full resume checkpoints and model-only artifacts are retained for explicit future continuation decisions.
 - No automatic 70/105 continuation is authorized.
 
 ## Git synchronization
 
-- results_commit: PENDING
-- verification_commit: PENDING
-- push_status: PENDING
+- Results commit: ff01509d97e50c37a9ac8cc4a00e0c3d164b031b
+- Commit message: projectb: add GRPO-noKL ablation and three-run comparison
+- Push status: PASS; origin/main was verified at ff01509d97e50c37a9ac8cc4a00e0c3d164b031b and the curated report/metrics/comparison files are present on the remote branch.
+- Checkpoint/model weights, optimizer state, large logs, caches, and secrets were not committed.
+- This report update is a closeout verification record; it does not change any training result.
