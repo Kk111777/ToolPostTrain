@@ -1,0 +1,32 @@
+{
+  "status": "FROZEN",
+  "primary": {
+    "path": "/root/autodl-tmp/ProjectB/env-modern/formal_validation_80.parquet",
+    "n": 80,
+    "steps": [
+      0,
+      7,
+      14,
+      21,
+      28,
+      35
+    ]
+  },
+  "sensitivity": {
+    "source": "same persisted 80-row outputs",
+    "n": 79,
+    "excluded_source_id": 3814,
+    "excluded_row_index": 56,
+    "resampling": false
+  },
+  "metrics": [
+    "raw_total_validation_reward",
+    "accuracy_reward",
+    "format_reward",
+    "strict_format",
+    "tool_parse",
+    "response_wrapper"
+  ],
+  "bootstrap": "paired prompt-level bootstrap is the planned uncertainty analysis",
+  "confound": "existing GRPO-original vs GDPO-current comparison retains KL-treatment/reward-dimension confound"
+}

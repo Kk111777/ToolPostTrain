@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "gpu_training_started": false,
+  "hydra_compose_resolve": "PASS",
+  "objective_change": "algorithm.use_kl_in_reward: true -> false",
+  "actor_use_kl_loss": false,
+  "reference_policy_expected": false,
+  "run_dir": "/root/autodl-tmp/ProjectB/runs/grpo_nokl_stage1_35",
+  "effective_config": "/root/autodl-tmp/ProjectB/runs/grpo_nokl_stage1_35/effective_config_prelaunch.yaml",
+  "config_diff": "/root/autodl-tmp/ProjectB/repo/reports/comparison/grpo_original_vs_grpo_nokl_final_effective_config_diff.json",
+  "smoke_required_before_formal": true
+}
