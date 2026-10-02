@@ -100,8 +100,8 @@ print(json.dumps({
 PYTHON_PREFLIGHT
 
     if [[ -e "$RUN_DIR" ]]; then
-        [[ -f "$RUN_DIR/run_status.json" ]] || fail "existing run directory has no run_status.json: $RUN_DIR"
-        "$PYTHON" - "$RUN_DIR/run_status.json" "$CHECKPOINT_DIR" <<'PYTHON_EXISTING_RUN'
+        if [[ -f "$RUN_DIR/run_status.json" ]]; then
+            "$PYTHON" - "$RUN_DIR/run_status.json" "$CHECKPOINT_DIR" <<'PYTHON_EXISTING_RUN'
 import json
 import sys
 from pathlib import Path
@@ -117,12 +117,19 @@ if Path(checkpoint_dir).exists():
     )
 print("REUSING_FAILED_RUN_DIR", status.get("phase"))
 PYTHON_EXISTING_RUN
-        mkdir -p "$RUN_DIR/pre_hydra_failure"
-        for old_file in command.txt effective_config.yaml stdout.log stderr.log run_status.json; do
-            if [[ -e "$RUN_DIR/$old_file" && ! -e "$RUN_DIR/pre_hydra_failure/$old_file" ]]; then
-                cp -p "$RUN_DIR/$old_file" "$RUN_DIR/pre_hydra_failure/$old_file"
+            mkdir -p "$RUN_DIR/pre_hydra_failure"
+            for old_file in command.txt effective_config.yaml stdout.log stderr.log run_status.json; do
+                if [[ -e "$RUN_DIR/$old_file" && ! -e "$RUN_DIR/pre_hydra_failure/$old_file" ]]; then
+                    cp -p "$RUN_DIR/$old_file" "$RUN_DIR/pre_hydra_failure/$old_file"
+                fi
+            done
+        else
+            [[ -f "$RUN_DIR/effective_config_prelaunch.yaml" ]] || fail "existing run has no run_status.json or prelaunch snapshot: $RUN_DIR"
+            if [[ -d "$CHECKPOINT_DIR" && -n "$(find "$CHECKPOINT_DIR" -mindepth 1 -maxdepth 1 -print -quit)" ]]; then
+                fail "static prelaunch run directory already contains checkpoint state: $CHECKPOINT_DIR"
             fi
-        done
+            echo "REUSING_STATIC_PRELAUNCH_RUN_DIR $RUN_DIR"
+        fi
     fi
     [[ -x "$PYTHON" ]] || fail "modern environment python missing: $PYTHON"
 
@@ -157,6 +164,7 @@ from pathlib import Path
 import yaml
 src, dst, run_dir = map(Path, sys.argv[1:])
 cfg = yaml.safe_load(src.read_text())
+cfg["algorithm_common"]["use_kl_in_reward"] = False
 cfg["runtime_effective"] = {
     "launcher": "/root/autodl-tmp/ProjectB/repo/scripts/train_grpo_nokl_stage1.sh",
     "run_dir": str(run_dir),

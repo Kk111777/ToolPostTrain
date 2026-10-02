@@ -1,0 +1,18 @@
+{
+  "global_step_35": true,
+  "step35_formal_validation": true,
+  "validation_path_correct": true,
+  "test_not_used": true,
+  "metrics_finite": true,
+  "no_fatal_errors": true,
+  "step35_full_resume_structural_check": true,
+  "step35_model_only_readable": true,
+  "logs_present": true,
+  "metrics_present": true,
+  "diagnostics_present": true,
+  "checkpoint_manifest_present": true,
+  "stage_report_present": true,
+  "trainer_normal_exit": true,
+  "disk_safe": true,
+  "all_pass": true
+}

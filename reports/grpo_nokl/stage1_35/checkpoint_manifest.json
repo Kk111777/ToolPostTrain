@@ -1,0 +1,36 @@
+{
+  "schema": "projectb_stage1_checkpoint_manifest_verified_v1",
+  "algorithm": "GRPO-noKL",
+  "verified_at_utc": "2026-10-02T22:03:34.422165+00:00",
+  "full_resume_checkpoint": "/root/autodl-tmp/ProjectB/runs/grpo_nokl_stage1_35/checkpoints/global_step_35",
+  "full_resume_exists": true,
+  "full_resume_bytes": 19469700977,
+  "full_resume_required_files": [
+    "checkpoints/global_step_35/actor/model_world_size_1_rank_0.pt",
+    "checkpoints/global_step_35/actor/optim_world_size_1_rank_0.pt",
+    "checkpoints/global_step_35/actor/extra_state_world_size_1_rank_0.pt",
+    "checkpoints/global_step_35/actor/fsdp_config.json",
+    "checkpoints/global_step_35/actor/huggingface/config.json",
+    "checkpoints/global_step_35/actor/huggingface/tokenizer.json",
+    "checkpoints/global_step_35/data.pt"
+  ],
+  "full_resume_missing_files": [],
+  "model_only_checkpoint": "/root/autodl-tmp/ProjectB/runs/grpo_nokl_stage1_35/model_only/step_35",
+  "model_only_exists": true,
+  "model_only_bytes": 3098893848,
+  "model_only_required_files": [
+    "model_only/step_35/model.safetensors",
+    "model_only/step_35/config.json",
+    "model_only/step_35/generation_config.json",
+    "model_only/step_35/tokenizer.json",
+    "model_only/step_35/tokenizer_config.json",
+    "model_only/step_35/chat_template.jinja"
+  ],
+  "model_only_missing_files": [],
+  "model_only_independent_from_pretrained_load": true,
+  "tokenizer_load": true,
+  "chat_template": true,
+  "parameter_count": 1543714304,
+  "optimizer_in_model_only": false,
+  "launcher_manifest_reconciled": "/root/autodl-tmp/ProjectB/runs/grpo_nokl_stage1_35/checkpoint_manifest_launcher_original.json"
+}

@@ -1,0 +1,11 @@
+{
+  "schema": "projectb_stage1_pairwise_report_index_v1",
+  "reports": {
+    "GRPO-original_vs_GRPO-noKL": "reports/comparison/grpo_gdpo_nokl_stage1_35_comparison.md",
+    "GDPO-current_vs_GRPO-noKL": "reports/comparison/grpo_gdpo_nokl_stage1_35_comparison.md",
+    "GRPO-original_vs_GDPO-current": "reports/comparison/grpo_gdpo_nokl_stage1_35_comparison.md",
+    "primary80_vs_sensitivity79": "reports/comparison/grpo_gdpo_nokl_stage1_35_comparison.md",
+    "paired_bootstrap": "reports/comparison/paired_bootstrap_stage1_35.md"
+  },
+  "note": "The single three-run report contains all pairwise curves; the bootstrap report contains all paired estimates."
+}

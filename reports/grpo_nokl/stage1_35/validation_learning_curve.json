@@ -1,0 +1,392 @@
+{
+  "algorithm": "GRPO-noKL",
+  "validation_path": "/root/autodl-tmp/ProjectB/env-modern/formal_validation_80.parquet",
+  "primary_80": {
+    "0": {
+      "n": 80,
+      "raw_total_validation_reward": {
+        "mean": 2.4001711309523808,
+        "source": "eval_generations/{step}.jsonl:score"
+      },
+      "accuracy_reward": {
+        "mean": 1.450171130952381,
+        "source": "eval_generations/{step}.jsonl:accuracy_reward"
+      },
+      "format_reward": {
+        "mean": 0.95,
+        "source": "eval_generations/{step}.jsonl:format_reward"
+      },
+      "strict_format": {
+        "count": 76,
+        "rate": 0.95,
+        "source": "official rlla.py strict shape predicate applied offline to persisted output/gts"
+      },
+      "tool_parse": {
+        "count": 73,
+        "rate": 0.9125,
+        "source": "persisted output with JSON-line tool-call parser predicate"
+      },
+      "response_wrapper": {
+        "count": 5,
+        "rate": 0.0625,
+        "source": "persisted output response-tag count"
+      },
+      "sensitivity_source_id_excluded": 3814,
+      "sensitivity_row_index_excluded": 56
+    },
+    "7": {
+      "n": 80,
+      "raw_total_validation_reward": {
+        "mean": 2.5882451105442175,
+        "source": "eval_generations/{step}.jsonl:score"
+      },
+      "accuracy_reward": {
+        "mean": 1.6382451105442175,
+        "source": "eval_generations/{step}.jsonl:accuracy_reward"
+      },
+      "format_reward": {
+        "mean": 0.95,
+        "source": "eval_generations/{step}.jsonl:format_reward"
+      },
+      "strict_format": {
+        "count": 76,
+        "rate": 0.95,
+        "source": "official rlla.py strict shape predicate applied offline to persisted output/gts"
+      },
+      "tool_parse": {
+        "count": 73,
+        "rate": 0.9125,
+        "source": "persisted output with JSON-line tool-call parser predicate"
+      },
+      "response_wrapper": {
+        "count": 5,
+        "rate": 0.0625,
+        "source": "persisted output response-tag count"
+      },
+      "sensitivity_source_id_excluded": 3814,
+      "sensitivity_row_index_excluded": 56
+    },
+    "14": {
+      "n": 80,
+      "raw_total_validation_reward": {
+        "mean": 2.7577604166666667,
+        "source": "eval_generations/{step}.jsonl:score"
+      },
+      "accuracy_reward": {
+        "mean": 1.8077604166666668,
+        "source": "eval_generations/{step}.jsonl:accuracy_reward"
+      },
+      "format_reward": {
+        "mean": 0.95,
+        "source": "eval_generations/{step}.jsonl:format_reward"
+      },
+      "strict_format": {
+        "count": 76,
+        "rate": 0.95,
+        "source": "official rlla.py strict shape predicate applied offline to persisted output/gts"
+      },
+      "tool_parse": {
+        "count": 74,
+        "rate": 0.925,
+        "source": "persisted output with JSON-line tool-call parser predicate"
+      },
+      "response_wrapper": {
+        "count": 5,
+        "rate": 0.0625,
+        "source": "persisted output response-tag count"
+      },
+      "sensitivity_source_id_excluded": 3814,
+      "sensitivity_row_index_excluded": 56
+    },
+    "21": {
+      "n": 80,
+      "raw_total_validation_reward": {
+        "mean": 2.784450892857143,
+        "source": "eval_generations/{step}.jsonl:score"
+      },
+      "accuracy_reward": {
+        "mean": 1.8219508928571428,
+        "source": "eval_generations/{step}.jsonl:accuracy_reward"
+      },
+      "format_reward": {
+        "mean": 0.9625,
+        "source": "eval_generations/{step}.jsonl:format_reward"
+      },
+      "strict_format": {
+        "count": 77,
+        "rate": 0.9625,
+        "source": "official rlla.py strict shape predicate applied offline to persisted output/gts"
+      },
+      "tool_parse": {
+        "count": 75,
+        "rate": 0.9375,
+        "source": "persisted output with JSON-line tool-call parser predicate"
+      },
+      "response_wrapper": {
+        "count": 4,
+        "rate": 0.05,
+        "source": "persisted output response-tag count"
+      },
+      "sensitivity_source_id_excluded": 3814,
+      "sensitivity_row_index_excluded": 56
+    },
+    "28": {
+      "n": 80,
+      "raw_total_validation_reward": {
+        "mean": 2.781236607142857,
+        "source": "eval_generations/{step}.jsonl:score"
+      },
+      "accuracy_reward": {
+        "mean": 1.818736607142857,
+        "source": "eval_generations/{step}.jsonl:accuracy_reward"
+      },
+      "format_reward": {
+        "mean": 0.9625,
+        "source": "eval_generations/{step}.jsonl:format_reward"
+      },
+      "strict_format": {
+        "count": 77,
+        "rate": 0.9625,
+        "source": "official rlla.py strict shape predicate applied offline to persisted output/gts"
+      },
+      "tool_parse": {
+        "count": 75,
+        "rate": 0.9375,
+        "source": "persisted output with JSON-line tool-call parser predicate"
+      },
+      "response_wrapper": {
+        "count": 4,
+        "rate": 0.05,
+        "source": "persisted output response-tag count"
+      },
+      "sensitivity_source_id_excluded": 3814,
+      "sensitivity_row_index_excluded": 56
+    },
+    "35": {
+      "n": 80,
+      "raw_total_validation_reward": {
+        "mean": 2.8187366071428572,
+        "source": "eval_generations/{step}.jsonl:score"
+      },
+      "accuracy_reward": {
+        "mean": 1.856236607142857,
+        "source": "eval_generations/{step}.jsonl:accuracy_reward"
+      },
+      "format_reward": {
+        "mean": 0.9625,
+        "source": "eval_generations/{step}.jsonl:format_reward"
+      },
+      "strict_format": {
+        "count": 77,
+        "rate": 0.9625,
+        "source": "official rlla.py strict shape predicate applied offline to persisted output/gts"
+      },
+      "tool_parse": {
+        "count": 75,
+        "rate": 0.9375,
+        "source": "persisted output with JSON-line tool-call parser predicate"
+      },
+      "response_wrapper": {
+        "count": 4,
+        "rate": 0.05,
+        "source": "persisted output response-tag count"
+      },
+      "sensitivity_source_id_excluded": 3814,
+      "sensitivity_row_index_excluded": 56
+    }
+  },
+  "sensitivity_79": {
+    "0": {
+      "n": 79,
+      "raw_total_validation_reward": {
+        "mean": 2.4052365883062086,
+        "source": "eval_generations/{step}.jsonl:score"
+      },
+      "accuracy_reward": {
+        "mean": 1.4558694996986137,
+        "source": "eval_generations/{step}.jsonl:accuracy_reward"
+      },
+      "format_reward": {
+        "mean": 0.9493670886075949,
+        "source": "eval_generations/{step}.jsonl:format_reward"
+      },
+      "strict_format": {
+        "count": 75,
+        "rate": 0.9493670886075949,
+        "source": "official rlla.py strict shape predicate applied offline to persisted output/gts"
+      },
+      "tool_parse": {
+        "count": 72,
+        "rate": 0.9113924050632911,
+        "source": "persisted output with JSON-line tool-call parser predicate"
+      },
+      "response_wrapper": {
+        "count": 5,
+        "rate": 0.06329113924050633,
+        "source": "persisted output response-tag count"
+      },
+      "excluded_source_id": 3814,
+      "excluded_row_index_in_manifest": 56
+    },
+    "7": {
+      "n": 79,
+      "raw_total_validation_reward": {
+        "mean": 2.5956912511840176,
+        "source": "eval_generations/{step}.jsonl:score"
+      },
+      "accuracy_reward": {
+        "mean": 1.646324162576423,
+        "source": "eval_generations/{step}.jsonl:accuracy_reward"
+      },
+      "format_reward": {
+        "mean": 0.9493670886075949,
+        "source": "eval_generations/{step}.jsonl:format_reward"
+      },
+      "strict_format": {
+        "count": 75,
+        "rate": 0.9493670886075949,
+        "source": "official rlla.py strict shape predicate applied offline to persisted output/gts"
+      },
+      "tool_parse": {
+        "count": 72,
+        "rate": 0.9113924050632911,
+        "source": "persisted output with JSON-line tool-call parser predicate"
+      },
+      "response_wrapper": {
+        "count": 5,
+        "rate": 0.06329113924050633,
+        "source": "persisted output response-tag count"
+      },
+      "excluded_source_id": 3814,
+      "excluded_row_index_in_manifest": 56
+    },
+    "14": {
+      "n": 79,
+      "raw_total_validation_reward": {
+        "mean": 2.7673523206751054,
+        "source": "eval_generations/{step}.jsonl:score"
+      },
+      "accuracy_reward": {
+        "mean": 1.8179852320675105,
+        "source": "eval_generations/{step}.jsonl:accuracy_reward"
+      },
+      "format_reward": {
+        "mean": 0.9493670886075949,
+        "source": "eval_generations/{step}.jsonl:format_reward"
+      },
+      "strict_format": {
+        "count": 75,
+        "rate": 0.9493670886075949,
+        "source": "official rlla.py strict shape predicate applied offline to persisted output/gts"
+      },
+      "tool_parse": {
+        "count": 73,
+        "rate": 0.9240506329113924,
+        "source": "persisted output with JSON-line tool-call parser predicate"
+      },
+      "response_wrapper": {
+        "count": 5,
+        "rate": 0.06329113924050633,
+        "source": "persisted output response-tag count"
+      },
+      "excluded_source_id": 3814,
+      "excluded_row_index_in_manifest": 56
+    },
+    "21": {
+      "n": 79,
+      "raw_total_validation_reward": {
+        "mean": 2.794380650994575,
+        "source": "eval_generations/{step}.jsonl:score"
+      },
+      "accuracy_reward": {
+        "mean": 1.8323553345388788,
+        "source": "eval_generations/{step}.jsonl:accuracy_reward"
+      },
+      "format_reward": {
+        "mean": 0.9620253164556962,
+        "source": "eval_generations/{step}.jsonl:format_reward"
+      },
+      "strict_format": {
+        "count": 76,
+        "rate": 0.9620253164556962,
+        "source": "official rlla.py strict shape predicate applied offline to persisted output/gts"
+      },
+      "tool_parse": {
+        "count": 74,
+        "rate": 0.9367088607594937,
+        "source": "persisted output with JSON-line tool-call parser predicate"
+      },
+      "response_wrapper": {
+        "count": 4,
+        "rate": 0.05063291139240506,
+        "source": "persisted output response-tag count"
+      },
+      "excluded_source_id": 3814,
+      "excluded_row_index_in_manifest": 56
+    },
+    "28": {
+      "n": 79,
+      "raw_total_validation_reward": {
+        "mean": 2.7911256781193488,
+        "source": "eval_generations/{step}.jsonl:score"
+      },
+      "accuracy_reward": {
+        "mean": 1.8291003616636528,
+        "source": "eval_generations/{step}.jsonl:accuracy_reward"
+      },
+      "format_reward": {
+        "mean": 0.9620253164556962,
+        "source": "eval_generations/{step}.jsonl:format_reward"
+      },
+      "strict_format": {
+        "count": 76,
+        "rate": 0.9620253164556962,
+        "source": "official rlla.py strict shape predicate applied offline to persisted output/gts"
+      },
+      "tool_parse": {
+        "count": 74,
+        "rate": 0.9367088607594937,
+        "source": "persisted output with JSON-line tool-call parser predicate"
+      },
+      "response_wrapper": {
+        "count": 4,
+        "rate": 0.05063291139240506,
+        "source": "persisted output response-tag count"
+      },
+      "excluded_source_id": 3814,
+      "excluded_row_index_in_manifest": 56
+    },
+    "35": {
+      "n": 79,
+      "raw_total_validation_reward": {
+        "mean": 2.8291003616636528,
+        "source": "eval_generations/{step}.jsonl:score"
+      },
+      "accuracy_reward": {
+        "mean": 1.8670750452079565,
+        "source": "eval_generations/{step}.jsonl:accuracy_reward"
+      },
+      "format_reward": {
+        "mean": 0.9620253164556962,
+        "source": "eval_generations/{step}.jsonl:format_reward"
+      },
+      "strict_format": {
+        "count": 76,
+        "rate": 0.9620253164556962,
+        "source": "official rlla.py strict shape predicate applied offline to persisted output/gts"
+      },
+      "tool_parse": {
+        "count": 74,
+        "rate": 0.9367088607594937,
+        "source": "persisted output with JSON-line tool-call parser predicate"
+      },
+      "response_wrapper": {
+        "count": 4,
+        "rate": 0.05063291139240506,
+        "source": "persisted output response-tag count"
+      },
+      "excluded_source_id": 3814,
+      "excluded_row_index_in_manifest": 56
+    }
+  }
+}

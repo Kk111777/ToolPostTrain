@@ -1,0 +1,23 @@
+{
+  "status": "STAGE_COMPLETE_OK",
+  "algorithm": "GRPO-noKL",
+  "global_step": 35,
+  "validation_steps": [
+    0,
+    7,
+    14,
+    21,
+    28,
+    35
+  ],
+  "validation_path": "/root/autodl-tmp/ProjectB/env-modern/formal_validation_80.parquet",
+  "test_used_for_intermediate_validation": false,
+  "full_resume_checkpoint": "/root/autodl-tmp/ProjectB/runs/grpo_nokl_stage1_35/checkpoints/global_step_35",
+  "model_only_checkpoint": "/root/autodl-tmp/ProjectB/runs/grpo_nokl_stage1_35/model_only/step_35",
+  "old_rolling_checkpoints_cleaned": [
+    "global_step_10",
+    "global_step_20",
+    "global_step_30"
+  ],
+  "written_at_utc": "2026-10-02T22:06:44.609656+00:00"
+}

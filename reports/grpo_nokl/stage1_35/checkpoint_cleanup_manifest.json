@@ -1,0 +1,19 @@
+{
+  "global_step_10": {
+    "path": "/root/autodl-tmp/ProjectB/runs/grpo_nokl_stage1_35/checkpoints/global_step_10",
+    "bytes_before_cleanup": 1499,
+    "replaced_by": "/root/autodl-tmp/ProjectB/runs/grpo_nokl_stage1_35/checkpoints/global_step_35"
+  },
+  "global_step_20": {
+    "path": "/root/autodl-tmp/ProjectB/runs/grpo_nokl_stage1_35/checkpoints/global_step_20",
+    "bytes_before_cleanup": 1499,
+    "replaced_by": "/root/autodl-tmp/ProjectB/runs/grpo_nokl_stage1_35/checkpoints/global_step_35"
+  },
+  "global_step_30": {
+    "path": "/root/autodl-tmp/ProjectB/runs/grpo_nokl_stage1_35/checkpoints/global_step_30",
+    "bytes_before_cleanup": 1499,
+    "replaced_by": "/root/autodl-tmp/ProjectB/runs/grpo_nokl_stage1_35/checkpoints/global_step_35"
+  },
+  "policy": "old exists -> step35 verified -> old rolling checkpoint removed",
+  "cleaned_at_utc": "2026-10-02T22:06:44.609501+00:00"
+}

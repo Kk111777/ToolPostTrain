@@ -1,0 +1,13 @@
+{
+  "full_resume_checkpoint": "/root/autodl-tmp/ProjectB/runs/grpo_stage1_35/checkpoints/global_step_35",
+  "full_resume_exists": true,
+  "full_resume_bytes": 19469701041,
+  "model_only_checkpoint": "/root/autodl-tmp/ProjectB/runs/grpo_nokl_stage1_35/model_only/step_35",
+  "model_only_exists": true,
+  "model_only_bytes": 3098893848,
+  "independent_from_pretrained_load": true,
+  "tokenizer_load": true,
+  "chat_template": true,
+  "parameter_count": 1543714304,
+  "optimizer_in_model_only": false
+}
