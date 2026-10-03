@@ -151,6 +151,8 @@ exec "$PYTHON" -m verl.trainer.main_ppo \
   actor_rollout_ref.model.use_fused_kernels=False \
   +actor_rollout_ref.model.override_config.attn_implementation=sdpa \
   actor_rollout_ref.actor.strategy=fsdp \
+  actor_rollout_ref.actor.ppo_micro_batch_size_per_gpu=1 \
+  actor_rollout_ref.actor.use_dynamic_bsz=True \
   actor_rollout_ref.actor.use_kl_loss=False \
   actor_rollout_ref.actor.use_torch_compile=False \
   actor_rollout_ref.ref.fsdp_config.param_offload=True \
