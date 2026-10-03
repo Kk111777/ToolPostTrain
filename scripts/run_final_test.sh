@@ -25,6 +25,9 @@ VENV="$ROOT/.venv-modern"
 PYTHON="$VENV/bin/python"
 HOLDOUT_FILE="$ROOT/env-modern/final_holdout_v1.parquet"
 HOLDOUT_MANIFEST="$ROOT/repo/manifests/final_holdout_v1_manifest.json"
+RUNTIME_MAPPING="$ROOT/repo/manifests/final_holdout_v1_runtime_mapping.json"
+FROZEN_ENDPOINT_MANIFEST_SHA256="160befdb3c87aab85b8d65254c70ca83823e393ace2478c6b1e226898be97a16"
+FROZEN_RUNTIME_MAPPING_SHA256="ee7ab8143f57c6c9f60c35fd0a5c7c48df73ee28fb3c72761d6bf7a7eb7d9cdd"
 EXPERIMENT_NAME="qwen2p5_1p5b_grpo_one_step"
 
 case "$MODEL_NAME" in
@@ -37,7 +40,7 @@ esac
 [[ "$MODEL_PATH" == "$EXPECTED" ]] || { echo "FINAL_TEST_REFUSED: model path is not frozen for $MODEL_NAME" >&2; exit 2; }
 [[ -d "$MODEL_PATH" && -f "$MODEL_PATH/config.json" ]] || { echo "missing model path" >&2; exit 2; }
 [[ "$HOLDOUT_FILE" != *"test.parquet"* ]] || { echo "FINAL_TEST_REFUSED: old test.parquet is not an allowed endpoint" >&2; exit 2; }
-[[ -f "$HOLDOUT_FILE" && -f "$HOLDOUT_MANIFEST" ]] || { echo "missing FINAL_HOLDOUT_V1 parquet or manifest" >&2; exit 2; }
+[[ -f "$HOLDOUT_FILE" && -f "$HOLDOUT_MANIFEST" && -f "$RUNTIME_MAPPING" ]] || { echo "missing FINAL_HOLDOUT_V1 parquet, endpoint manifest, or runtime mapping" >&2; exit 2; }
 [[ "$OUT_DIR" == "$ROOT/final-test/"* ]] || { echo "FINAL_TEST_REFUSED: output must be under $ROOT/final-test/" >&2; exit 2; }
 [[ "$OUT_DIR" != *"/runs/"* ]] || { echo "FINAL_TEST_REFUSED: output cannot be a Stage1 run directory" >&2; exit 2; }
 if [[ -e "$OUT_DIR" && -n "$(find "$OUT_DIR" -mindepth 1 -print -quit)" ]]; then
@@ -46,17 +49,32 @@ if [[ -e "$OUT_DIR" && -n "$(find "$OUT_DIR" -mindepth 1 -print -quit)" ]]; then
 fi
 mkdir -p "$OUT_DIR"
 
-# Read-only endpoint guard.  It checks the frozen identity before any model
-# or vLLM process is started and has no fallback to test.parquet.
-"$PYTHON" - "$HOLDOUT_FILE" "$HOLDOUT_MANIFEST" <<'PY'
+# Read-only endpoint guard. It checks the frozen identity before any model or
+# vLLM process is started and has no fallback to test.parquet. The file hashes
+# are hardcoded outside the files they protect, so a replacement manifest or
+# mapping cannot redefine its own expected identity.
+"$PYTHON" - "$HOLDOUT_FILE" "$HOLDOUT_MANIFEST" "$RUNTIME_MAPPING" "$FROZEN_ENDPOINT_MANIFEST_SHA256" "$FROZEN_RUNTIME_MAPPING_SHA256" <<'PY'
 import hashlib
 import json
 import sys
 
 import pyarrow.parquet as pq
 
-holdout, manifest_path = sys.argv[1:]
+holdout, manifest_path, mapping_path, expected_manifest_sha, expected_mapping_sha = sys.argv[1:]
+
+def sha256_file(path):
+    digest = hashlib.sha256()
+    with open(path, "rb") as handle:
+        for block in iter(lambda: handle.read(8 * 1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
+
+if sha256_file(manifest_path) != expected_manifest_sha:
+    raise SystemExit("FINAL_TEST_REFUSED: endpoint manifest byte identity mismatch")
+if sha256_file(mapping_path) != expected_mapping_sha:
+    raise SystemExit("FINAL_TEST_REFUSED: runtime mapping byte identity mismatch")
 manifest = json.load(open(manifest_path, encoding="utf-8"))
+mapping = json.load(open(mapping_path, encoding="utf-8"))
 if manifest.get("manifest_version") != "FINAL_HOLDOUT_V1":
     raise SystemExit("FINAL_TEST_REFUSED: manifest is not FINAL_HOLDOUT_V1")
 if manifest.get("row_count") != 108:
@@ -78,6 +96,22 @@ if id_digest != manifest.get("ordered_source_ids_sha256"):
     raise SystemExit("FINAL_TEST_REFUSED: FINAL_HOLDOUT_V1 source-ID hash mismatch")
 if ids != manifest.get("ordered_source_ids"):
     raise SystemExit("FINAL_TEST_REFUSED: FINAL_HOLDOUT_V1 source order mismatch")
+mapping_rows = mapping.get("rows", [])
+if mapping.get("parent_endpoint_manifest_sha256") != expected_manifest_sha:
+    raise SystemExit("FINAL_TEST_REFUSED: runtime mapping parent identity mismatch")
+if mapping.get("endpoint_parquet_sha256") != manifest.get("derived_parquet_sha256"):
+    raise SystemExit("FINAL_TEST_REFUSED: runtime mapping parquet identity mismatch")
+if mapping.get("ordered_source_ids_sha256") != manifest.get("ordered_source_ids_sha256"):
+    raise SystemExit("FINAL_TEST_REFUSED: runtime mapping source-ID identity mismatch")
+if len(mapping_rows) != 108:
+    raise SystemExit("FINAL_TEST_REFUSED: runtime mapping row count mismatch")
+if [int(row.get("source_id")) for row in mapping_rows] != [int(row.get("source_id")) for row in manifest.get("rows", [])]:
+    raise SystemExit("FINAL_TEST_REFUSED: runtime mapping source-ID order mismatch")
+if [int(row.get("row_position")) for row in mapping_rows] != [int(row.get("row_position")) for row in manifest.get("rows", [])]:
+    raise SystemExit("FINAL_TEST_REFUSED: runtime mapping row-position mismatch")
+pairs = {(row.get("runtime_input_sha256"), row.get("ground_truth_sha256_exact")) for row in mapping_rows}
+if len(pairs) != 108:
+    raise SystemExit("FINAL_TEST_REFUSED: runtime mapping pairs are not unique")
 print("FINAL_HOLDOUT_V1_STATIC_GUARD_PASS")
 PY
 

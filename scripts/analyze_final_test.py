@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
-"""CPU-only analysis for an explicitly authorized ProjectB final endpoint.
+"""CPU-only analysis for the frozen ProjectB final endpoint.
 
-The script consumes persisted JSONL outputs only. It never loads a model or
-starts vLLM. FINAL_HOLDOUT_V1 is the current endpoint: primary metrics use
-all 108 rows, while tool-only and response-only views are descriptive
-stratifications (the latter has N=7 and is intentionally not a strong
-statistical endpoint).
+Formal mode requires the exact four-model matrix and verifies both frozen
+endpoint identities before reading persisted JSONL. It never loads a model,
+starts vLLM, or falls back to positional/fuzzy row matching.
 """
 
 from __future__ import annotations
@@ -24,6 +22,23 @@ import numpy as np
 
 
 TIE_TOLERANCE = 1e-8
+BOOTSTRAP_REPLICATES = 10_000
+BOOTSTRAP_SEED = 42
+EXPECTED_ENDPOINT_MANIFEST_SHA256 = (
+    "160befdb3c87aab85b8d65254c70ca83823e393ace2478c6b1e226898be97a16"
+)
+EXPECTED_RUNTIME_MAPPING_SHA256 = (
+    "ee7ab8143f57c6c9f60c35fd0a5c7c48df73ee28fb3c72761d6bf7a7eb7d9cdd"
+)
+EXPECTED_PARQUET_SHA256 = (
+    "e8f2e025906fa5e9e3088d9a29494e05da5fb47ddf4705b2550956c4380d8f22"
+)
+EXPECTED_SOURCE_IDS_SHA256 = (
+    "75373e7e89ed7004a2d5cb858b9626449d74f7e536d341fda7aec18eed5e29ad"
+)
+EXPECTED_MODEL_NAMES = frozenset(
+    {"RL_INIT_V1", "GRPO-original35", "GDPO-current35", "GRPO-noKL35"}
+)
 COMPARISONS = (
     ("GRPO-original35", "GRPO-noKL35", "GRPO-original35_vs_GRPO-noKL35", "noKL-original"),
     ("GRPO-original35", "GDPO-current35", "GRPO-original35_vs_GDPO-current35", "GDPO-original"),
@@ -35,8 +50,20 @@ COMPARISONS = (
 METRICS = ("score", "accuracy_reward", "format_reward")
 
 
+def sha256_bytes(value: bytes) -> str:
+    return hashlib.sha256(value).hexdigest()
+
+
 def sha256_text(value: str) -> str:
-    return hashlib.sha256(value.encode("utf-8")).hexdigest()
+    return sha256_bytes(value.encode("utf-8"))
+
+
+def sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for block in iter(lambda: handle.read(8 * 1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
 
 
 def load_json(path: Path) -> Any:
@@ -101,15 +128,11 @@ def response_wrapper(output: str) -> bool:
 
 
 def target_tool_parse(output: str, ground_truth: str) -> bool | None:
-    if "<tool_call>" not in ground_truth:
-        return None
-    return tool_parse(output)
+    return tool_parse(output) if "<tool_call>" in ground_truth else None
 
 
 def response_only_wrapper(output: str, ground_truth: str) -> bool | None:
-    if "<response>" not in ground_truth or "<tool_call>" in ground_truth:
-        return None
-    return response_wrapper(output)
+    return response_wrapper(output) if "<response>" in ground_truth and "<tool_call>" not in ground_truth else None
 
 
 def bool_summary(values: list[bool | None], drop_none: bool = False) -> dict[str, Any]:
@@ -140,31 +163,100 @@ def resolve_output(path: Path, step: int) -> Path:
     raise FileNotFoundError(path)
 
 
+def verify_frozen_identity(
+    endpoint_manifest_path: Path,
+    runtime_mapping_path: Path,
+    endpoint_parquet_path: Path,
+) -> tuple[dict[str, Any], list[dict[str, Any]], dict[str, Any]]:
+    endpoint_sha = sha256_file(endpoint_manifest_path)
+    if endpoint_sha != EXPECTED_ENDPOINT_MANIFEST_SHA256:
+        raise ValueError("FINAL_ANALYSIS_REFUSED_ENDPOINT_MANIFEST_IDENTITY")
+    runtime_sha = sha256_file(runtime_mapping_path)
+    if runtime_sha != EXPECTED_RUNTIME_MAPPING_SHA256:
+        raise ValueError("FINAL_ANALYSIS_REFUSED_RUNTIME_MAPPING_IDENTITY")
+    endpoint = load_json(endpoint_manifest_path)
+    mapping = load_json(runtime_mapping_path)
+    if endpoint.get("manifest_version") != "FINAL_HOLDOUT_V1" or endpoint.get("row_count") != 108:
+        raise ValueError("FINAL_ANALYSIS_REFUSED_ENDPOINT_MANIFEST_CONTENT")
+    if endpoint_parquet_path.is_file() and sha256_file(endpoint_parquet_path) != EXPECTED_PARQUET_SHA256:
+        raise ValueError("FINAL_ANALYSIS_REFUSED_ENDPOINT_PARQUET_IDENTITY")
+    if endpoint.get("derived_parquet_sha256") != EXPECTED_PARQUET_SHA256:
+        raise ValueError("FINAL_ANALYSIS_REFUSED_ENDPOINT_PARQUET_DECLARATION")
+    if endpoint.get("ordered_source_ids_sha256") != EXPECTED_SOURCE_IDS_SHA256:
+        raise ValueError("FINAL_ANALYSIS_REFUSED_ENDPOINT_SOURCE_ORDER")
+    rows = endpoint.get("rows", [])
+    mapping_rows = mapping.get("rows", [])
+    if len(rows) != 108 or len(mapping_rows) != 108:
+        raise ValueError("FINAL_ANALYSIS_REFUSED_ENDPOINT_ROW_COUNT")
+    if mapping.get("parent_endpoint_manifest_sha256") != endpoint_sha:
+        raise ValueError("FINAL_ANALYSIS_REFUSED_RUNTIME_MAPPING_PARENT")
+    if mapping.get("endpoint_parquet_sha256") != EXPECTED_PARQUET_SHA256:
+        raise ValueError("FINAL_ANALYSIS_REFUSED_RUNTIME_MAPPING_PARQUET")
+    if mapping.get("ordered_source_ids_sha256") != EXPECTED_SOURCE_IDS_SHA256:
+        raise ValueError("FINAL_ANALYSIS_REFUSED_RUNTIME_MAPPING_SOURCE_ORDER")
+    if [int(row["source_id"]) for row in mapping_rows] != [int(row["source_id"]) for row in rows]:
+        raise ValueError("FINAL_ANALYSIS_REFUSED_RUNTIME_MAPPING_ROW_ORDER")
+    endpoint_by_source = {int(row["source_id"]): row for row in rows}
+    pairs: set[tuple[str, str]] = set()
+    merged: list[dict[str, Any]] = []
+    for row in mapping_rows:
+        source_id = int(row["source_id"])
+        endpoint_row = endpoint_by_source.get(source_id)
+        if endpoint_row is None:
+            raise ValueError("FINAL_ANALYSIS_REFUSED_RUNTIME_MAPPING_SOURCE_ID")
+        if int(row["row_position"]) != int(endpoint_row["row_position"]):
+            raise ValueError("FINAL_ANALYSIS_REFUSED_RUNTIME_MAPPING_ROW_POSITION")
+        pair = (row["runtime_input_sha256"], row["ground_truth_sha256_exact"])
+        if pair in pairs:
+            raise ValueError("FINAL_ANALYSIS_REFUSED_RUNTIME_MAPPING_DUPLICATE")
+        pairs.add(pair)
+        if row["ground_truth_sha256_exact"] != endpoint_row["ground_truth_sha256_exact"]:
+            raise ValueError("FINAL_ANALYSIS_REFUSED_RUNTIME_MAPPING_GROUND_TRUTH")
+        if row.get("prompt_sha256_exact") != endpoint_row.get("prompt_sha256_exact"):
+            raise ValueError("FINAL_ANALYSIS_REFUSED_RUNTIME_MAPPING_ENDPOINT_ROW")
+        merged.append({**row, "data_source": endpoint_row.get("data_source", "rlla")})
+    if len(pairs) != 108:
+        raise ValueError("FINAL_ANALYSIS_REFUSED_RUNTIME_MAPPING_COVERAGE")
+    identity = {
+        "endpoint_manifest_sha256": endpoint_sha,
+        "runtime_mapping_sha256": runtime_sha,
+        "endpoint_parquet_sha256": EXPECTED_PARQUET_SHA256,
+        "ordered_source_ids_sha256": EXPECTED_SOURCE_IDS_SHA256,
+        "runtime_pair_count": len(pairs),
+    }
+    return endpoint, merged, identity
+
+
 def output_records(
     output_path: Path,
-    manifest_rows: list[dict[str, Any]],
+    mapping_rows: list[dict[str, Any]],
     scorer: Any | None,
     experiment_name: str,
+    runtime_mapping: bool,
 ) -> list[dict[str, Any]]:
-    by_key = {
-        (row["prompt_sha256_exact"], row["ground_truth_sha256_exact"]): row
-        for row in manifest_rows
-    }
+    if runtime_mapping:
+        by_key = {
+            (row["runtime_input_sha256"], row["ground_truth_sha256_exact"]): row for row in mapping_rows
+        }
+    else:
+        by_key = {
+            (row["prompt_sha256_exact"], row["ground_truth_sha256_exact"]): row for row in mapping_rows
+        }
     records: list[dict[str, Any]] = []
     seen: set[tuple[str, str]] = set()
     for position, line in enumerate(output_path.read_text(encoding="utf-8").splitlines()):
         if not line.strip():
             continue
         item = json.loads(line)
-        prompt_hash = sha256_text(str(item.get("input", "")))
+        input_hash = sha256_text(str(item.get("input", "")))
         gt_text = str(item.get("gts", ""))
         gt_hash = sha256_text(gt_text)
-        key = (prompt_hash, gt_hash)
+        key = (input_hash, gt_hash)
         row = by_key.get(key)
         if row is None:
-            raise ValueError(f"output row {position} does not match the frozen manifest")
+            raise ValueError(f"FINAL_ANALYSIS_REFUSED_UNMAPPED_OUTPUT_ROW:{position}")
         if key in seen:
-            raise ValueError(f"duplicate output row at position {position}")
+            raise ValueError(f"FINAL_ANALYSIS_REFUSED_DUPLICATE_OUTPUT_ROW:{position}")
         seen.add(key)
         output = str(item.get("output", ""))
         if scorer is not None:
@@ -188,7 +280,7 @@ def output_records(
                 "row_position": int(row["row_position"]),
                 "source_id": int(row["source_id"]),
                 "target_category": row.get("target_category", "unknown"),
-                "input_sha256": prompt_hash,
+                "input_sha256": input_hash,
                 "ground_truth_sha256": gt_hash,
                 "output_sha256": sha256_text(output),
                 "score": score,
@@ -201,8 +293,8 @@ def output_records(
                 "response_wrapper_auxiliary": response_wrapper(output),
             }
         )
-    if len(records) != len(manifest_rows):
-        raise ValueError(f"coverage mismatch: {len(records)} != {len(manifest_rows)}")
+    if len(records) != len(mapping_rows) or len(seen) != len(mapping_rows):
+        raise ValueError(f"FINAL_ANALYSIS_REFUSED_INCOMPLETE_OUTPUT_COVERAGE:{len(records)}")
     return sorted(records, key=lambda row: row["row_position"])
 
 
@@ -220,16 +312,11 @@ def summarize(records: list[dict[str, Any]]) -> dict[str, Any]:
     }
 
 
-def bootstrap(
-    left: np.ndarray,
-    right: np.ndarray,
-    rng: np.random.Generator,
-    indices: np.ndarray | None = None,
-) -> dict[str, float | int]:
+def bootstrap(left: np.ndarray, right: np.ndarray, indices: np.ndarray) -> dict[str, float | int]:
     if len(left) != len(right) or len(left) == 0:
         raise ValueError("paired bootstrap requires non-empty equal-length arrays")
-    if indices is None:
-        indices = rng.integers(0, len(left), size=(10000, len(left)))
+    if indices.shape != (BOOTSTRAP_REPLICATES, len(left)):
+        raise ValueError("bootstrap index shape does not match paired rows")
     differences = right[indices].mean(axis=1) - left[indices].mean(axis=1)
     return {
         "n": int(len(left)),
@@ -237,30 +324,56 @@ def bootstrap(
         "ci95_low": float(np.quantile(differences, 0.025)),
         "ci95_median": float(np.quantile(differences, 0.5)),
         "ci95_high": float(np.quantile(differences, 0.975)),
-        "approx_two_sided_tail": float(
-            min(1.0, 2.0 * min(np.mean(differences <= 0), np.mean(differences >= 0)))
-        ),
+        "approx_two_sided_tail": float(min(1.0, 2.0 * min(np.mean(differences <= 0), np.mean(differences >= 0)))),
     }
 
 
-def paired_effect(left: list[dict[str, Any]], right: list[dict[str, Any]], rng: np.random.Generator) -> dict[str, Any]:
+def make_bootstrap_indices(n: int) -> tuple[np.ndarray, str]:
+    rng = np.random.default_rng(BOOTSTRAP_SEED)
+    indices = rng.integers(0, n, size=(BOOTSTRAP_REPLICATES, n), dtype=np.int64)
+    return indices, sha256_bytes(indices.tobytes(order="C"))
+
+
+def paired_effect(left: list[dict[str, Any]], right: list[dict[str, Any]], indices: np.ndarray) -> dict[str, Any]:
     left_by_id = {int(row["source_id"]): row for row in left}
     right_by_id = {int(row["source_id"]): row for row in right}
     if set(left_by_id) != set(right_by_id):
         raise ValueError("paired comparison coverage mismatch")
     row_ids = sorted(left_by_id)
-    indices = rng.integers(0, len(row_ids), size=(10000, len(row_ids)))
+    if indices.shape != (BOOTSTRAP_REPLICATES, len(row_ids)):
+        raise ValueError("paired index matrix does not match comparison scope")
     result: dict[str, Any] = {"n": len(row_ids), "tie_tolerance": TIE_TOLERANCE, "metrics": {}}
     for metric in METRICS:
         left_values = np.asarray([float(left_by_id[sid][metric]) for sid in row_ids], dtype=np.float64)
         right_values = np.asarray([float(right_by_id[sid][metric]) for sid in row_ids], dtype=np.float64)
         differences = right_values - left_values
         result["metrics"][metric] = {
-            "bootstrap": bootstrap(left_values, right_values, rng, indices),
+            "bootstrap": bootstrap(left_values, right_values, indices),
             "improved": int(np.sum(differences > TIE_TOLERANCE)),
             "declined": int(np.sum(differences < -TIE_TOLERANCE)),
             "tied": int(np.sum(np.abs(differences) <= TIE_TOLERANCE)),
             "mean_difference": float(differences.mean()),
+        }
+    return result
+
+
+def descriptive_effect(left: list[dict[str, Any]], right: list[dict[str, Any]]) -> dict[str, Any]:
+    left_by_id = {int(row["source_id"]): row for row in left}
+    right_by_id = {int(row["source_id"]): row for row in right}
+    if set(left_by_id) != set(right_by_id):
+        raise ValueError("descriptive comparison coverage mismatch")
+    result: dict[str, Any] = {"descriptive_only": True, "n": len(left_by_id), "metrics": {}}
+    row_ids = sorted(left_by_id)
+    for metric in METRICS:
+        differences = np.asarray(
+            [float(right_by_id[sid][metric]) - float(left_by_id[sid][metric]) for sid in row_ids],
+            dtype=np.float64,
+        )
+        result["metrics"][metric] = {
+            "mean_difference": float(differences.mean()) if len(differences) else None,
+            "improved": int(np.sum(differences > TIE_TOLERANCE)),
+            "declined": int(np.sum(differences < -TIE_TOLERANCE)),
+            "tied": int(np.sum(np.abs(differences) <= TIE_TOLERANCE)),
         }
     return result
 
@@ -278,17 +391,15 @@ def self_test() -> None:
     assert tool_parse("<think>x</think>\n<tool_call>\n{}\n</tool_call>")
     assert not tool_parse("<think>x</think>\n<response>y</response>")
     assert response_wrapper("<think>x</think>\n<response>y</response>")
-    assert strict_format(
-        "<think>x</think>\n<response>y</response>",
-        "<think>x</think>\n<response>z</response>",
-    )
-    rng = np.random.default_rng(42)
-    assert bootstrap(np.array([1.0, 2.0]), np.array([2.0, 4.0]), rng)["n"] == 2
-    assert paired_effect(
+    assert strict_format("<think>x</think>\n<response>y</response>", "<response>z</response>")
+    indices, digest = make_bootstrap_indices(2)
+    assert indices.shape == (BOOTSTRAP_REPLICATES, 2) and len(digest) == 64
+    effect = paired_effect(
         [{"source_id": 1, "score": 1.0, "accuracy_reward": 1.0, "format_reward": 0.0}],
         [{"source_id": 1, "score": 2.0, "accuracy_reward": 1.0, "format_reward": 1.0}],
-        np.random.default_rng(42),
-    )["n"] == 1
+        np.zeros((BOOTSTRAP_REPLICATES, 1), dtype=np.int64),
+    )
+    assert effect["n"] == 1
     print("ANALYSIS_SELF_TEST_PASS")
 
 
@@ -298,7 +409,10 @@ def scope_records(records: list[dict[str, Any]], predicate: Callable[[dict[str, 
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--manifest", type=Path)
+    parser.add_argument("--manifest", "--endpoint-manifest", dest="endpoint_manifest", type=Path)
+    parser.add_argument("--runtime-mapping", type=Path)
+    parser.add_argument("--endpoint-parquet", type=Path)
+    parser.add_argument("--fixture-mode", action="store_true", help="explicitly permit non-formal fixtures")
     parser.add_argument("--scorer", type=Path)
     parser.add_argument("--experiment-name", default="qwen2p5_1p5b_grpo_one_step")
     parser.add_argument("--step", type=int, default=0)
@@ -311,20 +425,42 @@ def main() -> None:
     if args.self_test:
         self_test()
         return
-    if args.manifest is None or not args.model_output or args.out_json is None:
-        parser.error("manifest, at least one --model-output, and --out-json are required")
-    manifest = load_json(args.manifest)
-    manifest_rows = manifest["rows"]
-    expected_n = int(manifest.get("row_count", len(manifest_rows)))
-    if expected_n != len(manifest_rows):
-        raise ValueError("manifest row_count does not match manifest rows")
+    if not args.model_output or args.out_json is None:
+        parser.error("at least one --model-output and --out-json are required")
+    model_names = [name for name, _ in args.model_output]
+    if len(model_names) != len(set(model_names)):
+        raise ValueError("FINAL_ANALYSIS_REFUSED_INCOMPLETE_MATRIX: duplicate model name")
+    root = Path("/root/autodl-tmp/ProjectB")
+    endpoint_manifest_path = args.endpoint_manifest or root / "repo/manifests/final_holdout_v1_manifest.json"
+    runtime_mapping_path = args.runtime_mapping or root / "repo/manifests/final_holdout_v1_runtime_mapping.json"
+    endpoint_parquet_path = args.endpoint_parquet or root / "env-modern/final_holdout_v1.parquet"
+    if args.fixture_mode:
+        endpoint = load_json(endpoint_manifest_path)
+        mapping_rows = endpoint["rows"]
+        identity = {"fixture_mode": True}
+        runtime_mapping = False
+        expected_n = int(endpoint.get("row_count", len(mapping_rows)))
+    else:
+        if set(model_names) != EXPECTED_MODEL_NAMES:
+            missing = sorted(EXPECTED_MODEL_NAMES - set(model_names))
+            extra = sorted(set(model_names) - EXPECTED_MODEL_NAMES)
+            raise ValueError(
+                f"FINAL_ANALYSIS_REFUSED_INCOMPLETE_MATRIX: missing={missing}; extra={extra}"
+            )
+        endpoint, mapping_rows, identity = verify_frozen_identity(
+            endpoint_manifest_path, runtime_mapping_path, endpoint_parquet_path
+        )
+        runtime_mapping = True
+        expected_n = 108
+    if expected_n != len(mapping_rows):
+        raise ValueError("FINAL_ANALYSIS_REFUSED_MANIFEST_ROW_COUNT")
     scorer = load_scorer(args.scorer) if args.scorer else None
     runs: dict[str, Any] = {}
-    for name, root in args.model_output:
-        path = resolve_output(root, args.step)
-        records = output_records(path, manifest_rows, scorer, args.experiment_name)
+    for name, root_path in args.model_output:
+        path = resolve_output(root_path, args.step)
+        records = output_records(path, mapping_rows, scorer, args.experiment_name, runtime_mapping)
         if len(records) != expected_n:
-            raise ValueError(f"{name} coverage is not the frozen N={expected_n}")
+            raise ValueError(f"{name} coverage is not the expected N={expected_n}")
         runs[name] = {
             "output_path": str(path),
             "primary": summarize(records),
@@ -339,56 +475,77 @@ def main() -> None:
                 "metrics": summarize(sensitivity),
             }
 
+    primary_indices, primary_digest = make_bootstrap_indices(expected_n)
+    tool_records = scope_records(next(iter(runs.values()))["records"], lambda row: row["target_category"] == "tool_only")
+    tool_indices, tool_digest = make_bootstrap_indices(len(tool_records))
+    sensitivity_indices = None
+    sensitivity_digest = None
+    if args.exclude_source_id is not None:
+        sensitivity_indices, sensitivity_digest = make_bootstrap_indices(expected_n - 1)
+
     stratification_counts = {
-        "tool_only": sum(1 for row in manifest_rows if row.get("target_category") == "tool_only"),
-        "response_only": sum(1 for row in manifest_rows if row.get("target_category") == "response_only"),
+        "tool_only": sum(1 for row in mapping_rows if row.get("target_category") == "tool_only"),
+        "response_only": sum(1 for row in mapping_rows if row.get("target_category") == "response_only"),
     }
-    rng = np.random.default_rng(42)
     paired: dict[str, Any] = {}
     for left_name, right_name, key, direction in COMPARISONS:
         if left_name not in runs or right_name not in runs:
-            continue
-        left_tool = scope_records(runs[left_name]["records"], lambda row: row["target_category"] == "tool_only")
-        right_tool = scope_records(runs[right_name]["records"], lambda row: row["target_category"] == "tool_only")
-        left_response = scope_records(runs[left_name]["records"], lambda row: row["target_category"] == "response_only")
-        right_response = scope_records(runs[right_name]["records"], lambda row: row["target_category"] == "response_only")
+            if args.fixture_mode:
+                continue
+            raise ValueError("FINAL_ANALYSIS_REFUSED_INCOMPLETE_MATRIX")
+        left_records = runs[left_name]["records"]
+        right_records = runs[right_name]["records"]
+        left_tool = scope_records(left_records, lambda row: row["target_category"] == "tool_only")
+        right_tool = scope_records(right_records, lambda row: row["target_category"] == "tool_only")
+        left_response = scope_records(left_records, lambda row: row["target_category"] == "response_only")
+        right_response = scope_records(right_records, lambda row: row["target_category"] == "response_only")
         paired[key] = {
             "left": left_name,
             "right": right_name,
             "reported_direction": direction,
             "right_minus_left": {
-                "primary": paired_effect(runs[left_name]["records"], runs[right_name]["records"], rng),
-                "tool_only": paired_effect(left_tool, right_tool, rng),
-                "response_only": {
-                    "descriptive_only": True,
-                    "n": len(left_response),
-                    "effect": paired_effect(left_response, right_response, rng),
-                },
+                "primary": paired_effect(left_records, right_records, primary_indices),
+                "tool_only": paired_effect(left_tool, right_tool, tool_indices),
+                "response_only": descriptive_effect(left_response, right_response),
             },
         }
-        if args.exclude_source_id is not None:
+        if sensitivity_indices is not None:
             paired[key]["right_minus_left"]["sensitivity_excluding_source_id"] = paired_effect(
-                scope_records(runs[left_name]["records"], lambda row: int(row["source_id"]) != args.exclude_source_id),
-                scope_records(runs[right_name]["records"], lambda row: int(row["source_id"]) != args.exclude_source_id),
-                rng,
+                scope_records(left_records, lambda row: int(row["source_id"]) != args.exclude_source_id),
+                scope_records(right_records, lambda row: int(row["source_id"]) != args.exclude_source_id),
+                sensitivity_indices,
             )
 
     result = {
-        "schema": "projectb_final_endpoint_analysis_v2",
-        "source": "persisted FINAL_HOLDOUT_V1 JSONL only; no model loading or inference",
-        "endpoint": manifest.get("manifest_version", "unknown"),
+        "schema": "projectb_final_endpoint_analysis_v3",
+        "source": "persisted JSONL only; no model loading or inference",
+        "endpoint": endpoint.get("manifest_version", "fixture"),
         "step": args.step,
-        "manifest": str(args.manifest),
+        "endpoint_identity": identity,
         "row_count": expected_n,
+        "formal_matrix": not args.fixture_mode,
+        "model_names": model_names,
         "stratification": {
             **stratification_counts,
             "response_only_interpretation": "descriptive_only_small_sample",
         },
-        "bootstrap": {"replicates": 10000, "seed": 42, "rng": "numpy.default_rng"},
+        "bootstrap": {
+            "replicates": BOOTSTRAP_REPLICATES,
+            "seed": BOOTSTRAP_SEED,
+            "rng": "numpy.default_rng",
+            "numpy_version": np.__version__,
+            "primary_shape": list(primary_indices.shape),
+            "primary_index_sha256": primary_digest,
+            "tool_shape": list(tool_indices.shape),
+            "tool_index_sha256": tool_digest,
+            "sensitivity_shape": list(sensitivity_indices.shape) if sensitivity_indices is not None else None,
+            "sensitivity_index_sha256": sensitivity_digest,
+            "response_only_inferential_ci": False,
+        },
         "tie_tolerance": TIE_TOLERANCE,
         "runs": runs,
         "paired_bootstrap_right_minus_left": paired,
-        "kl_confound_note": "Final endpoint analysis does not remove the historical KL-treatment confound among the trained algorithms.",
+        "kl_confound_note": "Final endpoint analysis retains the historical KL-treatment confound; comparisons are not pure advantage-estimator causal tests.",
     }
     args.out_json.parent.mkdir(parents=True, exist_ok=True)
     args.out_json.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -398,16 +555,19 @@ def main() -> None:
             "",
             "CPU-only analysis of persisted outputs; no model loading or inference.",
             "",
+            f"- formal matrix: `{not args.fixture_mode}`",
             f"- endpoint: `{result['endpoint']}`",
             f"- step: {args.step}",
-            f"- models: {', '.join(runs)}",
+            f"- models: {', '.join(model_names)}",
             f"- primary: all frozen N={expected_n} rows",
-            f"- stratified auxiliary: tool-only N={stratification_counts['tool_only']}; response-only N={stratification_counts['response_only']} (response-only descriptive only)",
-            "- bootstrap: 10,000 paired resamples, seed 42",
-            "- paired direction: every reported difference is right minus left; see the fixed comparison labels",
-            "- interpretation: historical KL-treatment confound remains; this is not a pure advantage-estimator causal test",
+            f"- stratified auxiliary: tool-only N={stratification_counts['tool_only']}; response-only N={stratification_counts['response_only']} (descriptive only)",
+            f"- bootstrap: 10,000 paired resamples, seed 42, NumPy {np.__version__}",
+            f"- primary index SHA256: `{primary_digest}`",
+            f"- tool-only index SHA256: `{tool_digest}`",
+            "- paired direction: every reported difference is right minus left",
+            "- interpretation: historical KL-treatment confound remains; no pure advantage-estimator causal claim",
         ]
-        for name in runs:
+        for name in model_names:
             metrics = runs[name]["primary"]
             lines.extend(
                 [

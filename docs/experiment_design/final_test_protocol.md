@@ -129,4 +129,44 @@ Public GitHub receives reviewed small reports, metric/manifest files and analysi
 
 After test outcomes are observed, do not use them to choose step28/35, continue to 70, change reward, tune hyperparameters, retrain or present the same test as unseen again. If new research starts, treat this test as observed data and specify a new evaluation boundary. Negative or close results are published with the same reporting rules.
 
-**Current status:** all server-dependent identity/provenance checks, analysis-program freeze and GPU evaluation are pending. This revision supplies the protocol only.
+**Current status:** the CPU-only interface repair and static gate passed on the
+independent review branch. Server-dependent final identity/provenance
+execution and GPU evaluation remain pending; this protocol still authorizes no
+inference or scoring.
+
+## Implementation controls added 2026-10-03 (CPU-only, no design change)
+
+The endpoint identity remains byte-frozen. The endpoint manifest SHA256 is
+`160befdb3c87aab85b8d65254c70ca83823e393ace2478c6b1e226898be97a16`; the
+derived parquet SHA256 is
+`e8f2e025906fa5e9e3088d9a29494e05da5fb47ddf4705b2550956c4380d8f22`; and the
+ordered source-ID SHA256 is
+`75373e7e89ed7004a2d5cb858b9626449d74f7e536d341fda7aec18eed5e29ad`.
+
+The supplemental
+`manifests/final_holdout_v1_runtime_mapping.json` does not define a new
+endpoint. It maps each frozen row to the exact veRL runtime representation
+used in the validation dump: official `RLHFDataset`, the official text
+ContinuousToken builder with `add_generation_prompt=True`, and
+`tokenizer.decode(ids, skip_special_tokens=True)`. It records only
+`(runtime_input_sha256, ground_truth_sha256_exact)` plus frozen row identity;
+it stores no raw prompt, ground truth, or model output. Its SHA256 is
+`ee7ab8143f57c6c9f60fd0a5c7c48df73ee28fb3c72761d6bf7a7eb7d9cdd`.
+The launcher and analyzer verify these external byte hashes before parsing
+either manifest. A separate CPU regression constructs an ephemeral mapping
+for `formal_validation_80.parquet` and requires every persisted GRPO, GDPO and
+noKL validation JSONL checked to map 80/80 uniquely without positional
+fallback.
+
+Formal analysis is refused unless the model names are exactly
+`RL_INIT_V1`, `GRPO-original35`, `GDPO-current35`, and `GRPO-noKL35`, with
+108 uniquely mapped rows per model. Fixtures must opt into an explicit
+`--fixture-mode`; partial model matrices cannot produce a formal report.
+
+For the six predeclared right-minus-left comparisons, one
+`numpy.default_rng(42)` primary index matrix of shape `(10000, 108)` is shared
+across every overall metric and comparison. One separately generated matrix
+of shape `(10000, 101)` is shared by all tool-only metrics and comparisons.
+NumPy version, RNG, seed, shapes, and byte SHA256 values are recorded in the
+analysis output. Response-only N=7 comparisons are descriptive only and do not
+receive inferential bootstrap intervals.
