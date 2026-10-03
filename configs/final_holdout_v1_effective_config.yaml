@@ -1,0 +1,53 @@
+schema: projectb_final_holdout_v1_effective_config_v1
+status: static_preflight_only
+execution:
+  model_inference: explicitly_authorized_only
+  training: forbidden
+  resume: forbidden
+  runtime_root: /root/autodl-tmp/ProjectB/upstream/verl-v0.9.1
+  hydra_config: /root/autodl-tmp/ProjectB/upstream/verl-v0.9.1/verl/trainer/config/ppo_trainer.yaml
+  validation_mode: trainer.val_before_train=true and trainer.val_only=true
+  generation:
+    n: 1
+    temperature: 0
+    do_sample: false
+    top_k: -1
+    top_p: 1.0
+  data:
+    endpoint: FINAL_HOLDOUT_V1
+    path: /root/autodl-tmp/ProjectB/env-modern/final_holdout_v1.parquet
+    manifest_path: /root/autodl-tmp/ProjectB/repo/manifests/final_holdout_v1_manifest.json
+    row_count: 108
+    max_prompt_length: 2048
+    max_response_length: 1024
+    shuffle: false
+    validation_shuffle: false
+    seed: 42
+  reward:
+    scorer_path: /root/autodl-tmp/ProjectB/upstream/verl-v0.9.1/verl/utils/reward_score/rlla.py
+    scorer_name: compute_score
+    reward_manager: gdpo
+  algorithm:
+    adv_estimator: grpo
+    use_kl_in_reward: false
+    actor_use_kl_loss: false
+    reference_policy_expected: false
+  execution_settings:
+    tensor_model_parallel_size: 1
+    gpu_memory_utilization: 0.40
+    max_num_seqs: 8
+    max_num_batched_tokens: 6144
+models:
+  RL_INIT_V1: /root/autodl-tmp/ProjectB/checkpoints/rl_init_sft_v2_merged
+  GRPO-original35: /root/autodl-tmp/ProjectB/runs/grpo_stage1_35/model_only/step_35
+  GDPO-current35: /root/autodl-tmp/ProjectB/runs/gdpo_stage1_35/model_only/step_35
+  GRPO-noKL35: /root/autodl-tmp/ProjectB/runs/grpo_nokl_stage1_35/model_only/step_35
+analysis:
+  script: /root/autodl-tmp/ProjectB/repo/scripts/analyze_final_test.py
+  bootstrap_replicates: 10000
+  bootstrap_seed: 42
+  primary_rows: 108
+  tool_only_rows: 101
+  response_only_rows: 7
+  response_only_interpretation: descriptive_only_small_sample
+  output_policy: hash-only metrics; do not commit raw prompt/output JSONL

@@ -1,0 +1,89 @@
+{
+  "checks": [
+    {
+      "detail": "",
+      "name": "python_compile",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "bash_syntax",
+      "passed": true
+    },
+    {
+      "detail": "ANALYSIS_SELF_TEST_PASS",
+      "name": "analysis_self_test",
+      "passed": true
+    },
+    {
+      "detail": "malized_content_overlap\",\n      \"passed\": true\n    },\n    {\n      \"detail\": [],\n      \"name\": \"zero_internal_duplicate\",\n      \"passed\": true\n    },\n    {\n      \"detail\": [],\n      \"name\": \"candidate_content_duplicate_audit_empty\",\n      \"passed\": true\n    },\n    {\n      \"detail\": \"final-test JSONL absent\",\n      \"name\": \"no_model_output_present\",\n      \"passed\": true\n    }\n  ],\n  \"derived_parquet_sha256\": \"e8f2e025906fa5e9e3088d9a29494e05da5fb47ddf4705b2550956c4380d8f22\",\n  \"generated_at_utc\": \"2026-10-03T04:19:01.271143+00:00\",\n  \"inference_performed\": false,\n  \"ordered_source_ids_sha256\": \"75373e7e89ed7004a2d5cb858b9626449d74f7e536d341fda7aec18eed5e29ad\",\n  \"prompt_token_distribution\": {\n    \"max\": 1485,\n    \"min\": 402,\n    \"n\": 108\n  },\n  \"reward_scoring_performed\": false,\n  \"row_count\": 108,\n  \"schema\": \"projectb_final_holdout_v1_freeze_verification\",\n  \"status\": \"FINAL_HOLDOUT_V1_FROZEN_PASS\",\n  \"target_category_distribution\": {\n    \"response_only\": 7,\n    \"tool_only\": 101\n  }\n}\n",
+      "name": "freeze_reaudit",
+      "passed": true
+    },
+    {
+      "detail": [
+        2,
+        "FINAL_TEST_REFUSED: set PROJECTB_FINAL_TEST_ENABLE=1 after manual FINAL_HOLDOUT_V1 review"
+      ],
+      "name": "launcher_default_refusal",
+      "passed": true
+    },
+    {
+      "detail": "new endpoint only",
+      "name": "launcher_endpoint",
+      "passed": true
+    },
+    {
+      "detail": "manifest/hash/count/order assertions",
+      "name": "launcher_hash_row_id_guard",
+      "passed": true
+    },
+    {
+      "detail": "fresh internal endpoint plus historical test disclosure",
+      "name": "protocol_endpoint_revision",
+      "passed": true
+    },
+    {
+      "detail": "dynamic coverage, 101/7 strata, six fixed comparisons",
+      "name": "analysis_dynamic_n_and_strata",
+      "passed": true
+    },
+    {
+      "detail": "official veRL v0.9.1 compose/resolve output",
+      "name": "hydra_resolved_static",
+      "passed": true
+    },
+    {
+      "detail": "val-only return and reference-policy gate present",
+      "name": "val_only_source_audit",
+      "passed": true
+    },
+    {
+      "detail": "repo/server manifest bytes",
+      "name": "manifest_copy_equal",
+      "passed": true
+    },
+    {
+      "detail": {
+        "row_count": 108,
+        "rows": 108
+      },
+      "name": "manifest_frozen_shape",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "no_training_or_inference_process",
+      "passed": true
+    },
+    {
+      "detail": "final-test JSONL absent",
+      "name": "no_model_output",
+      "passed": true
+    }
+  ],
+  "inference_performed": false,
+  "reward_scoring_performed": false,
+  "schema": "projectb_final_holdout_v1_static_checks",
+  "status": "PASS"
+}

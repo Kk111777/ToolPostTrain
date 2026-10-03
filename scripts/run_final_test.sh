@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
-# Explicitly opt-in final-test launcher. Static-only until provenance review.
+# Explicitly opt-in FINAL_HOLDOUT_V1 launcher. Static-only until provenance
+# review and a separate infrastructure smoke have passed.
 set -euo pipefail
 
 if [[ "${PROJECTB_FINAL_TEST_ENABLE:-0}" != "1" ]]; then
-  echo "FINAL_TEST_REFUSED: set PROJECTB_FINAL_TEST_ENABLE=1 after manual provenance review" >&2
+  echo "FINAL_TEST_REFUSED: set PROJECTB_FINAL_TEST_ENABLE=1 after manual FINAL_HOLDOUT_V1 review" >&2
   exit 2
 fi
 if [[ "${PROJECTB_FINAL_TEST_CONFIRM:-}" != "I_HAVE_REVIEWED_PROVENANCE" ]]; then
@@ -22,8 +23,8 @@ ROOT=/root/autodl-tmp/ProjectB
 UPSTREAM="$ROOT/upstream/verl-v0.9.1"
 VENV="$ROOT/.venv-modern"
 PYTHON="$VENV/bin/python"
-TEST_FILE="$ROOT/repo/verl-GDPO/dataset/rlla_4k/test.parquet"
-TEST_MANIFEST="$ROOT/final-test-preflight/final_test_dataset_manifest.json"
+HOLDOUT_FILE="$ROOT/env-modern/final_holdout_v1.parquet"
+HOLDOUT_MANIFEST="$ROOT/repo/manifests/final_holdout_v1_manifest.json"
 EXPERIMENT_NAME="qwen2p5_1p5b_grpo_one_step"
 
 case "$MODEL_NAME" in
@@ -35,7 +36,8 @@ case "$MODEL_NAME" in
 esac
 [[ "$MODEL_PATH" == "$EXPECTED" ]] || { echo "FINAL_TEST_REFUSED: model path is not frozen for $MODEL_NAME" >&2; exit 2; }
 [[ -d "$MODEL_PATH" && -f "$MODEL_PATH/config.json" ]] || { echo "missing model path" >&2; exit 2; }
-[[ -f "$TEST_FILE" && -f "$TEST_MANIFEST" ]] || { echo "missing test dataset or manifest" >&2; exit 2; }
+[[ "$HOLDOUT_FILE" != *"test.parquet"* ]] || { echo "FINAL_TEST_REFUSED: old test.parquet is not an allowed endpoint" >&2; exit 2; }
+[[ -f "$HOLDOUT_FILE" && -f "$HOLDOUT_MANIFEST" ]] || { echo "missing FINAL_HOLDOUT_V1 parquet or manifest" >&2; exit 2; }
 [[ "$OUT_DIR" == "$ROOT/final-test/"* ]] || { echo "FINAL_TEST_REFUSED: output must be under $ROOT/final-test/" >&2; exit 2; }
 [[ "$OUT_DIR" != *"/runs/"* ]] || { echo "FINAL_TEST_REFUSED: output cannot be a Stage1 run directory" >&2; exit 2; }
 if [[ -e "$OUT_DIR" && -n "$(find "$OUT_DIR" -mindepth 1 -print -quit)" ]]; then
@@ -43,6 +45,41 @@ if [[ -e "$OUT_DIR" && -n "$(find "$OUT_DIR" -mindepth 1 -print -quit)" ]]; then
   exit 2
 fi
 mkdir -p "$OUT_DIR"
+
+# Read-only endpoint guard.  It checks the frozen identity before any model
+# or vLLM process is started and has no fallback to test.parquet.
+"$PYTHON" - "$HOLDOUT_FILE" "$HOLDOUT_MANIFEST" <<'PY'
+import hashlib
+import json
+import sys
+
+import pyarrow.parquet as pq
+
+holdout, manifest_path = sys.argv[1:]
+manifest = json.load(open(manifest_path, encoding="utf-8"))
+if manifest.get("manifest_version") != "FINAL_HOLDOUT_V1":
+    raise SystemExit("FINAL_TEST_REFUSED: manifest is not FINAL_HOLDOUT_V1")
+if manifest.get("row_count") != 108:
+    raise SystemExit("FINAL_TEST_REFUSED: frozen row count is not 108")
+if "test.parquet" in holdout:
+    raise SystemExit("FINAL_TEST_REFUSED: old test.parquet endpoint is forbidden")
+digest = hashlib.sha256()
+with open(holdout, "rb") as handle:
+    for block in iter(lambda: handle.read(8 * 1024 * 1024), b""):
+        digest.update(block)
+if digest.hexdigest() != manifest.get("derived_parquet_sha256"):
+    raise SystemExit("FINAL_TEST_REFUSED: FINAL_HOLDOUT_V1 SHA256 mismatch")
+table = pq.read_table(holdout)
+if len(table) != 108:
+    raise SystemExit("FINAL_TEST_REFUSED: FINAL_HOLDOUT_V1 row count mismatch")
+ids = [int((row.get("extra_info") or {}).get("index")) for row in table.to_pylist()]
+id_digest = hashlib.sha256("\n".join(map(str, ids)).encode()).hexdigest()
+if id_digest != manifest.get("ordered_source_ids_sha256"):
+    raise SystemExit("FINAL_TEST_REFUSED: FINAL_HOLDOUT_V1 source-ID hash mismatch")
+if ids != manifest.get("ordered_source_ids"):
+    raise SystemExit("FINAL_TEST_REFUSED: FINAL_HOLDOUT_V1 source order mismatch")
+print("FINAL_HOLDOUT_V1_STATIC_GUARD_PASS")
+PY
 
 export HF_HUB_OFFLINE=1
 export TRANSFORMERS_OFFLINE=1
@@ -61,11 +98,11 @@ exec "$PYTHON" -m verl.trainer.main_ppo \
   algorithm.kl_penalty=kl \
   algorithm.kl_ctrl.kl_coef=0.001 \
   data.train_files="$ROOT/repo/verl-GDPO/dataset/rlla_4k/train.parquet" \
-  data.val_files="$TEST_FILE" \
+  data.val_files="$HOLDOUT_FILE" \
   data.train_max_samples=-1 \
-  data.val_max_samples=80 \
+  data.val_max_samples=108 \
   data.train_batch_size=512 \
-  data.val_batch_size=80 \
+  data.val_batch_size=108 \
   data.max_prompt_length=2048 \
   data.max_response_length=1024 \
   data.filter_overlong_prompts=False \
@@ -116,7 +153,7 @@ exec "$PYTHON" -m verl.trainer.main_ppo \
   trainer.resume_mode=disable \
   trainer.total_epochs=0 \
   trainer.total_training_steps=0 \
-  trainer.project_name=ProjectB_final_test \
+  trainer.project_name=ProjectB_final_holdout_v1 \
   trainer.experiment_name="$EXPERIMENT_NAME" \
   trainer.default_local_dir="$OUT_DIR/checkpoints" \
   trainer.logger='[console]' \

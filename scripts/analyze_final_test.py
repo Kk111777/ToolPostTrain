@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
-"""CPU-only analysis for an explicitly authorized ProjectB final-test run."""
+"""CPU-only analysis for an explicitly authorized ProjectB final endpoint.
+
+The script consumes persisted JSONL outputs only. It never loads a model or
+starts vLLM. FINAL_HOLDOUT_V1 is the current endpoint: primary metrics use
+all 108 rows, while tool-only and response-only views are descriptive
+stratifications (the latter has N=7 and is intentionally not a strong
+statistical endpoint).
+"""
 
 from __future__ import annotations
 
@@ -11,11 +18,21 @@ import io
 import json
 import re
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 
 import numpy as np
 
-EXCLUDED_SOURCE_ID = 3814
+
+TIE_TOLERANCE = 1e-8
+COMPARISONS = (
+    ("GRPO-original35", "GRPO-noKL35", "GRPO-original35_vs_GRPO-noKL35", "noKL-original"),
+    ("GRPO-original35", "GDPO-current35", "GRPO-original35_vs_GDPO-current35", "GDPO-original"),
+    ("GRPO-noKL35", "GDPO-current35", "GRPO-noKL35_vs_GDPO-current35", "GDPO-noKL"),
+    ("RL_INIT_V1", "GRPO-original35", "RL_INIT_V1_vs_GRPO-original35", "original-RL_INIT_V1"),
+    ("RL_INIT_V1", "GDPO-current35", "RL_INIT_V1_vs_GDPO-current35", "GDPO-RL_INIT_V1"),
+    ("RL_INIT_V1", "GRPO-noKL35", "RL_INIT_V1_vs_GRPO-noKL35", "noKL-RL_INIT_V1"),
+)
+METRICS = ("score", "accuracy_reward", "format_reward")
 
 
 def sha256_text(value: str) -> str:
@@ -69,7 +86,6 @@ def strict_format(output: str, ground_truth: str) -> bool:
 
 
 def tool_parse(output: str) -> bool:
-    """JSON-line tool-call parse success over every output row."""
     output = scorer_text(output)
     try:
         block = output.split("<tool_call>", 1)[1].split("</tool_call>", 1)[0].strip()
@@ -96,7 +112,7 @@ def response_only_wrapper(output: str, ground_truth: str) -> bool | None:
     return response_wrapper(output)
 
 
-def bool_summary(values: list[bool], drop_none: bool = False) -> dict[str, Any]:
+def bool_summary(values: list[bool | None], drop_none: bool = False) -> dict[str, Any]:
     if drop_none:
         values = [value for value in values if value is not None]
     return {
@@ -170,7 +186,8 @@ def output_records(
         records.append(
             {
                 "row_position": int(row["row_position"]),
-                "source_id": row["source_id"],
+                "source_id": int(row["source_id"]),
+                "target_category": row.get("target_category", "unknown"),
                 "input_sha256": prompt_hash,
                 "ground_truth_sha256": gt_hash,
                 "output_sha256": sha256_text(output),
@@ -203,10 +220,16 @@ def summarize(records: list[dict[str, Any]]) -> dict[str, Any]:
     }
 
 
-def bootstrap(left: np.ndarray, right: np.ndarray, rng: np.random.Generator) -> dict[str, float]:
+def bootstrap(
+    left: np.ndarray,
+    right: np.ndarray,
+    rng: np.random.Generator,
+    indices: np.ndarray | None = None,
+) -> dict[str, float | int]:
     if len(left) != len(right) or len(left) == 0:
         raise ValueError("paired bootstrap requires non-empty equal-length arrays")
-    indices = rng.integers(0, len(left), size=(10000, len(left)))
+    if indices is None:
+        indices = rng.integers(0, len(left), size=(10000, len(left)))
     differences = right[indices].mean(axis=1) - left[indices].mean(axis=1)
     return {
         "n": int(len(left)),
@@ -218,6 +241,28 @@ def bootstrap(left: np.ndarray, right: np.ndarray, rng: np.random.Generator) -> 
             min(1.0, 2.0 * min(np.mean(differences <= 0), np.mean(differences >= 0)))
         ),
     }
+
+
+def paired_effect(left: list[dict[str, Any]], right: list[dict[str, Any]], rng: np.random.Generator) -> dict[str, Any]:
+    left_by_id = {int(row["source_id"]): row for row in left}
+    right_by_id = {int(row["source_id"]): row for row in right}
+    if set(left_by_id) != set(right_by_id):
+        raise ValueError("paired comparison coverage mismatch")
+    row_ids = sorted(left_by_id)
+    indices = rng.integers(0, len(row_ids), size=(10000, len(row_ids)))
+    result: dict[str, Any] = {"n": len(row_ids), "tie_tolerance": TIE_TOLERANCE, "metrics": {}}
+    for metric in METRICS:
+        left_values = np.asarray([float(left_by_id[sid][metric]) for sid in row_ids], dtype=np.float64)
+        right_values = np.asarray([float(right_by_id[sid][metric]) for sid in row_ids], dtype=np.float64)
+        differences = right_values - left_values
+        result["metrics"][metric] = {
+            "bootstrap": bootstrap(left_values, right_values, rng, indices),
+            "improved": int(np.sum(differences > TIE_TOLERANCE)),
+            "declined": int(np.sum(differences < -TIE_TOLERANCE)),
+            "tied": int(np.sum(np.abs(differences) <= TIE_TOLERANCE)),
+            "mean_difference": float(differences.mean()),
+        }
+    return result
 
 
 def parse_model_output(value: str) -> tuple[str, Path]:
@@ -239,7 +284,16 @@ def self_test() -> None:
     )
     rng = np.random.default_rng(42)
     assert bootstrap(np.array([1.0, 2.0]), np.array([2.0, 4.0]), rng)["n"] == 2
+    assert paired_effect(
+        [{"source_id": 1, "score": 1.0, "accuracy_reward": 1.0, "format_reward": 0.0}],
+        [{"source_id": 1, "score": 2.0, "accuracy_reward": 1.0, "format_reward": 1.0}],
+        np.random.default_rng(42),
+    )["n"] == 1
     print("ANALYSIS_SELF_TEST_PASS")
+
+
+def scope_records(records: list[dict[str, Any]], predicate: Callable[[dict[str, Any]], bool]) -> list[dict[str, Any]]:
+    return [row for row in records if predicate(row)]
 
 
 def main() -> None:
@@ -251,6 +305,7 @@ def main() -> None:
     parser.add_argument("--model-output", action="append", type=parse_model_output, default=[])
     parser.add_argument("--out-json", type=Path)
     parser.add_argument("--out-md", type=Path)
+    parser.add_argument("--exclude-source-id", type=int, default=None)
     parser.add_argument("--self-test", action="store_true")
     args = parser.parse_args()
     if args.self_test:
@@ -260,80 +315,115 @@ def main() -> None:
         parser.error("manifest, at least one --model-output, and --out-json are required")
     manifest = load_json(args.manifest)
     manifest_rows = manifest["rows"]
+    expected_n = int(manifest.get("row_count", len(manifest_rows)))
+    if expected_n != len(manifest_rows):
+        raise ValueError("manifest row_count does not match manifest rows")
     scorer = load_scorer(args.scorer) if args.scorer else None
     runs: dict[str, Any] = {}
     for name, root in args.model_output:
         path = resolve_output(root, args.step)
         records = output_records(path, manifest_rows, scorer, args.experiment_name)
+        if len(records) != expected_n:
+            raise ValueError(f"{name} coverage is not the frozen N={expected_n}")
         runs[name] = {
             "output_path": str(path),
-            "primary_80": summarize(records),
-            "sensitivity_79": summarize(
-                [row for row in records if int(row["source_id"]) != EXCLUDED_SOURCE_ID]
-            ),
+            "primary": summarize(records),
+            "tool_only": summarize(scope_records(records, lambda row: row["target_category"] == "tool_only")),
+            "response_only": summarize(scope_records(records, lambda row: row["target_category"] == "response_only")),
             "records": records,
         }
-    names = list(runs)
+        if args.exclude_source_id is not None:
+            sensitivity = scope_records(records, lambda row: int(row["source_id"]) != args.exclude_source_id)
+            runs[name]["sensitivity_excluding_source_id"] = {
+                "excluded_source_id": args.exclude_source_id,
+                "metrics": summarize(sensitivity),
+            }
+
+    stratification_counts = {
+        "tool_only": sum(1 for row in manifest_rows if row.get("target_category") == "tool_only"),
+        "response_only": sum(1 for row in manifest_rows if row.get("target_category") == "response_only"),
+    }
     rng = np.random.default_rng(42)
     paired: dict[str, Any] = {}
-    for left_index, left_name in enumerate(names):
-        for right_name in names[left_index + 1 :]:
-            key = f"{left_name}_vs_{right_name}"
-            paired[key] = {}
-            for scope, predicate in [
-                ("primary_80", lambda row: True),
-                ("sensitivity_79", lambda row: int(row["source_id"]) != EXCLUDED_SOURCE_ID),
-            ]:
-                left = [row for row in runs[left_name]["records"] if predicate(row)]
-                right = [row for row in runs[right_name]["records"] if predicate(row)]
-                paired[key][scope] = bootstrap(
-                    np.asarray([row["score"] for row in left], dtype=np.float64),
-                    np.asarray([row["score"] for row in right], dtype=np.float64),
-                    rng,
-                )
+    for left_name, right_name, key, direction in COMPARISONS:
+        if left_name not in runs or right_name not in runs:
+            continue
+        left_tool = scope_records(runs[left_name]["records"], lambda row: row["target_category"] == "tool_only")
+        right_tool = scope_records(runs[right_name]["records"], lambda row: row["target_category"] == "tool_only")
+        left_response = scope_records(runs[left_name]["records"], lambda row: row["target_category"] == "response_only")
+        right_response = scope_records(runs[right_name]["records"], lambda row: row["target_category"] == "response_only")
+        paired[key] = {
+            "left": left_name,
+            "right": right_name,
+            "reported_direction": direction,
+            "right_minus_left": {
+                "primary": paired_effect(runs[left_name]["records"], runs[right_name]["records"], rng),
+                "tool_only": paired_effect(left_tool, right_tool, rng),
+                "response_only": {
+                    "descriptive_only": True,
+                    "n": len(left_response),
+                    "effect": paired_effect(left_response, right_response, rng),
+                },
+            },
+        }
+        if args.exclude_source_id is not None:
+            paired[key]["right_minus_left"]["sensitivity_excluding_source_id"] = paired_effect(
+                scope_records(runs[left_name]["records"], lambda row: int(row["source_id"]) != args.exclude_source_id),
+                scope_records(runs[right_name]["records"], lambda row: int(row["source_id"]) != args.exclude_source_id),
+                rng,
+            )
+
     result = {
-        "schema": "projectb_final_test_analysis_v1",
-        "source": "persisted final-test JSONL only; no model loading or inference",
+        "schema": "projectb_final_endpoint_analysis_v2",
+        "source": "persisted FINAL_HOLDOUT_V1 JSONL only; no model loading or inference",
+        "endpoint": manifest.get("manifest_version", "unknown"),
         "step": args.step,
         "manifest": str(args.manifest),
-        "excluded_source_id": EXCLUDED_SOURCE_ID,
-        "bootstrap": {"replicates": 10000, "seed": 42},
+        "row_count": expected_n,
+        "stratification": {
+            **stratification_counts,
+            "response_only_interpretation": "descriptive_only_small_sample",
+        },
+        "bootstrap": {"replicates": 10000, "seed": 42, "rng": "numpy.default_rng"},
+        "tie_tolerance": TIE_TOLERANCE,
         "runs": runs,
         "paired_bootstrap_right_minus_left": paired,
+        "kl_confound_note": "Final endpoint analysis does not remove the historical KL-treatment confound among the trained algorithms.",
     }
     args.out_json.parent.mkdir(parents=True, exist_ok=True)
-    args.out_json.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n")
+    args.out_json.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     if args.out_md:
         lines = [
-            "# ProjectB final-test analysis",
+            "# ProjectB FINAL_HOLDOUT_V1 analysis",
             "",
             "CPU-only analysis of persisted outputs; no model loading or inference.",
             "",
+            f"- endpoint: `{result['endpoint']}`",
             f"- step: {args.step}",
-            f"- models: {', '.join(names)}",
-            "- primary: frozen 80-row test manifest",
-            "- sensitivity: same rows excluding source id 3814",
+            f"- models: {', '.join(runs)}",
+            f"- primary: all frozen N={expected_n} rows",
+            f"- stratified auxiliary: tool-only N={stratification_counts['tool_only']}; response-only N={stratification_counts['response_only']} (response-only descriptive only)",
             "- bootstrap: 10,000 paired resamples, seed 42",
+            "- paired direction: every reported difference is right minus left; see the fixed comparison labels",
+            "- interpretation: historical KL-treatment confound remains; this is not a pure advantage-estimator causal test",
         ]
-        for name in names:
-            metrics = runs[name]["primary_80"]
+        for name in runs:
+            metrics = runs[name]["primary"]
             lines.extend(
                 [
                     "",
                     f"## {name}",
                     "",
-                    f"- raw total reward mean: {metrics['raw_total_validation_reward']['mean']}",
-                    f"- accuracy reward mean: {metrics['accuracy_reward']['mean']}",
-                    f"- format reward mean: {metrics['format_reward']['mean']}",
-                    f"- strict format: {metrics['strict_format']['count']}/{metrics['strict_format']['denominator']}",
-                    f"- tool-call JSON parse on target rows: {metrics['tool_parse']['count']}/{metrics['tool_parse']['denominator']}",
-                    f"- response-only wrapper on response-only targets: {metrics['response_wrapper']['count']}/{metrics['response_wrapper']['denominator']}",
-                    f"- auxiliary tool-parse count over all rows: {metrics['tool_parse_auxiliary']['count']}/{metrics['tool_parse_auxiliary']['denominator']}",
-                    f"- auxiliary response-wrapper count over all rows: {metrics['response_wrapper_auxiliary']['count']}/{metrics['response_wrapper_auxiliary']['denominator']}",
+                    f"- primary raw total reward mean: {metrics['raw_total_validation_reward']['mean']}",
+                    f"- primary accuracy reward mean: {metrics['accuracy_reward']['mean']}",
+                    f"- primary format reward mean: {metrics['format_reward']['mean']}",
+                    f"- primary strict format: {metrics['strict_format']['count']}/{metrics['strict_format']['denominator']}",
+                    f"- tool-only JSON parse: {runs[name]['tool_only']['tool_parse']['count']}/{runs[name]['tool_only']['tool_parse']['denominator']}",
+                    f"- response-only wrapper: {runs[name]['response_only']['response_wrapper']['count']}/{runs[name]['response_only']['response_wrapper']['denominator']} (descriptive; N={stratification_counts['response_only']})",
                 ]
             )
         args.out_md.parent.mkdir(parents=True, exist_ok=True)
-        args.out_md.write_text("\n".join(lines) + "\n")
+        args.out_md.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
 if __name__ == "__main__":

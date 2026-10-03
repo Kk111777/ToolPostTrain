@@ -1,0 +1,721 @@
+{
+  "checks": [
+    {
+      "detail": 108,
+      "name": "row_count_108",
+      "passed": true
+    },
+    {
+      "detail": {
+        "candidate_count": 108,
+        "final_count": 108,
+        "ordered_source_ids_sha256": "75373e7e89ed7004a2d5cb858b9626449d74f7e536d341fda7aec18eed5e29ad"
+      },
+      "name": "candidate_identity_exact",
+      "passed": true
+    },
+    {
+      "detail": "final equals source-row take",
+      "name": "source_order_preserved",
+      "passed": true
+    },
+    {
+      "detail": "data_source: string\nprompt: list<element: struct<content: string, role: string>>\n  child 0, element: struct<content: string, role: string>\n      child 0, content: string\n      child 1, role: string\nability: string\nreward_model: struct<ground_truth: string, style: string>\n  child 0, ground_truth: string\n  child 1, style: string\nextra_info: struct<index: int64, input: string, instruction: string, output: string, split: string>\n  child 0, index: int64\n  child 1, input: string\n  child 2, instruction: string\n  child 3, output: string\n  child 4, split: string\n-- schema metadata --\npandas: '{\"index_columns\": [{\"kind\": \"range\", \"name\": null, \"start\": 0, \"' + 857",
+      "name": "schema_preserved",
+      "passed": true
+    },
+    {
+      "detail": "75373e7e89ed7004a2d5cb858b9626449d74f7e536d341fda7aec18eed5e29ad",
+      "name": "candidate_manifest_source_id_hash",
+      "passed": true
+    },
+    {
+      "detail": "e8f2e025906fa5e9e3088d9a29494e05da5fb47ddf4705b2550956c4380d8f22",
+      "name": "derived_sha256_matches_manifest",
+      "passed": true
+    },
+    {
+      "detail": "f2e728ad4a379550887711870db5f97154a0ecc45efbe5d43db8a99dc3b9e1c8",
+      "name": "source_sha256_matches_manifest",
+      "passed": true
+    },
+    {
+      "detail": "75373e7e89ed7004a2d5cb858b9626449d74f7e536d341fda7aec18eed5e29ad",
+      "name": "manifest_order_hash_matches_final",
+      "passed": true
+    },
+    {
+      "detail": {
+        "final_count": 108,
+        "manifest_count": 108
+      },
+      "name": "manifest_rows_match_final",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "zero_union_exposure",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "zero_training_optimizer_exposure",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "zero_sft_v1_exposure",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "zero_sft_v2_exposure",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "zero_formal_validation_exposure",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "zero_original_test_exposure",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "zero_fixed_diagnostic_exposure",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "zero_constrained_generation_diagnostic_exposure",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "zero_fresh_holdout_reward_variation_exposure",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "zero_shared_rollout_diagnostic_exposure",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "zero_capacity_smoke_exposure",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "zero_throughput_tuning_exposure",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "zero_one_step_smoke_exposure",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "zero_old_formal_grpo_exposure",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "zero_historical_scoring_generation_exposure",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "zero_unknown_persisted_evidence_exposure",
+      "passed": true
+    },
+    {
+      "detail": 917,
+      "name": "prompt_length_3601",
+      "passed": true
+    },
+    {
+      "detail": 684,
+      "name": "prompt_length_3603",
+      "passed": true
+    },
+    {
+      "detail": 1077,
+      "name": "prompt_length_3604",
+      "passed": true
+    },
+    {
+      "detail": 1047,
+      "name": "prompt_length_3608",
+      "passed": true
+    },
+    {
+      "detail": 1249,
+      "name": "prompt_length_3609",
+      "passed": true
+    },
+    {
+      "detail": 854,
+      "name": "prompt_length_3610",
+      "passed": true
+    },
+    {
+      "detail": 970,
+      "name": "prompt_length_3613",
+      "passed": true
+    },
+    {
+      "detail": 788,
+      "name": "prompt_length_3620",
+      "passed": true
+    },
+    {
+      "detail": 801,
+      "name": "prompt_length_3628",
+      "passed": true
+    },
+    {
+      "detail": 837,
+      "name": "prompt_length_3630",
+      "passed": true
+    },
+    {
+      "detail": 1415,
+      "name": "prompt_length_3634",
+      "passed": true
+    },
+    {
+      "detail": 569,
+      "name": "prompt_length_3635",
+      "passed": true
+    },
+    {
+      "detail": 452,
+      "name": "prompt_length_3636",
+      "passed": true
+    },
+    {
+      "detail": 751,
+      "name": "prompt_length_3640",
+      "passed": true
+    },
+    {
+      "detail": 754,
+      "name": "prompt_length_3642",
+      "passed": true
+    },
+    {
+      "detail": 617,
+      "name": "prompt_length_3643",
+      "passed": true
+    },
+    {
+      "detail": 502,
+      "name": "prompt_length_3651",
+      "passed": true
+    },
+    {
+      "detail": 697,
+      "name": "prompt_length_3652",
+      "passed": true
+    },
+    {
+      "detail": 979,
+      "name": "prompt_length_3653",
+      "passed": true
+    },
+    {
+      "detail": 815,
+      "name": "prompt_length_3655",
+      "passed": true
+    },
+    {
+      "detail": 635,
+      "name": "prompt_length_3656",
+      "passed": true
+    },
+    {
+      "detail": 488,
+      "name": "prompt_length_3658",
+      "passed": true
+    },
+    {
+      "detail": 1292,
+      "name": "prompt_length_3659",
+      "passed": true
+    },
+    {
+      "detail": 503,
+      "name": "prompt_length_3662",
+      "passed": true
+    },
+    {
+      "detail": 469,
+      "name": "prompt_length_3665",
+      "passed": true
+    },
+    {
+      "detail": 1215,
+      "name": "prompt_length_3666",
+      "passed": true
+    },
+    {
+      "detail": 746,
+      "name": "prompt_length_3668",
+      "passed": true
+    },
+    {
+      "detail": 606,
+      "name": "prompt_length_3669",
+      "passed": true
+    },
+    {
+      "detail": 579,
+      "name": "prompt_length_3671",
+      "passed": true
+    },
+    {
+      "detail": 640,
+      "name": "prompt_length_3673",
+      "passed": true
+    },
+    {
+      "detail": 617,
+      "name": "prompt_length_3674",
+      "passed": true
+    },
+    {
+      "detail": 439,
+      "name": "prompt_length_3676",
+      "passed": true
+    },
+    {
+      "detail": 1077,
+      "name": "prompt_length_3677",
+      "passed": true
+    },
+    {
+      "detail": 1203,
+      "name": "prompt_length_3678",
+      "passed": true
+    },
+    {
+      "detail": 760,
+      "name": "prompt_length_3681",
+      "passed": true
+    },
+    {
+      "detail": 616,
+      "name": "prompt_length_3682",
+      "passed": true
+    },
+    {
+      "detail": 765,
+      "name": "prompt_length_3684",
+      "passed": true
+    },
+    {
+      "detail": 753,
+      "name": "prompt_length_3689",
+      "passed": true
+    },
+    {
+      "detail": 523,
+      "name": "prompt_length_3694",
+      "passed": true
+    },
+    {
+      "detail": 737,
+      "name": "prompt_length_3695",
+      "passed": true
+    },
+    {
+      "detail": 402,
+      "name": "prompt_length_3701",
+      "passed": true
+    },
+    {
+      "detail": 420,
+      "name": "prompt_length_3708",
+      "passed": true
+    },
+    {
+      "detail": 710,
+      "name": "prompt_length_3709",
+      "passed": true
+    },
+    {
+      "detail": 770,
+      "name": "prompt_length_3710",
+      "passed": true
+    },
+    {
+      "detail": 570,
+      "name": "prompt_length_3712",
+      "passed": true
+    },
+    {
+      "detail": 451,
+      "name": "prompt_length_3718",
+      "passed": true
+    },
+    {
+      "detail": 920,
+      "name": "prompt_length_3725",
+      "passed": true
+    },
+    {
+      "detail": 1485,
+      "name": "prompt_length_3727",
+      "passed": true
+    },
+    {
+      "detail": 1004,
+      "name": "prompt_length_3729",
+      "passed": true
+    },
+    {
+      "detail": 599,
+      "name": "prompt_length_3737",
+      "passed": true
+    },
+    {
+      "detail": 954,
+      "name": "prompt_length_3739",
+      "passed": true
+    },
+    {
+      "detail": 999,
+      "name": "prompt_length_3749",
+      "passed": true
+    },
+    {
+      "detail": 701,
+      "name": "prompt_length_3755",
+      "passed": true
+    },
+    {
+      "detail": 1161,
+      "name": "prompt_length_3758",
+      "passed": true
+    },
+    {
+      "detail": 648,
+      "name": "prompt_length_3759",
+      "passed": true
+    },
+    {
+      "detail": 782,
+      "name": "prompt_length_3763",
+      "passed": true
+    },
+    {
+      "detail": 1081,
+      "name": "prompt_length_3766",
+      "passed": true
+    },
+    {
+      "detail": 1294,
+      "name": "prompt_length_3767",
+      "passed": true
+    },
+    {
+      "detail": 803,
+      "name": "prompt_length_3771",
+      "passed": true
+    },
+    {
+      "detail": 704,
+      "name": "prompt_length_3773",
+      "passed": true
+    },
+    {
+      "detail": 769,
+      "name": "prompt_length_3776",
+      "passed": true
+    },
+    {
+      "detail": 757,
+      "name": "prompt_length_3781",
+      "passed": true
+    },
+    {
+      "detail": 940,
+      "name": "prompt_length_3784",
+      "passed": true
+    },
+    {
+      "detail": 692,
+      "name": "prompt_length_3785",
+      "passed": true
+    },
+    {
+      "detail": 482,
+      "name": "prompt_length_3786",
+      "passed": true
+    },
+    {
+      "detail": 1046,
+      "name": "prompt_length_3788",
+      "passed": true
+    },
+    {
+      "detail": 802,
+      "name": "prompt_length_3793",
+      "passed": true
+    },
+    {
+      "detail": 519,
+      "name": "prompt_length_3795",
+      "passed": true
+    },
+    {
+      "detail": 921,
+      "name": "prompt_length_3798",
+      "passed": true
+    },
+    {
+      "detail": 603,
+      "name": "prompt_length_3801",
+      "passed": true
+    },
+    {
+      "detail": 741,
+      "name": "prompt_length_3804",
+      "passed": true
+    },
+    {
+      "detail": 480,
+      "name": "prompt_length_3812",
+      "passed": true
+    },
+    {
+      "detail": 731,
+      "name": "prompt_length_3820",
+      "passed": true
+    },
+    {
+      "detail": 583,
+      "name": "prompt_length_3821",
+      "passed": true
+    },
+    {
+      "detail": 1065,
+      "name": "prompt_length_3822",
+      "passed": true
+    },
+    {
+      "detail": 738,
+      "name": "prompt_length_3825",
+      "passed": true
+    },
+    {
+      "detail": 1037,
+      "name": "prompt_length_3826",
+      "passed": true
+    },
+    {
+      "detail": 605,
+      "name": "prompt_length_3827",
+      "passed": true
+    },
+    {
+      "detail": 832,
+      "name": "prompt_length_3829",
+      "passed": true
+    },
+    {
+      "detail": 927,
+      "name": "prompt_length_3833",
+      "passed": true
+    },
+    {
+      "detail": 550,
+      "name": "prompt_length_3836",
+      "passed": true
+    },
+    {
+      "detail": 430,
+      "name": "prompt_length_3842",
+      "passed": true
+    },
+    {
+      "detail": 752,
+      "name": "prompt_length_3843",
+      "passed": true
+    },
+    {
+      "detail": 479,
+      "name": "prompt_length_3844",
+      "passed": true
+    },
+    {
+      "detail": 460,
+      "name": "prompt_length_3845",
+      "passed": true
+    },
+    {
+      "detail": 712,
+      "name": "prompt_length_3846",
+      "passed": true
+    },
+    {
+      "detail": 581,
+      "name": "prompt_length_3849",
+      "passed": true
+    },
+    {
+      "detail": 562,
+      "name": "prompt_length_3851",
+      "passed": true
+    },
+    {
+      "detail": 776,
+      "name": "prompt_length_3855",
+      "passed": true
+    },
+    {
+      "detail": 705,
+      "name": "prompt_length_3857",
+      "passed": true
+    },
+    {
+      "detail": 476,
+      "name": "prompt_length_3858",
+      "passed": true
+    },
+    {
+      "detail": 790,
+      "name": "prompt_length_3867",
+      "passed": true
+    },
+    {
+      "detail": 451,
+      "name": "prompt_length_3869",
+      "passed": true
+    },
+    {
+      "detail": 881,
+      "name": "prompt_length_3870",
+      "passed": true
+    },
+    {
+      "detail": 706,
+      "name": "prompt_length_3877",
+      "passed": true
+    },
+    {
+      "detail": 1021,
+      "name": "prompt_length_3878",
+      "passed": true
+    },
+    {
+      "detail": 741,
+      "name": "prompt_length_3879",
+      "passed": true
+    },
+    {
+      "detail": 738,
+      "name": "prompt_length_3883",
+      "passed": true
+    },
+    {
+      "detail": 775,
+      "name": "prompt_length_3892",
+      "passed": true
+    },
+    {
+      "detail": 1387,
+      "name": "prompt_length_3893",
+      "passed": true
+    },
+    {
+      "detail": 819,
+      "name": "prompt_length_3898",
+      "passed": true
+    },
+    {
+      "detail": 1075,
+      "name": "prompt_length_3904",
+      "passed": true
+    },
+    {
+      "detail": 675,
+      "name": "prompt_length_3905",
+      "passed": true
+    },
+    {
+      "detail": 615,
+      "name": "prompt_length_3906",
+      "passed": true
+    },
+    {
+      "detail": 510,
+      "name": "prompt_length_3908",
+      "passed": true
+    },
+    {
+      "detail": 729,
+      "name": "prompt_length_3911",
+      "passed": true
+    },
+    {
+      "detail": 638,
+      "name": "prompt_length_3912",
+      "passed": true
+    },
+    {
+      "detail": 995,
+      "name": "prompt_length_3916",
+      "passed": true
+    },
+    {
+      "detail": {
+        "max": 1485,
+        "min": 402
+      },
+      "name": "all_prompt_lengths_le_2048",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "zero_exact_normalized_content_overlap",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "zero_internal_duplicate",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "candidate_content_duplicate_audit_empty",
+      "passed": true
+    },
+    {
+      "detail": "final-test JSONL absent",
+      "name": "no_model_output_present",
+      "passed": true
+    }
+  ],
+  "derived_parquet_sha256": "e8f2e025906fa5e9e3088d9a29494e05da5fb47ddf4705b2550956c4380d8f22",
+  "generated_at_utc": "2026-10-03T04:19:01.271143+00:00",
+  "inference_performed": false,
+  "ordered_source_ids_sha256": "75373e7e89ed7004a2d5cb858b9626449d74f7e536d341fda7aec18eed5e29ad",
+  "prompt_token_distribution": {
+    "max": 1485,
+    "min": 402,
+    "n": 108
+  },
+  "reward_scoring_performed": false,
+  "row_count": 108,
+  "schema": "projectb_final_holdout_v1_freeze_verification",
+  "status": "FINAL_HOLDOUT_V1_FROZEN_PASS",
+  "target_category_distribution": {
+    "response_only": 7,
+    "tool_only": 101
+  }
+}
