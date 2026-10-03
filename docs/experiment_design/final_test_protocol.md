@@ -56,7 +56,7 @@ Freeze the actual formal modern-runtime `rlla.compute_score`/reward-manager impl
 | auxiliary counts | optional output-type/tool-parse/wrapper counts over all rows, labelled **counts**, not conditioned success rates |
 | diagnostics | generated length, finish reason, truncation/invalid-output rate; tool-call correctness-reward mean and full-reward count on tool targets |
 
-Derive target categories from ground truth before inference. A zero-sized category is N/A, not0% or100%. Malformed model outputs retain their official penalty; infrastructure/scorer exceptions are separately logged, not silently converted to model failures or dropped. Tool JSON parsing does not imply schema validity, correct arguments, successful tool execution or end-to-end Agent success. Response-only correctness may be constant under the official reward; do not reinterpret it as semantic answer quality.
+Derive target categories from ground truth before inference. A zero-sized category is N/A, not 0% or 100%. Malformed model outputs retain their official penalty; infrastructure/scorer exceptions are separately logged, not silently converted to model failures or dropped. Tool JSON parsing does not imply schema validity, correct arguments, successful tool execution or end-to-end Agent success. Response-only correctness may be constant under the official reward; do not reinterpret it as semantic answer quality.
 
 ## Frozen paired analysis
 
