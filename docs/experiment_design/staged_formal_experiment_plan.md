@@ -1,5 +1,7 @@
 # ProjectB staged formal experiment plan
 
+> **Historical / superseded status or planning context — annotation added 2026-10-03.** Original35→70→105 budget/retention plan; continuation and deletion rules are superseded for this project. Original facts and values below are preserved. Current artifacts: [three-run completion](../../reports/comparison/final_stage1_ablation_completion_report.md); current budget: [35-step decision](stage1_closeout_decision.md).
+
 ## 1. Why Stage 1 is 35 steps
 
 The measured Config A cost is about 1117.1 seconds per optimizer step. A

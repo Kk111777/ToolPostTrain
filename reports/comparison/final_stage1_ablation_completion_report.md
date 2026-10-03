@@ -51,3 +51,11 @@ The three-way interpretation retains the known KL-treatment/reward-dimension con
 - Checkpoint/model weights, optimizer state, large logs, caches, and secrets were not committed.
 - Curated cleanup manifests were added for the GRPO-original and GDPO-current runs after the final integrity check.
 - This report update is a closeout verification record; it does not change any training result.
+
+## Documentation closeout decision (2026-10-03)
+
+The run-completion and Git/storage records above describe their recorded closeout time and were not reverified on the server during this revision. The accepted [budget decision](../../docs/experiment_design/stage1_closeout_decision.md) now freezes the current project at 35 training steps; this does not establish convergence or authorize checkpoint deletion.
+
+The original A/B comparison retains its objective-treatment/advantage confound. The completed noKL reference aligns objective-level reward-side KL with GDPO, while comparing the complete advantage construction and differing reference-policy runtime. Current nearly identical GDPO/noKL validation endpoints do not establish a clear downstream advantage for GDPO. Sensitivity79 is post-hoc, with the same fixed exclusion across runs/steps. See the [current three-run interpretation](grpo_gdpo_nokl_stage1_35_comparison.md).
+
+The [final-test protocol](../../docs/experiment_design/final_test_protocol.md) includes RL_INIT_V1 and all three step35 models. It is NOT EXECUTED; historical test provenance, actual hashes/configs and analysis-program freeze remain pending. No server startup, GPU work or final inference occurred during documentation revision.

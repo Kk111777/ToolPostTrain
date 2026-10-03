@@ -1,5 +1,7 @@
 # GDPO Stage 1 - 35-step report
 
+> **Historical / superseded status or planning context — annotation added 2026-10-03.** Original GDPO completion record. The no-third-experiment-started statement predates noKL completion. Original facts and values below are preserved. Current artifacts: [three-run completion](../../comparison/final_stage1_ablation_completion_report.md); current budget: [35-step decision](../../../docs/experiment_design/stage1_closeout_decision.md).
+
 ## A. Completion status
 
 - Status: PASS; global_step=35; trainer exited with code 0.

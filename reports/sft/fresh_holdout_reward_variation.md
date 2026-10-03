@@ -73,6 +73,19 @@ Inference-only pilot using SFT v2. No optimizer, adapter merge, or GRPO/GDPO tra
 | 1367 | response_only | 0.000000 | 0.000000 | 0.000000 | 4/4 | 0/4 | `{'response': 4}` |
 | 1441 | tool_only | 0.187500 | 3.796875 | 5.671875 | 3/4 | 3/4 | `{'tool_call': 3, 'response': 1}` |
 
+## Post-hoc reward-conflict check (2026-10-03)
+
+CPU-only recomputation from the [public JSON](fresh_holdout_reward_variation.json); no new inference or training. Within each four-rollout prompt group, center format and accuracy separately. Define a conflict as opposite nonzero centered signs, using absolute tolerance 1e-8 on each centered value. Normalizing by a positive standard deviation preserves these signs; a constant dimension has zero centered signal.
+
+- Trajectories: 128; groups: 32.
+- Opposite centered-sign trajectories: **8/128**.
+- Groups containing at least one such trajectory: **6/32**.
+- Source rows with conflicts: `[1024, 2536, 2062, 1054, 1471, 1118]` (diagnostic group order).
+
+Conflict exists in this fresh sampled diagnostic, but its frequency/strength during formal training is not measured systematically. This adapter-runtime pilot and the separate merged-init eight-prompt shared-rollout diagnostic use different samples; the latter's zero collision count cannot be generalized to this pilot or the training distribution. High greedy-validation format scores do not establish sampled-training format saturation.
+
+Reproduction: for each `groups` entry, compute mean(format_reward_values) and mean(accuracy_reward_values); count rollouts whose centered values have opposite signs beyond1e-8 and count unique source rows. These are post-hoc diagnostic counts, not new validation endpoints or bootstrap estimates.
+
 ## Per-rollout records
 
 The JSON report contains the complete response text and parsed tool-call result for all 128 trajectories.

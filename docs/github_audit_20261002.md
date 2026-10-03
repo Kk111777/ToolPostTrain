@@ -1,5 +1,7 @@
 # GitHub / 本地 / 服务器文件审计
 
+> **Historical / superseded status or planning context — annotation added 2026-10-03.** Original publication/server snapshot; its branch and progress values are historical. Original facts and values below are preserved. Current artifacts: [three-run completion](../reports/comparison/final_stage1_ablation_completion_report.md); current budget: [35-step decision](experiment_design/stage1_closeout_decision.md).
+
 核对时间：2026-10-02 08:21（北京时间）。检查范围为 Kk111777/ToolPostTrain 和 Kk111777/ReliableToolAgent 两个个人仓库，没有修改上游仓库。
 
 ## 初始状态

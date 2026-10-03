@@ -1,5 +1,7 @@
 # ProjectB Stage 1 GRPO + GDPO completion report
 
+> **Historical / superseded status or planning context — annotation added 2026-10-03.** Two-run closeout snapshot before noKL completion. Original facts and values below are preserved. Current artifacts: [three-run completion](final_stage1_ablation_completion_report.md); current budget: [35-step decision](../../docs/experiment_design/stage1_closeout_decision.md).
+
 ## Final status
 
 - GRPO Stage 1: PASS, global_step=35, marker present.

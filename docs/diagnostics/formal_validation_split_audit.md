@@ -1,5 +1,7 @@
 # Formal validation split audit
 
+> **Historical row-disjoint split audit; content-isolation correction added 2026-10-03.** The original source-row intersections below remain valid, but “clean” did not establish content disjointness: validation source3814 duplicates train/SFT source527 prompt and ground truth. Preserve primary80 and use a fixed post-hoc sensitivity79 exclusion across algorithms/steps; see the [analysis plan](../../reports/comparison/grpo_gdpo_primary_sensitivity_analysis_plan.md). Current outcomes: [three-run completion](../../reports/comparison/final_stage1_ablation_completion_report.md).
+
 This audit freezes `formal_validation_80` before Stage 1. It does not start training or modify the parquet datasets, reward manager, algorithm, or environment.
 
 ## Source and exact split
@@ -73,3 +75,7 @@ Selected source rows:
 ## Result
 
 **PASS: 80 clean formal-validation rows were constructed from the permanent drop-last tail; the selected set is disjoint from the actual RL train prefix, SFT sources, and all explicitly tracked diagnostic rows.**
+
+## Current test and decision boundary
+
+The test-firewall rule below governs formal Stage1, not all historical scripts. The legacy [single-GPU smoke](../../scripts/run_single_gpu_smoke.sh) configured test as validation; whether that path executed remains a pending server-log audit. The canonical documented path is `/root/autodl-tmp/ProjectB/repo/verl-GDPO/dataset/rlla_4k/test.parquet`; the earlier shorter path in this historical report is not execution-time proof. Follow the [final-test protocol](../experiment_design/final_test_protocol.md) before any inference. The current [35-step closeout](../experiment_design/stage1_closeout_decision.md) supersedes automatic continuation criteria.

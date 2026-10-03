@@ -12,14 +12,34 @@ No backward pass or optimizer.step() was executed in this diagnostic.
 - Reward manager: official `GDPORewardManager` with the existing `rlla.compute_score`.
 - KL: unavailable in this standalone shared-rollout pass; the live trainer path is recorded in `kl_path_audit.md` and Parts B/C.
 
-## Advantage summary
+## Advantage summary (archived raw diagnostics)
 
-- GRPO mean/std: `0.010018` / `0.500527`
-- GDPO mean/std: `-0.000000` / `1.000000`
+- GRPO valid-response-token mean/std: `0.010018` / `0.500527`
+- GDPO valid-response-token mean/std: `-0.000000` / `1.000000`
 - All advantages finite: `True`
-- Sign disagreement: `16/32`
+- Raw exact-float sign disagreement: `16/32`
 - Mean |GRPO-GDPO|: `0.387903`
-- Ranking disagreement pairs: `11`
+- Raw exact-float within-group ranking disagreement pairs: `11`
+
+## Interpretation correction (2026-10-03)
+
+The [original JSON](grpo_gdpo_shared_rollout_diagnostic.json), including `sign_disagreement_count=16` and `ranking_disagreement_pair_count=11`, is unchanged. The revision recomputed the following **from its public per-trajectory advantage values**, without generation, backward or optimizer updates:
+
+| diagnostic | definition | result |
+|---|---|---:|
+| raw sign mismatch | exact sign(GRPO A) != sign(GDPO A) | 16/32 |
+| positive↔negative advantage reversal | GRPO A × GDPO A < 0 | 0/32 |
+| raw within-group ranking mismatch | exact sign(A_i−A_j) differs, among 48 within-prompt pairs | 11/48 |
+| substantive within-group ranking disagreement | same comparison with absolute tolerance 1e-8 | 0/48 |
+| strict within-group rank reversal | both pairwise differences exceed1e-8 and have opposite signs | 0/48 |
+
+All 16 raw sign mismatches are GRPO zero → GDPO approximately −0.01672776 in four equal-reward groups. They are zero-to-nonzero shifts, not positive↔negative reversals. That centering shift is larger than the numerical tolerance and remains a real advantage-value difference.
+
+All 11 raw ranking mismatches are a GRPO tie versus a tiny GDPO pairwise difference (maximum 3.725290298461914e-09, below 1e-8). They provide no evidence of meaningful within-group preference reordering. Here sign_tau(x)=0 for |x|≤1e-8, +1 above the tolerance and−1 below it. This distinguishes raw exact-float diagnostics from numerically meaningful diagnostics; it does not erase the magnitude/centering differences.
+
+The archived mean/std summarize valid response-token advantages, not an unweighted set of 32 trajectory scalars. Longer responses contribute more tokens. Per-trajectory averages therefore need not have the same mean, and token-level batch whitening can shift formerly zero trajectory advantages. GRPO and GDPO also differ in scaling/weighting across samples and groups. **GDPO changes advantage scale/centering/sample weighting, but this shared rollout does not show substantive within-group preference reversals under a numerical tolerance.** It contains no gradient-direction or downstream-performance measurement.
+
+Reproduction rule: group records by `prompt_group_id`; compare every unordered within-group pair; compute signs of each algorithm's advantage difference with the above tolerance. Public input counts and raw fields are preserved. See the [revision audit](../../docs/diagnostics/documentation_revision_audit_20261003.md) for the checked values and [fresh-holdout conflict](../sft/fresh_holdout_reward_variation.md) for a separate sample that does contain opposing reward dimensions.
 
 ## Reward dimensions
 

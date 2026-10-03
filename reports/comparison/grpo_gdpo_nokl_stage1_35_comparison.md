@@ -2,7 +2,7 @@
 
 ## Scope
 
-All three runs are independent 35-step Stage 1 runs from RL_INIT_V1, using the frozen formal_validation_80 endpoint at steps 0/7/14/21/28/35. Primary metrics are raw per-example validation scores over 80 rows. Sensitivity metrics remove the pre-registered source_id 3814 row from the same 80 outputs, yielding 79 rows; there is no resampling.
+All three runs are independent 35-step Stage 1 runs from RL_INIT_V1, using the frozen formal_validation_80 endpoint at steps 0/7/14/21/28/35. Primary metrics are raw per-example validation scores over 80 rows. Sensitivity metrics are a post-hoc sensitivity analysis using a fixed source_id 3814 exclusion rule applied identically across algorithms and steps to the same 80 outputs, yielding 79 rows; there is no resampling.
 
 ## Primary validation curve: 80 rows
 
@@ -43,13 +43,23 @@ These are diagnostics from persisted training logs. They are not the primary cro
 
 - GRPO-original versus GDPO-current retains the known KL-treatment and reward-dimension confound; it cannot support a pure advantage-estimator causal conclusion.
 - GRPO-original versus GRPO-noKL is the KL ablation comparison, with dataset/order/seed/batch/rollout/learning rate/lengths and validation frozen. Removing reward-side KL also removes the reference-policy runtime path under the audited official v0.9.1 semantics.
-- GDPO-current versus GRPO-noKL is informative for training-effect comparison, but still differs in advantage construction and reward dimensions; it is not a single-variable causal comparison.
+- GDPO-current versus GRPO-noKL aligns objective-level reward-side KL treatment. It compares complete advantage constructions: separate component normalization, aggregation and batch whitening versus aggregate normalization. Those are method differences, not evidence isolating per-dimension normalization alone; reference-policy runtime still differs.
 - Results are single-seed and 35-step Stage 1 evidence only; they do not establish 70/105-step behavior or generalization.
 
 ## Evidence
 
-- GRPO report: reports/grpo/stage1_35/grpo_stage1_report.md
-- GDPO report: reports/gdpo/stage1_35/gdpo_stage1_report.md
-- noKL report: reports/grpo/stage1_35/grpo_nokl_stage1_report.md
-- canonical metrics: reports/grpo/grpo_stage1_metrics_canonical.json, reports/gdpo/gdpo_stage1_metrics_canonical.json, reports/grpo/grpo_nokl_stage1_metrics_canonical.json
-- paired bootstrap: reports/comparison/paired_bootstrap_stage1_35.json
+- Run reports: [original](../grpo/stage1_35/grpo_stage1_report.md), [GDPO](../gdpo/stage1_35/gdpo_stage1_report.md), [noKL canonical report](../grpo_nokl/stage1_35/grpo_nokl_stage1_report.md).
+- Canonical metrics: [original](../grpo/grpo_stage1_metrics_canonical.json), [GDPO](../gdpo/gdpo_stage1_metrics_canonical.json), [noKL](../grpo/grpo_nokl_stage1_metrics_canonical.json).
+- [Paired bootstrap](paired_bootstrap_stage1_35.json) and [80/79 sensitivity](primary80_vs_sensitivity79_stage1_35.md).
+
+## Current interpretation and project closeout (2026-10-03)
+
+All three observed step35 scores exceed their common initialization. Original/noKL has no clear separable final validation benefit in the archived paired interval; this is not proof of no KL effect. GDPO/noKL endpoints are nearly identical, so these data do not establish a clear downstream advantage for GDPO. Equal or close scores do not establish equal outputs, weights or optimization trajectories.
+
+**Direct evidence:** the sampled pilots show reward variation; [shared-rollout records and correction](grpo_gdpo_shared_rollout_diagnostic.md) show magnitude/centering/sample-weighting changes but no substantive within-group ranking disagreement under 1e-8; [fresh-holdout records](../sft/fresh_holdout_reward_variation.md) contain 8 opposing-centered-sign trajectories in 6/32 groups. Formal greedy validation format is 95%–96.25%; remaining total-score movement mostly comes from accuracy reward.
+
+**Plausible hypothesis, not an established causal explanation:** greedy validation format is near its observed ceiling, and reward conflict may not be frequent/strong enough in this setting for the changed advantage construction to create a clear endpoint gain. Conflict frequency/strength during formal training was not systematically measured; sampled training-format saturation is not established. The eight-prompt diagnostic supplies no gradient or performance measurement.
+
+The primary80 results and archived bootstrap JSON are preserved. Sensitivity79 is post-hoc and its fixed exclusion does not materially change the current interpretation. This documentation revision cross-checks public aggregates but does not independently recompute the unavailable formal-validation JSONL bootstrap.
+
+The [closeout decision](../../docs/experiment_design/stage1_closeout_decision.md) now freezes the current project's training budget at 35; this is not convergence. The [final-test protocol](../../docs/experiment_design/final_test_protocol.md) fixes RL_INIT_V1 and the three step35 models and is NOT EXECUTED. No server or GPU task is started by this update.

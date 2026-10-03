@@ -1,5 +1,7 @@
 # GDPO hidden KL-use final audit
 
+> **Historical / superseded status or planning context — annotation added 2026-10-03.** Objective-path audit remains valid; future-tense noKL smoke instructions describe the prelaunch phase, not current run status. Original facts and values below are preserved. Current artifacts: [three-run completion](../../reports/comparison/final_stage1_ablation_completion_report.md); current budget: [35-step decision](../experiment_design/stage1_closeout_decision.md).
+
 - Audit status: PASS (read-only source audit; no model was loaded and no GPU training was started).
 - Source tree: /root/autodl-tmp/ProjectB/upstream/verl-v0.9.1.
 - Formal GDPO configuration: algorithm.adv_estimator=gdpo, algorithm.gdpo_reward_keys=[accuracy_reward,format_reward], algorithm.use_kl_in_reward=True, actor_rollout_ref.actor.use_kl_loss=False.

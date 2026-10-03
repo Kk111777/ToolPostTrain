@@ -1,6 +1,6 @@
 # Primary 80 vs sensitivity 79
 
-The primary endpoint is the frozen 80-row formal validation. The sensitivity endpoint removes the pre-registered source_id 3814 row from exactly those persisted outputs; it does not resample or redefine validation.
+The primary endpoint is the frozen 80-row formal validation. The sensitivity endpoint is a post-hoc sensitivity analysis using a fixed source_id 3814 exclusion rule applied identically across algorithms and steps to exactly those persisted outputs; it does not resample or redefine validation. The row duplicates training/SFT source527 content, as recorded in the [analysis plan](grpo_gdpo_primary_sensitivity_analysis_plan.md).
 
 | algorithm | step | primary total | sensitivity total | delta sensitivity-primary | primary accuracy | sensitivity accuracy |
 |---|---:|---:|---:|---:|---:|---:|
@@ -24,3 +24,7 @@ The primary endpoint is the frozen 80-row formal validation. The sensitivity end
 | GRPO-noKL | 35 | 2.818737 | 2.829100 | 0.010364 | 1.856237 | 1.867075 |
 
 The excluded row is held fixed across algorithms and steps. Interpret alongside the KL-treatment/reward-dimension confounds and the single-seed, 35-step budget.
+
+## Current interpretation
+
+The fixed exclusion leaves the qualitative interpretation unchanged: GDPO/noKL endpoints remain close and do not establish a clear GDPO advantage. This is robustness to one identified duplicate-content row, not proof that all leakage is absent. The public aggregates are preserved; the formal per-row bootstrap has not been independently recomputed during this revision.

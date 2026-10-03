@@ -14,7 +14,7 @@ The paired bootstrap is right minus left over the same validation row order; it 
 
 ## Sensitivity at step 35
 
-Removing the pre-registered source_id 3814 row from the same 80 outputs gives 79 rows: left total 2.809844; right total 2.830909.
+A post-hoc sensitivity analysis removes source_id 3814 from the same 80 outputs, using a fixed exclusion rule applied identically across algorithms and steps. This gives 79 rows: left total 2.809844; right total 2.830909.
 
 ## Boundary
 
@@ -22,4 +22,4 @@ Removing the pre-registered source_id 3814 row from the same 80 outputs gives 79
 - GRPO-noKL has both reward-side KL and actor KL loss disabled, so its reference-policy runtime is different; do not compare wall-clock/GPU efficiency as if it were fair.
 - These results are single-seed Stage 1 evidence and do not establish 70/105-step behavior.
 
-Paired bootstrap details: reports/comparison/paired_bootstrap_stage1_35.json, key GDPO-current_vs_GRPO-original.
+Paired bootstrap: [JSON](paired_bootstrap_stage1_35.json), key `GRPO-original_vs_GDPO-current`. Table left=original, right=GDPO; JSON uses GDPO−original. At step35: mean +0.020801, 95% interval [-0.122012, 0.169623]. These are archived estimates, not independently recomputed from formal validation JSONL during this revision.
