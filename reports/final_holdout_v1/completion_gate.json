@@ -1,0 +1,130 @@
+{
+  "schema": "projectb_final_holdout_completion_v1",
+  "status": "FINAL_HOLDOUT_V1_COMPLETE_PASS",
+  "generated_at_utc": "2026-10-03T08:17:13.035066+00:00",
+  "execution_commit": "066e158639bcebdc79131e7ab0180d11ef021aaf",
+  "upstream_commit": "1876b06d0a3e4e71e06230be10af14492ca8a75b",
+  "rows_per_model": 108,
+  "formal_output_count": 432,
+  "matrix": [
+    {
+      "model": "RL_INIT_V1",
+      "attempt": "01_RL_INIT_V1_retry_02",
+      "jsonl_sha256": "0063a0c924fbaf3226de7e3ce5eb9e93c716b1237ba33b609301c2d7a753bb4a",
+      "rows": 108,
+      "technical_gate": "PASS",
+      "mapping": {
+        "duplicates": 0,
+        "matched": 108,
+        "missing": 0,
+        "unique_source_ids": 108
+      },
+      "scorer_max_abs_delta": {
+        "accuracy_reward": 0.0,
+        "format_reward": 0.0,
+        "score": 0.0
+      },
+      "wall_seconds": 91.12560534477234,
+      "config_sha256": "bbbb16468b594ae1dcab97ddbbd8b6210a497bf90770bb30ce607bcd3cf5050f",
+      "exit_code": 0
+    },
+    {
+      "model": "GRPO-original35",
+      "attempt": "02_GRPO_original35",
+      "jsonl_sha256": "0c8ae906975bee042717c9ee33aa39ef8ec57f39d055f3fc906475dbc31d92ea",
+      "rows": 108,
+      "technical_gate": "PASS",
+      "mapping": {
+        "duplicates": 0,
+        "matched": 108,
+        "missing": 0,
+        "unique_source_ids": 108
+      },
+      "scorer_max_abs_delta": {
+        "accuracy_reward": 0.0,
+        "format_reward": 0.0,
+        "score": 0.0
+      },
+      "wall_seconds": 87.67598581314087,
+      "config_sha256": "8b00f80072a6d1ecd770018a315e1bd2e01799358d3aa7db08ed18c1df1d455a",
+      "exit_code": 0
+    },
+    {
+      "model": "GDPO-current35",
+      "attempt": "03_GDPO_current35",
+      "jsonl_sha256": "40ca565dcfd359d2c904eda5fb23fcbcd3470c7eed39e978cf864a36210861a2",
+      "rows": 108,
+      "technical_gate": "PASS",
+      "mapping": {
+        "duplicates": 0,
+        "matched": 108,
+        "missing": 0,
+        "unique_source_ids": 108
+      },
+      "scorer_max_abs_delta": {
+        "accuracy_reward": 0.0,
+        "format_reward": 0.0,
+        "score": 0.0
+      },
+      "wall_seconds": 89.28868246078491,
+      "config_sha256": "a0976cdf8d094ec0342765199b4c2eda92107376fb56b3e6cf69e2e7b6017885",
+      "exit_code": 0
+    },
+    {
+      "model": "GRPO-noKL35",
+      "attempt": "04_GRPO_noKL35",
+      "jsonl_sha256": "8c7d57cd002eee621513d4abe579d8f67b27537c71c088a414457a1630a43805",
+      "rows": 108,
+      "technical_gate": "PASS",
+      "mapping": {
+        "duplicates": 0,
+        "matched": 108,
+        "missing": 0,
+        "unique_source_ids": 108
+      },
+      "scorer_max_abs_delta": {
+        "accuracy_reward": 0.0,
+        "format_reward": 0.0,
+        "score": 0.0
+      },
+      "wall_seconds": 90.19743776321411,
+      "config_sha256": "0765a315a4a9eed5c615e2d474a417b6211c603302c63ae87cf4bb6b58490dca",
+      "exit_code": 0
+    }
+  ],
+  "frozen_semantic_file_sha256": {
+    "scripts/run_final_test.sh": "9b1d2bba6694e0d489e9f1fe1aae8c435ca804e1319dcc197a93601df80cb04c",
+    "scripts/analyze_final_test.py": "5ef8b56cb10505c62c5bc8632d2e992e8fcafbebb69bb324686827b3ca050378",
+    "manifests/final_holdout_v1_manifest.json": "160befdb3c87aab85b8d65254c70ca83823e393ace2478c6b1e226898be97a16",
+    "manifests/final_holdout_v1_runtime_mapping.json": "ee7ab8143f57c6c9f60c35fd0a5c7c48df73ee28fb3c72761d6bf7a7eb7d9cdd"
+  },
+  "frozen_analysis_sha256": "52f5a8c26a8e453b0e0ef6d53cb7068831ea49b610e1da6c3a42f725f5b32435",
+  "total_successful_formal_wall_seconds": 358.28771138191223,
+  "attempt_01": {
+    "status": "FAILED_PRELAUNCH",
+    "outputs": 0,
+    "exit_code": 2,
+    "preserved": true,
+    "cause": "Wrapper pre-populated launcher output directory with metadata"
+  },
+  "RL_INIT_retry_02": {
+    "generation_succeeded": true,
+    "initial_gate_failed": true,
+    "generated_answers_regenerated": false,
+    "initial_gate_preserved": true,
+    "fixes": [
+      "Technical row count 80 changed to mapping row count 108 for formal endpoint",
+      "Stale runtime mapping hash corrected",
+      "Actual runtime configuration recovered from existing log and archived outside answer directory"
+    ]
+  },
+  "no_training_or_optimizer_update": true,
+  "no_checkpoint_or_model_write_evidence": true,
+  "unchanged_existing_RL_INIT_answer_hash": true,
+  "all_config_differences_limited_to_frozen_model_identity_and_isolated_output_metadata": true,
+  "no_extra_experiments": true,
+  "shutdown": {
+    "state": "PENDING_AFTER_PUBLICATION_AND_LOCAL_ARCHIVE",
+    "method": "/usr/bin/shutdown"
+  }
+}

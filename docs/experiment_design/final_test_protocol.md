@@ -1,10 +1,44 @@
-# Frozen final-test protocol: RL_INIT_V1 and three step35 models
+# Frozen final-endpoint protocol: FINAL_HOLDOUT_V1, RL_INIT_V1 and three step35 models
 
-Protocol recorded: 2026-10-03 (Asia/Shanghai). **NOT EXECUTED.** This document authorizes no server startup, GPU task, checkpoint restore, training or test inference. The current project training budget is [frozen at 35](stage1_closeout_decision.md).
+Protocol recorded: 2026-10-03 (Asia/Shanghai). **NOT EXECUTED.** This document authorizes no server startup, GPU task, checkpoint restore, training or final inference. The current project training budget is [frozen at 35](stage1_closeout_decision.md).
+
+## Current endpoint revision: FINAL_HOLDOUT_V1
+
+The primary final endpoint is now `FINAL_HOLDOUT_V1`, stored on the server at
+`/root/autodl-tmp/ProjectB/env-modern/final_holdout_v1.parquet` and frozen by
+`manifests/final_holdout_v1_manifest.json`. It contains exactly 108 rows
+(`tool_only=101`, `response_only=7`) selected in original `train.parquet`
+source order from the optimizer-unseen `drop_last` tail after the previously
+audited exposure, duplicate, and prompt-length exclusions. The manifest
+records the ordered source IDs, four content hashes per row, tokenizer/chat
+template identity, source and derived parquet SHA256 values, and the
+construction commit; it intentionally contains no prompt or ground-truth
+body text and no model outcomes.
+
+`FINAL_HOLDOUT_V1` is a fresh previously-unexposed internal corroborative
+endpoint under the same task distribution and scorer. It is not the official
+ToolRL `test.parquet`, not an independent external benchmark, and not proof of
+general algorithm superiority. The historical `test.parquet` remains on the
+server as observed legacy data, but it is not the new primary endpoint and is
+not used by the current launcher.
+
+The primary metric is the raw total reward mean over all 108 rows. Secondary
+metrics are accuracy reward, format reward, and strict format over all 108
+rows. Tool-only metrics (N=101) and response-only metrics (N=7) are fixed
+stratified auxiliaries; the response-only view is descriptive only and is not
+used as a new primary endpoint. No type rebalancing or outcome-based row
+deletion is permitted.
+
+The final launcher must assert the frozen manifest SHA256, derived parquet
+SHA256, row count, and ordered source-ID hash before starting any model or
+vLLM process. Any path containing `test.parquet` is rejected by default. A
+separate `formal_validation_80.parquet` infrastructure smoke must pass before
+any future model evaluation; the four models are then evaluated once each on
+`FINAL_HOLDOUT_V1` under the unchanged greedy generation/scoring contract.
 
 ## Research endpoint and fixed model set
 
-Evaluate the following four models once on the same test rows, with identical generation/scoring semantics:
+Evaluate the following four models once on the same frozen `FINAL_HOLDOUT_V1` rows, with identical generation/scoring semantics:
 
 | identifier | retained model-only source; to verify before execution |
 |---|---|
@@ -15,15 +49,19 @@ Evaluate the following four models once on the same test rows, with identical ge
 
 No step28 or validation-selected alternative is eligible. Test all four under the protocol fixed before reading any new test-model outcome. The three RL-minus-initialization comparisons measure incremental RL behavior after Format SFT; they do not isolate the benefit of SFT itself.
 
+## Historical test provenance (retained, not the current endpoint)
+
+The old source `/root/autodl-tmp/ProjectB/repo/verl-GDPO/dataset/rlla_4k/test.parquet` is retained as historically observed ToolRL data. CPU provenance audit confirmed historical loading/scoring before the current endpoint was frozen, so it cannot support a new “unseen test” claim. It is not used by `FINAL_HOLDOUT_V1` and should not be regenerated or substituted.
+
 ## Pre-execution provenance gate
 
-Expected test source: `/root/autodl-tmp/ProjectB/repo/verl-GDPO/dataset/rlla_4k/test.parquet`, historically documented as80 rows. Verify the actual file, count, schema and stable order; no parquet is available in the public repository for this check.
+Expected current source: `/root/autodl-tmp/ProjectB/env-modern/final_holdout_v1.parquet`, with the exact identity and hashes in `manifests/final_holdout_v1_manifest.json`. Verify the manifest, derived parquet, row count 108, schema, original source order, and stable ordered source IDs before any future inference. No parquet is committed to the public repository.
 
 1. Register model/checkpoint identifiers and SHA256 of each weight shard, config, tokenizer, generation config and chat template. Record RL_INIT_V1 identity and the retained model-only integrity checks; full optimizer restore is unnecessary for inference.
-2. Register test.parquet SHA256, stable original row IDs, ordered row manifest, input/ground-truth hashes, prompt lengths and target categories. Check exact and normalized-content overlap with actual RL train, SFT sources and formal validation, using prompt and prompt+ground-truth hashes. Version the normalization rule: deterministic serialization of message role/content and Unicode NFC/newline normalization without erasing argument-value distinctions. Exact/normalized checks do not guarantee absence of semantic overlap.
-3. Audit historical server logs and output artifacts for test use. [The legacy smoke script](../../scripts/run_single_gpu_smoke.sh) configures `data.val_files="$DATA_DIR/test.parquet"`; script existence does not prove execution. Current evidence supports only “formal Stage1 did not use test.parquet for intermediate validation.” Record whether earlier test inference occurred and whether its results informed decisions. Unresolved provenance blocks an “unseen test” claim; observed overlap or prior use must be disclosed and the assessment updated before inference, without result-driven row deletion.
+2. Register the frozen FINAL_HOLDOUT_V1 parquet SHA256, stable original row IDs, ordered manifest, input/ground-truth hashes, prompt lengths and target categories. Check exact and normalized-content overlap with actual RL train, SFT sources, formal validation, historical test data, and known diagnostic evidence, using prompt and prompt+ground-truth hashes. Version the normalization rule: deterministic serialization of message role/content and Unicode NFC/newline normalization without erasing argument-value distinctions. Exact/normalized checks do not guarantee absence of semantic overlap.
+3. Keep the historical test-use audit as disclosure only. [The legacy smoke script](../../scripts/run_single_gpu_smoke.sh) configured `data.val_files="$DATA_DIR/test.parquet"`; script existence did not prove execution, but the current CPU provenance audit confirmed historical loading/scoring. Therefore the old test cannot be called unseen and is not the current endpoint. Do not use any final-holdout outcome to delete rows or alter the frozen manifest.
 4. Freeze and commit the model list, generation configuration, scorer, metric definitions and analysis-program revision before generating test outputs. Use synthetic/validation fixtures to verify the evaluation and analysis programs, not test outcomes to tune them.
-5. If count/order/hash, prompt limits or provenance conflict with the frozen specification, stop at preflight and document the discrepancy. Do not silently drop rows or truncate prompts to fit. No source3814 exclusion is transferred to this distinct test set.
+5. If count/order/hash, prompt limits or provenance conflict with the frozen specification, stop at preflight and document the discrepancy. Do not silently drop rows or truncate prompts to fit. The 108-row endpoint has no source3814 sensitivity deletion; any separate sensitivity subset must be declared as a new analysis view without changing the frozen manifest.
 
 ## Generation contract
 
@@ -91,4 +129,44 @@ Public GitHub receives reviewed small reports, metric/manifest files and analysi
 
 After test outcomes are observed, do not use them to choose step28/35, continue to 70, change reward, tune hyperparameters, retrain or present the same test as unseen again. If new research starts, treat this test as observed data and specify a new evaluation boundary. Negative or close results are published with the same reporting rules.
 
-**Current status:** all server-dependent identity/provenance checks, analysis-program freeze and GPU evaluation are pending. This revision supplies the protocol only.
+**Current status:** the CPU-only interface repair and static gate passed on the
+independent review branch. Server-dependent final identity/provenance
+execution and GPU evaluation remain pending; this protocol still authorizes no
+inference or scoring.
+
+## Implementation controls added 2026-10-03 (CPU-only, no design change)
+
+The endpoint identity remains byte-frozen. The endpoint manifest SHA256 is
+`160befdb3c87aab85b8d65254c70ca83823e393ace2478c6b1e226898be97a16`; the
+derived parquet SHA256 is
+`e8f2e025906fa5e9e3088d9a29494e05da5fb47ddf4705b2550956c4380d8f22`; and the
+ordered source-ID SHA256 is
+`75373e7e89ed7004a2d5cb858b9626449d74f7e536d341fda7aec18eed5e29ad`.
+
+The supplemental
+`manifests/final_holdout_v1_runtime_mapping.json` does not define a new
+endpoint. It maps each frozen row to the exact veRL runtime representation
+used in the validation dump: official `RLHFDataset`, the official text
+ContinuousToken builder with `add_generation_prompt=True`, and
+`tokenizer.decode(ids, skip_special_tokens=True)`. It records only
+`(runtime_input_sha256, ground_truth_sha256_exact)` plus frozen row identity;
+it stores no raw prompt, ground truth, or model output. Its SHA256 is
+`ee7ab8143f57c6c9f60c35fd0a5c7c48df73ee28fb3c72761d6bf7a7eb7d9cdd`.
+The launcher and analyzer verify these external byte hashes before parsing
+either manifest. A separate CPU regression constructs an ephemeral mapping
+for `formal_validation_80.parquet` and requires every persisted GRPO, GDPO and
+noKL validation JSONL checked to map 80/80 uniquely without positional
+fallback.
+
+Formal analysis is refused unless the model names are exactly
+`RL_INIT_V1`, `GRPO-original35`, `GDPO-current35`, and `GRPO-noKL35`, with
+108 uniquely mapped rows per model. Fixtures must opt into an explicit
+`--fixture-mode`; partial model matrices cannot produce a formal report.
+
+For the six predeclared right-minus-left comparisons, one
+`numpy.default_rng(42)` primary index matrix of shape `(10000, 108)` is shared
+across every overall metric and comparison. One separately generated matrix
+of shape `(10000, 101)` is shared by all tool-only metrics and comparisons.
+NumPy version, RNG, seed, shapes, and byte SHA256 values are recorded in the
+analysis output. Response-only N=7 comparisons are descriptive only and do not
+receive inferential bootstrap intervals.

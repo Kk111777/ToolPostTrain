@@ -1,0 +1,156 @@
+{
+  "checks": [
+    {
+      "detail": "160befdb3c87aab85b8d65254c70ca83823e393ace2478c6b1e226898be97a16",
+      "name": "A_endpoint_manifest_byte_identity",
+      "passed": true
+    },
+    {
+      "detail": "e8f2e025906fa5e9e3088d9a29494e05da5fb47ddf4705b2550956c4380d8f22",
+      "name": "B_endpoint_parquet_sha",
+      "passed": true
+    },
+    {
+      "detail": "75373e7e89ed7004a2d5cb858b9626449d74f7e536d341fda7aec18eed5e29ad",
+      "name": "C_ordered_source_id_sha",
+      "passed": true
+    },
+    {
+      "detail": 108,
+      "name": "D_runtime_mapping_108_unique",
+      "passed": true
+    },
+    {
+      "detail": {
+        "gdpo_stage1_35": {
+          "duplicate_rows": 0,
+          "expected_rows": 80,
+          "mapping_source": "formal_validation_80.parquet (ephemeral; same official runtime semantics)",
+          "matched_rows": 80,
+          "missing_rows": 0,
+          "pass": true,
+          "path": "/root/autodl-tmp/ProjectB/runs/gdpo_stage1_35/eval_generations/0.jsonl",
+          "rows": 80,
+          "unique_source_ids": 80
+        },
+        "grpo_nokl_stage1_35": {
+          "duplicate_rows": 0,
+          "expected_rows": 80,
+          "mapping_source": "formal_validation_80.parquet (ephemeral; same official runtime semantics)",
+          "matched_rows": 80,
+          "missing_rows": 0,
+          "pass": true,
+          "path": "/root/autodl-tmp/ProjectB/runs/grpo_nokl_stage1_35/eval_generations/0.jsonl",
+          "rows": 80,
+          "unique_source_ids": 80
+        },
+        "grpo_stage1_35": {
+          "duplicate_rows": 0,
+          "expected_rows": 80,
+          "mapping_source": "formal_validation_80.parquet (ephemeral; same official runtime semantics)",
+          "matched_rows": 80,
+          "missing_rows": 0,
+          "pass": true,
+          "path": "/root/autodl-tmp/ProjectB/runs/grpo_stage1_35/eval_generations/0.jsonl",
+          "rows": 80,
+          "unique_source_ids": 80
+        }
+      },
+      "name": "E_real_trainer_jsonl_mapping",
+      "passed": true
+    },
+    {
+      "detail": "ANALYSIS_SELF_TEST_PASS",
+      "name": "F_analysis_synthetic_self_test",
+      "passed": true
+    },
+    {
+      "detail": "same real 80-row JSONL audit as E",
+      "name": "G_formal_validation_mapping_regression",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "G_formal_validation_analyzer_regression",
+      "passed": true
+    },
+    {
+      "detail": {
+        "sha256": "ccd589b57df0d4e12b06ce60e421f761610a2889994e8c1e67d88e279e9799ad",
+        "shape": [
+          10000,
+          108
+        ]
+      },
+      "name": "H_common_primary_bootstrap",
+      "passed": true
+    },
+    {
+      "detail": {
+        "sha256": "dfc1313612a182b5c9e6bbc7095ea355f9c3b29ab0662283fb238f1e980c603c",
+        "shape": [
+          10000,
+          101
+        ]
+      },
+      "name": "I_common_tool_bootstrap",
+      "passed": true
+    },
+    {
+      "detail": "Traceback (most recent call last):\n  File \"/root/autodl-tmp/ProjectB/repo/scripts/analyze_final_test.py\", line 590, in <module>\n    main()\n  File \"/root/autodl-tmp/ProjectB/repo/scripts/analyze_final_test.py\", line 447, in main\n    raise ValueError(\nValueError: FINAL_ANALYSIS_REFUSED_INCOMPLETE_MATRIX: missing=['GDPO-current35', 'GRPO-noKL35', 'GRPO-original35']; extra=[]",
+      "name": "J_missing_model_formal_refused",
+      "passed": true
+    },
+    {
+      "detail": "Traceback (most recent call last):\n  File \"/root/autodl-tmp/ProjectB/repo/scripts/analyze_final_test.py\", line 590, in <module>\n    main()\n  File \"/root/autodl-tmp/ProjectB/repo/scripts/analyze_final_test.py\", line 432, in main\n    raise ValueError(\"FINAL_ANALYSIS_REFUSED_INCOMPLETE_MATRIX: duplicate model name\")\nValueError: FINAL_ANALYSIS_REFUSED_INCOMPLETE_MATRIX: duplicate model name",
+      "name": "K_duplicate_model_formal_refused",
+      "passed": true
+    },
+    {
+      "detail": "Traceback (most recent call last):\n  File \"/root/autodl-tmp/ProjectB/repo/scripts/analyze_final_test.py\", line 590, in <module>\n    main()\n  File \"/root/autodl-tmp/ProjectB/repo/scripts/analyze_final_test.py\", line 450, in main\n    endpoint, mapping_rows, identity = verify_frozen_identity(\n                                       ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/autodl-tmp/ProjectB/repo/scripts/analyze_final_test.py\", line 173, in verify_frozen_identity\n    raise ValueError(\"FINAL_ANALYSIS_REFUSED_ENDPOINT_MANIFEST_IDENTITY\")\nValueError: FINAL_ANALYSIS_REFUSED_ENDPOINT_MANIFEST_IDENTITY",
+      "name": "L_endpoint_manifest_tamper_refused",
+      "passed": true
+    },
+    {
+      "detail": "Traceback (most recent call last):\n  File \"/root/autodl-tmp/ProjectB/repo/scripts/analyze_final_test.py\", line 590, in <module>\n    main()\n  File \"/root/autodl-tmp/ProjectB/repo/scripts/analyze_final_test.py\", line 450, in main\n    endpoint, mapping_rows, identity = verify_frozen_identity(\n                                       ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/autodl-tmp/ProjectB/repo/scripts/analyze_final_test.py\", line 176, in verify_frozen_identity\n    raise ValueError(\"FINAL_ANALYSIS_REFUSED_RUNTIME_MAPPING_IDENTITY\")\nValueError: FINAL_ANALYSIS_REFUSED_RUNTIME_MAPPING_IDENTITY",
+      "name": "M_runtime_mapping_tamper_refused",
+      "passed": true
+    },
+    {
+      "detail": "FINAL_TEST_REFUSED: endpoint manifest byte identity mismatch",
+      "name": "L_launcher_endpoint_manifest_tamper_refused",
+      "passed": true
+    },
+    {
+      "detail": "FINAL_TEST_REFUSED: runtime mapping byte identity mismatch",
+      "name": "M_launcher_runtime_mapping_tamper_refused",
+      "passed": true
+    },
+    {
+      "detail": {
+        "bash": "",
+        "python": ""
+      },
+      "name": "N_python_and_bash_compile",
+      "passed": true
+    },
+    {
+      "detail": "FINAL_HOLDOUT_V1_HYDRA_COMPOSE_RESOLVE_PASS",
+      "name": "O_hydra_compose_resolve",
+      "passed": true
+    },
+    {
+      "detail": "source audit",
+      "name": "P_val_only_source_flow",
+      "passed": true
+    }
+  ],
+  "endpoint_manifest_sha256": "160befdb3c87aab85b8d65254c70ca83823e393ace2478c6b1e226898be97a16",
+  "no_final_holdout_scoring": true,
+  "no_model_inference": true,
+  "primary_bootstrap_index_sha256": "ccd589b57df0d4e12b06ce60e421f761610a2889994e8c1e67d88e279e9799ad",
+  "runtime_mapping_sha256": "ee7ab8143f57c6c9f60c35fd0a5c7c48df73ee28fb3c72761d6bf7a7eb7d9cdd",
+  "schema": "projectb_final_eval_interface_static_checks_v1",
+  "status": "PASS",
+  "tool_bootstrap_index_sha256": "dfc1313612a182b5c9e6bbc7095ea355f9c3b29ab0662283fb238f1e980c603c"
+}

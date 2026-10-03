@@ -1,0 +1,37 @@
+{
+  "checks": {
+    "endpoint_mapping_identity": false,
+    "exactly_108_nonempty_records": true,
+    "exit_code_zero": true,
+    "mapping_108_of_108": false,
+    "no_checkpoint_or_model_files": true,
+    "no_fatal_or_update_markers": true,
+    "no_old_test_reference": true,
+    "one_jsonl": true,
+    "resolved_config_saved": false,
+    "total_steps_zero_evidence": true
+  },
+  "endpoint_manifest_sha256": "160befdb3c87aab85b8d65254c70ca83823e393ace2478c6b1e226898be97a16",
+  "endpoint_mapping_sha256": "ee7ab8143f57c6c9f60c35fd0a5c7c48df73ee28fb3c72761d6bf7a7eb7d9cdd",
+  "fatal_hits": [],
+  "jsonl_path": "/root/autodl-tmp/ProjectB/final-test/final_holdout_v1/01_RL_INIT_V1_retry_02/0.jsonl",
+  "jsonl_sha256": "0063a0c924fbaf3226de7e3ce5eb9e93c716b1237ba33b609301c2d7a753bb4a",
+  "mapping": {
+    "duplicate_rows": 0,
+    "expected_rows": 80,
+    "matched_rows": 108,
+    "missing_rows": 0,
+    "pass": false,
+    "path": "/root/autodl-tmp/ProjectB/final-test/final_holdout_v1/01_RL_INIT_V1_retry_02/0.jsonl",
+    "rows": 108,
+    "unique_source_ids": 108
+  },
+  "model": "RL_INIT_V1",
+  "model_files": [],
+  "old_test_hits": [],
+  "output_dir": "/root/autodl-tmp/ProjectB/final-test/final_holdout_v1/01_RL_INIT_V1_retry_02",
+  "resolved_config_files": [],
+  "rows": 108,
+  "schema": "projectb_final_holdout_v1_technical_gate_v1",
+  "status": "TECHNICAL_FAILURE"
+}

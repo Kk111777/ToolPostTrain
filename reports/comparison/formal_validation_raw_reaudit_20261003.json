@@ -1,0 +1,1310 @@
+{
+  "schema": "projectb_final_test_formal_validation_raw_reaudit_v1",
+  "generated_at_utc": "2026-10-03T02:33:03.586866+00:00",
+  "source": "persisted formal validation eval_generations only; no retraining or inference",
+  "validation_path": "/root/autodl-tmp/ProjectB/env-modern/formal_validation_80.parquet",
+  "steps": [
+    0,
+    7,
+    14,
+    21,
+    28,
+    35
+  ],
+  "canonical_metrics_match": true,
+  "canonical_discrepancies": [],
+  "bootstrap_matches_archived": true,
+  "bootstrap_discrepancies": [],
+  "bootstrap_method": {
+    "numpy": "2.3.5",
+    "replicates": 10000,
+    "rng": "numpy.random.default_rng",
+    "seed": 42
+  },
+  "runs": {
+    "GDPO-current": {
+      "0": {
+        "path": "/root/autodl-tmp/ProjectB/runs/gdpo_stage1_35/eval_generations/0.jsonl",
+        "line_count": 80,
+        "coverage": true,
+        "errors": [],
+        "primary_80": {
+          "accuracy_reward": {
+            "finite": true,
+            "mean": 1.4501711309523808
+          },
+          "format_reward": {
+            "finite": true,
+            "mean": 0.95
+          },
+          "n": 80,
+          "raw_total_validation_reward": {
+            "finite": true,
+            "mean": 2.4001711309523808
+          },
+          "response_wrapper": {
+            "count": 5,
+            "denominator": 80,
+            "rate": 0.0625
+          },
+          "strict_format": {
+            "count": 76,
+            "denominator": 80,
+            "rate": 0.95
+          },
+          "tool_parse": {
+            "count": 73,
+            "denominator": 80,
+            "rate": 0.9125
+          }
+        },
+        "sensitivity_79": {
+          "accuracy_reward": {
+            "finite": true,
+            "mean": 1.4558694996986137
+          },
+          "format_reward": {
+            "finite": true,
+            "mean": 0.9493670886075949
+          },
+          "n": 79,
+          "raw_total_validation_reward": {
+            "finite": true,
+            "mean": 2.405236588306208
+          },
+          "response_wrapper": {
+            "count": 5,
+            "denominator": 79,
+            "rate": 0.06329113924050633
+          },
+          "strict_format": {
+            "count": 75,
+            "denominator": 79,
+            "rate": 0.9493670886075949
+          },
+          "tool_parse": {
+            "count": 72,
+            "denominator": 79,
+            "rate": 0.9113924050632911
+          }
+        },
+        "max_abs_recompute_delta": {
+          "accuracy": 0.0,
+          "format": 0.0,
+          "score": 0.0
+        }
+      },
+      "14": {
+        "path": "/root/autodl-tmp/ProjectB/runs/gdpo_stage1_35/eval_generations/14.jsonl",
+        "line_count": 80,
+        "coverage": true,
+        "errors": [],
+        "primary_80": {
+          "accuracy_reward": {
+            "finite": true,
+            "mean": 1.8357604166666668
+          },
+          "format_reward": {
+            "finite": true,
+            "mean": 0.9625
+          },
+          "n": 80,
+          "raw_total_validation_reward": {
+            "finite": true,
+            "mean": 2.798260416666667
+          },
+          "response_wrapper": {
+            "count": 4,
+            "denominator": 80,
+            "rate": 0.05
+          },
+          "strict_format": {
+            "count": 77,
+            "denominator": 80,
+            "rate": 0.9625
+          },
+          "tool_parse": {
+            "count": 75,
+            "denominator": 80,
+            "rate": 0.9375
+          }
+        },
+        "sensitivity_79": {
+          "accuracy_reward": {
+            "finite": true,
+            "mean": 1.8463396624472574
+          },
+          "format_reward": {
+            "finite": true,
+            "mean": 0.9620253164556962
+          },
+          "n": 79,
+          "raw_total_validation_reward": {
+            "finite": true,
+            "mean": 2.808364978902954
+          },
+          "response_wrapper": {
+            "count": 4,
+            "denominator": 79,
+            "rate": 0.05063291139240506
+          },
+          "strict_format": {
+            "count": 76,
+            "denominator": 79,
+            "rate": 0.9620253164556962
+          },
+          "tool_parse": {
+            "count": 74,
+            "denominator": 79,
+            "rate": 0.9367088607594937
+          }
+        },
+        "max_abs_recompute_delta": {
+          "accuracy": 0.0,
+          "format": 0.0,
+          "score": 0.0
+        }
+      },
+      "21": {
+        "path": "/root/autodl-tmp/ProjectB/runs/gdpo_stage1_35/eval_generations/21.jsonl",
+        "line_count": 80,
+        "coverage": true,
+        "errors": [],
+        "primary_80": {
+          "accuracy_reward": {
+            "finite": true,
+            "mean": 1.806236607142857
+          },
+          "format_reward": {
+            "finite": true,
+            "mean": 0.9625
+          },
+          "n": 80,
+          "raw_total_validation_reward": {
+            "finite": true,
+            "mean": 2.768736607142857
+          },
+          "response_wrapper": {
+            "count": 4,
+            "denominator": 80,
+            "rate": 0.05
+          },
+          "strict_format": {
+            "count": 77,
+            "denominator": 80,
+            "rate": 0.9625
+          },
+          "tool_parse": {
+            "count": 75,
+            "denominator": 80,
+            "rate": 0.9375
+          }
+        },
+        "sensitivity_79": {
+          "accuracy_reward": {
+            "finite": true,
+            "mean": 1.8164421338155514
+          },
+          "format_reward": {
+            "finite": true,
+            "mean": 0.9620253164556962
+          },
+          "n": 79,
+          "raw_total_validation_reward": {
+            "finite": true,
+            "mean": 2.778467450271248
+          },
+          "response_wrapper": {
+            "count": 4,
+            "denominator": 79,
+            "rate": 0.05063291139240506
+          },
+          "strict_format": {
+            "count": 76,
+            "denominator": 79,
+            "rate": 0.9620253164556962
+          },
+          "tool_parse": {
+            "count": 74,
+            "denominator": 79,
+            "rate": 0.9367088607594937
+          }
+        },
+        "max_abs_recompute_delta": {
+          "accuracy": 0.0,
+          "format": 0.0,
+          "score": 0.0
+        }
+      },
+      "28": {
+        "path": "/root/autodl-tmp/ProjectB/runs/gdpo_stage1_35/eval_generations/28.jsonl",
+        "line_count": 80,
+        "coverage": true,
+        "errors": [],
+        "primary_80": {
+          "accuracy_reward": {
+            "finite": true,
+            "mean": 1.818736607142857
+          },
+          "format_reward": {
+            "finite": true,
+            "mean": 0.9625
+          },
+          "n": 80,
+          "raw_total_validation_reward": {
+            "finite": true,
+            "mean": 2.781236607142857
+          },
+          "response_wrapper": {
+            "count": 4,
+            "denominator": 80,
+            "rate": 0.05
+          },
+          "strict_format": {
+            "count": 77,
+            "denominator": 80,
+            "rate": 0.9625
+          },
+          "tool_parse": {
+            "count": 75,
+            "denominator": 80,
+            "rate": 0.9375
+          }
+        },
+        "sensitivity_79": {
+          "accuracy_reward": {
+            "finite": true,
+            "mean": 1.8291003616636528
+          },
+          "format_reward": {
+            "finite": true,
+            "mean": 0.9620253164556962
+          },
+          "n": 79,
+          "raw_total_validation_reward": {
+            "finite": true,
+            "mean": 2.7911256781193488
+          },
+          "response_wrapper": {
+            "count": 4,
+            "denominator": 79,
+            "rate": 0.05063291139240506
+          },
+          "strict_format": {
+            "count": 76,
+            "denominator": 79,
+            "rate": 0.9620253164556962
+          },
+          "tool_parse": {
+            "count": 74,
+            "denominator": 79,
+            "rate": 0.9367088607594937
+          }
+        },
+        "max_abs_recompute_delta": {
+          "accuracy": 0.0,
+          "format": 0.0,
+          "score": 0.0
+        }
+      },
+      "35": {
+        "path": "/root/autodl-tmp/ProjectB/runs/gdpo_stage1_35/eval_generations/35.jsonl",
+        "line_count": 80,
+        "coverage": true,
+        "errors": [],
+        "primary_80": {
+          "accuracy_reward": {
+            "finite": true,
+            "mean": 1.8580223214285716
+          },
+          "format_reward": {
+            "finite": true,
+            "mean": 0.9625
+          },
+          "n": 80,
+          "raw_total_validation_reward": {
+            "finite": true,
+            "mean": 2.8205223214285713
+          },
+          "response_wrapper": {
+            "count": 4,
+            "denominator": 80,
+            "rate": 0.05
+          },
+          "strict_format": {
+            "count": 77,
+            "denominator": 80,
+            "rate": 0.9625
+          },
+          "tool_parse": {
+            "count": 75,
+            "denominator": 80,
+            "rate": 0.9375
+          }
+        },
+        "sensitivity_79": {
+          "accuracy_reward": {
+            "finite": true,
+            "mean": 1.8688833634719708
+          },
+          "format_reward": {
+            "finite": true,
+            "mean": 0.9620253164556962
+          },
+          "n": 79,
+          "raw_total_validation_reward": {
+            "finite": true,
+            "mean": 2.830908679927667
+          },
+          "response_wrapper": {
+            "count": 4,
+            "denominator": 79,
+            "rate": 0.05063291139240506
+          },
+          "strict_format": {
+            "count": 76,
+            "denominator": 79,
+            "rate": 0.9620253164556962
+          },
+          "tool_parse": {
+            "count": 74,
+            "denominator": 79,
+            "rate": 0.9367088607594937
+          }
+        },
+        "max_abs_recompute_delta": {
+          "accuracy": 0.0,
+          "format": 0.0,
+          "score": 0.0
+        }
+      },
+      "7": {
+        "path": "/root/autodl-tmp/ProjectB/runs/gdpo_stage1_35/eval_generations/7.jsonl",
+        "line_count": 80,
+        "coverage": true,
+        "errors": [],
+        "primary_80": {
+          "accuracy_reward": {
+            "finite": true,
+            "mean": 1.6488854166666667
+          },
+          "format_reward": {
+            "finite": true,
+            "mean": 0.9625
+          },
+          "n": 80,
+          "raw_total_validation_reward": {
+            "finite": true,
+            "mean": 2.611385416666667
+          },
+          "response_wrapper": {
+            "count": 4,
+            "denominator": 80,
+            "rate": 0.05
+          },
+          "strict_format": {
+            "count": 77,
+            "denominator": 80,
+            "rate": 0.9625
+          },
+          "tool_parse": {
+            "count": 74,
+            "denominator": 80,
+            "rate": 0.925
+          }
+        },
+        "sensitivity_79": {
+          "accuracy_reward": {
+            "finite": true,
+            "mean": 1.6570991561181434
+          },
+          "format_reward": {
+            "finite": true,
+            "mean": 0.9620253164556962
+          },
+          "n": 79,
+          "raw_total_validation_reward": {
+            "finite": true,
+            "mean": 2.6191244725738394
+          },
+          "response_wrapper": {
+            "count": 4,
+            "denominator": 79,
+            "rate": 0.05063291139240506
+          },
+          "strict_format": {
+            "count": 76,
+            "denominator": 79,
+            "rate": 0.9620253164556962
+          },
+          "tool_parse": {
+            "count": 73,
+            "denominator": 79,
+            "rate": 0.9240506329113924
+          }
+        },
+        "max_abs_recompute_delta": {
+          "accuracy": 0.0,
+          "format": 0.0,
+          "score": 0.0
+        }
+      }
+    },
+    "GRPO-noKL": {
+      "0": {
+        "path": "/root/autodl-tmp/ProjectB/runs/grpo_nokl_stage1_35/eval_generations/0.jsonl",
+        "line_count": 80,
+        "coverage": true,
+        "errors": [],
+        "primary_80": {
+          "accuracy_reward": {
+            "finite": true,
+            "mean": 1.4501711309523808
+          },
+          "format_reward": {
+            "finite": true,
+            "mean": 0.95
+          },
+          "n": 80,
+          "raw_total_validation_reward": {
+            "finite": true,
+            "mean": 2.4001711309523808
+          },
+          "response_wrapper": {
+            "count": 5,
+            "denominator": 80,
+            "rate": 0.0625
+          },
+          "strict_format": {
+            "count": 76,
+            "denominator": 80,
+            "rate": 0.95
+          },
+          "tool_parse": {
+            "count": 73,
+            "denominator": 80,
+            "rate": 0.9125
+          }
+        },
+        "sensitivity_79": {
+          "accuracy_reward": {
+            "finite": true,
+            "mean": 1.4558694996986137
+          },
+          "format_reward": {
+            "finite": true,
+            "mean": 0.9493670886075949
+          },
+          "n": 79,
+          "raw_total_validation_reward": {
+            "finite": true,
+            "mean": 2.405236588306208
+          },
+          "response_wrapper": {
+            "count": 5,
+            "denominator": 79,
+            "rate": 0.06329113924050633
+          },
+          "strict_format": {
+            "count": 75,
+            "denominator": 79,
+            "rate": 0.9493670886075949
+          },
+          "tool_parse": {
+            "count": 72,
+            "denominator": 79,
+            "rate": 0.9113924050632911
+          }
+        },
+        "max_abs_recompute_delta": {
+          "accuracy": 0.0,
+          "format": 0.0,
+          "score": 0.0
+        }
+      },
+      "14": {
+        "path": "/root/autodl-tmp/ProjectB/runs/grpo_nokl_stage1_35/eval_generations/14.jsonl",
+        "line_count": 80,
+        "coverage": true,
+        "errors": [],
+        "primary_80": {
+          "accuracy_reward": {
+            "finite": true,
+            "mean": 1.8077604166666668
+          },
+          "format_reward": {
+            "finite": true,
+            "mean": 0.95
+          },
+          "n": 80,
+          "raw_total_validation_reward": {
+            "finite": true,
+            "mean": 2.7577604166666667
+          },
+          "response_wrapper": {
+            "count": 5,
+            "denominator": 80,
+            "rate": 0.0625
+          },
+          "strict_format": {
+            "count": 76,
+            "denominator": 80,
+            "rate": 0.95
+          },
+          "tool_parse": {
+            "count": 74,
+            "denominator": 80,
+            "rate": 0.925
+          }
+        },
+        "sensitivity_79": {
+          "accuracy_reward": {
+            "finite": true,
+            "mean": 1.8179852320675105
+          },
+          "format_reward": {
+            "finite": true,
+            "mean": 0.9493670886075949
+          },
+          "n": 79,
+          "raw_total_validation_reward": {
+            "finite": true,
+            "mean": 2.7673523206751054
+          },
+          "response_wrapper": {
+            "count": 5,
+            "denominator": 79,
+            "rate": 0.06329113924050633
+          },
+          "strict_format": {
+            "count": 75,
+            "denominator": 79,
+            "rate": 0.9493670886075949
+          },
+          "tool_parse": {
+            "count": 73,
+            "denominator": 79,
+            "rate": 0.9240506329113924
+          }
+        },
+        "max_abs_recompute_delta": {
+          "accuracy": 0.0,
+          "format": 0.0,
+          "score": 0.0
+        }
+      },
+      "21": {
+        "path": "/root/autodl-tmp/ProjectB/runs/grpo_nokl_stage1_35/eval_generations/21.jsonl",
+        "line_count": 80,
+        "coverage": true,
+        "errors": [],
+        "primary_80": {
+          "accuracy_reward": {
+            "finite": true,
+            "mean": 1.8219508928571428
+          },
+          "format_reward": {
+            "finite": true,
+            "mean": 0.9625
+          },
+          "n": 80,
+          "raw_total_validation_reward": {
+            "finite": true,
+            "mean": 2.784450892857143
+          },
+          "response_wrapper": {
+            "count": 4,
+            "denominator": 80,
+            "rate": 0.05
+          },
+          "strict_format": {
+            "count": 77,
+            "denominator": 80,
+            "rate": 0.9625
+          },
+          "tool_parse": {
+            "count": 75,
+            "denominator": 80,
+            "rate": 0.9375
+          }
+        },
+        "sensitivity_79": {
+          "accuracy_reward": {
+            "finite": true,
+            "mean": 1.8323553345388788
+          },
+          "format_reward": {
+            "finite": true,
+            "mean": 0.9620253164556962
+          },
+          "n": 79,
+          "raw_total_validation_reward": {
+            "finite": true,
+            "mean": 2.794380650994575
+          },
+          "response_wrapper": {
+            "count": 4,
+            "denominator": 79,
+            "rate": 0.05063291139240506
+          },
+          "strict_format": {
+            "count": 76,
+            "denominator": 79,
+            "rate": 0.9620253164556962
+          },
+          "tool_parse": {
+            "count": 74,
+            "denominator": 79,
+            "rate": 0.9367088607594937
+          }
+        },
+        "max_abs_recompute_delta": {
+          "accuracy": 0.0,
+          "format": 0.0,
+          "score": 0.0
+        }
+      },
+      "28": {
+        "path": "/root/autodl-tmp/ProjectB/runs/grpo_nokl_stage1_35/eval_generations/28.jsonl",
+        "line_count": 80,
+        "coverage": true,
+        "errors": [],
+        "primary_80": {
+          "accuracy_reward": {
+            "finite": true,
+            "mean": 1.818736607142857
+          },
+          "format_reward": {
+            "finite": true,
+            "mean": 0.9625
+          },
+          "n": 80,
+          "raw_total_validation_reward": {
+            "finite": true,
+            "mean": 2.781236607142857
+          },
+          "response_wrapper": {
+            "count": 4,
+            "denominator": 80,
+            "rate": 0.05
+          },
+          "strict_format": {
+            "count": 77,
+            "denominator": 80,
+            "rate": 0.9625
+          },
+          "tool_parse": {
+            "count": 75,
+            "denominator": 80,
+            "rate": 0.9375
+          }
+        },
+        "sensitivity_79": {
+          "accuracy_reward": {
+            "finite": true,
+            "mean": 1.8291003616636528
+          },
+          "format_reward": {
+            "finite": true,
+            "mean": 0.9620253164556962
+          },
+          "n": 79,
+          "raw_total_validation_reward": {
+            "finite": true,
+            "mean": 2.7911256781193488
+          },
+          "response_wrapper": {
+            "count": 4,
+            "denominator": 79,
+            "rate": 0.05063291139240506
+          },
+          "strict_format": {
+            "count": 76,
+            "denominator": 79,
+            "rate": 0.9620253164556962
+          },
+          "tool_parse": {
+            "count": 74,
+            "denominator": 79,
+            "rate": 0.9367088607594937
+          }
+        },
+        "max_abs_recompute_delta": {
+          "accuracy": 0.0,
+          "format": 0.0,
+          "score": 0.0
+        }
+      },
+      "35": {
+        "path": "/root/autodl-tmp/ProjectB/runs/grpo_nokl_stage1_35/eval_generations/35.jsonl",
+        "line_count": 80,
+        "coverage": true,
+        "errors": [],
+        "primary_80": {
+          "accuracy_reward": {
+            "finite": true,
+            "mean": 1.856236607142857
+          },
+          "format_reward": {
+            "finite": true,
+            "mean": 0.9625
+          },
+          "n": 80,
+          "raw_total_validation_reward": {
+            "finite": true,
+            "mean": 2.8187366071428572
+          },
+          "response_wrapper": {
+            "count": 4,
+            "denominator": 80,
+            "rate": 0.05
+          },
+          "strict_format": {
+            "count": 77,
+            "denominator": 80,
+            "rate": 0.9625
+          },
+          "tool_parse": {
+            "count": 75,
+            "denominator": 80,
+            "rate": 0.9375
+          }
+        },
+        "sensitivity_79": {
+          "accuracy_reward": {
+            "finite": true,
+            "mean": 1.8670750452079565
+          },
+          "format_reward": {
+            "finite": true,
+            "mean": 0.9620253164556962
+          },
+          "n": 79,
+          "raw_total_validation_reward": {
+            "finite": true,
+            "mean": 2.8291003616636528
+          },
+          "response_wrapper": {
+            "count": 4,
+            "denominator": 79,
+            "rate": 0.05063291139240506
+          },
+          "strict_format": {
+            "count": 76,
+            "denominator": 79,
+            "rate": 0.9620253164556962
+          },
+          "tool_parse": {
+            "count": 74,
+            "denominator": 79,
+            "rate": 0.9367088607594937
+          }
+        },
+        "max_abs_recompute_delta": {
+          "accuracy": 0.0,
+          "format": 0.0,
+          "score": 0.0
+        }
+      },
+      "7": {
+        "path": "/root/autodl-tmp/ProjectB/runs/grpo_nokl_stage1_35/eval_generations/7.jsonl",
+        "line_count": 80,
+        "coverage": true,
+        "errors": [],
+        "primary_80": {
+          "accuracy_reward": {
+            "finite": true,
+            "mean": 1.638245110544218
+          },
+          "format_reward": {
+            "finite": true,
+            "mean": 0.95
+          },
+          "n": 80,
+          "raw_total_validation_reward": {
+            "finite": true,
+            "mean": 2.588245110544218
+          },
+          "response_wrapper": {
+            "count": 5,
+            "denominator": 80,
+            "rate": 0.0625
+          },
+          "strict_format": {
+            "count": 76,
+            "denominator": 80,
+            "rate": 0.95
+          },
+          "tool_parse": {
+            "count": 73,
+            "denominator": 80,
+            "rate": 0.9125
+          }
+        },
+        "sensitivity_79": {
+          "accuracy_reward": {
+            "finite": true,
+            "mean": 1.646324162576423
+          },
+          "format_reward": {
+            "finite": true,
+            "mean": 0.9493670886075949
+          },
+          "n": 79,
+          "raw_total_validation_reward": {
+            "finite": true,
+            "mean": 2.595691251184018
+          },
+          "response_wrapper": {
+            "count": 5,
+            "denominator": 79,
+            "rate": 0.06329113924050633
+          },
+          "strict_format": {
+            "count": 75,
+            "denominator": 79,
+            "rate": 0.9493670886075949
+          },
+          "tool_parse": {
+            "count": 72,
+            "denominator": 79,
+            "rate": 0.9113924050632911
+          }
+        },
+        "max_abs_recompute_delta": {
+          "accuracy": 0.0,
+          "format": 0.0,
+          "score": 0.0
+        }
+      }
+    },
+    "GRPO-original": {
+      "0": {
+        "path": "/root/autodl-tmp/ProjectB/runs/grpo_stage1_35/eval_generations/0.jsonl",
+        "line_count": 80,
+        "coverage": true,
+        "errors": [],
+        "primary_80": {
+          "accuracy_reward": {
+            "finite": true,
+            "mean": 1.4501711309523808
+          },
+          "format_reward": {
+            "finite": true,
+            "mean": 0.95
+          },
+          "n": 80,
+          "raw_total_validation_reward": {
+            "finite": true,
+            "mean": 2.4001711309523808
+          },
+          "response_wrapper": {
+            "count": 5,
+            "denominator": 80,
+            "rate": 0.0625
+          },
+          "strict_format": {
+            "count": 76,
+            "denominator": 80,
+            "rate": 0.95
+          },
+          "tool_parse": {
+            "count": 73,
+            "denominator": 80,
+            "rate": 0.9125
+          }
+        },
+        "sensitivity_79": {
+          "accuracy_reward": {
+            "finite": true,
+            "mean": 1.4558694996986137
+          },
+          "format_reward": {
+            "finite": true,
+            "mean": 0.9493670886075949
+          },
+          "n": 79,
+          "raw_total_validation_reward": {
+            "finite": true,
+            "mean": 2.405236588306208
+          },
+          "response_wrapper": {
+            "count": 5,
+            "denominator": 79,
+            "rate": 0.06329113924050633
+          },
+          "strict_format": {
+            "count": 75,
+            "denominator": 79,
+            "rate": 0.9493670886075949
+          },
+          "tool_parse": {
+            "count": 72,
+            "denominator": 79,
+            "rate": 0.9113924050632911
+          }
+        },
+        "max_abs_recompute_delta": {
+          "accuracy": 0.0,
+          "format": 0.0,
+          "score": 0.0
+        }
+      },
+      "14": {
+        "path": "/root/autodl-tmp/ProjectB/runs/grpo_stage1_35/eval_generations/14.jsonl",
+        "line_count": 80,
+        "coverage": true,
+        "errors": [],
+        "primary_80": {
+          "accuracy_reward": {
+            "finite": true,
+            "mean": 1.8497805059523809
+          },
+          "format_reward": {
+            "finite": true,
+            "mean": 0.95
+          },
+          "n": 80,
+          "raw_total_validation_reward": {
+            "finite": true,
+            "mean": 2.799780505952381
+          },
+          "response_wrapper": {
+            "count": 5,
+            "denominator": 80,
+            "rate": 0.0625
+          },
+          "strict_format": {
+            "count": 76,
+            "denominator": 80,
+            "rate": 0.95
+          },
+          "tool_parse": {
+            "count": 74,
+            "denominator": 80,
+            "rate": 0.925
+          }
+        },
+        "sensitivity_79": {
+          "accuracy_reward": {
+            "finite": true,
+            "mean": 1.860537221217601
+          },
+          "format_reward": {
+            "finite": true,
+            "mean": 0.9493670886075949
+          },
+          "n": 79,
+          "raw_total_validation_reward": {
+            "finite": true,
+            "mean": 2.8099043098251957
+          },
+          "response_wrapper": {
+            "count": 5,
+            "denominator": 79,
+            "rate": 0.06329113924050633
+          },
+          "strict_format": {
+            "count": 75,
+            "denominator": 79,
+            "rate": 0.9493670886075949
+          },
+          "tool_parse": {
+            "count": 73,
+            "denominator": 79,
+            "rate": 0.9240506329113924
+          }
+        },
+        "max_abs_recompute_delta": {
+          "accuracy": 0.0,
+          "format": 0.0,
+          "score": 0.0
+        }
+      },
+      "21": {
+        "path": "/root/autodl-tmp/ProjectB/runs/grpo_stage1_35/eval_generations/21.jsonl",
+        "line_count": 80,
+        "coverage": true,
+        "errors": [],
+        "primary_80": {
+          "accuracy_reward": {
+            "finite": true,
+            "mean": 1.8353794642857142
+          },
+          "format_reward": {
+            "finite": true,
+            "mean": 0.95
+          },
+          "n": 80,
+          "raw_total_validation_reward": {
+            "finite": true,
+            "mean": 2.785379464285714
+          },
+          "response_wrapper": {
+            "count": 5,
+            "denominator": 80,
+            "rate": 0.0625
+          },
+          "strict_format": {
+            "count": 76,
+            "denominator": 80,
+            "rate": 0.95
+          },
+          "tool_parse": {
+            "count": 74,
+            "denominator": 80,
+            "rate": 0.925
+          }
+        },
+        "sensitivity_79": {
+          "accuracy_reward": {
+            "finite": true,
+            "mean": 1.8459538878842676
+          },
+          "format_reward": {
+            "finite": true,
+            "mean": 0.9493670886075949
+          },
+          "n": 79,
+          "raw_total_validation_reward": {
+            "finite": true,
+            "mean": 2.7953209764918627
+          },
+          "response_wrapper": {
+            "count": 5,
+            "denominator": 79,
+            "rate": 0.06329113924050633
+          },
+          "strict_format": {
+            "count": 75,
+            "denominator": 79,
+            "rate": 0.9493670886075949
+          },
+          "tool_parse": {
+            "count": 73,
+            "denominator": 79,
+            "rate": 0.9240506329113924
+          }
+        },
+        "max_abs_recompute_delta": {
+          "accuracy": 0.0,
+          "format": 0.0,
+          "score": 0.0
+        }
+      },
+      "28": {
+        "path": "/root/autodl-tmp/ProjectB/runs/grpo_stage1_35/eval_generations/28.jsonl",
+        "line_count": 80,
+        "coverage": true,
+        "errors": [],
+        "primary_80": {
+          "accuracy_reward": {
+            "finite": true,
+            "mean": 1.8818080357142857
+          },
+          "format_reward": {
+            "finite": true,
+            "mean": 0.95
+          },
+          "n": 80,
+          "raw_total_validation_reward": {
+            "finite": true,
+            "mean": 2.831808035714286
+          },
+          "response_wrapper": {
+            "count": 5,
+            "denominator": 80,
+            "rate": 0.0625
+          },
+          "strict_format": {
+            "count": 76,
+            "denominator": 80,
+            "rate": 0.95
+          },
+          "tool_parse": {
+            "count": 74,
+            "denominator": 80,
+            "rate": 0.925
+          }
+        },
+        "sensitivity_79": {
+          "accuracy_reward": {
+            "finite": true,
+            "mean": 1.8929701627486437
+          },
+          "format_reward": {
+            "finite": true,
+            "mean": 0.9493670886075949
+          },
+          "n": 79,
+          "raw_total_validation_reward": {
+            "finite": true,
+            "mean": 2.8423372513562386
+          },
+          "response_wrapper": {
+            "count": 5,
+            "denominator": 79,
+            "rate": 0.06329113924050633
+          },
+          "strict_format": {
+            "count": 75,
+            "denominator": 79,
+            "rate": 0.9493670886075949
+          },
+          "tool_parse": {
+            "count": 73,
+            "denominator": 79,
+            "rate": 0.9240506329113924
+          }
+        },
+        "max_abs_recompute_delta": {
+          "accuracy": 0.0,
+          "format": 0.0,
+          "score": 0.0
+        }
+      },
+      "35": {
+        "path": "/root/autodl-tmp/ProjectB/runs/grpo_stage1_35/eval_generations/35.jsonl",
+        "line_count": 80,
+        "coverage": true,
+        "errors": [],
+        "primary_80": {
+          "accuracy_reward": {
+            "finite": true,
+            "mean": 1.8497209821428569
+          },
+          "format_reward": {
+            "finite": true,
+            "mean": 0.95
+          },
+          "n": 80,
+          "raw_total_validation_reward": {
+            "finite": true,
+            "mean": 2.799720982142857
+          },
+          "response_wrapper": {
+            "count": 5,
+            "denominator": 80,
+            "rate": 0.0625
+          },
+          "strict_format": {
+            "count": 76,
+            "denominator": 80,
+            "rate": 0.95
+          },
+          "tool_parse": {
+            "count": 74,
+            "denominator": 80,
+            "rate": 0.925
+          }
+        },
+        "sensitivity_79": {
+          "accuracy_reward": {
+            "finite": true,
+            "mean": 1.8604769439421336
+          },
+          "format_reward": {
+            "finite": true,
+            "mean": 0.9493670886075949
+          },
+          "n": 79,
+          "raw_total_validation_reward": {
+            "finite": true,
+            "mean": 2.8098440325497287
+          },
+          "response_wrapper": {
+            "count": 5,
+            "denominator": 79,
+            "rate": 0.06329113924050633
+          },
+          "strict_format": {
+            "count": 75,
+            "denominator": 79,
+            "rate": 0.9493670886075949
+          },
+          "tool_parse": {
+            "count": 73,
+            "denominator": 79,
+            "rate": 0.9240506329113924
+          }
+        },
+        "max_abs_recompute_delta": {
+          "accuracy": 0.0,
+          "format": 0.0,
+          "score": 0.0
+        }
+      },
+      "7": {
+        "path": "/root/autodl-tmp/ProjectB/runs/grpo_stage1_35/eval_generations/7.jsonl",
+        "line_count": 80,
+        "coverage": true,
+        "errors": [],
+        "primary_80": {
+          "accuracy_reward": {
+            "finite": true,
+            "mean": 1.7675818452380951
+          },
+          "format_reward": {
+            "finite": true,
+            "mean": 0.95
+          },
+          "n": 80,
+          "raw_total_validation_reward": {
+            "finite": true,
+            "mean": 2.717581845238095
+          },
+          "response_wrapper": {
+            "count": 5,
+            "denominator": 80,
+            "rate": 0.0625
+          },
+          "strict_format": {
+            "count": 76,
+            "denominator": 80,
+            "rate": 0.95
+          },
+          "tool_parse": {
+            "count": 74,
+            "denominator": 80,
+            "rate": 0.925
+          }
+        },
+        "sensitivity_79": {
+          "accuracy_reward": {
+            "finite": true,
+            "mean": 1.777298071127185
+          },
+          "format_reward": {
+            "finite": true,
+            "mean": 0.9493670886075949
+          },
+          "n": 79,
+          "raw_total_validation_reward": {
+            "finite": true,
+            "mean": 2.7266651597347797
+          },
+          "response_wrapper": {
+            "count": 5,
+            "denominator": 79,
+            "rate": 0.06329113924050633
+          },
+          "strict_format": {
+            "count": 75,
+            "denominator": 79,
+            "rate": 0.9493670886075949
+          },
+          "tool_parse": {
+            "count": 73,
+            "denominator": 79,
+            "rate": 0.9240506329113924
+          }
+        },
+        "max_abs_recompute_delta": {
+          "accuracy": 0.0,
+          "format": 0.0,
+          "score": 0.0
+        }
+      }
+    }
+  }
+}

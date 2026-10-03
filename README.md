@@ -2,7 +2,7 @@
 
 在单张 NVIDIA RTX 6000D 上，基于现代 veRL / vLLM，完成格式对齐初始化、KL 路径审计和三组独立的35步后训练实验，研究多奖励 advantage 构造差异是否转化为验证收益。
 
-**2026-10-03（北京时间）文档状态：GRPO-original35 PASS · GDPO-current35 PASS · GRPO-noKL35 PASS。当前项目训练预算冻结为35步；final test 尚未执行。**
+**2026-10-03（北京时间）文档状态：GRPO-original35 PASS · GDPO-current35 PASS · GRPO-noKL35 PASS。当前项目训练预算冻结为35步；FINAL_HOLDOUT_V1 已完成四模型 432/432 正式输出及冻结配对分析。**
 
 [证据索引](reports/README.md) · [三组结果](reports/comparison/grpo_gdpo_nokl_stage1_35_comparison.md) · [预算收尾决定](docs/experiment_design/stage1_closeout_decision.md) · [final-test 协议](docs/experiment_design/final_test_protocol.md) · [实验完成记录](reports/comparison/final_stage1_ablation_completion_report.md)
 
@@ -77,11 +77,22 @@ noKL−original 的最终差值为+0.019016，归档95% paired-bootstrap 区间�
 
 本次文档修订核对了公开 canonical 数值和机制诊断记录；原始正式 validation JSONL 未公开，未独立重算其 bootstrap。checkpoint 清单的结构检查、model-only 加载与完整训练恢复检查是不同证据。
 
-## 下一步：冻结35步后的 final test
+## 已完成：冻结35步后的内部 holdout 复核
 
 [收尾决定](docs/experiment_design/stage1_closeout_decision.md)将35步作为当前项目训练终点；继续三组至70预计还需约30 GPU小时，且不能解决 single seed 和小验证集问题。这是预算决策，不是收敛声明。
 
-[final-test 协议](docs/experiment_design/final_test_protocol.md)固定 RL_INIT_V1 及三条 step35，不选择 step28。正式 Stage 1 未使用 test.parquet 做中间验证；旧 smoke 脚本配置过 test 为 validation，是否实际执行需在未来服务器日志审计中确认，不能声称整个项目历史从未评估 test。协议已写入，本次未开服务器、未执行测试；测试后不得根据结果调参、选择 checkpoint 或继续70。
+[冻结协议](docs/experiment_design/final_test_protocol.md)已执行：RL_INIT_V1 与三条 step35 模型，各评估 FINAL_HOLDOUT_V1 的108条样本，每条1次 greedy generation，共432条。旧官方 test.parquet 已被历史加载并评分，不能称 unseen；本次使用依据可恢复暴露审计构造的 post-hoc internal holdout，不是官方 test 或外部分布 benchmark。
+
+| 模型 | 内部 holdout raw total reward |
+|---|---:|
+| RL_INIT_V1 | 2.416575 |
+| GRPO-original35 | 2.945898 |
+| GDPO-current35 | 2.956086 |
+| GRPO-noKL35 | 2.945284 |
+
+三条 RL 模型相对 RL_INIT 的平均提升约 +0.529、+0.540、+0.529，其配对95%区间均高于0；三条 RL 模型之间的全部预定比较区间均包含0。这支持当前固定模型的 RL 增量改善在新内部样本上得到复核，未支持清晰的 GDPO 优势，也不证明算法等价或跨 seed 稳健性。
+
+[完成报告](reports/final_holdout_v1/completion_report.md) · [完整预定比较与分层指标](reports/final_holdout_v1/metrics_and_paired_comparisons.json) · [432/432 gate 与输出 hashes](reports/final_holdout_v1/completion_gate.json)。原有 RL_INIT_retry_02 的108条答案完整保留，只修复错误技术门禁并复验；没有重生成或择优挑选。测试后不得用该 endpoint 调参、选择 checkpoint 或继续70。
 
 ## 复现与证据入口
 

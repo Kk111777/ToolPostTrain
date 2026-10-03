@@ -1,6 +1,6 @@
 # 实验结果与证据索引
 
-文档更新：2026-10-03（北京时间）。GRPO-original35、GDPO-current35、GRPO-noKL35 均 PASS。当前项目训练预算冻结35步；final test 未执行。历史快照按各自采集时间解读。
+文档更新：2026-10-03（北京时间）。GRPO-original35、GDPO-current35、GRPO-noKL35 均 PASS。当前项目训练预算冻结35步；FINAL_HOLDOUT_V1 四模型 432/432 已完成并通过技术门禁。历史快照按各自采集时间解读。
 
 ## 当前状态与结果
 
@@ -14,7 +14,8 @@
 | noKL 是否完成 | [报告](grpo_nokl/stage1_35/grpo_nokl_stage1_report.md) · [gate](grpo_nokl/stage1_35/STAGE_COMPLETE_OK) · [结构/加载清单](grpo_nokl/stage1_35/checkpoint_manifest_verified.json) |
 | canonical validation 数值 | [original](grpo/grpo_stage1_metrics_canonical.json) · [GDPO](gdpo/gdpo_stage1_metrics_canonical.json) · [noKL](grpo/grpo_nokl_stage1_metrics_canonical.json) |
 | 为什么停止35步、是否收敛 | [预算决定](../docs/experiment_design/stage1_closeout_decision.md)：停止追加训练不等于证明收敛 |
-| final test 如何做 | [协议](../docs/experiment_design/final_test_protocol.md)：共同初始化+三条step35，当前未执行 |
+| 最终内部 holdout 结果 | [完成报告](final_holdout_v1/completion_report.md) · [冻结配对分析](final_holdout_v1/metrics_and_paired_comparisons.json) · [432/432 gate](final_holdout_v1/completion_gate.json) |
+| final evaluation 协议 | [冻结协议](../docs/experiment_design/final_test_protocol.md)：共同初始化+三条step35，各108条1次greedy |
 
 ## KL、机制与统计解释
 
@@ -31,7 +32,7 @@
 | SFT 后是否仍有奖励变化/冲突 | [fresh sampled diagnostic](sft/fresh_holdout_reward_variation.md)：8条冲突轨迹，涉及6/32组 |
 | 本次独立复核到了哪一层 | [文档修订核验](../docs/diagnostics/documentation_revision_audit_20261003.md) |
 
-正式 validation JSONL 未公开。归档 bootstrap 来自服务器持久化输出，本次文档修订未独立重算它。公开 shared-rollout / fresh-holdout JSON 含逐轨迹记录，可在 CPU 上复核本次机制勘误。正式 Stage 1 不用 test 做中间验证；整个项目历史的 test 使用需按 final-test 协议审计。
+正式 validation JSONL 未公开。归档 bootstrap 来自服务器持久化输出，本次文档修订未独立重算它。公开 shared-rollout / fresh-holdout JSON 含逐轨迹记录，可在 CPU 上复核本次机制勘误。正式 Stage 1 不用 test 做中间验证；历史审计已确认旧官方 test 曾实际加载并评分；FINAL_HOLDOUT_V1 是另外冻结的内部复核 endpoint。
 
 ## 初始化、实现与历史证据
 
