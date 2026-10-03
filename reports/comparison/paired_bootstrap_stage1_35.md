@@ -42,3 +42,9 @@ The estimates below are paired differences in raw per-example validation score, 
 | GDPO-current_vs_GRPO-noKL | sensitivity_79 | 35 | 79 | -0.001808 | [-0.005425, 0.000000] | 0.6372 |
 
 Interpretation remains bounded by the known KL-treatment/reward-dimension confounds and the single-seed, 35-step Stage 1 budget. This table does not justify a pure causal claim.
+
+## Interpretation and revision boundary (2026-10-03)
+
+Pair keys encode left_vs_right; `right_minus_left` in the [JSON](paired_bootstrap_stage1_35.json) is authoritative. The noKL-vs-GDPO narrative table uses the reverse orientation and [explicitly converts](grpo_nokl_vs_gdpo_stage1_35.md) the archived estimates. No bootstrap result was regenerated in this documentation revision because the formal per-row JSONL is not public.
+
+Sensitivity79 is post-hoc with one fixed exclusion applied identically to all runs and steps. The percentile intervals describe prompt-level variation conditional on these single-seed trained models; they do not estimate training-seed variability or algorithm equivalence. The `approx two-sided tail` column is archived diagnostic output, not a calibrated population-level significance test. Cross-algorithm same-step intervals are not within-run step28→35 continuation statistics. See the [35-step budget decision](../../docs/experiment_design/stage1_closeout_decision.md).

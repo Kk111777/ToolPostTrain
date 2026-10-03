@@ -1,7 +1,7 @@
 # GRPO-noKL vs GDPO-current
 
 This is a descriptive 35-step, single-seed comparison on the frozen formal_validation_80 endpoint.
-The paired bootstrap is right minus left over the same validation row order; it is not a population-significance claim.
+The table uses left=noKL, right=GDPO. The archived bootstrap JSON uses the reverse orientation (noKL−GDPO); see the explicit conversion below. It is not a population-significance claim.
 
 | step | left total | right total | left accuracy | right accuracy | left format | right format |
 |---:|---:|---:|---:|---:|---:|---:|
@@ -14,12 +14,12 @@ The paired bootstrap is right minus left over the same validation row order; it 
 
 ## Sensitivity at step 35
 
-Removing the pre-registered source_id 3814 row from the same 80 outputs gives 79 rows: left total 2.829100; right total 2.830909.
+A post-hoc sensitivity analysis removes source_id 3814 from the same 80 outputs, using a fixed exclusion rule applied identically across algorithms and steps. This gives 79 rows: left total 2.829100; right total 2.830909.
 
 ## Boundary
 
-- GRPO-original vs GDPO-current retains the known KL-treatment and reward-dimension confound.
+- GDPO uses raw component rewards and no actor KL loss; noKL is objective-level KL-aligned. This compares complete advantage constructions (including GDPO batch whitening), not per-dimension normalization alone. The nearly identical endpoints do not establish a clear GDPO downstream advantage.
 - GRPO-noKL has both reward-side KL and actor KL loss disabled, so its reference-policy runtime is different; do not compare wall-clock/GPU efficiency as if it were fair.
 - These results are single-seed Stage 1 evidence and do not establish 70/105-step behavior.
 
-Paired bootstrap details: reports/comparison/paired_bootstrap_stage1_35.json, key GDPO-current_vs_GRPO-noKL.
+Paired bootstrap: [JSON](paired_bootstrap_stage1_35.json), key `GDPO-current_vs_GRPO-noKL`, which reports noKL−GDPO: step35 mean −0.001786, 95% interval [-0.005357, 0]. For this table's GDPO−noKL direction, negate the mean and reverse/negate interval endpoints: +0.001786, [0, 0.005357]. This algebraic conversion does not rerun the bootstrap or establish GDPO superiority.

@@ -1,5 +1,7 @@
 # GRPO-original vs GRPO-noKL final effective-config diff
 
+> **Historical / superseded status or planning context — annotation added 2026-10-03.** Static prelaunch audit; its no-training-started/smoke-required statements describe that audit. Formal noKL35 later completed. Original facts and values below are preserved. Current artifacts: [three-run completion](../../reports/comparison/final_stage1_ablation_completion_report.md); current budget: [35-step decision](../experiment_design/stage1_closeout_decision.md).
+
 Status: PASS. Static audit only: no noKL model was loaded and no GPU training was started.
 
 ## Machine-readable evidence

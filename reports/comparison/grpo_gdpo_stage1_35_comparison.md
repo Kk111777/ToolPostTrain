@@ -1,5 +1,7 @@
 # GRPO vs GDPO Stage 1: 35-step comparison
 
+> **Historical / superseded status or planning context — annotation added 2026-10-03.** Original two-run comparison, superseded as the current result overview by the three-run report. A KL-aligned noKL run has since completed; the historical A/B confound remains. Original facts and values below are preserved. Current artifacts: [three-run completion](final_stage1_ablation_completion_report.md); current budget: [35-step decision](../../docs/experiment_design/stage1_closeout_decision.md).
+
 ## Scope
 
 - Both algorithms start independently from RL_INIT_V1.

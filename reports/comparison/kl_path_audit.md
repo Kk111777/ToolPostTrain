@@ -1,5 +1,7 @@
 # ProjectB KL path audit
 
+> **Historical / superseded status or planning context — annotation added 2026-10-03.** Initial two-run source/smoke audit; its not-yet-ablated statement predates completed noKL35. Original facts and values below are preserved. Current artifacts: [three-run completion](final_stage1_ablation_completion_report.md); current budget: [35-step decision](../../docs/experiment_design/stage1_closeout_decision.md).
+
 This is a read-only source audit paired with the two controlled one-step runtime logs. No KL implementation or configuration was changed during the audit.
 
 ## Runtime configuration

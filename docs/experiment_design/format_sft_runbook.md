@@ -1,5 +1,7 @@
 # ProjectB Format SFT Warmup Runbook
 
+> **Historical / superseded status or planning context — annotation added 2026-10-03.** Pre-training SFT runbook; its 未启动 statements are historical, not current status. Original facts and values below are preserved. Current artifacts: [three-run completion](../../reports/comparison/final_stage1_ablation_completion_report.md); current budget: [35-step decision](stage1_closeout_decision.md).
+
 本 runbook 只描述后续执行方式。当前阶段已经完成数据准备和脚本静态检查，但没有启动 SFT、没有进入 optimizer、没有修改环境或 reward。
 
 ## 1. 已实现的文件

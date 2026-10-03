@@ -1,5 +1,7 @@
 # ProjectB Format SFT 验证方案
 
+> **Historical / superseded status or planning context — annotation added 2026-10-03.** Original SFT validation plan, preserved as design history. Original facts and values below are preserved. Current artifacts: [three-run completion](../../reports/comparison/final_stage1_ablation_completion_report.md); current budget: [35-step decision](stage1_closeout_decision.md).
+
 本报告定义 SFT warmup 完成后的 validation gate。当前只设计，不训练、不启动 optimizer、不修改 GRPO/GDPO pipeline。
 
 ## 1. 固定验证集

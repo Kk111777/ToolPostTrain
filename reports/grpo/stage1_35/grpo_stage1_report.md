@@ -1,5 +1,7 @@
 # GRPO Stage 1 (35-step) completion report
 
+> **Historical / superseded status or planning context — annotation added 2026-10-03.** Original run-completion record. NOT FINAL_BUDGET and resume-policy wording predate the current35-step closeout decision; its numerical results remain valid. Original facts and values below are preserved. Current artifacts: [three-run completion](../../comparison/final_stage1_ablation_completion_report.md); current budget: [35-step decision](../../../docs/experiment_design/stage1_closeout_decision.md).
+
 Generated from persisted artifacts at 2026-10-01T23:10:26.715530+00:00. No training was rerun.
 
 ## A. Formal configuration summary

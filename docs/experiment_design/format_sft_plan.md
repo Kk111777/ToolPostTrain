@@ -1,5 +1,7 @@
 # ProjectB 最小 Format SFT Warmup 方案
 
+> **Historical / superseded status or planning context — annotation added 2026-10-03.** Original SFT proposal; actual frozen initialization is Format SFT v2 / RL_INIT_V1. Original facts and values below are preserved. Current artifacts: [three-run completion](../../reports/comparison/final_stage1_ablation_completion_report.md); current budget: [35-step decision](stage1_closeout_decision.md).
+
 本方案只设计 format-following warmup，不执行训练，不改变现有 GRPO/GDPO pipeline，不修改 reward manager、parquet dataset 或 modern Python 环境。
 
 ## 1. 目标与边界

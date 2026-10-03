@@ -1,5 +1,7 @@
 # GRPO-noKL Stage 1: 35-step report
 
+> **Historical / superseded status or planning context — annotation added 2026-10-03.** Historical compatibility copy of the noKL report; canonical report path is reports/grpo_nokl/stage1_35/grpo_nokl_stage1_report.md. Original facts and values below are preserved. Current artifacts: [three-run completion](../../comparison/final_stage1_ablation_completion_report.md); current budget: [35-step decision](../../../docs/experiment_design/stage1_closeout_decision.md).
+
 ## Status
 
 - Completion: 35/35 optimizer steps completed; run_status.json reports phase=completed and exit_code=0.

@@ -1,5 +1,7 @@
 # ProjectB staged formal experiment configuration
 
+> **Historical / superseded status or planning context — annotation added 2026-10-03.** Pre-run design snapshot; NOT STARTED and the original continuation/retention rules describe that point in time. Original facts and values below are preserved. Current artifacts: [three-run completion](../reports/comparison/final_stage1_ablation_completion_report.md); current budget: [35-step decision](../docs/experiment_design/stage1_closeout_decision.md).
+
 ## Current status
 
 **STAGE 1 / NOT STARTED.** The first formal budget is now 35 optimizer

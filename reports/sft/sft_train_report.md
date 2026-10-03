@@ -1,5 +1,7 @@
 # ProjectB Format SFT Warmup Training Report
 
+> **Historical / superseded status or planning context — annotation added 2026-10-03.** SFT v1 run-completion snapshot; later SFT v2 and three RL runs completed. Original facts and values below are preserved. Current artifacts: [three-run completion](../comparison/final_stage1_ablation_completion_report.md); current budget: [35-step decision](../../docs/experiment_design/stage1_closeout_decision.md).
+
 ## A. 执行边界
 
 - 执行位置：远程 AutoDL，RTX 6000D，SM120。

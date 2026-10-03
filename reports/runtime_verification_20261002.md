@@ -1,5 +1,7 @@
 # 运行环境与历史记录核对
 
+> **Historical / superseded status or planning context — annotation added 2026-10-03.** Early runtime snapshot, not the three-run final status. Original facts and values below are preserved. Current artifacts: [three-run completion](comparison/final_stage1_ablation_completion_report.md); current budget: [35-step decision](../docs/experiment_design/stage1_closeout_decision.md).
+
 核对时间：2026-10-02 08:21（北京时间）。通过 `ssh autodl` 只读检查服务器；没有安装包、加载新模型、启动训练或修改运行中的源码/配置。
 
 - GPU：NVIDIA RTX 6000D，SM120；GPU-validation 日志记录 capability=12.0。
