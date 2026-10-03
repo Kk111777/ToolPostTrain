@@ -1,0 +1,49 @@
+{
+  "files": [
+    {
+      "exists": true,
+      "path": "/root/autodl-tmp/ProjectB/upstream/verl-v0.9.1/verl/utils/reward_score/rlla.py",
+      "sha256": "4b437fdbc4a834953b640f59c0b966b1838dd771a0d86da89e2398c7fe37046c",
+      "size_bytes": 9072
+    },
+    {
+      "exists": true,
+      "path": "/root/autodl-tmp/ProjectB/upstream/verl-v0.9.1/verl/experimental/reward_loop/reward_manager/gdpo.py",
+      "sha256": "2b5a6f658c7a7b6f5b7a08151c11159f6692d8bbddf5dc7d128d8086b4b734da",
+      "size_bytes": 3688
+    },
+    {
+      "exists": true,
+      "path": "/root/autodl-tmp/ProjectB/repo/verl-GDPO/verl/trainer/main_ppo.py",
+      "sha256": "6c1963aca219d4bc609e3948c7e8589c20d227983aea1f912a86863e2f67d688",
+      "size_bytes": 8316
+    },
+    {
+      "exists": true,
+      "path": "/root/autodl-tmp/ProjectB/repo/verl-GDPO/verl/trainer/ppo/ray_trainer.py",
+      "sha256": "d148353b1cf73e0f3dc9e3f6bac2afd1fcf57589068b7a6bebf73df00074dcd1",
+      "size_bytes": 39110
+    },
+    {
+      "exists": true,
+      "path": "/root/autodl-tmp/ProjectB/repo/verl-GDPO/verl/utils/reward_score/rlla.py",
+      "sha256": "2ba68ec7e5e824a0ca73f5d0ac6eff2d8c7e94fcbd71f08296d345578590122d",
+      "size_bytes": 12643
+    }
+  ],
+  "generated_at_utc": "2026-10-03T02:33:03.050014+00:00",
+  "git_revisions": {
+    "repo": "86144e00ef7323951f915e63df6fc65f07b0a4b9",
+    "upstream": "1876b06d0a3e4e71e06230be10af14492ca8a75b"
+  },
+  "runtime_resolution": {
+    "custom_reward_function": "/root/autodl-tmp/ProjectB/upstream/verl-v0.9.1/verl/utils/reward_score/rlla.py",
+    "reference_kl_score": false,
+    "reward_manager": "/root/autodl-tmp/ProjectB/upstream/verl-v0.9.1/verl/experimental/reward_loop/reward_manager/gdpo.py",
+    "reward_side_kl": false,
+    "same_scorer_for_all_models": true,
+    "task_reward_only": true,
+    "trainer_import_root": "/root/autodl-tmp/ProjectB/repo/verl-GDPO/verl"
+  },
+  "schema": "projectb_final_test_scorer_manifest_v1"
+}

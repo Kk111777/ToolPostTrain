@@ -1,0 +1,151 @@
+{
+  "generated_at_utc": "2026-10-03T02:32:41.059304+00:00",
+  "models": {
+    "GDPO-current35": {
+      "exists": true,
+      "files": {
+        "chat_template.jinja": {
+          "sha256": "cd8e9439f0570856fd70470bf8889ebd8b5d1107207f67a5efb46e342330527f",
+          "size_bytes": 2507
+        },
+        "config.json": {
+          "sha256": "629bbbad87d132548ee5ea74cb59977826b0865e22b2edb2891492a35324e179",
+          "size_bytes": 1372
+        },
+        "generation_config.json": {
+          "sha256": "8a14316b444a77f463e9f44832352813ac75441ba3269c20c617dfbb765d781f",
+          "size_bytes": 241
+        },
+        "model.safetensors": {
+          "sha256": "5073dc0229f43ea0fa292cc554b09242cacf46967419113ee66bce38e80157b8",
+          "size_bytes": 3087467144
+        },
+        "tokenizer.json": {
+          "sha256": "3fd169731d2cbde95e10bf356d66d5997fd885dd8dbb6fb4684da3f23b2585d8",
+          "size_bytes": 11421892
+        },
+        "tokenizer_config.json": {
+          "sha256": "1cc816812993bff176eb4f7495433b736f06fba9b6e7b05cac7b4a1780650c95",
+          "size_bytes": 692
+        }
+      },
+      "path": "/root/autodl-tmp/ProjectB/runs/gdpo_stage1_35/model_only/step_35",
+      "safetensors_structure": {
+        "checked": true,
+        "readable": true,
+        "tensor_count": 338
+      }
+    },
+    "GRPO-noKL35": {
+      "exists": true,
+      "files": {
+        "chat_template.jinja": {
+          "sha256": "cd8e9439f0570856fd70470bf8889ebd8b5d1107207f67a5efb46e342330527f",
+          "size_bytes": 2507
+        },
+        "config.json": {
+          "sha256": "629bbbad87d132548ee5ea74cb59977826b0865e22b2edb2891492a35324e179",
+          "size_bytes": 1372
+        },
+        "generation_config.json": {
+          "sha256": "8a14316b444a77f463e9f44832352813ac75441ba3269c20c617dfbb765d781f",
+          "size_bytes": 241
+        },
+        "model.safetensors": {
+          "sha256": "7368d9a739d44fbf11762d56aae98df69145bc9b65fb10d8d6b3ea226cb18da9",
+          "size_bytes": 3087467144
+        },
+        "tokenizer.json": {
+          "sha256": "3fd169731d2cbde95e10bf356d66d5997fd885dd8dbb6fb4684da3f23b2585d8",
+          "size_bytes": 11421892
+        },
+        "tokenizer_config.json": {
+          "sha256": "1cc816812993bff176eb4f7495433b736f06fba9b6e7b05cac7b4a1780650c95",
+          "size_bytes": 692
+        }
+      },
+      "path": "/root/autodl-tmp/ProjectB/runs/grpo_nokl_stage1_35/model_only/step_35",
+      "safetensors_structure": {
+        "checked": true,
+        "readable": true,
+        "tensor_count": 338
+      }
+    },
+    "GRPO-original35": {
+      "exists": true,
+      "files": {
+        "chat_template.jinja": {
+          "sha256": "cd8e9439f0570856fd70470bf8889ebd8b5d1107207f67a5efb46e342330527f",
+          "size_bytes": 2507
+        },
+        "config.json": {
+          "sha256": "629bbbad87d132548ee5ea74cb59977826b0865e22b2edb2891492a35324e179",
+          "size_bytes": 1372
+        },
+        "generation_config.json": {
+          "sha256": "8a14316b444a77f463e9f44832352813ac75441ba3269c20c617dfbb765d781f",
+          "size_bytes": 241
+        },
+        "model.safetensors": {
+          "sha256": "a73db20e2a4d89f182eb9fe599fb6f020f9e11ec5b246b7e5002943211551b6a",
+          "size_bytes": 3087467144
+        },
+        "tokenizer.json": {
+          "sha256": "3fd169731d2cbde95e10bf356d66d5997fd885dd8dbb6fb4684da3f23b2585d8",
+          "size_bytes": 11421892
+        },
+        "tokenizer_config.json": {
+          "sha256": "1cc816812993bff176eb4f7495433b736f06fba9b6e7b05cac7b4a1780650c95",
+          "size_bytes": 692
+        }
+      },
+      "path": "/root/autodl-tmp/ProjectB/runs/grpo_stage1_35/model_only/step_35",
+      "safetensors_structure": {
+        "checked": true,
+        "readable": true,
+        "tensor_count": 338
+      }
+    },
+    "RL_INIT_V1": {
+      "exists": true,
+      "files": {
+        "chat_template.jinja": {
+          "sha256": "cd8e9439f0570856fd70470bf8889ebd8b5d1107207f67a5efb46e342330527f",
+          "size_bytes": 2507
+        },
+        "config.json": {
+          "sha256": "a1d8b6b82c3ac19fe1f1dc0e334f0e05ccdf66205c4a74c63f2e092a81b4ba9d",
+          "size_bytes": 1372
+        },
+        "generation_config.json": {
+          "sha256": "8a14316b444a77f463e9f44832352813ac75441ba3269c20c617dfbb765d781f",
+          "size_bytes": 241
+        },
+        "merge_metadata.json": {
+          "sha256": "f5a9caecd0009aabe1ecbaad7365afe23e1c27253d24613a61f20f3394712677",
+          "size_bytes": 907
+        },
+        "model.safetensors": {
+          "sha256": "950eab75571bb21dda57c956914c6a201e022c2b340e648e351bea3c19db5cac",
+          "size_bytes": 3087467144
+        },
+        "tokenizer.json": {
+          "sha256": "3fd169731d2cbde95e10bf356d66d5997fd885dd8dbb6fb4684da3f23b2585d8",
+          "size_bytes": 11421892
+        },
+        "tokenizer_config.json": {
+          "sha256": "1cc816812993bff176eb4f7495433b736f06fba9b6e7b05cac7b4a1780650c95",
+          "size_bytes": 692
+        }
+      },
+      "path": "/root/autodl-tmp/ProjectB/checkpoints/rl_init_sft_v2_merged",
+      "safetensors_structure": {
+        "checked": true,
+        "readable": true,
+        "tensor_count": 338
+      }
+    }
+  },
+  "read_policy": "CPU file/header identity only; no AutoModel load and no GPU",
+  "schema": "projectb_final_test_models_manifest_v1"
+}

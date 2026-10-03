@@ -1,0 +1,69 @@
+{
+  "classification": {
+    "A_code_or_config_reference": true,
+    "B_runtime_log_shows_test_loaded": true,
+    "C_test_metric_or_generation_evidence": true,
+    "D_explicit_later_decision_use_found": false
+  },
+  "evidence": [
+    {
+      "path": "/root/autodl-tmp/ProjectB/runs/grpo_formal_v1/launch_command.txt",
+      "runtime_val_matches": 1,
+      "score_metric_matches": 0
+    },
+    {
+      "path": "/root/autodl-tmp/ProjectB/runs/grpo_formal_v1/run_formal_grpo.sh",
+      "runtime_val_matches": 1,
+      "score_metric_matches": 0
+    },
+    {
+      "path": "/root/autodl-tmp/ProjectB/runs/grpo_formal_v1/logs/supervisor.log",
+      "runtime_val_matches": 2,
+      "score_metric_matches": 21
+    },
+    {
+      "path": "/root/autodl-tmp/ProjectB/env-modern/gpu-validation-logs/validation.log",
+      "runtime_val_matches": 2,
+      "score_metric_matches": 3
+    },
+    {
+      "path": "/root/autodl-tmp/ProjectB/env-modern/gpu-validation-logs/grpo-driver.log",
+      "runtime_val_matches": 2,
+      "score_metric_matches": 2
+    },
+    {
+      "path": "/root/autodl-tmp/ProjectB/env-modern/gpu-validation-logs/gdpo-driver.log",
+      "runtime_val_matches": 2,
+      "score_metric_matches": 1
+    },
+    {
+      "path": "/root/autodl-tmp/ProjectB/env-modern/official-scale-capacity-logs/grpo.stdout.log",
+      "runtime_val_matches": 3,
+      "score_metric_matches": 0
+    },
+    {
+      "path": "/root/autodl-tmp/ProjectB/env-modern/official-scale-capacity-logs/gdpo_eligible512.stdout.log",
+      "runtime_val_matches": 2,
+      "score_metric_matches": 18
+    },
+    {
+      "path": "/root/autodl-tmp/ProjectB/env-modern/throughput-tuning-logs/grpo_config_a.stdout.log",
+      "runtime_val_matches": 2,
+      "score_metric_matches": 0
+    },
+    {
+      "path": "/root/autodl-tmp/ProjectB/env-modern/throughput-tuning-logs/gdpo_throughput_config_a.stdout.log",
+      "runtime_val_matches": 1,
+      "score_metric_matches": 24
+    },
+    {
+      "path": "/root/autodl-tmp/ProjectB/repo/scripts/run_single_gpu_smoke.sh",
+      "runtime_val_matches": 1,
+      "score_metric_matches": 0
+    }
+  ],
+  "generated_at_utc": "2026-10-03T02:32:32.377365+00:00",
+  "gpu_gate": "GPU_FINAL_TEST_BLOCKED",
+  "narrow_conclusion": "Historical runtime use of test.parquet is confirmed by persisted commands/logs, including test row-count/scoring markers. Formal Stage1 intermediate validation used formal_validation_80. No direct evidence was found that historical test scores drove later budget, hyperparameter, or checkpoint decisions in the audited decision files; absence of evidence is not proof of non-use. The test cannot be represented as fully unseen without manual review.",
+  "schema": "projectb_final_test_historical_usage_audit_v1"
+}
