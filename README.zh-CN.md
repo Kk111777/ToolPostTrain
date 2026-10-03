@@ -8,7 +8,7 @@
 
 大模型工具调用后训练：GRPO/GDPO 复现、KL 目标路径审计与受控消融。
 
-**已完成：**三组 **35-step** RL 训练 · **108** 条内部留出集提示 · **432** 条正式生成输出。
+**已完成：** 三组 **35-step** RL 训练 · **108** 条内部留出集提示 · **432** 条正式生成输出。
 
 [最终结果](reports/final_holdout_v1/completion_report.md) · [KL 目标审计](docs/diagnostics/gdpo_hidden_kl_use_final_audit.md) · [证据索引](reports/README.md)
 
@@ -21,7 +21,7 @@
 
 ## 我的工作（What I Built）
 
-**上游基础：**NVlabs/GDPO 提供算法与复现代码；官方 veRL 提供实际执行的训练框架；ToolRL 提供任务数据与奖励契约；Qwen 提供基础模型。
+**上游基础：** NVlabs/GDPO 提供算法与复现代码；官方 veRL 提供实际执行的训练框架；ToolRL 提供任务数据与奖励契约；Qwen 提供基础模型。
 
 我的工程与研究贡献：
 
@@ -91,7 +91,7 @@ flowchart TD
 | GDPO − RL_INIT | +0.539511 | [+0.302045, +0.815225] |
 | GRPO-noKL − RL_INIT | +0.528708 | [+0.303088, +0.782164] |
 
-> **核心发现：**在当前固定内部 endpoint 上，三组 RL−初始化的区间均高于 0。三组 RL 方法之间的区间均包含 0；实验没有支持 GDPO 相对 KL 对齐 GRPO 具有清晰优势，也没有证明算法等价。
+> **核心发现：** 在当前固定内部 endpoint 上，三组 RL−初始化的区间均高于 0。三组 RL 方法之间的区间均包含 0；实验没有支持 GDPO 相对 KL 对齐 GRPO 具有清晰优势，也没有证明算法等价。
 
 分析使用 **10,000 次共同的配对重采样**、seed 42 和 percentile intervals。区间描述固定 checkpoints 下的提示样本变异，不包含不同训练 seeds 的变异。[完整六组预先声明的比较与分项指标](reports/final_holdout_v1/metrics_and_paired_comparisons.json)均保留；上表仅用于阅读展示，没有修改分析。
 
