@@ -1,112 +1,203 @@
-# ToolPostTrain：工具调用后训练的 GRPO / GDPO 受控复现与消融
+# ToolPostTrain
 
-在单张 NVIDIA RTX 6000D 上，基于现代 veRL / vLLM，完成格式对齐初始化、KL 路径审计和三组独立的35步后训练实验，研究多奖励 advantage 构造差异是否转化为验证收益。
+### Reproducing and Auditing Multi-Reward RL Post-Training for Tool Calling
 
-**2026-10-03（北京时间）文档状态：GRPO-original35 PASS · GDPO-current35 PASS · GRPO-noKL35 PASS。当前项目训练预算冻结为35步；FINAL_HOLDOUT_V1 已完成四模型 432/432 正式输出及冻结配对分析。**
+**Format SFT → GRPO/GDPO → KL-path audit → matched no-KL ablation → held-out paired evaluation**
 
-[证据索引](reports/README.md) · [三组结果](reports/comparison/grpo_gdpo_nokl_stage1_35_comparison.md) · [预算收尾决定](docs/experiment_design/stage1_closeout_decision.md) · [final-test 协议](docs/experiment_design/final_test_protocol.md) · [实验完成记录](reports/comparison/final_stage1_ablation_completion_report.md)
+大模型工具调用后训练：GRPO/GDPO 复现、KL 目标路径审计与受控消融。
 
-## 研究问题
+**Completed:** three **35-step** RL runs · **108** internal holdout prompts · **432** formal generations.
 
-In format-aligned tool-calling post-training, does GDPO's multi-reward advantage construction produce a measurable benefit over a KL-aligned GRPO reference?
+[Final results](reports/final_holdout_v1/completion_report.md) · [KL objective audit](docs/diagnostics/gdpo_hidden_kl_use_final_audit.md) · [Evidence index](reports/README.md)
 
-GRPO 对奖励求和后做组内归一化；GDPO 对各奖励维度分别归一化，再合并并做 batch masked whitening。项目比较的是这两套 advantage 构造，而不是单独识别其中一个归一化操作的因果效果。
+## Highlights
 
-## 为什么先做 Format SFT
+- Ran real GRPO/GDPO post-training of **Qwen2.5-1.5B-Instruct** with modern **veRL/vLLM** on one **RTX 6000D**.
+- Built a lightweight **Format SFT** stage to establish a shared initialization for ToolRL's strict output contract.
+- Traced **reward → advantage → optimizer** and identified different reward-side KL consumption despite matching configuration flags.
+- Added a **matched GRPO-noKL control**: the three RL checkpoints gained about **+0.53 raw reward** over initialization on this internal endpoint, without establishing a clear GDPO advantage over the KL-aligned reference.
 
-基础 Qwen2.5-1.5B-Instruct 不稳定满足 ToolRL 自定义输出协议，使格式错误干扰奖励信号。Format SFT v2 使用800条训练来源样本、1 epoch、LoRA 50次更新，再合并得到共同初始化 **RL_INIT_V1**。三条 RL run 都独立从该初始化的 step0 开始。
+## What I Built
 
-[SFT 报告](reports/sft/sft_v2_train_report.md)与[合并检查](reports/comparison/rl_init_merge_validation.md)记录了这一步；16个检查样本的格式/解析判断一致，输出和奖励15/16一致，未宣称 adapter 与 merged 推理逐位等价。后续 sampled reward pilot 仍有组内变化：17/32组格式变化、27/32组正确性变化。
+**Upstream foundations:** NVlabs/GDPO supplies the algorithm/reproduction code; official veRL supplies the executed trainer; ToolRL supplies the task data and reward contract; Qwen supplies the base model.
 
-## 三组受控实验与 noKL 的作用
+My engineering and research contributions:
 
-| run | advantage 输入与构造 | reward-side KL 进入 objective | actor KL loss | 完成状态 |
-|---|---|---|---|---|
-| GRPO-original | aggregate reward → group normalization | 是，配置开启 | false | 35/35 PASS |
-| GDPO-current | raw accuracy / format → 分别 normalize → 合并 / whiten | 否；配置虽为 true，component path 不消费 KL 调整奖励 | false | 35/35 PASS |
-| GRPO-noKL | aggregate reward → group normalization | 否，配置关闭 | false | 35/35 PASS |
-
-[源码路径审计](docs/diagnostics/gdpo_hidden_kl_use_final_audit.md)发现，相同的 `use_kl_in_reward=true` 不保证两算法实际采用相同 KL 处理。因此补跑 GRPO-noKL，将它作为 GDPO 的目标层面 KL 对齐参照。[original/noKL 配置差异](docs/diagnostics/grpo_original_vs_grpo_nokl_effective_config_diff.md)记录了唯一主动实验语义变化：`algorithm.use_kl_in_reward: true → false`。
-
-noKL 还按官方框架语义移除 reference-policy 计算。这是配置变化的运行后果，三组步时不能作为纯算法效率排名。原始 GRPO/GDPO 比较本身仍同时包含 KL 处理与 advantage 构造差异。
-
-| 共同冻结项 | 设置 |
+| Contribution | Concrete work |
 |---|---|
-| 初始化 / seed | RL_INIT_V1 / 42 |
-| 数据与顺序 | ToolRL rlla_4k：3920 raw → 3901 eligible；shuffle=false、drop_last=true，每 epoch 使用前3584条，317条尾部不进 optimizer |
-| 预算 | 5 epochs × 7 batches = 35 optimizer steps；512 prompts/batch，rollout.n=4，PPO minibatch=128 |
-| 学习率 / 长度 | lr=1e-6；prompt 2048 / response 1024；physical microbatch=1，dynamic token budget=6144 |
-| vLLM Config A | TP=1；memory utilization=0.40；max_num_seqs=8；max_num_batched_tokens=6144 |
-| 验证 | 固定 formal_validation_80；greedy n=1；steps 0/7/14/21/28/35 |
+| Modern training stack | Adapted environment setup and launch configuration for Blackwell/SM120, FSDP, SDPA and vLLM; validated real optimizer updates and completed single-GPU training. |
+| Shared RL initialization | Audited prompts and scorer expectations; prepared 800 Format-SFT examples, ran one LoRA epoch / 50 updates, and validated the merged **RL_INIT_V1**. |
+| Objective-path audit | Followed reward tensors, raw component extras, advantage dispatch and policy loss to identify the **KL-treatment confound**. |
+| Controlled ablation | Designed and ran **GRPO-original35, GDPO-current35 and GRPO-noKL35** from the same initialization with a shared budget and evaluation schedule. |
+| Mechanism diagnostics | Compared advantages on shared rollouts and checked reward-dimension conflicts in a separate sampled diagnostic. |
+| Paired evaluation | Froze four model identities and an internal endpoint; completed **432** outputs, exact scorer checks and paired-bootstrap analysis. |
 
-## Stage 1 验证结果
+The project combines upstream algorithm reproduction with an audit of what the implemented objectives actually compare.
 
-**以下是 validation endpoint，single training seed，n=80，尚非 final test。** 三组 step0 total 均为2.400171。accuracy reward 是工具调用正确性奖励分数，不是准确率百分比。
+## Research Question
 
-| run | step35 total reward | accuracy reward | format reward | total 相对 step0 |
+Does GDPO's per-reward advantage construction yield a measurable benefit over a **KL-aligned GRPO reference** in format-aligned tool-calling post-training?
+
+For the KL-free comparison, the constructions are schematically:
+
+```text
+R      = R_accuracy + R_format
+A_GRPO = GroupNorm(R)
+A_GDPO ≈ MaskedBatchWhiten(GroupNorm(R_accuracy) + GroupNorm(R_format))
+```
+
+GroupNorm operates within a prompt's rollout group; GDPO additionally whitens over valid response tokens. The diagram and equations summarize the complete constructions; the comparison does not isolate per-dimension normalization from batch whitening.
+
+## Pipeline
+
+```mermaid
+flowchart TD
+    Base["Qwen2.5-1.5B-Instruct"] --> SFT["Format SFT"]
+    SFT --> Init["RL_INIT_V1"]
+    Init --> Original["GRPO-original<br/>objective KL ON"]
+    Init --> NoKL["GRPO-noKL<br/>objective KL OFF"]
+    Init --> GDPO["GDPO-current<br/>per-reward norm<br/>objective KL OFF"]
+    Original --> Frozen["Frozen step-35 checkpoints"]
+    NoKL --> Frozen
+    GDPO --> Frozen
+    Frozen --> Eval["FINAL_HOLDOUT_V1<br/>108 prompts / greedy n=1"]
+    Init --> Eval
+    Eval --> Paired["Paired evaluation<br/>432 outputs"]
+```
+
+Here **objective KL** means consumption of the reference-policy reward penalty by the update, not the configuration flag or PPO's logged KL diagnostic.
+
+## Main Results
+
+**FINAL_HOLDOUT_V1:** a frozen **post-hoc internal holdout**, evaluated after the 35-step budget and four model identities were fixed. Each model generated one greedy answer on the same **108** prompts, for **432/432** formal outputs.
+
+| Model | Raw total reward | Accuracy reward | Format reward | Δ total vs RL_INIT |
 |---|---:|---:|---:|---:|
-| GRPO-original | 2.799721 | 1.849721 | 0.9500 | +0.399550 |
-| GDPO-current | 2.820522 | 1.858022 | 0.9625 | +0.420351 |
-| GRPO-noKL | 2.818737 | 1.856237 | 0.9625 | +0.418565 |
+| RL_INIT_V1 | 2.416575 | 1.490650 | 0.925926 | — |
+| GRPO-original35 | 2.945898 | 2.001453 | 0.944444 | +0.529322 |
+| GDPO-current35 | 2.956086 | 2.002382 | 0.953704 | +0.539511 |
+| GRPO-noKL35 | 2.945284 | 2.000839 | 0.944444 | +0.528708 |
 
-**Under the current 35-step single-seed setting, GDPO and the KL-aligned GRPO-noKL reference finish with nearly identical validation scores; the experiment therefore does not establish a clear downstream advantage for GDPO.**
+These are raw scorer rewards; **accuracy reward is a score, not an accuracy percentage**. Total reward is accuracy reward + format reward, without a reference-policy KL penalty in evaluation.
 
-noKL−original 的最终差值为+0.019016，归档95% paired-bootstrap 区间为[-0.125000, 0.165516]；noKL−GDPO 为−0.001786，区间为[-0.005357, 0]。这些区间描述当前固定模型在验证样本上的配对差异，不包含训练 seed 变异，也不证明算法等价或 KL 无影响。[完整曲线](reports/comparison/grpo_gdpo_nokl_stage1_35_comparison.md) · [归档 bootstrap](reports/comparison/paired_bootstrap_stage1_35.md)
+Selected primary comparisons, with the direction written explicitly:
 
-验证集按 source row 与 RL/SFT 来源隔离，但 source3814 与训练/SFT source527 存在重复内容。保留原始 primary80；事后敏感性分析从同一批输出移除3814，固定规则应用于所有算法和步骤。79条最终 total 为2.809844 / 2.830909 / 2.829100，未改变当前解释；这不能证明其他内容泄漏不存在。[80/79 分析](reports/comparison/primary80_vs_sensitivity79_stage1_35.md)
+| Comparison | Mean Δ total reward | Paired bootstrap 95% CI |
+|---|---:|---:|
+| GDPO − GRPO-noKL | +0.010802 | [−0.096605, +0.165432] |
+| GRPO-original − RL_INIT | +0.529322 | [+0.303721, +0.788203] |
+| GDPO − RL_INIT | +0.539511 | [+0.302045, +0.815225] |
+| GRPO-noKL − RL_INIT | +0.528708 | [+0.303088, +0.782164] |
 
-## 机制诊断：数值变化与收益之间的距离
+> **Key finding:** All three RL-minus-initialization intervals are above zero on this fixed internal endpoint. All three RL-versus-RL intervals include zero; the experiment does not establish a clear GDPO advantage over KL-aligned GRPO, and does not establish algorithm equivalence.
 
-[shared-rollout](reports/comparison/grpo_gdpo_shared_rollout_diagnostic.md)在同一8 prompts × 4 rollouts 上比较 advantage，无 optimizer 更新。GDPO 改变了 magnitude、centering 和 sample weighting。原始16/32 sign disagreement 全部是零→约−0.0167，非正负反转；原始11对组内 ranking disagreement 来自约1e-9差异。在1e-8容差下，实质组内排名差异和严格排名反转均为0。原始 JSON 保留。
+The analysis uses **10,000 common paired resamples**, seed 42, with percentile intervals. These describe prompt-sample variation for fixed checkpoints, not variability across training seeds. [All six predeclared comparisons and component metrics](reports/final_holdout_v1/metrics_and_paired_comparisons.json) are retained; the table above is a reading guide, not a revised analysis.
 
-[fresh sampled diagnostic](reports/sft/fresh_holdout_reward_variation.md)存在 reward-dimension conflict：128条轨迹中8条、涉及6/32组，其格式与正确性奖励组内中心化后符号相反。正式训练中冲突的频率和强度尚未系统测量。
+## Why the KL Audit Matters
 
-**Plausible mechanism hypothesis，未建立因果解释：** greedy validation 的格式指标接近其观测上限，验证分数剩余变化主要来自正确性奖励；冲突可能不足以让 GDPO 的机制在这个设置中形成清晰终点收益。sampled rollout 仍有格式变化，不能称训练期 format reward 已饱和。不同 advantage 与优化轨迹也可能在小型 greedy validation 上得到接近分数。
+Both original training configurations set `algorithm.use_kl_in_reward=true`. The executed code paths differed:
 
-## 证据支持什么
+```text
+scorer → aggregate token_level_scores + raw accuracy/format components
+       → token_level_rewards = token_level_scores − β × reference KL
 
-- 三组35步真实训练完成，归档验证分数均高于共同初始化。
-- KL 实际消费路径的审计促成了 noKL 消融；目标层面的 KL 对齐参照已完成。
-- 公开诊断显示奖励变化、部分维度冲突及 advantage 数值/权重差异；已知重复行的79条敏感性未改变结论。
+GRPO → KL-adjusted token_level_rewards → group-normalized advantages
+GDPO → raw accuracy_reward / format_reward → per-component norm → whitening
+     → advantages → actor policy loss → optimizer update
+```
 
-## 当前不能支持什么
+With the configured reward keys, GDPO uses the raw components rather than the KL-adjusted aggregate. The separate actor KL loss is disabled in all three runs. GDPO still computes the reference path and logs KL-adjusted statistics; **its enabled reward-side KL flag does not put that penalty into this component-based objective**.
 
-- GDPO 优于 GRPO、KL 无影响、算法等价或已经完全收敛。
-- 从这个 single-seed、n=80、35步设置推断更长预算或一般化效果；工具 JSON 解析也不能代替实际工具执行或完整 Agent 任务成功。
-- 论文原配置的完整复现：这里采用现代 veRL、Format SFT 初始化和单卡预算。
+That makes **GRPO-original vs GDPO** a comparison of both advantage construction and KL treatment. I added **GRPO-noKL**, changing the reward-side KL flag to false, to provide the objective-level KL-aligned reference.
 
-本次文档修订核对了公开 canonical 数值和机制诊断记录；原始正式 validation JSONL 未公开，未独立重算其 bootstrap。checkpoint 清单的结构检查、model-only 加载与完整训练恢复检查是不同证据。
+| Run | Advantage construction | Reward-side KL in update | Training flag |
+|---|---|---|---|
+| GRPO-original | Aggregate reward → group norm | Yes | `use_kl_in_reward=true` |
+| GRPO-noKL | Aggregate reward → group norm | No | `use_kl_in_reward=false` |
+| GDPO-current | Raw component norms → sum → masked whitening | No, in the configured component branch | `use_kl_in_reward=true` |
 
-## 已完成：冻结35步后的内部 holdout 复核
+**Matching flags is not enough to establish matching objectives.** The [source-path audit](docs/diagnostics/gdpo_hidden_kl_use_final_audit.md) and [original/noKL configuration diff](docs/diagnostics/grpo_original_vs_grpo_nokl_effective_config_diff.md) document the control. Disabling reward KL also removes reference-policy computation under veRL's semantics, so wall-clock differences are not a pure estimator-efficiency comparison.
 
-[收尾决定](docs/experiment_design/stage1_closeout_decision.md)将35步作为当前项目训练终点；继续三组至70预计还需约30 GPU小时，且不能解决 single seed 和小验证集问题。这是预算决策，不是收敛声明。
+## Experimental Design
 
-[冻结协议](docs/experiment_design/final_test_protocol.md)已执行：RL_INIT_V1 与三条 step35 模型，各评估 FINAL_HOLDOUT_V1 的108条样本，每条1次 greedy generation，共432条。旧官方 test.parquet 已被历史加载并评分，不能称 unseen；本次使用依据可恢复暴露审计构造的 post-hoc internal holdout，不是官方 test 或外部分布 benchmark。
+| Shared setting | Value |
+|---|---|
+| Model / initialization | Qwen2.5-1.5B-Instruct / merged Format-SFT **RL_INIT_V1** |
+| Training data | ToolRL `rlla_4k`: 3,920 raw rows → 3,901 eligible; first 3,584 enter each epoch |
+| Order / batching | `shuffle=false`, `drop_last=true`; 512 prompts per training batch |
+| Budget | **35 training steps** = 5 epochs × 7 batches; each run starts afresh from RL_INIT |
+| Rollouts / PPO minibatch | 4 sampled trajectories per prompt / 128 prompts |
+| Optimizer / seed | AdamW, learning rate **1e-6** / **42**, one training seed |
+| Length limits | Prompt **2,048** / response **1,024** tokens |
+| Single-GPU execution | FSDP; physical microbatch 1; dynamic token budget 6,144; vLLM TP=1 |
+| In-training validation | Fixed 80-row endpoint at steps 0/7/14/21/28/35; greedy n=1 |
+| Final evaluation | Frozen step35 models + RL_INIT; 108 rows; greedy n=1, temperature=0 |
 
-| 模型 | 内部 holdout raw total reward |
-|---|---:|
-| RL_INIT_V1 | 2.416575 |
-| GRPO-original35 | 2.945898 |
-| GDPO-current35 | 2.956086 |
-| GRPO-noKL35 | 2.945284 |
+The base model struggled with the strict ToolRL contract in the [initial diagnostic](reports/sft/sft_v2_after_reward_report.md), motivating Format SFT before RL. The [SFT report](reports/sft/sft_v2_train_report.md) and [merge checks](reports/comparison/rl_init_merge_validation.md) record the shared initialization; runtime-LoRA and merged outputs were not asserted to be bitwise identical.
 
-三条 RL 模型相对 RL_INIT 的平均提升约 +0.529、+0.540、+0.529，其配对95%区间均高于0；三条 RL 模型之间的全部预定比较区间均包含0。这支持当前固定模型的 RL 增量改善在新内部样本上得到复核，未支持清晰的 GDPO 优势，也不证明算法等价或跨 seed 稳健性。
+[Training curves and canonical validation scores](reports/comparison/grpo_gdpo_nokl_stage1_35_comparison.md) remain separate from the final results above. The validation set's known duplicate-content row is covered by a [post-hoc 80/79 sensitivity analysis](reports/comparison/primary80_vs_sensitivity79_stage1_35.md). The [35-step closeout](docs/experiment_design/stage1_closeout_decision.md) is a budget decision, not a convergence claim.
 
-[完成报告](reports/final_holdout_v1/completion_report.md) · [完整预定比较与分层指标](reports/final_holdout_v1/metrics_and_paired_comparisons.json) · [432/432 gate 与输出 hashes](reports/final_holdout_v1/completion_gate.json)。原有 RL_INIT_retry_02 的108条答案完整保留，只修复错误技术门禁并复验；没有重生成或择优挑选。测试后不得用该 endpoint 调参、选择 checkpoint 或继续70。
+## Mechanism Diagnostics
 
-## 复现与证据入口
+- **Shared rollouts:** on 8 prompts × 4 trajectories, GDPO changed advantage magnitude, centering and sample weighting. There were **no substantive within-group ranking reversals** under the documented tolerance. [Diagnostic and interpretation correction](reports/comparison/grpo_gdpo_shared_rollout_diagnostic.md).
+- **Reward conflict:** a separate sampled Format-SFT pilot contained **8/128** trajectories with opposing centered accuracy/format signs, across **6/32** groups. This measures that diagnostic sample, not conflict frequency during formal training. [Reward-variation report](reports/sft/fresh_holdout_reward_variation.md).
+- **Plausible mechanism hypothesis:** high greedy-validation format scores and limited observed conflict may leave little room for per-dimension normalization to improve endpoint scores. Sampled rollouts still have format variation; training-time saturation and a causal explanation were not established.
 
-[报告索引](reports/README.md)汇集 SFT、三组训练、KL、机制、统计和历史证据。[本次修订核验](docs/diagnostics/documentation_revision_audit_20261003.md)说明公开资料的核验范围。
+These diagnostics expose implementation behavior while the paired results bound the downstream claim.
 
-Mac 上只运行 CPU 纯函数检查：
+## Technical Deep Dives
+
+1. [Why GRPO/GDPO KL handling was confounded](docs/diagnostics/gdpo_hidden_kl_use_final_audit.md)
+2. [Why Format SFT was needed, and what changed](reports/sft/sft_v2_after_reward_report.md)
+3. [GRPO vs GDPO advantage construction on shared rollouts](reports/comparison/grpo_gdpo_shared_rollout_diagnostic.md)
+4. [Reward-dimension conflict and its measurement boundary](reports/sft/fresh_holdout_reward_variation.md)
+5. [Final paired evaluation, all comparisons and interpretation](reports/final_holdout_v1/completion_report.md)
+
+## Limitations
+
+- **One training seed, 35 steps:** the intervals do not measure seed robustness or longer-budget behavior.
+- **Post-hoc internal holdout:** selected under a persisted exposure audit from the optimizer-unused train-split tail; shares its source pool with validation.
+- **Task scope:** an internal tool-call scoring task, not an official unseen ToolRL test or an external benchmark.
+- **Objective scope:** GDPO/noKL compares complete advantage constructions, including whitening; per-dimension normalization is not isolated causally.
+- **Agent scope:** no live tool execution or interactive Agent environment; format/parse rewards do not measure end-to-end task success.
+
+## Reproducibility / Experimental Integrity
+
+The final matrix passed **108/108 unique mappings per model**, with no missing or duplicate rows. All **432** outputs were recomputed with the pinned scorer: finite rewards and **zero discrepancies** in all three persisted reward fields. Evaluation performed no training or optimizer updates.
+
+During final evaluation, execution failures were preserved and repaired without regenerating existing model outputs or modifying the frozen protocol. [Completion and technical audit](reports/final_holdout_v1/completion_report.md) records the preserved RL_INIT answers and engineering repairs.
+
+| Evidence | Entry point |
+|---|---|
+| Frozen endpoint / runtime mapping | [Endpoint manifest](manifests/final_holdout_v1_manifest.json) · [Mapping](manifests/final_holdout_v1_runtime_mapping.json) |
+| Frozen models / scorer | [Model identities](manifests/final_test_models_manifest.json) · [Scorer identity](manifests/final_test_scorer_manifest.json) |
+| Actual configuration / runtime | [Integrity records via completion gate](reports/final_holdout_v1/completion_gate.json) · [Runtime versions](reports/final_holdout_v1/runtime_environment.json) |
+| Frozen protocol / analysis | [Protocol](docs/experiment_design/final_test_protocol.md) · [Analysis script](scripts/analyze_final_test.py) |
+| Private archive verification | [Archive receipt](reports/final_holdout_v1/archive_receipt.json) |
+| Historical exposure / content overlap | [Historical usage audit](docs/diagnostics/final_test_historical_usage_audit.md) · [Holdout freeze audit](docs/diagnostics/final_holdout_v1_freeze_audit.md) |
+| Presentation claim checks | [Claim audit](docs/diagnostics/github_presentation_claim_audit_20261003.md) |
+
+Executed trainer: official veRL v0.9.1 at `1876b06d0a3e4e71e06230be10af14492ca8a75b`. Final launcher commit: `066e158639bcebdc79131e7ab0180d11ef021aaf`. File and output SHA256 values are retained in the completion gate.
+
+Git contains compact reports, configs, manifests and audit code. Raw formal outputs, datasets, weights and optimizer state are intentionally kept outside Git; the private evaluation archive was independently verified. Public validation aggregates are archived evidence; this presentation revision does not recompute their bootstrap or the final analysis.
+
+For local CPU-only checks:
 
 ```bash
 bash setup-local.sh
 bash 运行本地验证.command
 ```
 
-GPU 实验使用 veRL v0.9.1 commit `1876b06d0a3e4e71e06230be10af14492ca8a75b` 与独立 `.venv-modern`。公开文件是小型报告、配置、指标与来源清单；原始正式 eval JSONL、parquet、权重和 optimizer state 保留在服务器。已有 launchers 依赖冻结服务器路径，不是新机器的一键入口，也不应用于重跑已完成目录。
+Historical GPU launchers depend on the recorded server layout and separately retained data/models; they are not a portable one-command reproduction. The frozen experiment is complete.
 
-## 来源与许可证
+## Repository Map & Attribution
 
-基于 [NVlabs/GDPO](https://github.com/NVlabs/GDPO)，原始固定 commit 为 `4ad86b4fbfc5db594f3a2750ff9c39fdc8ee6115`；GPU 实验另行固定官方 veRL v0.9.1。算法来自上游，个人工作集中在现代训练环境、奖励/目标路径审计、受控消融与证据整理。上游说明保存在 [README.upstream.md](README.upstream.md)；许可证见 [LICENSE](LICENSE) 与 [third_party_dependency.LICENSE](third_party_dependency.LICENSE)。
+| Path | Purpose |
+|---|---|
+| `configs/`, `manifests/` | Recorded settings and frozen identities |
+| `scripts/` | Setup, training/evaluation entrypoints and technical checks |
+| `reports/` | Results, training records, objective audits and diagnostics |
+| `docs/` | Protocols, experiment design, deeper explanations and [personal interview preparation](docs/resume_project_summary.md) |
+| `verl-GDPO/`, `trl-GDPO/`, `nemo_rl-GDPO/` | Preserved upstream reproduction trees |
+
+Based on [NVlabs/GDPO](https://github.com/NVlabs/GDPO), pinned at `4ad86b4fbfc5db594f3a2750ff9c39fdc8ee6115`; see [README.upstream.md](README.upstream.md). Algorithms are attributed to upstream; project contributions are the adaptation, audits, controls and evaluation above. License: [LICENSE](LICENSE) and [third-party dependency license](third_party_dependency.LICENSE).

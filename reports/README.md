@@ -1,44 +1,88 @@
-# 实验结果与证据索引
+# Results & Technical Evidence
 
-文档更新：2026-10-03（北京时间）。GRPO-original35、GDPO-current35、GRPO-noKL35 均 PASS。当前项目训练预算冻结35步；FINAL_HOLDOUT_V1 四模型 432/432 已完成并通过技术门禁。历史快照按各自采集时间解读。
+Completed 2026-10-03 (Asia/Shanghai): three 35-step training runs and **432/432** final internal-holdout outputs. Start with the seven reports below; machine-readable artifacts and historical records follow by topic.
 
-## 当前状态与结果
+## Start Here
 
-| 审阅问题 | 主要证据 |
+| Read | What it answers |
 |---|---|
-| 当前研究问题、结果与边界 | [首页](../README.md) |
-| 三组35步完成及保留的产物 | [最终消融收尾报告](comparison/final_stage1_ablation_completion_report.md) |
-| 三组共同验证曲线 | [三组比较](comparison/grpo_gdpo_nokl_stage1_35_comparison.md) · [JSON](comparison/grpo_gdpo_nokl_stage1_35_comparison.json) |
-| 原始 GRPO 是否完成 | [报告](grpo/stage1_35/grpo_stage1_report.md) · [gate](grpo/stage1_35/STAGE_COMPLETE_OK) |
-| GDPO 是否完成 | [报告](gdpo/stage1_35/gdpo_stage1_report.md) · [gate](gdpo/stage1_35/STAGE_COMPLETE_OK) |
-| noKL 是否完成 | [报告](grpo_nokl/stage1_35/grpo_nokl_stage1_report.md) · [gate](grpo_nokl/stage1_35/STAGE_COMPLETE_OK) · [结构/加载清单](grpo_nokl/stage1_35/checkpoint_manifest_verified.json) |
-| canonical validation 数值 | [original](grpo/grpo_stage1_metrics_canonical.json) · [GDPO](gdpo/gdpo_stage1_metrics_canonical.json) · [noKL](grpo/grpo_nokl_stage1_metrics_canonical.json) |
-| 为什么停止35步、是否收敛 | [预算决定](../docs/experiment_design/stage1_closeout_decision.md)：停止追加训练不等于证明收敛 |
-| 最终内部 holdout 结果 | [完成报告](final_holdout_v1/completion_report.md) · [冻结配对分析](final_holdout_v1/metrics_and_paired_comparisons.json) · [432/432 gate](final_holdout_v1/completion_gate.json) |
-| final evaluation 协议 | [冻结协议](../docs/experiment_design/final_test_protocol.md)：共同初始化+三条step35，各108条1次greedy |
+| [Final holdout completion and paired results](final_holdout_v1/completion_report.md) | What did the four fixed models achieve, and how uncertain are the differences? |
+| [Three-run training comparison](comparison/grpo_gdpo_nokl_stage1_35_comparison.md) | How did the shared 35-step validation curves evolve? |
+| [Final KL / objective-path audit](../docs/diagnostics/gdpo_hidden_kl_use_final_audit.md) | Why did matching KL flags conceal different objectives? |
+| [Original vs noKL configuration diff](../docs/diagnostics/grpo_original_vs_grpo_nokl_effective_config_diff.md) | What was deliberately changed in the matched control? |
+| [Format-SFT before/after diagnostic](sft/sft_v2_after_reward_report.md) | Why was an output-contract warmup needed? |
+| [Shared-rollout advantage diagnostic](comparison/grpo_gdpo_shared_rollout_diagnostic.md) | What changed in magnitude/centering, and what did not change in ranking? |
+| [Sampled reward-conflict diagnostic](sft/fresh_holdout_reward_variation.md) | Where did accuracy and format signals conflict? |
 
-## KL、机制与统计解释
+## 1. Main Results
 
-| 审阅问题 | 主要证据 |
+- **Final endpoint:** [completion report](final_holdout_v1/completion_report.md) and [all six frozen comparisons / component metrics](final_holdout_v1/metrics_and_paired_comparisons.json). N=108 per model; raw total reward is the primary metric.
+- **Training validation:** [three-run comparison](comparison/grpo_gdpo_nokl_stage1_35_comparison.md) · [JSON](comparison/grpo_gdpo_nokl_stage1_35_comparison.json); fixed primary80 at steps 0/7/14/21/28/35.
+- **Validation pairwise reports:** [original vs noKL](comparison/grpo_original_vs_nokl_stage1_35.md), [noKL vs GDPO](comparison/grpo_nokl_vs_gdpo_stage1_35.md), [original vs GDPO](comparison/grpo_original_vs_gdpo_stage1_35.md).
+- **Validation uncertainty / sensitivity:** [archived paired bootstrap](comparison/paired_bootstrap_stage1_35.md) · [JSON](comparison/paired_bootstrap_stage1_35.json); [primary80 vs sensitivity79](comparison/primary80_vs_sensitivity79_stage1_35.md) · [post-hoc plan](comparison/grpo_gdpo_primary_sensitivity_analysis_plan.md).
+
+The final endpoint supports fixed-checkpoint RL increments over RL_INIT. All RL-versus-RL primary intervals include zero. This does not establish GDPO superiority, algorithm equivalence or seed robustness.
+
+## 2. Training Runs
+
+| Stage | Report | Completion / canonical evidence |
+|---|---|---|
+| Format SFT v2 | [800-example / 50-update report](sft/sft_v2_train_report.md) | [Data report](sft/format_sft_v2_data_report.md) · [Merged RL_INIT checks](comparison/rl_init_merge_validation.md) |
+| GRPO-original35 | [Training report](grpo/stage1_35/grpo_stage1_report.md) | [PASS marker](grpo/stage1_35/STAGE_COMPLETE_OK) · [Canonical metrics](grpo/grpo_stage1_metrics_canonical.json) |
+| GDPO-current35 | [Training report](gdpo/stage1_35/gdpo_stage1_report.md) | [PASS marker](gdpo/stage1_35/STAGE_COMPLETE_OK) · [Canonical metrics](gdpo/gdpo_stage1_metrics_canonical.json) |
+| GRPO-noKL35 | [Training report](grpo_nokl/stage1_35/grpo_nokl_stage1_report.md) | [PASS marker](grpo_nokl/stage1_35/STAGE_COMPLETE_OK) · [Canonical metrics](grpo/grpo_nokl_stage1_metrics_canonical.json) |
+
+[Three-run closeout](comparison/final_stage1_ablation_completion_report.md) records completed training and retained artifacts. [35-step decision](../docs/experiment_design/stage1_closeout_decision.md) records the budget boundary; it is not a convergence finding.
+
+Effective configurations, checkpoint identities and cleanup manifests remain under each run's `stage1_35/` directory. [noKL verified model/checkpoint manifest](grpo_nokl/stage1_35/checkpoint_manifest_verified.json) distinguishes the performed checks. File presence, model-only loading and full optimizer/RNG/dataloader restoration are different levels of evidence.
+
+## 3. KL / Objective Audit
+
+- [Final hidden-KL audit](../docs/diagnostics/gdpo_hidden_kl_use_final_audit.md): raw component rewards versus KL-adjusted aggregate rewards, advantage dispatch and policy-loss consumers.
+- [Original/noKL effective-config diff](../docs/diagnostics/grpo_original_vs_grpo_nokl_effective_config_diff.md) · [JSON](comparison/grpo_original_vs_grpo_nokl_effective_config_diff.json): one planned reward-side KL change plus isolated paths.
+- [noKL prelaunch audit](comparison/grpo_nokl_prelaunch_audit.json): frozen controls checked before its formal run.
+- [Initial KL audit](comparison/kl_path_audit.md): historical source tracing; the final audit governs the current objective interpretation.
+
+The noKL run removes reference-policy computation as a consequence of the framework flags. It is an objective control, not a clean wall-clock estimator-efficiency benchmark.
+
+## 4. Mechanism Diagnostics
+
+- [Shared-rollout report and correction](comparison/grpo_gdpo_shared_rollout_diagnostic.md) · [original JSON](comparison/grpo_gdpo_shared_rollout_diagnostic.json): 8 × 4 trajectories; magnitude/centering differences, no substantive within-group ranking reversals under tolerance.
+- [Fresh sampled reward variation / conflict](sft/fresh_holdout_reward_variation.md) · [JSON](sft/fresh_holdout_reward_variation.json): 8 conflict trajectories across 6/32 groups; a diagnostic sample, not formal-training conflict frequency.
+- [Format-SFT before/after](sft/sft_v2_after_reward_report.md), [reward signal](../docs/diagnostics/reward_signal_report.md), [prompt contract](../docs/diagnostics/prompt_contract_report.md) and [SFT target audit](../docs/diagnostics/format_sft_target_audit.md): contract alignment and remaining sampled variation.
+- [Documentation correction audit](../docs/diagnostics/documentation_revision_audit_20261003.md): public per-trajectory numerical checks behind the interpretation corrections.
+
+Format saturation or insufficient conflict as the cause of small endpoint differences remains a **plausible mechanism hypothesis**, not an established causal mechanism.
+
+## 5. Final Evaluation
+
+| Question | Evidence |
 |---|---|
-| GDPO 是否隐藏消费 KL 调整奖励 | [最终路径审计](../docs/diagnostics/gdpo_hidden_kl_use_final_audit.md) |
-| noKL 主动变了哪些配置 | [配置差异](../docs/diagnostics/grpo_original_vs_grpo_nokl_effective_config_diff.md) |
-| reward-side KL 的消融结果 | [original vs noKL](comparison/grpo_original_vs_nokl_stage1_35.md) |
-| KL 对齐后 advantage 方案的结果 | [noKL vs GDPO](comparison/grpo_nokl_vs_gdpo_stage1_35.md) |
-| 原始两算法比较的混杂边界 | [original vs GDPO](comparison/grpo_original_vs_gdpo_stage1_35.md) |
-| 配对不确定性 | [bootstrap](comparison/paired_bootstrap_stage1_35.md) · [JSON](comparison/paired_bootstrap_stage1_35.json)，不覆盖训练seed变异 |
-| 已知重复内容怎样处理 | [80/79](comparison/primary80_vs_sensitivity79_stage1_35.md) · [事后分析计划](comparison/grpo_gdpo_primary_sensitivity_analysis_plan.md) |
-| advantage 数值变化是否代表排序反转 | [shared-rollout勘误](comparison/grpo_gdpo_shared_rollout_diagnostic.md)：1e-8容差下实质组内排名差异0 |
-| SFT 后是否仍有奖励变化/冲突 | [fresh sampled diagnostic](sft/fresh_holdout_reward_variation.md)：8条冲突轨迹，涉及6/32组 |
-| 本次独立复核到了哪一层 | [文档修订核验](../docs/diagnostics/documentation_revision_audit_20261003.md) |
+| What protocol and endpoint were frozen? | [Protocol](../docs/experiment_design/final_test_protocol.md) · [Freeze audit](../docs/diagnostics/final_holdout_v1_freeze_audit.md) |
+| Which rows, models and scorer? | [Endpoint](../manifests/final_holdout_v1_manifest.json) · [Runtime mapping](../manifests/final_holdout_v1_runtime_mapping.json) · [Models](../manifests/final_test_models_manifest.json) · [Scorer](../manifests/final_test_scorer_manifest.json) |
+| Did every output pass? | [432/432 completion gate](final_holdout_v1/completion_gate.json) |
+| What actual config and identity checks passed? | [RL_INIT](final_holdout_v1/01_RL_INIT_V1_retry_02_integrity.json) · [original](final_holdout_v1/02_GRPO_original35_integrity.json) · [GDPO](final_holdout_v1/03_GDPO_current35_integrity.json) · [noKL](final_holdout_v1/04_GRPO_noKL35_integrity.json) |
+| What is the complete frozen result? | [All comparisons and strata](final_holdout_v1/metrics_and_paired_comparisons.json) · [Completion report](final_holdout_v1/completion_report.md) |
+| How were execution failures handled? | [Preserved failure and engineering repairs](final_holdout_v1/completion_report.md#preserved-failure-provenance-and-engineering-repairs) · [Original false gate](final_holdout_v1/RL_INIT_V1_initial_validator_failure.json) |
+| Where is private archival verification recorded? | [Archive receipt](final_holdout_v1/archive_receipt.json) |
 
-正式 validation JSONL 未公开。归档 bootstrap 来自服务器持久化输出，本次文档修订未独立重算它。公开 shared-rollout / fresh-holdout JSON 含逐轨迹记录，可在 CPU 上复核本次机制勘误。正式 Stage 1 不用 test 做中间验证；历史审计已确认旧官方 test 曾实际加载并评分；FINAL_HOLDOUT_V1 是另外冻结的内部复核 endpoint。
+FINAL_HOLDOUT_V1 is a post-hoc internal corroborative endpoint under the recoverable exposure audit. It shares the original train-split tail source with validation. [Historical official-test usage](../docs/diagnostics/final_test_historical_usage_audit.md) was audited; no official unseen-test claim is made.
 
-## 初始化、实现与历史证据
+## 6. Reproducibility / Infrastructure
 
-- [SFT v2](sft/sft_v2_train_report.md) · [merge 检查](comparison/rl_init_merge_validation.md) · [奖励诊断](../docs/diagnostics/reward_signal_report.md) · [prompt 契约](../docs/diagnostics/prompt_contract_report.md)。
-- 真实容量与训练路径：[GRPO](grpo/grpo_official_scale_capacity_report.md) / [GDPO](gdpo/gdpo_official_scale_capacity_report.md)；Config A：[GRPO](grpo/grpo_throughput_config_a_report.md) / [GDPO](gdpo/gdpo_throughput_config_a_report.md)。
-- [旧两组收尾](comparison/stage1_35x2_completion_report.md)、[初始 KL 审计](comparison/kl_path_audit.md)、[环境快照](runtime_verification_20261002.md)、[服务器来源清单](server_artifact_manifest.json)是带时间边界的历史记录，不是三组最终状态总表。
-- [GRPO gate 失败与解决](grpo/stage1_35/STAGE_FAILED.resolution.md)、[旧0/105启动失败](grpo/historical_grpo_formal_run_report.md)、[初始环境失败](../configs/environment_report.md)保留，不回写历史事实。
-- GRPO 原始报告的 `step_time=False` 是检查键与日志键不一致；原生35条 `perf/time_per_step` 有限。原始报告保留，当前数值见 canonical 与三组比较。
-- full checkpoint 结构存在、model-only 独立加载、完整 optimizer/RNG/dataloader 恢复是不同检查；[旧 resume smoke](../docs/diagnostics/checkpoint_resume_smoke.md)不自动证明三条最终step35完成了完整恢复检查。
+- **Runtime:** [final runtime versions](final_holdout_v1/runtime_environment.json), [earlier SM120/runtime verification](runtime_verification_20261002.md), [environment setup report](../configs/environment_report.md).
+- **Single-GPU capacity:** [GRPO](grpo/grpo_official_scale_capacity_report.md) / [GDPO](gdpo/gdpo_official_scale_capacity_report.md); Config A [GRPO](grpo/grpo_throughput_config_a_report.md) / [GDPO](gdpo/gdpo_throughput_config_a_report.md).
+- **Static final-evaluation checks:** [launcher](../docs/diagnostics/final_test_launcher_static_audit.md), [metric definition](../docs/diagnostics/final_test_metric_definition_audit.md), [analysis script](../docs/diagnostics/final_test_analysis_script_validation.md), [interface repair](../docs/diagnostics/final_eval_interface_fix_audit_20261003.md), [actor config repair](../docs/diagnostics/final_eval_actor_config_fix_audit_20261003.md).
+- **Audit trail:** [server artifact manifest](server_artifact_manifest.json), [documentation audit](../docs/diagnostics/documentation_revision_audit_20261003.md), [presentation claim audit](../docs/diagnostics/github_presentation_claim_audit_20261003.md).
+
+Raw formal JSONL, parquet, weights, optimizer state and large runtime logs are not published. The final scorer recomputation and frozen analysis were performed during experiment closeout; this presentation revision cross-checks public artifacts without rerunning them. Validation bootstrap values remain archived estimates, not independently recomputed during this revision.
+
+<details>
+<summary>Historical snapshots and engineering incidents</summary>
+
+- [Original two-run completion](comparison/stage1_35x2_completion_report.md) and [preflight report](comparison/final_test_preflight_report.md) describe their original stages, not the final four-model status.
+- [GRPO gate failure resolution](grpo/stage1_35/STAGE_FAILED.resolution.md), [historical 0/105 launch failure](grpo/historical_grpo_formal_run_report.md), [old resume smoke](../docs/diagnostics/checkpoint_resume_smoke.md) and the original environment failure remain preserved.
+- The original GRPO report's `step_time=False` reflected a check-key mismatch; its 35 native `perf/time_per_step` values are finite. Canonical metrics govern current comparisons.
+- The final completion gate's shutdown field is a pre-shutdown snapshot. Publication, private archive verification and successful shutdown/SSH-unreachable receipts were subsequently saved in the local controlled archive.
+
+</details>
