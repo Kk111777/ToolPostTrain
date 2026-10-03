@@ -1,5 +1,7 @@
 # ToolPostTrain
 
+**English** | [简体中文](README.zh-CN.md)
+
 ### Reproducing and Auditing Multi-Reward RL Post-Training for Tool Calling
 
 **Format SFT → GRPO/GDPO → KL-path audit → matched no-KL ablation → held-out paired evaluation**
