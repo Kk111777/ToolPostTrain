@@ -141,9 +141,9 @@ GDPO → raw accuracy_reward / format_reward → per-component norm → whitenin
 
 ## 机制诊断（Mechanism Diagnostics）
 
-- **Shared rollouts：**在 8 条 prompts × 4 条轨迹上，GDPO 改变了 advantage 的幅度、中心化与样本权重。在报告规定的容差下，**没有实质组内排序反转**。[诊断与解释勘误](reports/comparison/grpo_gdpo_shared_rollout_diagnostic.md)。
-- **奖励冲突：**另一组 sampled Format-SFT pilot 中，**8/128** 条轨迹的中心化正确性/格式奖励符号相反，涉及 **6/32** 个组。这是该诊断样本的测量结果，不代表正式训练的冲突频率。[奖励变化报告](reports/sft/fresh_holdout_reward_variation.md)。
-- **合理但未证明的机制假设（plausible mechanism hypothesis）：**greedy validation 的格式分数较高，且已观察到的冲突有限，可能使分维度归一化改善 endpoint 分数的空间较小。Sampled rollouts 仍存在格式变化；未证明训练期格式饱和，也未建立因果解释。
+- **Shared rollouts：** 在 8 条 prompts × 4 条轨迹上，GDPO 改变了 advantage 的幅度、中心化与样本权重。在报告规定的容差下，**没有实质组内排序反转**。[诊断与解释勘误](reports/comparison/grpo_gdpo_shared_rollout_diagnostic.md)。
+- **奖励冲突：** 另一组 sampled Format-SFT pilot 中，**8/128** 条轨迹的中心化正确性/格式奖励符号相反，涉及 **6/32** 个组。这是该诊断样本的测量结果，不代表正式训练的冲突频率。[奖励变化报告](reports/sft/fresh_holdout_reward_variation.md)。
+- **合理但未证明的机制假设（plausible mechanism hypothesis）：** greedy validation 的格式分数较高，且已观察到的冲突有限，可能使分维度归一化改善 endpoint 分数的空间较小。Sampled rollouts 仍存在格式变化；未证明训练期格式饱和，也未建立因果解释。
 
 诊断揭示实现行为，配对结果则限定可支持的下游结论。
 
@@ -157,11 +157,11 @@ GDPO → raw accuracy_reward / format_reward → per-component norm → whitenin
 
 ## 局限（Limitations）
 
-- **一个 training seed、35 steps：**区间不衡量跨 seed 稳健性或更长训练预算下的行为。
-- **事后内部留出集：**依据持久化暴露审计，从未进入 optimizer 的 train-split 尾部选取；与 validation 共享来源池。
-- **任务范围：**内部工具调用评分任务，不是官方 unseen ToolRL test 或外部 benchmark。
-- **目标范围：**GDPO/noKL 比较包括 whitening 在内的完整 advantage 构造；未单独识别分维度归一化的因果作用。
-- **Agent 范围：**没有真实工具执行或交互式 Agent 环境；格式/解析奖励不衡量端到端任务成功。
+- **一个 training seed、35 steps：** 区间不衡量跨 seed 稳健性或更长训练预算下的行为。
+- **事后内部留出集：** 依据持久化暴露审计，从未进入 optimizer 的 train-split 尾部选取；与 validation 共享来源池。
+- **任务范围：** 内部工具调用评分任务，不是官方 unseen ToolRL test 或外部 benchmark。
+- **目标范围：** GDPO/noKL 比较包括 whitening 在内的完整 advantage 构造；未单独识别分维度归一化的因果作用。
+- **Agent 范围：** 没有真实工具执行或交互式 Agent 环境；格式/解析奖励不衡量端到端任务成功。
 
 ## 复现与实验完整性（Reproducibility / Experimental Integrity）
 
