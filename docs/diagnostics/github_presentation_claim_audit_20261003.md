@@ -46,3 +46,4 @@ The README features four of the six frozen primary comparisons for readability a
 - Use “35 training steps” for the trainer's batch/global-step budget, rather than equating it to 35 optimizer calls; PPO minibatches are a separate update-count layer.
 - Repository About and all ten requested topics were updated and read back through GitHub's API; the default branch remains `main`.
 - Verification checked rounded result/component means and the four displayed paired intervals against the frozen JSON, resolved all local presentation links, and byte-compared 736 existing evidence/code files outside the two rewritten README files against the result commit.
+- GitHub visual review prompted plain-text schematic formulas and shorter Mermaid labels for readable rendering; algorithm definitions and results were preserved.

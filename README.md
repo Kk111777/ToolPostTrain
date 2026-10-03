@@ -40,16 +40,11 @@ Does GDPO's per-reward advantage construction yield a measurable benefit over a 
 
 For the KL-free comparison, the constructions are schematically:
 
-$$
-R = R_{\mathrm{accuracy}} + R_{\mathrm{format}}, \qquad
-A_{\mathrm{GRPO}} = \operatorname{GroupNorm}(R)
-$$
-
-$$
-A_{\mathrm{GDPO}} \approx \operatorname{MaskedWhiten}_{\mathrm{batch}}\!\left(
-\operatorname{GroupNorm}(R_{\mathrm{accuracy}}) +
-\operatorname{GroupNorm}(R_{\mathrm{format}})\right)
-$$
+```text
+R      = R_accuracy + R_format
+A_GRPO = GroupNorm(R)
+A_GDPO ≈ MaskedBatchWhiten(GroupNorm(R_accuracy) + GroupNorm(R_format))
+```
 
 GroupNorm operates within a prompt's rollout group; GDPO additionally whitens over valid response tokens. The diagram and equations summarize the complete constructions; the comparison does not isolate per-dimension normalization from batch whitening.
 
@@ -57,17 +52,17 @@ GroupNorm operates within a prompt's rollout group; GDPO additionally whitens ov
 
 ```mermaid
 flowchart TD
-    Base["Qwen2.5-1.5B-Instruct"] --> SFT["Format SFT: 800 examples / 50 updates"]
-    SFT --> Init["RL_INIT_V1: shared initialization"]
-    Init --> Original["GRPO-original: aggregate norm / objective KL ON"]
-    Init --> NoKL["GRPO-noKL: aggregate norm / objective KL OFF"]
-    Init --> GDPO["GDPO-current: per-reward norm + whitening / objective KL OFF"]
-    Original --> Frozen["Three frozen step-35 checkpoints"]
+    Base["Qwen2.5-1.5B-Instruct"] --> SFT["Format SFT"]
+    SFT --> Init["RL_INIT_V1"]
+    Init --> Original["GRPO-original<br/>objective KL ON"]
+    Init --> NoKL["GRPO-noKL<br/>objective KL OFF"]
+    Init --> GDPO["GDPO-current<br/>per-reward norm<br/>objective KL OFF"]
+    Original --> Frozen["Frozen step-35 checkpoints"]
     NoKL --> Frozen
     GDPO --> Frozen
-    Frozen --> Eval["FINAL_HOLDOUT_V1: 108 prompts / greedy n=1"]
+    Frozen --> Eval["FINAL_HOLDOUT_V1<br/>108 prompts / greedy n=1"]
     Init --> Eval
-    Eval --> Paired["432 outputs / paired evaluation"]
+    Eval --> Paired["Paired evaluation<br/>432 outputs"]
 ```
 
 Here **objective KL** means consumption of the reference-policy reward penalty by the update, not the configuration flag or PPO's logged KL diagnostic.
