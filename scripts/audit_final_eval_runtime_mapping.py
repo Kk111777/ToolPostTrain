@@ -64,12 +64,12 @@ def audit_jsonl(path: Path, mapping_rows: list[dict]) -> dict:
     return {
         "path": str(path),
         "rows": len(matched),
-        "expected_rows": 80,
+        "expected_rows": len(mapping_rows),
         "matched_rows": len(matched),
         "missing_rows": len(missing),
         "duplicate_rows": len(duplicates),
         "unique_source_ids": unique_source_ids,
-        "pass": len(matched) == 80 and not missing and not duplicates and unique_source_ids == 80,
+        "pass": len(matched) == len(mapping_rows) and not missing and not duplicates and unique_source_ids == len(mapping_rows),
     }
 
 

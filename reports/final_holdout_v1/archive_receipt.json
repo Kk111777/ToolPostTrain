@@ -1,0 +1,9 @@
+{
+  "archive_file": "FINAL_HOLDOUT_V1_20261003.tar.gz",
+  "archive_sha256": "370051d3799b94d30754f750829022e0fe972eaaf92beae4322e699675d5f3e0",
+  "artifact_inventory_count": 139,
+  "independent_local_copy_verified": true,
+  "all_inventory_hashes_verified": true,
+  "archive_contents": "raw JSONL, logs, actual resolved config, failed attempt provenance, technical gates, frozen analysis and report snapshot",
+  "raw_archive_published_to_git": false
+}

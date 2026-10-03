@@ -1,0 +1,12 @@
+{
+  "package_versions": {
+    "torch": "2.11.0+cu130",
+    "vllm": "0.24.0",
+    "transformers": "5.9.0",
+    "numpy": "2.3.5",
+    "ray": "2.55.1",
+    "pyarrow": "24.0.0"
+  },
+  "gpu_driver": "NVIDIA RTX 6000D, 595.91.07, 85651 MiB",
+  "python": "Python 3.12.14"
+}

@@ -1,0 +1,125 @@
+{
+  "actual_resolved_config_recovered_from_runtime": true,
+  "checks": {
+    "endpoint_manifest_sha": true,
+    "endpoint_parquet_sha": true,
+    "exactly_108_records": true,
+    "exit_code_zero": true,
+    "expected_existing_jsonl_sha": true,
+    "frozen_endpoint_path": true,
+    "frozen_generation_and_val_only": true,
+    "frozen_model_path": true,
+    "jsonl_unchanged_during_audit": true,
+    "mapping_sha": true,
+    "model_and_tokenizer_file_hashes": true,
+    "no_checkpoint_files": true,
+    "no_fatal_or_update_markers": true,
+    "no_optimizer_loop_runtime": true,
+    "one_jsonl": true,
+    "scorer_finite_and_consistent": true,
+    "scorer_sha": true,
+    "unique_mapping_108": true,
+    "zero_training_steps_runtime": true
+  },
+  "config_fields": {
+    "actor_rollout_ref.actor.use_kl_loss": {
+      "actual": false,
+      "expected": false
+    },
+    "actor_rollout_ref.rollout.n": {
+      "actual": 1,
+      "expected": 1
+    },
+    "actor_rollout_ref.rollout.val_kwargs.do_sample": {
+      "actual": false,
+      "expected": false
+    },
+    "actor_rollout_ref.rollout.val_kwargs.n": {
+      "actual": 1,
+      "expected": 1
+    },
+    "actor_rollout_ref.rollout.val_kwargs.temperature": {
+      "actual": 0,
+      "expected": 0
+    },
+    "actor_rollout_ref.rollout.val_kwargs.top_k": {
+      "actual": -1,
+      "expected": -1
+    },
+    "actor_rollout_ref.rollout.val_kwargs.top_p": {
+      "actual": 1.0,
+      "expected": 1.0
+    },
+    "algorithm.use_kl_in_reward": {
+      "actual": false,
+      "expected": false
+    },
+    "data.max_prompt_length": {
+      "actual": 2048,
+      "expected": 2048
+    },
+    "data.max_response_length": {
+      "actual": 1024,
+      "expected": 1024
+    },
+    "data.val_max_samples": {
+      "actual": 108,
+      "expected": 108
+    },
+    "data.validation_shuffle": {
+      "actual": false,
+      "expected": false
+    },
+    "trainer.resume_mode": {
+      "actual": "disable",
+      "expected": "disable"
+    },
+    "trainer.save_freq": {
+      "actual": -1,
+      "expected": -1
+    },
+    "trainer.total_epochs": {
+      "actual": 0,
+      "expected": 0
+    },
+    "trainer.total_training_steps": {
+      "actual": 0,
+      "expected": 0
+    },
+    "trainer.val_before_train": {
+      "actual": true,
+      "expected": true
+    },
+    "trainer.val_only": {
+      "actual": true,
+      "expected": true
+    }
+  },
+  "fatal_markers": [],
+  "forbidden_files": [],
+  "jsonl_path": "/root/autodl-tmp/ProjectB/final-test/final_holdout_v1/01_RL_INIT_V1_retry_02/0.jsonl",
+  "jsonl_sha256": "0063a0c924fbaf3226de7e3ce5eb9e93c716b1237ba33b609301c2d7a753bb4a",
+  "mapping": {
+    "duplicates": 0,
+    "matched": 108,
+    "missing": 0,
+    "unique_source_ids": 108
+  },
+  "model": "RL_INIT_V1",
+  "model_file_checks": {
+    "chat_template.jinja": true,
+    "config.json": true,
+    "generation_config.json": true,
+    "merge_metadata.json": true,
+    "model.safetensors": true,
+    "tokenizer.json": true,
+    "tokenizer_config.json": true
+  },
+  "rows": 108,
+  "scorer_max_abs_delta": {
+    "accuracy_reward": 0.0,
+    "format_reward": 0.0,
+    "score": 0.0
+  },
+  "status": "PASS"
+}
