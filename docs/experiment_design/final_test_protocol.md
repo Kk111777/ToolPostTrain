@@ -151,7 +151,7 @@ ContinuousToken builder with `add_generation_prompt=True`, and
 `tokenizer.decode(ids, skip_special_tokens=True)`. It records only
 `(runtime_input_sha256, ground_truth_sha256_exact)` plus frozen row identity;
 it stores no raw prompt, ground truth, or model output. Its SHA256 is
-`ee7ab8143f57c6c9f60fd0a5c7c48df73ee28fb3c72761d6bf7a7eb7d9cdd`.
+`ee7ab8143f57c6c9f60c35fd0a5c7c48df73ee28fb3c72761d6bf7a7eb7d9cdd`.
 The launcher and analyzer verify these external byte hashes before parsing
 either manifest. A separate CPU regression constructs an ephemeral mapping
 for `formal_validation_80.parquet` and requires every persisted GRPO, GDPO and

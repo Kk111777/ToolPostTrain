@@ -34,7 +34,7 @@ partial, duplicate, extra, or missing model matrix.
 | endpoint parquet SHA256 | `e8f2e025906fa5e9e3088d9a29494e05da5fb47ddf4705b2550956c4380d8f22` |
 | ordered source-ID SHA256 | `75373e7e89ed7004a2d5cb858b9626449d74f7e536d341fda7aec18eed5e29ad` |
 | endpoint rows | 108 (`tool_only=101`, `response_only=7`) |
-| runtime mapping SHA256 | `ee7ab8143f57c6c9f60fd0a5c7c48df73ee28fb3c72761d6bf7a7eb7d9cdd` |
+| runtime mapping SHA256 | `ee7ab8143f57c6c9f60c35fd0a5c7c48df73ee28fb3c72761d6bf7a7eb7d9cdd` |
 | tokenizer | RL_INIT_V1 local tokenizer, `Qwen2Tokenizer` |
 | chat-template SHA256 | `cd8e9439f0570856fd70470bf8889ebd8b5d1107207f67a5efb46e342330527f` |
 | official veRL revision | `1876b06d0a3e4e71e06230be10af14492ca8a75b` |
