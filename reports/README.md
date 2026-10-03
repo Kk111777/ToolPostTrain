@@ -1,8 +1,16 @@
 # Results & Technical Evidence
 
-Completed 2026-10-03 (Asia/Shanghai): three 35-step training runs and **432/432** final internal-holdout outputs. Start with the seven reports below; machine-readable artifacts and historical records follow by topic.
+Completed 2026-10-03 (Asia/Shanghai): three 35-step training runs and **432/432** final internal-holdout outputs. For a quick project summary, use the homepage; the reports below support technical follow-up and evidence review.
 
-## Start Here
+## Choose a Reading Path
+
+| Reader / goal | Start with |
+|---|---|
+| Quick project review | [English homepage](../README.md) · [中文首页](../README.zh-CN.md): contributions, results and the KL finding |
+| Technical evidence | Final results and the KL objective-path audit below |
+| Exact results / evidence audit | The reports below, followed by protocol, identities and hashes in sections 5–6 |
+
+## Featured Technical Reports
 
 | Read | What it answers |
 |---|---|

@@ -13,7 +13,7 @@ Date: 2026-10-03 (Asia/Shanghai). Scope: README, reports index, resume summary a
 | KL confound despite matching flags | [Final objective-path audit](gdpo_hidden_kl_use_final_audit.md) | Supported for pinned veRL v0.9.1 and the configured GDPO reward keys. Not a universal GDPO property. |
 | noKL is an objective-level KL-aligned reference | [Config/runtime diff](grpo_original_vs_grpo_nokl_effective_config_diff.md) | Supported. Reference computation changes as a flag consequence; no pure efficiency ranking. |
 | 108 rows × four models = 432 outputs; exact scorer agreement | [Completion gate](../../reports/final_holdout_v1/completion_gate.json), [completion report](../../reports/final_holdout_v1/completion_report.md) | Supported by the completed execution evidence. No new recomputation during presentation. |
-| Four means, reward components, deltas and intervals | [Canonical final results](../../reports/final_holdout_v1/metrics_and_paired_comparisons.json) | Supported. README values rounded to six decimals; Δ is explicitly right minus left. |
+| Four means, reward components, deltas and intervals | [Canonical final results](../../reports/final_holdout_v1/metrics_and_paired_comparisons.json) | Supported. Current homepage means/deltas are rounded to three decimals; linked completion reports retain six-decimal tables and explicit comparison directions. |
 | RL gain over initialization, no clear GDPO/noKL advantage | [All six primary comparisons](../../reports/final_holdout_v1/completion_report.md#all-predeclared-paired-comparisons) | RL−RL_INIT intervals above zero; all RL−RL intervals contain zero. No algorithm equivalence, hypothesis-test significance or general superiority claim. |
 | Advantage magnitude/centering differences, no substantive ranking reversal | [Shared-rollout correction](../../reports/comparison/grpo_gdpo_shared_rollout_diagnostic.md) | Supported on 32 trajectories at documented tolerance. Raw zero-to-negative shifts are not positive/negative reversals. |
 | 8/128 conflict trajectories across 6/32 groups | [Conflict diagnostic](../../reports/sft/fresh_holdout_reward_variation.md) | Supported as a post-hoc diagnostic count, not formal-training conflict frequency. |
@@ -33,9 +33,9 @@ The reviewed principal reports are: final holdout completion, three-run comparis
 | independent | Separate runs, model loading or closeout scorer checks where specified. This revision does not claim independent bootstrap reconstruction from raw validation JSONL. |
 | equivalent / saturation | No algorithm equivalence, adapter bitwise equivalence or sampled-training format saturation claim. |
 
-The README features four of the six frozen primary comparisons for readability and links all six. No comparison, endpoint, metric, bootstrap seed/index, row set or analysis artifact is changed.
+The linked completion report retains all six primary comparisons. The compact README shows four model means/deltas and a rounded GDPO−noKL contrast; exact intervals remain in the linked reports. No comparison, endpoint, metric, bootstrap seed/index, row set or analysis artifact is changed.
 
-## Presentation and repository boundary
+## Initial presentation revision and repository boundary
 
 - Reordered README around contributions, results and the objective-path finding; moved provenance detail behind technical content.
 - Reorganized the reports index into six reader-oriented categories and preserved access to historical failure records.
@@ -47,3 +47,16 @@ The README features four of the six frozen primary comparisons for readability a
 - Repository About and all ten requested topics were updated and read back through GitHub's API; the default branch remains `main`.
 - Verification checked rounded result/component means and the four displayed paired intervals against the frozen JSON, resolved all local presentation links, and byte-compared 736 existing evidence/code files outside the two rewritten README files against the result commit.
 - GitHub visual review prompted plain-text schematic formulas and shorter Mermaid labels for readable rendering; algorithm definitions and results were preserved.
+
+## Recruitment-oriented homepage revision
+
+Baseline: `main@78ad1f7` (the bilingual technical homepage). Audience: internship recruiters and first-round project review.
+
+- Reordered both homepages: three core contributions → compact results → KL technical finding → pipeline → four contribution areas → short setup → one scope section.
+- Compressed the homepage result table to means/deltas rounded to three decimals. Exact results, advantage definitions, diagnostic limits, protocol identities and hashes remain in the existing scientific reports and audits.
+- Updated `开始这里.md`: its previous “final test not executed” status was obsolete. The completed 432/432 matrix governs current status.
+- Added reader paths to the reports index while retaining technical and historical entries.
+- Removed the personal interview-preparation document from the current public tree. It is kept locally outside this Git checkout; the repository contains project presentation and scientific evidence.
+- Checked rounding against canonical JSON and preserved KL/config/endpoint qualifications. This documentation change does not independently reconstruct bootstrap from private raw JSONL.
+- No speedup, accuracy percentage, deployment result or new algorithm claim is added. Scientific artifacts, code, configs, protocol and analysis definitions are unchanged.
+- Verification outcome: both compact READMEs are 103 lines versus 205 previously; bilingual sections, links, result cells and diagram structure agree. All local presentation links resolve, 735 existing non-presentation files byte-match `78ad1f7`, and whitespace checks pass.
