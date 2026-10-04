@@ -6,7 +6,7 @@ Completed 2026-10-03 (Asia/Shanghai): three 35-step training runs and **432/432*
 
 | Reader / goal | Start with |
 |---|---|
-| Quick project review | [English homepage](../README.md) · [中文首页](../README.zh-CN.md): contributions, results and the KL finding |
+| Quick project review | [English homepage](../README.md) · [中文首页](../README.zh-CN.md): experiment setup, results and the KL finding |
 | Technical evidence | Final results and the KL objective-path audit below |
 | Exact results / evidence audit | The reports below, followed by protocol, identities and hashes in sections 5–6 |
 
@@ -78,12 +78,12 @@ FINAL_HOLDOUT_V1 is a post-hoc internal corroborative endpoint under the recover
 
 ## 6. Reproducibility / Infrastructure
 
-- **Runtime:** [final runtime versions](final_holdout_v1/runtime_environment.json), [earlier SM120/runtime verification](runtime_verification_20261002.md), [environment setup report](../configs/environment_report.md).
+- **Runtime:** [final runtime versions](final_holdout_v1/runtime_environment.json), [earlier SM120/runtime verification](runtime_verification_20261002.md), [historical environment setup report](../configs/environment_report.md).
 - **Single-GPU capacity:** [GRPO](grpo/grpo_official_scale_capacity_report.md) / [GDPO](gdpo/gdpo_official_scale_capacity_report.md); Config A [GRPO](grpo/grpo_throughput_config_a_report.md) / [GDPO](gdpo/gdpo_throughput_config_a_report.md).
 - **Static final-evaluation checks:** [launcher](../docs/diagnostics/final_test_launcher_static_audit.md), [metric definition](../docs/diagnostics/final_test_metric_definition_audit.md), [analysis script](../docs/diagnostics/final_test_analysis_script_validation.md), [interface repair](../docs/diagnostics/final_eval_interface_fix_audit_20261003.md), [actor config repair](../docs/diagnostics/final_eval_actor_config_fix_audit_20261003.md).
-- **Audit trail:** [server artifact manifest](server_artifact_manifest.json), [documentation audit](../docs/diagnostics/documentation_revision_audit_20261003.md), [presentation claim audit](../docs/diagnostics/github_presentation_claim_audit_20261003.md).
+- **Audit trail:** [server artifact manifest](server_artifact_manifest.json), [documentation audit](../docs/diagnostics/documentation_revision_audit_20261003.md).
 
-Raw formal JSONL, parquet, weights, optimizer state and large runtime logs are not published. The final scorer recomputation and frozen analysis were performed during experiment closeout; this presentation revision cross-checks public artifacts without rerunning them. Validation bootstrap values remain archived estimates, not independently recomputed during this revision.
+Raw formal JSONL, parquet, weights, optimizer state and large runtime logs are not published. The final scorer recomputation and frozen analysis were performed during experiment closeout. Validation bootstrap values remain archived estimates; later documentation updates did not independently recompute them.
 
 <details>
 <summary>Historical snapshots and engineering incidents</summary>
